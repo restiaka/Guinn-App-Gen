@@ -1,0 +1,1 @@
+<?php extract(load::c('deauthorize_c')->getOutput()); //Load and extract controller variables ?>

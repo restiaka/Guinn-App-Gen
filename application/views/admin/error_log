@@ -1,0 +1,4 @@
+[23-May-2011 13:34:52] PHP Fatal error:  Class 'load' not found in /home/thinkwe/fbapps/fbguinnessphotocontest/view/admin/customer.php on line 1
+[23-May-2011 13:36:05] PHP Parse error:  syntax error, unexpected T_EXIT in /home/thinkwe/fbapps/fbguinnessphotocontest/view/admin/customer.php on line 1
+[23-May-2011 13:36:19] PHP Parse error:  syntax error, unexpected T_EXIT in /home/thinkwe/fbapps/fbguinnessphotocontest/view/admin/customer.php on line 1
+[21-Jun-2011 11:02:41] PHP Fatal error:  Class 'load' not found in /home/thinkwe/fbapps/fbguinnessphotocontest/view/admin/media.php on line 1

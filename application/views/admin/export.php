@@ -1,0 +1,1 @@
+<?php extract(load::c('admin/campaign_c')->getOutput());?>
