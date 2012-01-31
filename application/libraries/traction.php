@@ -33,7 +33,7 @@ Class Traction {
  
 	function __construct($config = null)
 	{
-	 $this->CI = get_instance();
+	 $this->CI = &get_instance();
 	 $this->CI->load->model('setting_m');
 	 
 	 

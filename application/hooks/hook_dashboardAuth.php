@@ -25,6 +25,8 @@
 			  die('UNREGISTERED APPLICATION');
 			}
 			
+
+			
 			 $CI->load->library('facebook', array('appId'=> $rows['APP_APPLICATION_ID'],
 												  'secret'=> $rows['APP_SECRET_KEY']));		 
 		  

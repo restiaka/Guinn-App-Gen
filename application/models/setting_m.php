@@ -1,7 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 Class Setting_m extends CI_Model {
   
-  public $setting;
   
   function __construct()
   {
@@ -22,18 +21,22 @@ Class Setting_m extends CI_Model {
   
   public function get($key)
   {
-	if(isset($this->setting[$key]))
-	return $this->setting[$key];
+/* 	if(isset($this->setting[$key]))
+	return $this->setting[$key]; */
+	
+	$this->config->item($key);
   }
   
   public function set($key,$value,$overwrite = TRUE)
   {
-	if($overwrite){
+	/* if($overwrite){
 	  $this->setting[$key] = $value;
 	}else{
 	  if(!isset($this->setting[$key]))
 	  $this->setting[$key] = $value;
-	}
+	} */
+	
+	$this->config->set_item($key, $value);
   }
 
 }

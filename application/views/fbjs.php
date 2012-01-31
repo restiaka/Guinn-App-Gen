@@ -1,9 +1,12 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
   <script>
-  <?php $CI = &get_instance(); $CI->load->model('setting_m');?>
+  <?php $CI = &get_instance(); $CI->load->model('setting_m');
+
+  ?>
   var APP_APPLICATION_ID = '<?php echo $CI->setting_m->get('APP_APPLICATION_ID');?>';
 	var APP_EXT_PERMISSIONS = '<?php echo $CI->setting_m->get('APP_EXT_PERMISSIONS');?>';
-
+<? 
+exit;?>
   window.fbAsyncInit = function() {
     FB.init({
 				appId: APP_APPLICATION_ID, 

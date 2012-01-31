@@ -16,13 +16,10 @@ Class Campaign extends CI_Controller {
 	
 	public function _remap($app_env, $params = array())
 	{
-	  dg($params);
-
-	$appID = $params[0];
+	 $appID = $params[0];
 	  $method = $params[1];
 	  unset($params[0],$params[1]);
-	  dg($app_env);
-	  dg($params);
+
 	  
 	  if(!$params[2]){
 	     $method = 'home';
