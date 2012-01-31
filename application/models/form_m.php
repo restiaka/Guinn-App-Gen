@@ -23,7 +23,7 @@
    
    function upload_media($campaign)
    { 
-     //$this->load->library('facebook');
+     $this->load->library('facebook');
      $uid = $this->facebook->getUser();
 	 if(date('Y-m-d H:i:s') > $campaign['upload_enddate']){
 	  return "Sorry! Your time for Uploading Media has ended. <Br/> Thank you.";

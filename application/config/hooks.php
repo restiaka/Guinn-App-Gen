@@ -16,7 +16,7 @@ $hook['post_controller_constructor'][] = array(
                                 'filepath' => 'hooks'
                                 );
 
-$hook['post_controller'][] = array(
+$hook['post_controller_constructor'][] = array(
                                 'function' => 'appAuth',
                                 'filename' => 'hook_dashboardAuth.php',
                                 'filepath' => 'hooks'

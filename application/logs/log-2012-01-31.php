@@ -38,3 +38,46 @@ ERROR - 2012-01-31 11:09:07 --> Severity: Notice  --> A session had already been
 ERROR - 2012-01-31 11:15:40 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
 ERROR - 2012-01-31 11:16:09 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
 ERROR - 2012-01-31 11:19:01 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-01-31 11:21:15 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-01-31 11:21:15 --> Severity: Notice  --> Undefined offset: 1 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 20
+ERROR - 2012-01-31 11:21:15 --> Severity: Notice  --> Undefined offset: 2 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 24
+ERROR - 2012-01-31 11:21:16 --> Severity: Notice  --> Undefined property: Campaign::$facebook C:\xampp172\xampp\htdocs\codeigniter201_system\core\Model.php 50
+ERROR - 2012-01-31 11:22:19 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-01-31 11:22:19 --> Severity: Notice  --> Undefined offset: 1 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 20
+ERROR - 2012-01-31 11:22:19 --> Severity: Notice  --> Undefined offset: 2 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 24
+ERROR - 2012-01-31 11:22:19 --> Severity: Warning  --> Missing argument 1 for Facebook::__construct(), called in C:\xampp172\xampp\htdocs\codeigniter201_system\core\Loader.php on line 960 and defined C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\facebook.php 35
+ERROR - 2012-01-31 11:22:19 --> Severity: Notice  --> Undefined variable: config C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\facebook.php 39
+ERROR - 2012-01-31 11:22:20 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:22:20 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:29:15 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-01-31 11:29:15 --> Severity: Notice  --> Undefined offset: 1 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 20
+ERROR - 2012-01-31 11:29:15 --> Severity: Notice  --> Undefined offset: 2 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 24
+ERROR - 2012-01-31 11:29:15 --> Severity: Warning  --> Missing argument 1 for Facebook::__construct(), called in C:\xampp172\xampp\htdocs\codeigniter201_system\core\Loader.php on line 960 and defined C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\facebook.php 35
+ERROR - 2012-01-31 11:29:15 --> Severity: Notice  --> Undefined variable: config C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\facebook.php 39
+ERROR - 2012-01-31 11:29:15 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:29:15 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:29:48 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-01-31 11:30:10 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-01-31 11:30:37 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-01-31 11:30:37 --> Severity: Notice  --> Undefined offset: 1 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 20
+ERROR - 2012-01-31 11:30:37 --> Severity: Notice  --> Undefined offset: 2 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 24
+ERROR - 2012-01-31 11:30:37 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:30:37 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:31:16 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-01-31 11:31:16 --> Severity: Notice  --> Undefined offset: 1 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 20
+ERROR - 2012-01-31 11:31:16 --> Severity: Notice  --> Undefined offset: 2 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 24
+ERROR - 2012-01-31 11:31:16 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:31:16 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:31:16 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-01-31 11:41:29 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-01-31 11:41:29 --> Severity: Notice  --> Undefined offset: 1 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 20
+ERROR - 2012-01-31 11:41:30 --> Severity: Notice  --> Undefined offset: 2 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 24
+ERROR - 2012-01-31 11:41:30 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:41:30 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:41:30 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-01-31 11:42:00 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-01-31 11:42:00 --> Severity: Notice  --> Undefined offset: 1 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 20
+ERROR - 2012-01-31 11:42:00 --> Severity: Notice  --> Undefined offset: 2 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 24
+ERROR - 2012-01-31 11:42:00 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:42:00 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 39
+ERROR - 2012-01-31 11:42:00 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56

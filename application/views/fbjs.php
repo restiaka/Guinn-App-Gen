@@ -1,12 +1,9 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
   <script>
-  <?php $CI = &get_instance(); $CI->load->model('setting_m');
-
-  ?>
+  <?php $CI = &get_instance(); $CI->load->model('setting_m'); ?>
   var APP_APPLICATION_ID = '<?php echo $CI->setting_m->get('APP_APPLICATION_ID');?>';
 	var APP_EXT_PERMISSIONS = '<?php echo $CI->setting_m->get('APP_EXT_PERMISSIONS');?>';
-<? 
-exit;?>
+
   window.fbAsyncInit = function() {
     FB.init({
 				appId: APP_APPLICATION_ID, 
@@ -101,15 +98,15 @@ exit;?>
 			switch (event){ 
 			  case "edge.create" : 
 				 var qs = getUrlVars(response);
-				//$.post('<?php echo site_url('/rpc/like')?>/'+qs['m'], function(data) {
-				  //console.log(data);
-				});
+				/* $.post('<?php echo site_url('/rpc/like')?>/'+qs['m'], function(data) {
+				  console.log(data);
+				}); */
 			  break;
 			  case "edge.remove" : 
 				 var qs = getUrlVars(response);
-				//$.post('<?php echo site_url('/rpc/unlike')?>/'+qs['m'], function(data) {
-				  //console.log(data);
-				});
+				/* $.post('<?php echo site_url('/rpc/unlike')?>/'+qs['m'], function(data) {
+				  console.log(data);
+				}); */
 			  break;
 			  case "comment.create" :
 			  console.log(response);
@@ -130,14 +127,10 @@ exit;?>
 					}); */
 			  break;
 			  case "auth.login" :
-			  FB.Event.subscribe('auth.login', function(response) {
 				  window.top.location.reload();
-				});
 			  break;
 			  case "auth.logout" :
-			  FB.Event.subscribe('auth.logout', function(response) {
 				  window.top.location.reload();
-				});
 			  break;
 			}
 			
@@ -218,7 +211,7 @@ exit;?>
 									   if (response.authResponse) {
 											if(redirectURL) window.top.location.href = redirectURL;
 									   } else {
-										 alert('Authorized User needed to continue.');
+										 alert('Authorized user only');
 									   }
 									}, {scope: APP_EXT_PERMISSIONS});	
 									break;
