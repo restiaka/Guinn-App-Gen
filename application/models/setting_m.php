@@ -24,7 +24,7 @@ Class Setting_m extends CI_Model {
 /* 	if(isset($this->setting[$key]))
 	return $this->setting[$key]; */
 	
-	$this->config->item($key);
+	return $this->config->item($key);
   }
   
   public function set($key,$value,$overwrite = TRUE)
@@ -36,7 +36,7 @@ Class Setting_m extends CI_Model {
 	  $this->setting[$key] = $value;
 	} */
 	
-	$this->config->set_item($key, $value);
+	return $this->config->set_item($key, $value);
   }
 
 }
