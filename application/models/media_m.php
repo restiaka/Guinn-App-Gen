@@ -257,4 +257,9 @@ Class Media_m extends CI_Model {
   {
    return $this->db->update('campaign_media', array('media_status'=>$status), array('media_id'=>$media_id));
   }
+  
+  public function setWinnerMedia($media_id,$value = 1)
+  {
+   return $this->db->update('campaign_media', array('media_winner'=>$value), array('media_id'=>$media_id));
+  }
 }

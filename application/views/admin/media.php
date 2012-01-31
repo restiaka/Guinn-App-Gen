@@ -6,7 +6,9 @@
 				<div class="grid_16">
 					<a href="#" onclick="document.getElementById('task').value='activate'; document.forms['adminform'].submit();">Activate Selected</a> | 
 					<a href="#" onclick="document.getElementById('task').value='deactivate'; document.forms['adminform'].submit();">Deactivate Selected</a> | 
-					<a href="#" onclick="document.getElementById('task').value='delete'; document.forms['adminform'].submit();">Delete Selected</a>
+					<a href="#" onclick="document.getElementById('task').value='delete'; document.forms['adminform'].submit();">Delete Selected</a> | 
+					<a href="#" onclick="document.getElementById('task').value='winner'; document.forms['adminform'].submit();">Pick Selected as WINNER</a>
+					<a href="#" onclick="document.getElementById('task').value='resetwinner'; document.forms['adminform'].submit();">Reset Seleted WINNER</a>
 				<br/><br/>
 				</div>
 				
@@ -47,6 +49,7 @@
 								<th>Campaign</th>
                                 <th>Status</th>
 								<th colspan="2" width="10%">FB UID</th>
+					
 							</tr>
 						</thead>
 						<tfoot>
@@ -67,7 +70,7 @@
 						?>
                             <?php foreach($data as $v): ?>
 								<tr>
-								 <td style="vertical-align:top;"><input style="width:10px" type="checkbox" name="cid[]" value="<?=$v['media_id']?>"/></td>
+								 <td style="vertical-align:top;<?=$v['media_winner'] ? 'background-color:#A1EAB3;' : ''?>"><input style="width:10px" type="checkbox" name="cid[]" value="<?=$v['media_id']?>"/></td>
 									<td style="vertical-align:top;"><?=++$i?></td>
 									<td style="vertical-align:top;">
 									<b><?=$v['media_title']?></b><br/>
@@ -83,6 +86,7 @@
 									<td style="vertical-align:top;"><?=$campaign['title']?></td>
 									<td style="vertical-align:top;"><?=$v['media_status']?></td>
 									<td style="vertical-align:top;"><a href="http://www.facebook.com/profile.php?id=<?=$v['uid']?>" target="_blank"><?=$v['uid']?></a></td>
+									
 								</tr>
                             <?php endforeach;?>
 						<?php else:?>

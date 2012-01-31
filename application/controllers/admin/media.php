@@ -27,6 +27,8 @@ Class Media extends CI_Controller {
 			   case 'activate': $this->media->setStatusMedia($v,'active'); break;
 			   case 'deactivate': $this->media->setStatusMedia($v,'inactive'); break;
 			   case 'delete': $this->media->removeMedia($v); break;
+			   case 'winner': $this->media->setWinnerMedia($v,1); break;
+			   case 'resetwinner': $this->media->setWinnerMedia($v,0); break;
 			  }
 			 }
 		 }
