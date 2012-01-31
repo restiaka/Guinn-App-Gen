@@ -48,7 +48,7 @@ Class Media_m extends CI_Model {
     return $meta_tag;		
   } 
   
-  function fbcomment($href,$attr = "colorscheme='light' width='460'")
+  function fbcomment($href,$attr = "colorscheme='light' width='460' num_posts='5'")
   {
    return "<fb:comments href='$href' $attr ></fb:comments>";
   }
@@ -120,19 +120,15 @@ Class Media_m extends CI_Model {
 				</div>';
 				//$this->fblike(menu_url('media').'&m='.$media['media_id'])
 	
-	$fblike_href = $this->setting_m->get('APP_CANVAS_PAGE').menu_url('media',true).'/?m='.$media['media_id'];
+	$fblike_href = menu_url('media').'/?m='.$media['media_id'];
 	//$fbcomment_href = $this->setting_m->get('APP_FANPAGE').'&app_data=redirect|'.menu_url('media',true).'/?m='.$media['media_id'];
 	
-
+    $activeCampaign = $this->campaign_m->getActiveCampaign();
 	$html .=	'<div id="media_social_wrapper">';
-	if($this->campaign_m->active_campaign['media_has_fblike']){
+	if($activeCampaign['media_has_fblike']){
 		$html .= '<div id="media_social_fblike">'.$this->fblike($fblike_href).'</div>';
-		$html .= '<script>
-							fbEventSubscribe("edge.create");
-							fbEventSubscribe("edge.remove");
-						</script>';
 	}
-	if($this->campaign_m->active_campaign['media_has_fbcomment']){	
+	if($activeCampaign['media_has_fbcomment']){	
 		$html .=	'<div id="media_social_fbcomment">'.$this->fbcomment($fblike_href).'</div>';
 	}	
 	$html .= '</div>';

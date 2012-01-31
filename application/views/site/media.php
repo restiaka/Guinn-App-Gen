@@ -1,4 +1,3 @@
-
 <?php $this->load->view('site/header'); //Begin HTML ?>
 <?php $this->load->view('site/menu'); //menu HTML ?>
 
@@ -9,7 +8,7 @@
 			<?php
 			$CI = &get_instance();
 			$CI->load->model('media_m');
-			echo $CI->mediaContainer($media);
+			echo $CI->media_m->mediaContainer($media);
 			?>
 		</div>
 

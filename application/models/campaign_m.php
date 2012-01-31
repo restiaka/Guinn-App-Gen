@@ -10,22 +10,19 @@ Class Campaign_m extends CI_Model {
   parent::__construct();
    $this->load->library('ezsql_mysql');
 	    $this->db = $this->ezsql_mysql;
-	$this->active_campaign = $this->getActiveCampaign();
-	 $this->load->model('setting_m');
   }
   
   public function getActiveCampaign()
   {
-		$q = $this->db->get_row("SELECT * FROM campaign_group 
-								  WHERE 
-								  status = 'active' 
-								  AND 
-								  ( startdate <= '".date('Y-m-d h:i:s')."' AND enddate >= '".date('Y-m-d h:i:s')."' ) 
-								  AND 
-								  APP_APPLICATION_ID = '".$this->setting_m->get('APP_APPLICATION_ID')."'  
-								  ORDER BY startdate DESC 
-								  LIMIT 1",'ARRAY_A');						  
-	    return 	$q ? $q : null;
+    $sql = "SELECT * FROM campaign_group 
+			WHERE status = 'active' AND 
+		   ( startdate <= '".date('Y-m-d h:i:s')."' AND enddate >= '".date('Y-m-d h:i:s')."' ) AND 
+			APP_APPLICATION_ID = '".$this->setting_m->get('APP_APPLICATION_ID')."'  
+			ORDER BY startdate DESC 
+			LIMIT 1";
+		$q = $this->db->get_row($sql,'ARRAY_A');						  
+
+      return 	$q ? $q : null;
   }
   
   public function getByAppId()

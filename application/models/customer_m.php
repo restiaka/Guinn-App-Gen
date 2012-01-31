@@ -11,8 +11,6 @@ Class Customer_m extends CI_Model{
     $this->load->library('ezsql_mysql');
 	    $this->db = $this->ezsql_mysql;
 	$this->load->library('traction');
-	$this->load->model('setting_m');
-	
   }
   
   public function add($data)
@@ -59,10 +57,12 @@ Class Customer_m extends CI_Model{
   
  
   public function registerRequire(){
+   $this->load->model('setting_m');
    $this->load->library('facebook');
+   
   if($this->facebook->getUser() && isExtPermsAllowed()){
 	if(!$this->isRegistered()){
-	  $ssl = $this->setting_m->get('SITE_URL_SSL').'index.php/'.menu_url('register',true);	  
+	  $ssl = $this->setting_m->get('SITE_URL').'index.php/'.menu_url('register',true);	  
 	  header("Location: ".$ssl);
 	  //redirect($ssl);
 	  exit;
@@ -71,7 +71,10 @@ Class Customer_m extends CI_Model{
   }  
   
   public function addAppAuthorization(){
+   
+   $this->load->model('setting_m');
    $this->load->library('facebook');
+   
    	$authorization_data['uid'] = $this->facebook->getUser();
 	$authorization_data['authorized_date'] = date("Y-m-d h:i:s");
 	$authorization_data['authorized'] = 1;
@@ -87,6 +90,7 @@ Class Customer_m extends CI_Model{
   }
   
   public function isAppAuthorized(){
+   $this->load->model('setting_m');
    $var = $this->db->get_var('SELECT COUNT(*) FROM campaign_customer_fbauthorization WHERE APP_APPLICATION_ID = '.$this->setting_m->get('APP_APPLICATION_ID').' AND uid = '.$this->facebook->getUser());
    return $var ? true : false;
   }
@@ -207,6 +211,7 @@ Class Customer_m extends CI_Model{
   /**/
   public function detailTRAC($email,$selection = NULL) 
   {
+   $this->load->model('setting_m');
 	   if(!is_array($selection)){
 		$selection = array('FIRSTNAME',
 							'LASTNAME',

@@ -1,3 +1,4 @@
+<?php $CI = &get_instance(); $CI->load->model('media_m');?>
 <?php $this->load->view('site/header'); //Begin HTML ?>
 <?php $this->load->view('site/menu'); //menu HTML ?>
 <pre>
@@ -14,7 +15,7 @@
   				</tr>
   				<tr>
   				  <td class="padform_left">
-				  <?=load::m('media_m')->gallery($media,$pagination);?>
+				  <?=$this->media_m->gallery($media,$pagination);?>
                   </td>
 			  </tr>
   				<tr>

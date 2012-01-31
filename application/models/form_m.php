@@ -14,7 +14,7 @@
 		
 		$this->load->library('auth');
 		
-		$this->load->model('setting_m');
+	
 		$this->load->model('media_m');
 		$this->load->model('customer_m');
 		$this->load->model('app_m');
@@ -23,6 +23,7 @@
    
    function upload_media($campaign)
    { 
+   $this->load->model('setting_m');
      $this->load->library('facebook');
      $uid = $this->facebook->getUser();
 	 if(date('Y-m-d H:i:s') > $campaign['upload_enddate']){
@@ -30,7 +31,7 @@
 	 }
 	 
      $form = new HTMLQuickForm2('uploadmedia','POST');
-	 $form->setAttribute('action', '/tab/'.$this->setting_m->get('APP_APPLICATION_ID'));
+	 $form->setAttribute('action', '');
 	 /**Setup default value*
 	 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
 	 )));
@@ -43,7 +44,7 @@
 	 $allowed_media_source = $campaign['allowed_media_source'];
 	 $allowed_media_type = $campaign['allowed_media_type'];
 	 
-	 $allowed_maxfilesize = 5*1024;
+	 $allowed_maxfilesize = 5*1024*1024;
 	 $allowed_mimetype = @$campaign['allowed_mimetype'];
 	 
 	 if($allowed_media_source == "file"){
@@ -303,7 +304,7 @@
 
    function app_add($gid = 0)
    {
-
+	$this->load->model('setting_m');
     $form = new HTMLQuickForm2('appaddform','POST','action="'.site_url('admin/app/add/'.$gid).'"');
 	
 	if($gid){

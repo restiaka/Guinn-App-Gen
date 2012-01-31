@@ -53,11 +53,11 @@
 	{
 	 $CI = &get_instance();
 	 $CI->load->model('setting_m');
-      if($appid = $this->setting_m->get('APP_APPLICATION_ID')){
+      if($appid = $CI->setting_m->get('APP_APPLICATION_ID')){
 	    if(!$path_only){
-	     return $filename ? site_url("canvas/$appid/$filename") : site_url("canvas/$appid");
+	     return $filename ? site_url("campaign/canvas/$appid/$filename") : site_url("campaign/canvas/$appid");
 		}else{
-		 return $filename ? "canvas/$appid/$filename" : "canvas/$appid";
+		 return $filename ? "campaign/canvas/$appid/$filename" : "campaign/canvas/$appid";
 		}
 	  }else{
 		return "#";
