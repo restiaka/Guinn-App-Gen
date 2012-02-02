@@ -35,10 +35,20 @@ Class Campaign extends CI_Controller {
 	
 	public function home()
 	 {
+		$this->load->model('customer_m','customer');
+		$this->load->library('facebook');
+		
+		$isAuthorized = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
+	 
 	    $campaign = $this->campaign->getActiveCampaign();
 	    $form = $campaign ? $this->form->upload_media($campaign) : 'Sorry No Contest Available Yet!'; 	
-		$this->load->view('site/tab',array('html_form_upload' => $form,'notification' => $this->notify,'error' => $this->error));										
-	  }
+		$this->load->view('site/tab',array('html_form_upload' => $form,
+										   'html_form_register' => $this->form->customer_register(),
+										   'customer_registered' => ($this->customer->isRegistered() ? true : false),
+										   'is_authorized' => $isAuthorized,
+										   'notification' => $this->notify,
+										   'error' => $this->error));										
+	 }
 	  
 	  public function register()
 	  {

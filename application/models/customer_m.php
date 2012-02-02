@@ -4,6 +4,7 @@ Class Customer_m extends CI_Model{
   private $db;
   public $error = array();
   private $traction;
+  protected $traction_enabled = FALSE;
 
   function __construct()
   {
@@ -17,22 +18,23 @@ Class Customer_m extends CI_Model{
   { 
     $this->load->library('facebook');
 	 $this->error = array();
-	$r = $this->traction->api('AddCustomer',array(
-							   "CUSTOMER" => $this->traction->formatCustData($data),
-							   "MATCHKEY" =>'E',
-							   "MATCHVALUE" =>$data['EMAIL']
-							));		
-	
-	if(!isset($r['TRAC-RESULT'])){
-	  $this->error[] = "Submission Failed (TResult), Try Again!";	 
-	  return false;
+	if($this->traction_enabled){
+		$r = $this->traction->api('AddCustomer',array(
+								   "CUSTOMER" => $this->traction->formatCustData($data),
+								   "MATCHKEY" =>'E',
+								   "MATCHVALUE" =>$data['EMAIL']
+								));		
+		
+		if(!isset($r['TRAC-RESULT'])){
+		  $this->error[] = "Submission Failed (TResult), Try Again!";	 
+		  return false;
+		}
+		
+		if(isset($r['TRAC-ERROR']) && $r['TRAC-RESULT'] !== 0){
+		  $this->error[] = "Submission Failed (TError), Try Again!";	 
+		  return false;						
+		}
 	}
-	
-	if(isset($r['TRAC-ERROR']) && $r['TRAC-RESULT'] !== 0){
-	  $this->error[] = "Submission Failed (TError), Try Again!";	 
-	  return false;						
-    }
-	
 	
 	$db_data['uid'] = $this->facebook->getUser();
 	$db_data['email'] = $data['EMAIL'];
@@ -271,12 +273,18 @@ Class Customer_m extends CI_Model{
 	if($fromDB){
 	 //Checking authorized app
 	 if(!$this->isAppAuthorized()){
-	   $this->addAppAuthorization();
+	   //$this->addAppAuthorization();
+	   return false;
 	 }
 	 
 	 //Traction check
-	 $trac = $this->detailTRAC($fromDB['email']);
-	 if($trac)return true; else return false;
+	 if($this->traction_enabled){
+		 $trac = $this->detailTRAC($fromDB['email']);
+		 if($trac)return true; else return false;
+	 }
+	 
+	 return true;
+	 
     }else{
 	  return false;
 	}
