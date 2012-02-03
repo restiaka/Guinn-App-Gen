@@ -175,6 +175,7 @@
 	define('ROOT_DIR',dirname(realpath(__FILE__)).'/');
 	define('CUSTOMER_IMAGE_DIR',ROOT_DIR.'assets/customer/img/');
 	define('CUSTOMER_VIDEO_DIR',ROOT_DIR.'assets/customer/vid/');	
+	define('CAMPAIGN_IMAGE_DIR',ROOT_DIR.'assets/campaign/img/');	
 	
 	
 	

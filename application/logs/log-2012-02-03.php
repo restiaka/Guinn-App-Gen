@@ -393,3 +393,34 @@ ERROR - 2012-02-03 16:19:42 --> Severity: Notice  --> A session had already been
 ERROR - 2012-02-03 16:19:42 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
 ERROR - 2012-02-03 16:19:42 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
 ERROR - 2012-02-03 16:19:42 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:15 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:15 --> Severity: Notice  --> Undefined offset: 1 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 19
+ERROR - 2012-02-03 16:36:18 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 49
+ERROR - 2012-02-03 16:36:18 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 50
+ERROR - 2012-02-03 16:36:18 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-03 16:36:25 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:25 --> Severity: Notice  --> Undefined index: pageID C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 89
+ERROR - 2012-02-03 16:36:25 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 93
+ERROR - 2012-02-03 16:36:25 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 93
+ERROR - 2012-02-03 16:36:25 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-03 16:36:25 --> Severity: Notice  --> Undefined variable: html C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\media_m.php 68
+ERROR - 2012-02-03 16:36:26 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:26 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:26 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:26 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:26 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:26 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:26 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:27 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:30 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:36:30 --> Severity: Notice  --> Undefined variable: meta_tag C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\media_m.php 45
+ERROR - 2012-02-03 16:36:30 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 75
+ERROR - 2012-02-03 16:36:30 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 75
+ERROR - 2012-02-03 16:36:30 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-03 16:36:30 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:37:35 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-03 16:37:35 --> Severity: Notice  --> Undefined index: cid C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\campaign.php 26
+ERROR - 2012-02-03 16:37:35 --> Severity: Notice  --> Undefined index: pageID C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\campaign.php 43
+ERROR - 2012-02-03 16:37:35 --> Severity: Notice  --> Undefined variable: where C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\campaign_m.php 133
+ERROR - 2012-02-03 16:37:35 --> Severity: Notice  --> Undefined variable: idx C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\campaign.php 39
+ERROR - 2012-02-03 16:37:38 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146

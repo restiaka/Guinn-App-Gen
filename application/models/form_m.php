@@ -467,7 +467,7 @@
     function campaign_add($gid = 0){
    
 		$form = new HTMLQuickForm2('campaign','POST','action="'.site_url('admin/campaign/add/'.$gid).'"');
-		
+		$form->setAttribute('enctype', 'multipart/form-data');
 		/**/
 		if($gid){
 		 $campaign = $this->campaign_m->detailCampaign($gid) ;
@@ -528,6 +528,19 @@
 		$form->addElement('static','','',array('content'=>'<b>What is your campaign all about ?</b>'));
 		$sdescription = $form->addElement('textarea','description',array('style'=>''));
 		
+		$allowed_maxfilesize = 1024*1024;
+		$allowed_mimetype = 'image/gif,image/jpeg,image/pjpeg,image/png';
+
+		$form->addElement('static','','',array('content'=>'<b>Upload Header Image for your Campaign ?</b>'));
+		$r_file = $form->addElement('file','image_header_uploadfile','');
+		$r_file->addRule('mimetype', $label.' is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
+		$r_file->addRule('maxfilesize', $label.' filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
+		
+		
+		
+		if($gid){
+			$form->addElement('static','','',array('content'=>'<img src="'.$campaign['image_header'].'"/>'));
+		}
 		
 		$date_set = $gid ? array('format'=>'dFY His','maxYear'=>date('Y')) : array('format'=>'dFY His','minYear'=>date('Y'),'maxYear'=>date('Y')+1);
 		
@@ -632,6 +645,13 @@
 			 $data['allowed_media_type'] = 'image';
 			}
 			
+			if ($data['image_header_uploadfile']['error'] == UPLOAD_ERR_OK) {
+				$tmp_name = $data['image_header_uploadfile']["tmp_name"];
+				$time = md5(uniqid(rand(), true).time());
+				$image = resizeImage( $tmp_name, CAMPAIGN_IMAGE_DIR."/".$time.".jpg", 400 , 'width' );					
+				$data['image_header'] = $time.".jpg";
+				unset($data['image_header_uploadfile']);
+			}
 			
 		   if($gid){
 			   if(!$this->campaign_m->updateCampaign($data)){
