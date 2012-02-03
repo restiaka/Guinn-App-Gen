@@ -94,7 +94,7 @@ abstract class HTML_QuickForm2_Renderer
     */
     protected $options = array(
         'group_hiddens' => true,
-        'required_note' => '<br/><em>*</em> wajib terisi.',
+        'required_note' => '<br/><em>*</em> Required.',
         'errors_prefix' => 'Invalid information entered:',
         'errors_suffix' => 'Please correct these fields.',
         'group_errors'  => false

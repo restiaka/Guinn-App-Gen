@@ -6,7 +6,9 @@
   <!-- BEGIN Theme Style -->
   
   <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/site/style/style.css" />
-  <!-- END Theme Style -->
+ <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/site/style/quickform.css" />
+  
+ <!-- END Theme Style -->
   <?php echo setMetaTags(); //Set Additional Meta Tag from registerMetaTags() | REQUIRED!!! ?> 
   <?php $this->load->view('fbjs'); //Set Facebook JS SDK | REQUIRED!!! ?>
  </head>

@@ -47,11 +47,9 @@
 	<!-- CONTAINER FORM AUTHORIZED -->
     <div class="boxgrey">
         	<table width="460" border="0" cellspacing="0" cellpadding="0">
-  				<tr>
-  				  <td class="padform">&nbsp;</td>
-			  </tr>
-  				<tr>
-  				  <td class="padform">Share Yours Here!</td>
+  				
+			 <tr>
+  				  <td class="padform"><span style="font-weight:bold;font-size:23px;color:#D9BB75">Share Yours Here!</span></td>
 			  </tr>
 
   				<tr>

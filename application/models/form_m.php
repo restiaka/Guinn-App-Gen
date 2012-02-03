@@ -57,12 +57,12 @@
 		  switch ($domid){ 
 		   case 'media_title': 
 		   $form->addElement('static','','',array('content'=>$label));	
-		   $r = $form->addElement('text',$domid,'style="width:230px;height:50px;"');
+		   $r = $form->addElement('text',$domid,'style="width:395px;"');
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 		   case 'media_description' : 
 		   $form->addElement('static','','',array('content'=>$label));	
-		   $r = $form->addElement('textarea',$domid,'style="width:230px;height:50px;"');
+		   $r = $form->addElement('textarea',$domid,'style="width:395px;"');
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 		   case 'media_source' : 
@@ -70,13 +70,13 @@
 		   $src = explode(',',$allowed_media_source); 
 								 if(in_array('facebook',$src) || in_array('youtube',$src) || in_array('twitpic',$src) || in_array('yfrog',$src) || in_array('plixi',$src))
 								 {
-								    $r = $form->addElement('text',$domid,'style="width:230px;height:50px;"');
+								    $r = $form->addElement('text',$domid,'style="width:395px;"');
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 								 } 
 								 elseif(in_array('file',$src))
 								 {
-									$r_file = $form->addElement('file',$domid,'style="width:230px;height:50px;"');
+									$r_file = $form->addElement('file',$domid,'size="49"');
 									$r_file->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									$r_file->addRule('mimetype', $label.' is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
 									$r_file->addRule('maxfilesize', $label.' filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
@@ -85,7 +85,7 @@
 								 }				
 		  }
 		}
-		$button = $form->addElement('submit','submit','class="inputsubmit" value="Submit"');
+		$button = $form->addElement('submit','submit','value="Submit" style="border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;padding:5px;margin-left:350px;"');
 		
 		if ($form->validate()) {
 			$form->toggleFrozen(true);
@@ -561,7 +561,7 @@
 		//$allowed_media_type = $form->addElement('text','allowed_media_type',array('style'=>''));
 		
 		//$form->addElement('static','','',array('content'=>'<b>Allowed Media Fields : <Br/>ex: media_title=Judul&media_description=Deskripsi&media_source=Upload your media'));
-		$allowed_media_fields = $form->addElement('hidden','allowed_media_fields',array('style'=>''))->setValue('media_title=Media Title&media_source=Your Media Source');
+		$allowed_media_fields = $form->addElement('hidden','allowed_media_fields',array('style'=>''))->setValue('media_source=Upload Content Here&media_description=It\'s About');
 		
 		
 		//$form->addElement('static','','',array('content'=>'<br/><b>You may fill one of this field below if allowed media source is a file</b> <br/><hr/>'));

@@ -83,7 +83,7 @@ Class Campaign extends CI_Controller {
 	   $sumPerCampaign = $this->ezsql_mysql->get_var("SELECT COUNT(*) FROM campaign_media ".$sql_filter);
         //$config['path'] = APP_ADMIN_URL;
 		$config['totalItems'] = $sumPerCampaign;
-		$config['perPage'] = 3; 
+		$config['perPage'] = 8; 
 		$config['urlVar'] = 'pageID';
 		$pager = new Pager_Sliding($config);
 		$links = $pager->getLinks($_GET['pageID']);
