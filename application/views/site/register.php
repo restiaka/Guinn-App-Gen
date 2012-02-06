@@ -6,8 +6,8 @@
     <!--/MENU -->
     
     <!-- LOGO -->
-  <div class="topimage"><img src="<?=themeUrl()?>images/logo.jpg" width="400" height="204" alt="Guinness World Series of Pool 2011" /></div>
-    <!-- /LOGO -->
+<?php $this->load->view('site/header_image'); //header image HTML ?> 
+ <!-- /LOGO -->
     
     <!-- BANNER -->
   <div class="topbanner"><img src="<?=themeUrl()?>images/banner_1.jpg" /></div>

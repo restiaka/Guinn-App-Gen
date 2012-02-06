@@ -1,9 +1,9 @@
 <?php $CI = &get_instance(); $CI->load->model('media_m');?>
 <?php $this->load->view('site/header'); //Begin HTML ?>
 <?php $this->load->view('site/menu'); //menu HTML ?>
-  <div class="topimage">
-	<img src="<?=base_url()?>assets/site/images/logo.jpg" width="400" height="204" alt="Guinness World Series of Pool 2011" />
-  </div>
+
+<?php $this->load->view('site/header_image'); //header image HTML ?>
+
     	<div class="boxvideoshared">	
         	<table style="width:100%" border="0" cellspacing="0" cellpadding="0">
   				<tr>

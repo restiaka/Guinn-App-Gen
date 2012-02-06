@@ -2,15 +2,11 @@
 
 <?php $this->load->view('site/menu'); //menu HTML ?>
 
-    
-
-  <div class="topimage">
-	<img src="<?=base_url()?>assets/site/images/logo.jpg" width="400" height="204" alt="Guinness World Series of Pool 2011" />
-  </div>
+<?php $this->load->view('site/header_image'); //header image HTML ?>
 
    <div class="cnt_vid_home">
         	<p class="gold">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eleifend lobortis velit ac sagittis. Curabitur at neque et ante bibendum tempor. Integer consequat ipsum dui, at varius purus. Suspendisse enim metus, dignissim sed placerat eget, condimentum et ante. Aliquam erat volutpat. Mauris eget nisl a ante egestas ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+			<?=nl2br($campaign_info['description'])?>
 			</p>
     </div>
   

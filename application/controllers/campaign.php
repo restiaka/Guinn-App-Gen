@@ -8,9 +8,6 @@ Class Campaign extends CI_Controller {
 	 $this->load->model('campaign_m','campaign');
 	 $this->load->model('form_m','form');
 	 $this->load->model('media_m','media');
-	 
-	 //$activeCampaign = $this->campaign->getActiveCampaign();
-	 
 	}
 	
 	public function _remap($app_env, $params = array())
@@ -18,8 +15,6 @@ Class Campaign extends CI_Controller {
 	 $appID = $params[0];
 	  $method = $params[1];
 	  unset($params[0],$params[1]);
-
-	 
 	  
 	  if(!$method){
 	     $method = 'home';
@@ -42,7 +37,8 @@ Class Campaign extends CI_Controller {
 	 
 	    $campaign = $this->campaign->getActiveCampaign();
 	    $form = $campaign ? $this->form->upload_media($campaign) : 'Sorry No Contest Available Yet!'; 	
-		$this->load->view('site/tab',array('html_form_upload' => $form,
+		$this->load->view('site/tab',array('campaign_info'=>$campaign,
+											'html_form_upload' => $form,
 										   'html_form_register' => $this->form->customer_register(),
 										   'customer_registered' => ($this->customer->isRegistered() ? true : false),
 										   'is_authorized' => $isAuthorized,
@@ -52,7 +48,8 @@ Class Campaign extends CI_Controller {
 	  
 	  public function register()
 	  {
-	  	$this->load->view('site/register',array('html_form_register' => $form,'notification' => $this->notify,'error' => $this->error));										
+	     $campaign = $this->campaign->getActiveCampaign();
+	  	$this->load->view('site/register',array('campaign_info'=>$campaign,'html_form_register' => $form,'notification' => $this->notify,'error' => $this->error));										
 	
 	  }
 	  
@@ -62,6 +59,7 @@ Class Campaign extends CI_Controller {
 			$media_id = addslashes($_GET['m']);
 		}
 	    $this->load->model('setting_m');
+		$campaign = $this->campaign->getActiveCampaign();
 		$rowMedia = $this->media->detailMedia($media_id); 
 		$fblike_href = $this->setting_m->get('APP_CANVAS_PAGE').menu_url('media',true).'/?m='.$rowMedia['media_id'];
 		$meta = $this->media->setOpenGraphMeta(array(
@@ -72,7 +70,7 @@ Class Campaign extends CI_Controller {
 													 'site_name' => 'Photo Contest'
 													));
 		registerMetaTags($meta);
-		$this->load->view('site/media',array('media' => $rowMedia,'notification' => $this->notify,'error' => $this->error));										
+		$this->load->view('site/media',array('campaign_info'=>$campaign,'media' => $rowMedia,'notification' => $this->notify,'error' => $this->error));										
 	  }
 	  
 	  public function gallery()
@@ -90,25 +88,25 @@ Class Campaign extends CI_Controller {
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		$rowsMedia = $this->media->retrieveMedia(array('campaign_media.media_status'=>'active','campaign_media.GID'=>$active_campaign['GID']),array('limit_number' => $config['perPage'],'limit_offset' => --$from));
-		$this->load->view('site/gallery',array('media' => $rowsMedia,'pagination'=>$links,'notification' => $this->notify,'error' => $this->error));	
+		$this->load->view('site/gallery',array('campaign_info'=>$campaign,'media' => $rowsMedia,'pagination'=>$links,'notification' => $this->notify,'error' => $this->error));	
 	  } 
   
 	  public function rules()
 	  {
-		$rules = $this->campaign->active_campaign['campaign_rules'];
-		$this->load->view('site/rules',array('rules' => $rules,'notification' => $this->notify,'error' => $this->error));	
+	    $campaign = $this->campaign->getActiveCampaign();
+		$this->load->view('site/rules',array('rules' => $campaign['campaign_rules'],'notification' => $this->notify,'error' => $this->error));	
 	  }
 	  
 	  public function mechanism()
 	  {
-	   $mechanism = $this->campaign->active_campaign['campaign_mechanism'];
-	   $this->load->view('site/mechanism',array('mechanism' => $mechanism,'notification' => $this->notify,'error' => $this->error));	
+	   $campaign = $this->campaign->getActiveCampaign();
+	   $this->load->view('site/mechanism',array('mechanism' => $campaign['campaign_mechanism'],'notification' => $this->notify,'error' => $this->error));	
 	  }
 	  
 	  public function policy()
 	  {
-	   $policy = $this->campaign->active_campaign['campaign_policy'];
-	   $this->load->view('site/policy',array('policy' => $policy,'notification' => $this->notify,'error' => $this->error));	
+	   $campaign = $this->campaign->getActiveCampaign();
+	   $this->load->view('site/policy',array('policy' => $campaign['campaign_policy'],'notification' => $this->notify,'error' => $this->error));	
 	  }
 
 }
