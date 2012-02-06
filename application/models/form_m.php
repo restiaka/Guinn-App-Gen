@@ -66,16 +66,18 @@
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 		   case 'media_source' : 
-		   $form->addElement('static','','',array('content'=>$label));	
+		   //$form->addElement('static','','',array('content'=>$label));	
 		   $src = explode(',',$allowed_media_source); 
 								 if(in_array('facebook',$src) || in_array('youtube',$src) || in_array('twitpic',$src) || in_array('yfrog',$src) || in_array('plixi',$src))
 								 {
+									$form->addElement('static','','',array('content'=>'Copy and Paste YouTube URL here'));	
 								    $r = $form->addElement('text',$domid,'style="width:395px;"');
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 								 } 
 								 elseif(in_array('file',$src))
 								 {
+									$form->addElement('static','','',array('content'=>'Upload Photo from your computer here'));	
 									$r_file = $form->addElement('file',$domid,'size="49"');
 									$r_file->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									$r_file->addRule('mimetype', $label.' is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
@@ -187,22 +189,22 @@
 	$form = new HTMLQuickForm2('customer_register','POST','action=""  ');
 		
 		 $form->addElement('static','','',array('content'=>'Your Firstname :'));	
-		 $firstname = $form->addElement('text','FIRSTNAME','style=""');
+		 $firstname = $form->addElement('text','FIRSTNAME','style="width:395px;"');
 		 $firstname->addRule('required', 'Firstname is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 $form->addElement('static','','',array('content'=>'Your Lastname :'));	
-		 $lastname = $form->addElement('text','LASTNAME','style=""');
+		 $lastname = $form->addElement('text','LASTNAME','style="width:395px;"');
 		 $lastname->addRule('required', 'Lastname is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 $form->addElement('static','','',array('content'=>'Email :'));	
-		 $email = $form->addElement('text','EMAIL','style=""');
+		 $email = $form->addElement('text','EMAIL','style="width:395px;"');
 		 $email->addRule('required', 'Email is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 $form->addElement('static','','',array('content'=>'Phone no :'));	
-		 $mobile = $form->addElement('text','MOBILE','style=""');
+		 $mobile = $form->addElement('text','MOBILE','style="width:395px;"');
 		 $mobile->addRule('required', 'Phone no. is required', null,HTML_QuickForm2_Rule::SERVER);
 		
-		$button = $form->addElement('submit','submit','class="inputsubmit" value="Submit Registration"');
+		$button = $form->addElement('submit','submit','value="Submit Registration" style="border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;padding:5px;margin-left:280px;"');
 		
 		if ($form->validate()) {
 			$form->toggleFrozen(true);

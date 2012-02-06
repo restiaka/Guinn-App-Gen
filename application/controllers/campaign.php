@@ -88,25 +88,25 @@ Class Campaign extends CI_Controller {
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		$rowsMedia = $this->media->retrieveMedia(array('campaign_media.media_status'=>'active','campaign_media.GID'=>$active_campaign['GID']),array('limit_number' => $config['perPage'],'limit_offset' => --$from));
-		$this->load->view('site/gallery',array('campaign_info'=>$campaign,'media' => $rowsMedia,'pagination'=>$links,'notification' => $this->notify,'error' => $this->error));	
+		$this->load->view('site/gallery',array('campaign_info'=>$active_campaign,'media' => $rowsMedia,'pagination'=>$links,'notification' => $this->notify,'error' => $this->error));	
 	  } 
   
 	  public function rules()
 	  {
 	    $campaign = $this->campaign->getActiveCampaign();
-		$this->load->view('site/rules',array('rules' => $campaign['campaign_rules'],'notification' => $this->notify,'error' => $this->error));	
+		$this->load->view('site/rules',array('campaign_info'=>$campaign,'rules' => $campaign['campaign_rules'],'notification' => $this->notify,'error' => $this->error));	
 	  }
 	  
 	  public function mechanism()
 	  {
 	   $campaign = $this->campaign->getActiveCampaign();
-	   $this->load->view('site/mechanism',array('mechanism' => $campaign['campaign_mechanism'],'notification' => $this->notify,'error' => $this->error));	
+	   $this->load->view('site/mechanism',array('campaign_info'=>$campaign,'mechanism' => $campaign['campaign_mechanism'],'notification' => $this->notify,'error' => $this->error));	
 	  }
 	  
 	  public function policy()
 	  {
 	   $campaign = $this->campaign->getActiveCampaign();
-	   $this->load->view('site/policy',array('policy' => $campaign['campaign_policy'],'notification' => $this->notify,'error' => $this->error));	
+	   $this->load->view('site/policy',array('campaign_info'=>$campaign,'policy' => $campaign['campaign_policy'],'notification' => $this->notify,'error' => $this->error));	
 	  }
 
 }

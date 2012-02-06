@@ -37,8 +37,29 @@
 
 	<?php elseif(!$customer_registered): ?>
 	
-	<?php echo $html_form_register?>
-	
+    <div class="boxgrey">
+        	<table width="460" border="0" cellspacing="0" cellpadding="0">
+  				
+			 <tr>
+  				  <td class="padform"><span style="font-weight:bold;font-size:23px;color:#D9BB75">Register Here!</span></td>
+			  </tr>
+
+  				<tr>
+  				  <td class="padform">
+				  <?php if($html_form_register):?>
+				   <?=$html_form_register?>
+				  <?php else:?>
+				   <?=implode("<br/>",$notification)?>
+				  <?php endif;?>
+				   
+					</td>
+				</tr>
+  				<tr>
+  				  <td class="padform">&nbsp;</td>
+			  </tr>
+			</table>
+	</div>
+
 	<?php else: ?>
 	<!-- CONTAINER FORM AUTHORIZED -->
     <div class="boxgrey">
