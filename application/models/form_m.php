@@ -107,8 +107,8 @@
 						$image = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/".$uid."_".$time.".jpg", 500 , 'width' );
 						$thumb = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/thumb_".$uid."_".$time.".jpg", 90 , 'width' );
 						$data['media_source'] = 'file';
-						$data['media_url'] = $this->setting_m->get('APP_CANVAS_URL')."image?gid=".$active_campaign_gid."&src=".$uid."_".$time.".jpg";
-						$data['media_thumb_url'] = $this->setting_m->get('APP_CANVAS_URL')."image?gid=".$active_campaign_gid."&src=thumb_".$uid."_".$time.".jpg";
+						$data['media_url'] = base_url()."image?gid=".$active_campaign_gid."&src=".$uid."_".$time.".jpg";
+						$data['media_thumb_url'] = base_url."image?gid=".$active_campaign_gid."&src=thumb_".$uid."_".$time.".jpg";
 						$data['media_type'] = $allowed_media_type;
 						$data['media_basename'] = $uid."_".$time.".jpg";
 					}else{
@@ -314,30 +314,33 @@
 		$form->addDataSource(new HTML_QuickForm2_DataSource_Array($default_data));
 	}
 	
-	$APP_APPLICATION_NAME = $form->addElement('text','APP_APPLICATION_NAME','style=""')->setLabel('APP_APPLICATION_NAME &nbsp;:&nbsp;&nbsp;');
+	$APP_APPLICATION_NAME = $form->addElement('text','APP_APPLICATION_NAME','style=""')->setLabel('APPLICATION NAME &nbsp;:&nbsp;&nbsp;');
 	$APP_APPLICATION_NAME->addRule('required', 'APP_APPLICATION_NAME is required', null,HTML_QuickForm2_Rule::SERVER);		
 	
-	$APP_APPLICATION_ID = $form->addElement('text','APP_APPLICATION_ID','style=""')->setLabel('APP_APPLICATION_ID &nbsp;:&nbsp;&nbsp;');
+	$APP_APPLICATION_ID = $form->addElement('text','APP_APPLICATION_ID','style=""')->setLabel('APP ID &nbsp;:&nbsp;&nbsp;');
 	$APP_APPLICATION_ID->addRule('required', 'APP_APPLICATION_ID is required', null,HTML_QuickForm2_Rule::SERVER);		
 	
-	$APP_API_KEY = $form->addElement('text','APP_API_KEY','style=""')->setLabel('APP_API_KEY &nbsp;:&nbsp;&nbsp;');
+	/* $APP_API_KEY = $form->addElement('text','APP_API_KEY','style=""')->setLabel('APP_API_KEY &nbsp;:&nbsp;&nbsp;');
 	$APP_API_KEY->addRule('required', 'APP_API_KEY is required', null,HTML_QuickForm2_Rule::SERVER);		
-	
-	$APP_SECRET_KEY = $form->addElement('text','APP_SECRET_KEY','style=""')->setLabel('APP_SECRET_KEY &nbsp;:&nbsp;&nbsp;');
+	*/
+	$APP_SECRET_KEY = $form->addElement('text','APP_SECRET_KEY','style=""')->setLabel('APP SECRET &nbsp;:&nbsp;&nbsp;');
 	$APP_SECRET_KEY->addRule('required', 'APP_SECRET_KEY is required', null,HTML_QuickForm2_Rule::SERVER);		
 	
-	$APP_CANVAS_PAGE = $form->addElement('text','APP_CANVAS_PAGE','style=""')->setLabel('APP_CANVAS_PAGE &nbsp;:&nbsp;&nbsp;');
+	/*$APP_CANVAS_PAGE = $form->addElement('text','APP_CANVAS_PAGE','style=""')->setLabel('APP_CANVAS_PAGE &nbsp;:&nbsp;&nbsp;');
 	$APP_CANVAS_PAGE->addRule('required', 'APP_CANVAS_PAGE is required', null,HTML_QuickForm2_Rule::SERVER);		
 	
 	$APP_CANVAS_URL = $form->addElement('hidden','APP_CANVAS_URL','style=""')->setValue($this->setting_m->get('SITE_URL'));
 	$APP_CANVAS_URL->addRule('required', 'Couldnt load setting!', null,HTML_QuickForm2_Rule::SERVER);			
+	 */
+	//$APP_EXT_PERMISSIONS = $form->addElement('text','APP_EXT_PERMISSIONS','style=""')->setLabel('APP_EXT_PERMISSIONS &nbsp;:&nbsp;&nbsp;');
 	
-	$APP_EXT_PERMISSIONS = $form->addElement('text','APP_EXT_PERMISSIONS','style=""')->setLabel('APP_EXT_PERMISSIONS &nbsp;:&nbsp;&nbsp;');
+	$APP_EXT_PERMISSIONS = $form->addElement('hidden','APP_EXT_PERMISSIONS')->setValue('publish_stream,email,user_birthday,user_hometown,user_interests,user_likes');
+	
 	$APP_EXT_PERMISSIONS->addRule('required', 'APP_EXT_PERMISSIONS is required', null,HTML_QuickForm2_Rule::SERVER);		
 	
-	$APP_FANPAGE = $form->addElement('text','APP_FANPAGE','style=""')->setLabel('APP_FANPAGE &nbsp;:&nbsp;&nbsp;');
+	$APP_FANPAGE = $form->addElement('text','APP_FANPAGE','style=""')->setLabel('FACEBOOK PAGE URL &nbsp;:&nbsp;&nbsp;');
 	$APP_FANPAGE->addRule('required', 'APP_FANPAGE is required', null,HTML_QuickForm2_Rule::SERVER);		
-	
+	 
 		
 	$button = $form->addElement('submit','submit','value="Submit Application"');
 	
@@ -350,6 +353,11 @@
 		
 		$data = $form->getValue();
 		unset($data['submit'],$data['_qf__appaddform']);
+		
+		if($url = parse_url($data['APP_FANPAGE'])){
+		  $new_url = $url['scheme']."://".$url['host'].$url['path']."?sk=app_".$rows['APP_APPLICATION_ID'];
+		  $data['APP_FANPAGE'] = $new_url;
+		}
 		
 		if(!$gid){
 			$this->app_m->add($data);

@@ -21,6 +21,28 @@
 		if($APP_APPLICATION_ID =  $CI->uri->segment(3)){
 			if($rows = $CI->app_m->detailApp($APP_APPLICATION_ID)){
 				foreach($rows as $k => $v) $CI->settings->set($k,$v);
+				
+				if($url = parse_url($rows['APP_FANPAGE'])){
+				  $new_url = $url['scheme']."://".$url['host'].$url['path']."?sk=app_".$rows['APP_APPLICATION_ID'];
+				 $CI->settings->set('APP_FANPAGE',$new_url);
+				}
+				$app_accesstoken = getAppAccessToken(array(
+														'app_id'=> $rows['APP_APPLICATION_ID'],
+														'app_secret'=> $rows['APP_SECRET_KEY']
+													));
+				if($app_accesstoken){
+					$approw = getAppDetail($APP_APPLICATION_ID,$app_accesstoken);
+				}
+				if($approw){	
+					$CI->settings->set('APP_CANVAS_PAGE','https://apps.facebook.com/'.$approw['namespace']);
+					$CI->settings->set('APP_CANVAS_URL',$approw['canvas_url']);
+					$CI->settings->set('APP_SECURE_CANVAS_URL',$approw['secure_canvas_url']);
+					$CI->settings->set('APP_PAGE_TAB_URL',$approw['page_tab_url']);
+					$CI->settings->set('APP_SECURE_PAGE_TAB_URL',$approw['secure_page_tab_url']);
+					$CI->settings->set('APP_LINK',$approw['link']);
+					$CI->settings->set('APP_LOGO_URL',$approw['logo_url']);
+				}	
+				
 			}else{
 			  die('UNREGISTERED APPLICATION');
 			}

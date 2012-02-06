@@ -33,6 +33,11 @@ Class Campaign extends CI_Controller {
 		$this->load->model('customer_m','customer');
 		$this->load->library('facebook');
 		
+		/*debug
+		$this->load->model('setting_m');
+		dg($this->setting_m->get('APP_FANPAGE'));
+		dg($this->config);*/
+		
 		$isAuthorized = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
 	 
 	    $campaign = $this->campaign->getActiveCampaign();
@@ -74,7 +79,7 @@ Class Campaign extends CI_Controller {
 	  }
 	  
 	  public function gallery()
-	  {
+	  { 
 	   require_once 'Pager/Sliding.php';
 	   $active_campaign = $this->campaign->getActiveCampaign();
 	   $sql_filter = "WHERE campaign_media.media_status = 'active' AND campaign_media.GID = ".$active_campaign['GID'];

@@ -52,7 +52,7 @@
    $parameter = array( 'fields' 	  => implode(',',$fields),
 					   'access_token' => $app_accesstoken );
  	$request = graph_request('/'.$appid, 'GET',$parameter,true,false);
-	return $request;
+	return json_decode($request,true);
 }
 
 function appToPage_dialog(){
