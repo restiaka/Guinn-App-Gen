@@ -14,7 +14,14 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://guinnessapp.dev/';
+
+
+
+if($_SERVER['HTTPS']){
+	$config['base_url']	= 'https://guinnessapp.dev/';
+}else{
+	$config['base_url']	= 'http://guinnessapp.dev/';
+} 
 
 /*
 |--------------------------------------------------------------------------
