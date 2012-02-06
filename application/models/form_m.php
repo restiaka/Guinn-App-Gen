@@ -536,12 +536,10 @@
 		$r_file->addRule('mimetype', $label.' is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
 		$r_file->addRule('maxfilesize', $label.' filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
 		
-		
-		
 		if($gid){
-			$form->addElement('static','','',array('content'=>'<img src="'.$campaign['image_header'].'"/>'));
+			$form->addElement('static','','',array('content'=>'<img src="'.site_url('image/campaign')."?src=".$campaign['image_header'].'">'));
 		}
-		
+			
 		$date_set = $gid ? array('format'=>'dFY His','maxYear'=>date('Y')) : array('format'=>'dFY His','minYear'=>date('Y'),'maxYear'=>date('Y')+1);
 		
 		$form->addElement('static','','',array('content'=>'<b>When will your campaign will start ?</b>'));

@@ -213,6 +213,8 @@ Class Customer_m extends CI_Model{
   /**/
   public function detailTRAC($email,$selection = NULL) 
   {
+    if(!$this->traction_enabled) return array('fields' => array());
+   
    $this->load->model('setting_m');
 	   if(!is_array($selection)){
 		$selection = array('FIRSTNAME',

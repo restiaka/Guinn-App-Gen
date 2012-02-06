@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/header');?>
+<?php $CI = &get_instance(); $CI->load->model('customer_m'); $this->load->view('admin/header');?>
 			<div id="content" class="container_16 clearfix">
 				<div class="grid_16">
 					<a href="#" onclick="document.getElementById('task').value='activate'; document.forms[0].submit();">Activate Selected</a> | 
@@ -43,13 +43,14 @@
 									<a href="<?=$fb->link?>" target="_blank">Go to Facebook Profile</a>
 									</td>
 									<td>
-									<?php $t = load::m('customer_m')->detailTRAC($v['email_active']); $t = $t['fields'];?> 
-									<b>FirstName :</b> <?=$t['FIRSTNAME']?><Br/>
-									<b>LastName :</b> <?=$t['LASTNAME']?><Br/>
-									<b>Email :</b> <?=$t['EMAIL']?><Br/>
-									<b>Email OPT :</b> <?=$t['EMAILOPT']?><Br/>
-									<b>Mobile :</b> <?=$t['MOBILE']?><Br/>
-									<b>Active :</b> <?=$t['ACTIVE']?><Br/>
+									<?php 
+									$t = $CI->customer_m->detailTRAC($v['email_active']); $t = @$t['fields'];?> 
+									<b>FirstName :</b> <?=@$t['FIRSTNAME']?><Br/>
+									<b>LastName :</b> <?=@$t['LASTNAME']?><Br/>
+									<b>Email :</b> <?=@$t['EMAIL']?><Br/>
+									<b>Email OPT :</b> <?=@$t['EMAILOPT']?><Br/>
+									<b>Mobile :</b> <?=@$t['MOBILE']?><Br/>
+									<b>Active :</b> <?=@$t['ACTIVE']?><Br/>
 									</td>
 									
 									<td><?=$v['status']?></td>
