@@ -2,7 +2,7 @@
 
 			<div id="content" class="container_16 clearfix">
 <pre>
-<?=print_r($_SESSION)?>				
+</pre>			
 			</div>
 		
 <?php $this->load->view('admin/footer');?>
