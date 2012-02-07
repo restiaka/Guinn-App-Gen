@@ -77,7 +77,28 @@
 		}
 	 }  
  
+	function callback_validateUploadEndDate(){
+	  extract($_POST['startdate']);
+	  $startdate = mktime($H, $i, $s, $d, $F, $Y);
+	  extract($_POST['upload_enddate']);
+	  $uploadenddate = mktime($H, $i, $s, $d, $F, $Y);
+	  
+	  if($startdate == $uploadenddate) return false;
+	  if($uploadenddate < $startdate) return false;
+	  
+	  return true;
+	}
 
+	function callback_validateEndDate(){
+	  extract($_POST['enddate']);
+	  $enddate = mktime($H, $i, $s, $d, $F, $Y);
+	  extract($_POST['upload_enddate']);
+	  $uploadenddate = mktime($H, $i, $s, $d, $F, $Y);
+	  if($enddate == $uploadenddate) return false;
+	  if($uploadenddate > $enddate) return false;
+	  
+	  return true;
+	}
  
 	 function get_image_from_url($url) {
 	 $CI = &get_instance();

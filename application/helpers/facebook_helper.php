@@ -27,10 +27,29 @@
 	try{
 			$request = graph_request('/oauth/access_token', 'GET',$parameter,true,false);
 			parse_str($request);
-		} catch (Exception $e){ die($e); }
+		} catch (Exception $e){ return NULL; }
 		
 	$request = $request ? $access_token : NULL;	
 	return $request;						 
+ }
+ 
+ function callback_validateAppID(){
+   $appid = $_POST['APP_APPLICATION_ID'];
+   $secret = $_POST['APP_SECRET_KEY'];
+    $token = getAppAccessToken(array('app_id'=>$appid,'app_secret'=>$secret));
+	if($app_detail = getAppDetail($appid,$token)){
+		if(!$app_detail['canvas_url'])return false;
+		return true;
+	}else{
+		return false;
+	}
+ }
+ 
+ function callback_isAppIDregistered(){
+   $CI = &get_instance();
+   $CI->load->library('ezsql_mysql');
+   $var = $CI->ezsql_mysql->get_var('SELECT APP_APPLICATION_ID FROM campaign_app WHERE APP_APPLICATION_ID = '.addslashes($_POST['APP_APPLICATION_ID']));
+   return $var ? false : true;
  }
  
  
@@ -51,8 +70,8 @@
  
    $parameter = array( 'fields' 	  => implode(',',$fields),
 					   'access_token' => $app_accesstoken );
- 	$request = graph_request('/'.$appid, 'GET',$parameter,true,false);
-	return json_decode($request,true);
+ 	$request = graph_request('/'.$appid, 'GET',$parameter,true,true);
+	return $request;
 }
 
 function appToPage_dialog(){
@@ -89,7 +108,8 @@ function appToPage_dialog(){
 	$result = curl_exec($ch);
 	if ($result === false) {
       curl_close($ch);
-	  return curl_error($ch); 
+	  //return curl_error($ch);
+		return false;	  
     }
 	curl_close($ch);
 	

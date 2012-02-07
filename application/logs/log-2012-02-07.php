@@ -32,3 +32,130 @@ ERROR - 2012-02-07 12:45:13 --> Severity: Notice  --> A session had already been
 ERROR - 2012-02-07 12:46:47 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
 ERROR - 2012-02-07 12:56:55 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
 ERROR - 2012-02-07 12:57:35 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:16:19 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:16:20 --> Severity: Notice  --> Uninitialized string offset: 0 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\auth.php 591
+ERROR - 2012-02-07 15:16:23 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:16:23 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:36:45 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:36:47 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:36:47 --> Severity: Notice  --> Uninitialized string offset: 0 C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\auth.php 591
+ERROR - 2012-02-07 15:36:47 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:36:50 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:36:51 --> Severity: Notice  --> Undefined index: cid C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\app.php 24
+ERROR - 2012-02-07 15:36:51 --> Severity: Notice  --> Undefined index: pageID C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\app.php 39
+ERROR - 2012-02-07 15:36:51 --> Severity: Notice  --> Undefined variable: where C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\app_m.php 68
+ERROR - 2012-02-07 15:36:51 --> Severity: Notice  --> Undefined variable: idx C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app.php 35
+ERROR - 2012-02-07 15:36:55 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:36:56 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 15:37:04 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:37:08 --> Severity: Notice  --> Undefined variable: access_token C:\xampp172\xampp\htdocs\guinnessapp.dev\application\helpers\facebook_helper.php 32
+ERROR - 2012-02-07 15:37:11 --> Severity: Notice  --> Undefined index: canvas_url C:\xampp172\xampp\htdocs\guinnessapp.dev\application\helpers\facebook_helper.php 41
+ERROR - 2012-02-07 15:37:11 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 15:38:11 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:38:14 --> Severity: Notice  --> Undefined variable: access_token C:\xampp172\xampp\htdocs\guinnessapp.dev\application\helpers\facebook_helper.php 32
+ERROR - 2012-02-07 15:38:19 --> Severity: Notice  --> Undefined index: canvas_url C:\xampp172\xampp\htdocs\guinnessapp.dev\application\helpers\facebook_helper.php 41
+ERROR - 2012-02-07 15:38:19 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 15:38:55 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:43:55 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:43:57 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 15:43:57 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:43:57 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 15:43:57 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:43:57 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 15:43:57 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:43:58 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:43:58 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:43:58 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:44:01 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:44:02 --> Severity: Notice  --> Undefined index: cid C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\app.php 24
+ERROR - 2012-02-07 15:44:02 --> Severity: Notice  --> Undefined index: pageID C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\app.php 39
+ERROR - 2012-02-07 15:44:02 --> Severity: Notice  --> Undefined variable: where C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\app_m.php 68
+ERROR - 2012-02-07 15:44:02 --> Severity: Notice  --> Undefined variable: idx C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app.php 35
+ERROR - 2012-02-07 15:44:04 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:44:04 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 15:44:25 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:44:31 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 15:51:58 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:51:58 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 15:52:33 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:52:33 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 15:59:07 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:59:07 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 15:59:22 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 15:59:22 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 16:01:36 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:02:30 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:02:30 --> Severity: Notice  --> Undefined index: cid C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\campaign.php 26
+ERROR - 2012-02-07 16:02:30 --> Severity: Notice  --> Undefined index: pageID C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\campaign.php 43
+ERROR - 2012-02-07 16:02:30 --> Severity: Notice  --> Undefined variable: where C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\campaign_m.php 133
+ERROR - 2012-02-07 16:02:31 --> Severity: Notice  --> Undefined variable: idx C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\campaign.php 39
+ERROR - 2012-02-07 16:02:32 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:02:32 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 16:02:32 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 16:02:32 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 576
+ERROR - 2012-02-07 16:04:42 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:04:42 --> Severity: Notice  --> Undefined index: cid C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\campaign.php 26
+ERROR - 2012-02-07 16:04:42 --> Severity: Notice  --> Undefined index: pageID C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\campaign.php 43
+ERROR - 2012-02-07 16:04:42 --> Severity: Notice  --> Undefined variable: where C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\campaign_m.php 133
+ERROR - 2012-02-07 16:04:42 --> Severity: Notice  --> Undefined variable: idx C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\campaign.php 39
+ERROR - 2012-02-07 16:04:44 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:04:44 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 16:04:45 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 16:04:45 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 576
+ERROR - 2012-02-07 16:06:25 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:06:25 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 16:06:25 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 16:06:25 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 576
+ERROR - 2012-02-07 16:07:08 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:07:08 --> Severity: Notice  --> Undefined index: cid C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\app.php 24
+ERROR - 2012-02-07 16:07:08 --> Severity: Notice  --> Undefined index: pageID C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\app.php 39
+ERROR - 2012-02-07 16:07:08 --> Severity: Notice  --> Undefined variable: where C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\app_m.php 68
+ERROR - 2012-02-07 16:07:08 --> Severity: Notice  --> Undefined variable: idx C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app.php 35
+ERROR - 2012-02-07 16:08:03 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:08:04 --> Severity: Notice  --> Undefined index: cid C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\campaign.php 26
+ERROR - 2012-02-07 16:08:04 --> Severity: Notice  --> Undefined index: pageID C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\campaign.php 43
+ERROR - 2012-02-07 16:08:04 --> Severity: Notice  --> Undefined variable: where C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\campaign_m.php 133
+ERROR - 2012-02-07 16:08:04 --> Severity: Notice  --> Undefined variable: idx C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\campaign.php 39
+ERROR - 2012-02-07 16:08:06 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:08:06 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 16:08:06 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 16:08:06 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 576
+ERROR - 2012-02-07 16:08:09 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:08:09 --> Severity: Notice  --> Use of undefined constant base_url - assumed 'base_url' C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\app_add.php 42
+ERROR - 2012-02-07 16:08:14 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:08:14 --> Severity: Notice  --> Undefined index: cid C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\campaign.php 26
+ERROR - 2012-02-07 16:08:14 --> Severity: Notice  --> Undefined index: pageID C:\xampp172\xampp\htdocs\guinnessapp.dev\application\controllers\admin\campaign.php 43
+ERROR - 2012-02-07 16:08:14 --> Severity: Notice  --> Undefined variable: where C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\campaign_m.php 133
+ERROR - 2012-02-07 16:08:14 --> Severity: Notice  --> Undefined variable: idx C:\xampp172\xampp\htdocs\guinnessapp.dev\application\views\admin\campaign.php 39
+ERROR - 2012-02-07 16:08:15 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:08:15 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 16:08:15 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 16:08:16 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 576
+ERROR - 2012-02-07 16:14:21 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:14:21 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 16:14:21 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 16:14:21 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 576
+ERROR - 2012-02-07 16:14:27 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:14:27 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 16:14:27 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 16:14:27 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 576
+ERROR - 2012-02-07 16:14:53 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:14:53 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 16:14:54 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 16:14:54 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 576
+ERROR - 2012-02-07 16:16:48 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:16:48 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 16:16:48 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 16:16:48 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 576
+ERROR - 2012-02-07 16:38:38 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:38:38 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 16:38:38 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 16:38:38 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 581
+ERROR - 2012-02-07 16:38:53 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 16:38:53 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 16:38:53 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 16:38:53 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 581
+ERROR - 2012-02-07 17:32:13 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp172\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-07 17:32:14 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 551
+ERROR - 2012-02-07 17:32:14 --> Severity: Notice  --> Undefined variable: label C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 552
+ERROR - 2012-02-07 17:32:14 --> Severity: Notice  --> Undefined variable: campaign C:\xampp172\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 581
