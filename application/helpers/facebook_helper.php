@@ -169,7 +169,7 @@ function appToPage_dialog(){
         $CI->load->library('facebook');
 		$CI->load->model('setting_m');
     if(!$CI->facebook->getUser()){
-	  return "<a onclick=\"fbDialogLogin('fb_login','".$CI->setting_m->get('APP_CANVAS_URL')."'); return false;\" class=\"fb_button fb_button_medium\"><span class=\"fb_button_text\">".$text."</span></a>";
+	  return "<a onclick=\"fbDialogLogin('fb_login','".$CI->setting_m->get('APP_FANPAGE')."'); return false;\" class=\"fb_button fb_button_medium\"><span class=\"fb_button_text\">".$text."</span></a>";
 	}
 	return null;
  }
