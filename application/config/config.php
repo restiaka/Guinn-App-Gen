@@ -16,14 +16,14 @@
 */
 
 
-/*
+///*
 if($_SERVER['HTTPS']){
 	$config['base_url']	= 'https://guinnessapp.dev/';
 }else{
 	$config['base_url']	= 'http://guinnessapp.dev/';
 } 
-*/
-$config['base_url']	= 'https://guinnessapp.dev/';
+//*/
+//$config['base_url']	= 'https://guinnessapp.dev/';
 
 
 /*
