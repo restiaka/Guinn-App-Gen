@@ -675,6 +675,7 @@
 				unset($data['image_header_uploadfile']);
 			}
 			
+			unset($data['image_header_uploadfile']);
 		   if($gid){
 			   if(!$this->campaign_m->updateCampaign($data)){
 				 $error = $this->campaign_m->error;
