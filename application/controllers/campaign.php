@@ -50,10 +50,26 @@ Class Campaign extends CI_Controller {
 										   'notification' => $this->notify,
 										   'error' => $this->error));										
 	 }
+	 
+	 public function winner()
+	 {
+		$campaign = $this->campaign->getActiveCampaign();
+		$now = date('Y-m-d h:i:s');
+		$data = array();
+		if($campaign['upload_enddate'] >= $now){
+		  //Get Winner
+		  if($media = $this->media->retrieveMedia(array('GID'=>$campaign['GID'],'media_winner' => 1))){
+			$data['media'] = $media;
+		  }
+		}
+		
+		$this->load->view('site/winner',$data);
+	 }
 	  
 	  public function register()
 	  {
 	     $campaign = $this->campaign->getActiveCampaign();
+		 
 	  	$this->load->view('site/register',array('campaign_info'=>$campaign,'html_form_register' => $form,'notification' => $this->notify,'error' => $this->error));										
 	
 	  }

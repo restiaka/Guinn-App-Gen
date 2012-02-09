@@ -78,10 +78,15 @@
 	 }  
  
 	function callback_validateUploadEndDate(){
+	
 	  extract($_POST['startdate']);
-	  $startdate = mktime($H, $i, $s, $d, $F, $Y);
+	  $o_startdate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
+	  $startdate = $o_startdate->getTimestamp();
+	 
 	  extract($_POST['upload_enddate']);
-	  $uploadenddate = mktime($H, $i, $s, $d, $F, $Y);
+	  $o_uploadenddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
+	  $uploadenddate = $o_uploadenddate->getTimestamp();
+	  
 	  
 	  if($startdate == $uploadenddate) return false;
 	  if($uploadenddate < $startdate) return false;
@@ -91,10 +96,14 @@
 
 	function callback_validateEndDate(){
 	  extract($_POST['enddate']);
-	  $enddate = mktime($H, $i, $s, $d, $F, $Y);
+	  $o_enddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
+	  $enddate = $o_enddate->getTimestamp();
+	  
 	  extract($_POST['upload_enddate']);
-	  $uploadenddate = mktime($H, $i, $s, $d, $F, $Y);
-	  if($enddate == $uploadenddate) return false;
+	  $o_uploadenddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
+	  $uploadenddate = $o_uploadenddate->getTimestamp();
+
+	 if($enddate == $uploadenddate) return false;
 	  if($uploadenddate > $enddate) return false;
 	  
 	  return true;
