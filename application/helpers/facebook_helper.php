@@ -206,7 +206,8 @@ function appToPage_dialog(){
 												   'query'=>'SELECT '.$CI->setting_m->get('APP_EXT_PERMISSIONS').' 
 															 FROM permissions 
 															 WHERE uid = '.$facebook->getUser()
-									));						
+									));	
+		if(!$permissions) return false;
 		foreach($permissions as $value){
 		  if(!$value) { 
 		   return false;

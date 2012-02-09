@@ -196,6 +196,19 @@
 	set_include_path(ROOT_DIR.APPPATH.'libraries/' . PATH_SEPARATOR . ROOT_DIR.APPPATH.'libraries/PEAR/');
 
 /*
+ *
+ * -----------------------------------------------------------------
+ * 	TIMEZONE SET
+ * -----------------------------------------------------------------
+ *
+ *	Setting default Local Timezone for the app
+ *
+ */
+ date_default_timezone_set('Asia/Jakarta');
+
+ 
+	
+/*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
  * --------------------------------------------------------------------
