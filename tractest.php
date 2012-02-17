@@ -79,10 +79,8 @@ Class Traction {
 	
 	private function makeRequest($url,$params)
 	{
-	  if (!$ch) {
-		$ch = curl_init();
-	  }
-
+	  $ch = curl_init();
+	  
 		$opts = self::$CURL_OPTS;
 		$opts[CURLOPT_URL] = $url;
 		if($params){

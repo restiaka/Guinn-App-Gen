@@ -34,20 +34,22 @@ Class Customer_m extends CI_Model{
 		  $this->error[] = "Submission Failed (TError), Try Again!";	 
 		  return false;						
 		}
+		
+		if(isset($r['TRAC-CUSTOMERID']) && !empty($r['TRAC-CUSTOMERID'])){
+		  $db_data['customer_id'] = $r['TRAC-CUSTOMERID']; 
+		}else{
+		  $this->error[] = "Submission Failed (Unknown Customer), Try Again!";	
+			return false;
+		}
 	}
 	
-	
 	$db_data['uid'] = $this->facebook->getUser();
-	$db_data['email'] = $data['EMAIL'];
-	$db_data['email_active'] = $data['EMAIL'];
 	
 	foreach (array_keys($db_data) as $v)$update[] = $v." = values(".$v.")";
 	$extra_sql = " ON DUPLICATE KEY UPDATE ".implode(',',$update); 
 	
 	$ok = $this->db->insert('campaign_customer',$db_data,$extra_sql);
-	
-	//dg($this->db);
-	
+
 	
 	if($ok){
 	 if(!$this->isAppAuthorized()){
@@ -213,7 +215,7 @@ Class Customer_m extends CI_Model{
 		T – active
 		F – not active	
   /**/
-  public function detailTRAC($email,$selection = NULL) 
+  public function detailTRAC($matchvalue,$selection = NULL,$matchkey = "E") 
   {
     if(!$this->traction_enabled) return array('fields' => array());
    
@@ -234,7 +236,7 @@ Class Customer_m extends CI_Model{
 			$ATTRID["ATTRID".++$i] = $v;
 		}
 	   
-	   $params = array_merge(array("MATCHKEY"=>'E',"MATCHVALUE"=>$email),$ATTRID);  
+	   $params = array_merge(array("MATCHKEY"=>$matchkey,"MATCHVALUE"=>$matchvalue),$ATTRID);  
 	   $r = $this->traction->api('RetrieveCustomer',$params);	
 	   
 	   if(!isset($r['TRAC-RESULT'])) return null;
@@ -277,18 +279,16 @@ Class Customer_m extends CI_Model{
 	if($fromDB){
 	 //Checking authorized app
 	 if(!$this->isAppAuthorized()){
-	   //$this->addAppAuthorization();
 	   return false;
 	 }
 	 
 	 //Traction check
 	 if($this->traction_enabled){
-		 $trac = $this->detailTRAC($fromDB['email']);
+		 $trac = $this->detailTRAC($fromDB['customer_id'],null,'C');
 		 if($trac)return true; else return false;
 	 }
 	 
 	 return true;
-	 
     }else{
 	  return false;
 	}

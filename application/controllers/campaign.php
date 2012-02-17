@@ -29,27 +29,26 @@ Class Campaign extends CI_Controller {
 
 	
 	public function home()
-	 {
+	{
 		$this->load->model('customer_m','customer');
 		$this->load->library('facebook');
 		
-		/*debug
-		$this->load->model('setting_m');
-		dg($this->setting_m->get('APP_FANPAGE'));
-		dg($this->config);*/
-		
 		$isAuthorized = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
 	 
-	    $campaign = $this->campaign->getActiveCampaign();
-	    $form = $campaign ? $this->form->upload_media($campaign) : 'Sorry No Contest Available Yet!'; 	
+	    if($campaign = $this->campaign->getActiveCampaign()){
+			$form = (date('Y-m-d H:i:s') > $campaign['upload_enddate']) ? "Sorry! Your time for Uploading Media has ended. <Br/> Thank you." : $this->form->upload_media($campaign);
+		}else{
+			$form = 'Sorry No Contest Available Yet!'; 
+		}
+
 		$this->load->view('site/tab',array('campaign_info'=>$campaign,
 											'html_form_upload' => $form,
 										   'html_form_register' => $this->form->customer_register(),
 										   'customer_registered' => ($this->customer->isRegistered() ? true : false),
 										   'is_authorized' => $isAuthorized,
 										   'notification' => $this->notify,
-										   'error' => $this->error));										
-	 }
+										   'error' => $this->error));	
+	}
 	 
 	 public function winner()
 	 {
