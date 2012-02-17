@@ -1,4 +1,15 @@
+<pre>
 <?php
+phpinfo();
+$traction = new Traction(array('USERID' => 'fbdev',
+								'PASSWORD' => 'th1nkw3b',
+								'ENDPOINTID' => '17259'));
+ $r =	$traction->api('AddCustomer',array('CUSTOMER' => 'FIRSTNAME|adadfadfLASTNAME|asfasfEMAIL|kh411d@yahoo.com3014098|103031180|23424234',
+'MATCHKEY' => 'E',
+'MATCHVALUE' => 'kh411d@yahoo.com'));
+
+ print_r($r);
+ 
 Class Traction {
  
  public static $CURL_OPTS = array(
@@ -28,21 +39,8 @@ Class Traction {
 										"ATTRID10" => 1,
 										"TEST" => 1);
  public static $CONFIG;
- 
- public $CI;
- 
-	function __construct($config = null)
+	function __construct($config)
 	{
-	 $this->CI = &get_instance();
-	 $this->CI->load->model('setting_m');
-	 
-	 
-	 	   $traction = array(
-							'USERID'  =>  $this->CI->setting_m->get('TRAC_USERID'),
-							'PASSWORD' =>  $this->CI->setting_m->get('TRAC_PASSWORD'),
-							'ENDPOINTID' =>  $this->CI->setting_m->get('TRAC_ENDPOINTID')
-						 );
-   $config = $config ? $config : $traction;
 	
 	 if(!$config["USERID"] ||
 		!$config["PASSWORD"] ||
@@ -84,86 +82,18 @@ Class Traction {
 	  if (!$ch) {
 		$ch = curl_init();
 	  }
-	  
 
 		$opts = self::$CURL_OPTS;
 		$opts[CURLOPT_URL] = $url;
 		if($params){
-		   /**
-		   		$querystring = 'USERID='.$params['USERID'].'&'.
-						'PASSWORD='.$params['PASSWORD'].'&'.
-						'ENDPOINTID='.$params['ENDPOINTID'].'&'.
-						'CUSTOMER='.$params['CUSTOMER'].'&'.
-						'MATCHKEY='.$params['MATCHKEY'].'&'.
-						'MATCHVALUE='.$params['MATCHVALUE'];
-		   /**/
 			$opts[CURLOPT_POSTFIELDS] = http_build_query($params);
 		}
-		
-		//dg($opts);
-		//exit;
 		curl_setopt_array($ch, $opts);
-		
+
 		$result = curl_exec($ch);
 		curl_close($ch);
 		
-		//dg($result);
-		//exit;
-		
 		return self::dataTRAC($result);;
-	}
-	
-	private function httpPost($myUrl,$myDataArray) {
-	/* Private method used to send request and retrieve response from Traction. */
-		// get url parts..
-		$url = preg_replace("@^http://@i", "", $myUrl);  // remove transport protocol
-		$host = substr($url, 0, strpos($url, "/"));  // host of web application
-		$uri = strstr($url, "/");  // path for web application
-		$port = (int) substr($uri, strpos($uri, ":") + 1);  // get port from myUrl.
-		if (!($port > 0)) $port = 80;  // if no port given in myUrl then default to port 80.
-		
-		//create request body..
-		$myRequestBody = "";
-		foreach ($myDataArray as $key => $val) {
-			if (!empty($myRequestBody))
-				$myRequestBody .= "&";
-			$myRequestBody .= $key . "=" . urlencode($val);
-		}
-		$myContentLength = strlen($myRequestBody)+100;
-		// create request header..
-		$myRequestHeader = "POST " . $uri . " HTTP/1.0 \r\n";
-		$myRequestHeader .= "Host: " . $host . "\r\n";
-		$myRequestHeader .= "User-Agent: MassMediaStudios_Traction_Client\r\n";
-		$myRequestHeader .= "Content-Type: application/x-www-form-urlencoded\r\n";
-		$myRequestHeader .= "Content-Length: " . $myContentLength . "\r\n\r\n";
-		$myRequestHeader .= $myRequestBody . "\r\n";
-		
-/* 		dg($myRequestHeader);
-		dg($host, $port, $errno, $errstr);
-		exit;
- */		
- //connect to server..
-		$socket = fsockopen($host, $port, $errno, $errstr);
-		if (!$socket) {
-			// socket failed, return error details..
-			$result["errno"] = $errno;
-			$result["errstr"] = $errstr;
-			
-			return $result;
-		}
-		
-		// pass data through socket..
-		fputs($socket, $myRequestHeader);
-		
-		$result = "";
-		while (!feof($socket)) {
-			// get result..
-			$result[] = fgets($socket, 4096);
-		}
-		
-		fclose($socket); // close socket.
-		
-		return $result; // return successful socket result
 	}
 	
 	protected function getUrl($path='') {
@@ -210,6 +140,4 @@ Class Traction {
 		$t['result'] = $parts[1]; 
 		return $t;
 	}
-	
-	
 }

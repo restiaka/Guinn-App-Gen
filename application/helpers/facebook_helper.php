@@ -186,11 +186,9 @@ function appToPage_dialog(){
 
  function authorizeButton($text = 'Click here to Authorize'){
  $CI = &get_instance();
-        $CI->load->library('facebook');
-		$CI->load->model('setting_m');
-    if(!$CI->facebook->getUser()){
-	  return "<a onclick=\"fbDialogLogin('fb_login','".$CI->setting_m->get('APP_FANPAGE')."'); return false;\" class=\"fb_button fb_button_medium\"><span class=\"fb_button_text\">".$text."</span></a>";
-	}
+    	$CI->load->model('setting_m');
+      return "<a onclick=\"fbDialogLogin('fb_login','".$CI->setting_m->get('APP_FANPAGE')."'); return false;\" class=\"fb_button fb_button_medium\"><span class=\"fb_button_text\">".$text."</span></a>";
+	
 	return null;
  }
  
@@ -202,11 +200,15 @@ function appToPage_dialog(){
   $facebook = $CI->facebook;
   
   	  //Checking Permission needed
+	  try{
 		 list($permissions) = $facebook->api(array('method'=>'fql.query',
 												   'query'=>'SELECT '.$CI->setting_m->get('APP_EXT_PERMISSIONS').' 
 															 FROM permissions 
 															 WHERE uid = '.$facebook->getUser()
 									));	
+		} catch(Exception $e){
+			return false;
+		}
 		if(!$permissions) return false;
 		foreach($permissions as $value){
 		  if(!$value) { 

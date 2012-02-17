@@ -186,6 +186,9 @@
    
    function customer_register()
    {
+    $campaign = $this->campaign_m->getActiveCampaign();
+	$this->load->library('facebook');
+	
 	$form = new HTMLQuickForm2('customer_register','POST','action=""  ');
 		
 		 $form->addElement('static','','',array('content'=>'Your Firstname :'));	
@@ -210,6 +213,15 @@
 			$form->toggleFrozen(true);
 			$data = $form->getValue();
 			unset($data['submit'],$data['_qf__customer_register']);
+			
+			//$data['3012669'] = $this->facebook->getUser();//TRAC_ATTR_FBUID
+			$data['3014098'] = $campaign['GID'];//TRAC_ATTR_GID
+			$data['3031180'] = $data['MOBILE'];//TRAC_ATTR_MOBILE2
+			
+			unset($data['MOBILE']);
+			
+			
+			
 			if($registered = $this->customer_m->add($data)){
 				$form->addElement('static','','',array('content'=>'<div>Done</div>'));	
 			}else{

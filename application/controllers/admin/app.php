@@ -18,6 +18,7 @@ Class App extends CI_Controller {
 		$this->load->view('admin/app_add',array('content'=>$this->form->app_add($gid)));		
 	}
 	
+	
 	function lists(){
 	  require_once 'Pager/Sliding.php';
 	 
@@ -25,6 +26,7 @@ Class App extends CI_Controller {
 		 foreach($_POST['cid'] as $v){
 		  switch($_POST['task']){
 		   case 'delete': $this->app->remove($v); break;
+		   case 'dispatch': $this->app->dispatch($v); break;
 		  }
 		 }
 	 }

@@ -14,6 +14,13 @@ Class App_m extends CI_model {
 		return $ok;
 	  }
 	  
+	public function dispatch($appid)
+	{
+		$ok = $this->db->update('campaign_group',array('APP_APPLICATION_ID'=>''),array('APP_APPLICATION_ID'=>$appid));
+		
+		return $ok ? true : false;
+	}
+	  
 	public function update($data)
 	  {
 		$ok = $this->db->update('campaign_app',$data,array('APP_APPLICATION_ID'=>$data['APP_APPLICATION_ID']));

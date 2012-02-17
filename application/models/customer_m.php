@@ -3,8 +3,7 @@ Class Customer_m extends CI_Model{
 
   private $db;
   public $error = array();
-  private $traction;
-  protected $traction_enabled = FALSE;
+  protected $traction_enabled = TRUE;
 
   function __construct()
   {
@@ -24,6 +23,7 @@ Class Customer_m extends CI_Model{
 								   "MATCHKEY" =>'E',
 								   "MATCHVALUE" =>$data['EMAIL']
 								));		
+
 		
 		if(!isset($r['TRAC-RESULT'])){
 		  $this->error[] = "Submission Failed (TResult), Try Again!";	 
@@ -35,6 +35,7 @@ Class Customer_m extends CI_Model{
 		  return false;						
 		}
 	}
+	
 	
 	$db_data['uid'] = $this->facebook->getUser();
 	$db_data['email'] = $data['EMAIL'];

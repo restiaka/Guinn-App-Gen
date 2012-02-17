@@ -209,7 +209,10 @@
 				switch(dialogType){
 				  case "fb_login" : FB.login(function(response) {
 									   if (response.authResponse) {
-											if(redirectURL) window.top.location.href = redirectURL;
+									   //alert('Authorized ok');
+									   window.top.location.reload();
+											//if(redirectURL) 
+											 //window.top.location.href = redirectURL;
 									   } else {
 										 alert('Authorized user only');
 									   }
