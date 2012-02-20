@@ -149,7 +149,7 @@
 			  }			  
 				
 			$time = time();
-			$data['media_status'] = $campaign['media_has_approval'] ? 'inactive' : 'active';
+			$data['media_status'] = $campaign['media_has_approval'] ? 'pending' : 'active';
 			$data['media_uploaded_date'] = date('Y-m-d H:i:s',$time);
 			$data['media_uploaded_timestamp'] = $time;
 			$data['GID'] = $active_campaign_gid;
@@ -506,6 +506,7 @@
 							'media_has_approval' => $campaign['media_has_approval'],
 							'media_has_fbcomment' => $campaign['media_has_fbcomment'],
 							'media_has_fblike' => $campaign['media_has_fblike'],
+							'media_has_vote' => $campaign['media_has_vote'],
 							//'allowed_media_source'=> $campaign['allowed_media_source'],
 							//'allowed_media_type'=>$campaign['allowed_media_type'],
 							//'allowed_media_fields'=>$campaign['allowed_media_fields'],
@@ -528,9 +529,9 @@
 		
 		$form->addElement('hidden','gid');
 		
-		$form->addElement('static','','',array('content'=>'<b>Your Facebook Application Name that you have created ?</b> <a href="'.site_url('admin/app/add').'">Add</a>'));
+		$form->addElement('static','','',array('content'=>'<b>Your Facebook Application Name/ID ?</b> <a href="'.site_url('admin/app/add').'">Add</a>'));
 		$fb_options[''] = 'Select Apps Name';
-		if($appIDrow = $this->db->get_results("SELECT APP_APPLICATION_ID, APP_APPLICATION_NAME 
+		/* if($appIDrow = $this->db->get_results("SELECT APP_APPLICATION_ID, APP_APPLICATION_NAME 
 											   FROM campaign_app  
 											   WHERE campaign_app.APP_APPLICATION_ID NOT IN 
 													 (SELECT APP_APPLICATION_ID FROM campaign_group 
@@ -540,12 +541,23 @@
 			foreach($appIDrow as $conf){
 			  $fb_options[$conf['APP_APPLICATION_ID']] = $conf['APP_APPLICATION_NAME'];
 			}
+		} */
+		if($appIDrow = $this->db->get_results("SELECT APP_APPLICATION_ID, APP_APPLICATION_NAME 
+											   FROM campaign_app",'ARRAY_A'))
+		{
+		 
+			foreach($appIDrow as $conf){
+			  $fb_options[$conf['APP_APPLICATION_ID']] = $conf['APP_APPLICATION_NAME'];
+			}
 		}
+		
 		$APP_APPLICATION_ID = $form->addElement('select','APP_APPLICATION_ID','',array('options'=>$fb_options));
 		if(count($fb_options) <= 1) 
 		$form->addElement('static','','',array('content'=>'<b style="color:red;">*All APPLICATION ID has been registered please create new one! Please go to <a href="'.site_url('admin/app/add').'">App</a> panel.</b>'));
 
 		$APP_APPLICATION_ID->addRule('required', 'Facebook App Name is required', null,HTML_QuickForm2_Rule::SERVER);
+							
+		
 		
 		$form->addElement('static','','',array('content'=>'<b>Title for your campaign ?</b>'));
 		$stitle = $form->addElement('text','title',array('style'=>''));
@@ -557,7 +569,7 @@
 		$allowed_mimetype = 'image/gif,image/jpeg,image/pjpeg,image/png';
 
 		$form->addElement('static','','',array('content'=>'<b>Upload Header Image for your Campaign ? (image width will be resize to 400px)</b>'));
-		$r_file = $form->addElement('file','image_header_uploadfile','');
+		$r_file = $form->addElement('file','image_header_uploadfile','size="80"');
 		$r_file->addRule('mimetype', $label.' is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
 		$r_file->addRule('maxfilesize', $label.' filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
 		
@@ -570,6 +582,7 @@
 		$form->addElement('static','','',array('content'=>'<b>When will your campaign will start ?</b>'));
 		$startdate_group = $form->addElement('group');	 
 		$startdate_group->addElement('date','startdate','',$date_set,'style="width:100px;"');
+		$startdate_group->addRule('callback','Start Date with this Facebook App Name/ID cannot be Overlap with other Campaigns','callback_validateAppIDRangeDate');
 		
 		$form->addElement('static','','',array('content'=>'<b>When will Upload Task end ?</b>'));
 		$upload_enddate_group = $form->addElement('group');	 
@@ -611,6 +624,10 @@
 		$allowed_mimetype = $form->addElement('hidden','allowed_mimetype',array('style'=>''))->setValue('image/gif,image/jpeg,image/pjpeg,image/png');
 
 		//$form->addElement('static','','',array('content'=>'<br/><b>You may fill in Campaign rules,policy,mechanism,share feed</b> <br/><hr/>'));
+		
+		$form->addElement('static','','',array('content'=>'<b>Does the uploaded media has vote system ?</b>'));
+		$media_has_approval = $form->addElement('select','media_has_vote','',array('options'=>array('0'=>'No','1'=>'Yes')));
+		
 		
 		$form->addElement('static','','',array('content'=>'<b>Does the uploaded media need approval by admin before published ?</b>'));
 		$media_has_approval = $form->addElement('select','media_has_approval','',array('options'=>array('0'=>'No','1'=>'Yes')));

@@ -51,12 +51,11 @@ Class Campaign extends CI_Controller {
 	}
 	
 	function exportlist($gid){
-	 
-	 $this->export->exportUploadedFiles($gid);
+	 $this->export->exportUploadedLists($gid);
 	}
 	
 	function exportfile($gid){
-	 $this->export->exportUploadedLists($gid);
+	 $this->export->exportUploadedFiles($gid);
 	}
 	
 	

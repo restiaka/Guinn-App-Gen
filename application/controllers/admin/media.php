@@ -25,7 +25,7 @@ Class Media extends CI_Controller {
 			 foreach($_POST['cid'] as $v){
 			  switch($_POST['task']){
 			   case 'activate': $this->media->setStatusMedia($v,'active'); break;
-			   case 'deactivate': $this->media->setStatusMedia($v,'inactive'); break;
+			   case 'deactivate': $this->media->setStatusMedia($v,'banned'); break;
 			   case 'delete': $this->media->removeMedia($v); break;
 			   case 'winner': $this->media->setWinnerMedia($v,1); break;
 			   case 'resetwinner': $this->media->setWinnerMedia($v,0); break;
@@ -39,7 +39,7 @@ Class Media extends CI_Controller {
 		}	
 		if($_REQUEST['byuid']){
 			$clauses['campaign_media_owner.uid'] = $_REQUEST['byuid'];	
-		}			
+		}
 		if($_REQUEST['bystatus']){
 			$clauses['campaign_media.media_status'] = $_REQUEST['bystatus'];
 		}	
@@ -49,14 +49,14 @@ Class Media extends CI_Controller {
 		$total = $this->media->retrieveMedia($clauses,array('fields'=>'count(*) as total'));
 		$config['totalItems'] = $total[0]['total'];
 		$config['perPage'] = 15; 
-		$config['urlVar'] = 'pageID';
+		//$config['urlVar'] = 'pageID';
 		$config['urlVar'] = ($_POST['bycampaign'] ? 'bycampaign='.$_POST['bycampaign'].'&' : '').
 							($_POST['byuid'] != '' ? 'byuid='.$_POST['byuid'].'&' : '').
 							($_POST['bystatus'] ? 'bystatus='.$_POST['bystatus'].'&' : '').
 							'pageID';
 		
 		$pager = new Pager_Sliding($config);
-		$links = $pager->getLinks($_GET['pageID']);
+		$links = $pager->getLinks($_REQUEST['pageID']);
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		
@@ -66,7 +66,7 @@ Class Media extends CI_Controller {
 		$data = $this->media->retrieveMedia($clauses,array('limit_number' => $config['perPage'],'limit_offset' => --$from));
 		
 		
-		$this->load->view('admin/media',array('data'=> $data,'pagination'=>$links,'campaigns'=>$campaigns));
+		$this->load->view('admin/media',array('data'=> $data,'offset'=>$from,'pagination'=>$links,'campaigns'=>$campaigns));
 		
 		
 	}

@@ -178,7 +178,7 @@ function appToPage_dialog(){
  }
  
  function getFacebookUser($uid){
-	$content = file_get_contents('https://graph.facebook.com/'.$uid);
+	$content = file_get_contents('http://graph.facebook.com/'.$uid);
 	return json_decode($content);
  }
  

@@ -75,7 +75,25 @@
 		  $basepath = str_replace(ROOT_DIR,'',THEME_DIR);
 		  return ($relative_path ? "" : SITE_URL).$basepath;
 		}
-	 }  
+	 }
+
+	function callback_validateAppIDRangeDate(){
+	 $CI = &get_instance();
+	 $CI->load->library('ezsql_mysql');
+	 $sql = "SELECT enddate FROM campaign_group WHERE campaign_group.APP_APPLICATION_ID = ".addslashes($_POST['APP_APPLICATION_ID'])." ORDER BY campaign_group.enddate DESC LIMIT 1";
+	 if($latest_enddate = $CI->ezsql_mysql->get_var($sql)){
+	 
+	  extract($_POST['startdate']);
+	  $o_startdate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
+	  $startdate = $o_startdate->getTimestamp();
+	  
+	  $o_latest_enddate = new DateTime($latest_enddate); //mktime($H, $i, $s, $d, $F, $Y);
+	  $xlatest_enddate = $o_latest_enddate->getTimestamp();
+	 
+	  if($startdate <= $xlatest_enddate) return false;
+	  }
+	  return true;
+	}
  
 	function callback_validateUploadEndDate(){
 	
