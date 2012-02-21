@@ -50,11 +50,12 @@ Class Customer_m extends CI_Model{
 	
 	$ok = $this->db->insert('campaign_customer',$db_data,$extra_sql);
 	
+
 	
 	if($this->db->result){
 	 if(!$this->isAppAuthorized()){
 	   $this->addAppAuthorization();
-	 }
+	 } 
 	}else{
 	  $this->error[] = "Submission Failed, Try Again!";	 
 		return false;
