@@ -43,15 +43,15 @@ Class Customer_m extends CI_Model{
 		}
 	}
 	
-	$db_data['uid'] = $this->facebook->getUser();
+	$db_data['uid'] = $this->facebook->getUser(); 
 	
 	foreach (array_keys($db_data) as $v)$update[] = $v." = values(".$v.")";
 	$extra_sql = " ON DUPLICATE KEY UPDATE ".implode(',',$update); 
 	
 	$ok = $this->db->insert('campaign_customer',$db_data,$extra_sql);
-
 	
-	if($ok){
+	
+	if($this->db->result){
 	 if(!$this->isAppAuthorized()){
 	   $this->addAppAuthorization();
 	 }

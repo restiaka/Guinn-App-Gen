@@ -190,22 +190,22 @@
 	$form = new HTMLQuickForm2('customer_register','POST','action=""  ');
 		
 		 $form->addElement('static','','',array('content'=>'Your Firstname :'));	
-		 $firstname = $form->addElement('text','FIRSTNAME','style="width:395px;"');
+		 $firstname = $form->addElement('text','FIRSTNAME','style="width:335px;"');
 		 $firstname->addRule('required', 'Firstname is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 $form->addElement('static','','',array('content'=>'Your Lastname :'));	
-		 $lastname = $form->addElement('text','LASTNAME','style="width:395px;"');
+		 $lastname = $form->addElement('text','LASTNAME','style="width:335px;"');
 		 $lastname->addRule('required', 'Lastname is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 $form->addElement('static','','',array('content'=>'Email :'));	
-		 $email = $form->addElement('text','EMAIL','style="width:395px;"');
+		 $email = $form->addElement('text','EMAIL','style="width:335px;"');
 		 $email->addRule('required', 'Email is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 $form->addElement('static','','',array('content'=>'Phone no :'));	
-		 $mobile = $form->addElement('text','MOBILE','style="width:395px;"');
+		 $mobile = $form->addElement('text','MOBILE','style="width:335px;"');
 		 $mobile->addRule('required', 'Phone no. is required', null,HTML_QuickForm2_Rule::SERVER);
 		
-		$button = $form->addElement('submit','submit','value="Submit Registration" style="border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;padding:5px;margin-left:280px;"');
+		$button = $form->addElement('submit','submit','value="Submit Registration" style="border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;padding:5px;margin-left:220px;"');
 		
 		if ($form->validate()) {
 			$form->toggleFrozen(true);
