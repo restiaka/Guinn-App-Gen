@@ -1,0 +1,6 @@
+.int-art li {
+float:left
+}
+.int-art li:hover{}
+
+.scroll-pane{height:200px}

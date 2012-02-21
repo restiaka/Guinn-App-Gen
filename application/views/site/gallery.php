@@ -1,30 +1,12 @@
 <?php $CI = &get_instance(); $CI->load->model('media_m');?>
 <?php $this->load->view('site/header'); //Begin HTML ?>
-<?php $this->load->view('site/menu'); //menu HTML ?>
+<div id="main">
+	<div class="main-header">
+		<h2>Contest Gallery</h2>
+	</div>
 
-<?php $this->load->view('site/header_image'); //header image HTML ?>
-
-    	<div class="boxvideoshared">	
-        	<table style="width:100%" border="0" cellspacing="0" cellpadding="0">
-  				<tr>
-    				<td class="padform_left">
-                    	<div class="boxtext_lft"><img src="<?=base_url()?>assets/site/images/tks_videogallery.gif" width="110" height="12" /></div>
-                    </td>
-  				</tr>
-  				<tr>
-  				  <td class="padform_left">
-				  <?=$this->media_m->gallery($media,$pagination);?>
-                  </td>
-			  </tr>
-  				<tr>
-  				  <td class="padform_left">
-                  		
-                  
-                  
-                  
-                  </td>
-			  </tr>
-			</table>
-      </div>
-
+	<div class="gallery">
+	<?=$this->media_m->gallery($media,$pagination);?>
+	</div>
+</div>	  
 <?php $this->load->view('site/footer');//End HTML ?>

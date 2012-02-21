@@ -55,12 +55,12 @@
 		  switch ($domid){ 
 		   case 'media_title': 
 		   $form->addElement('static','','',array('content'=>$label));	
-		   $r = $form->addElement('text',$domid,'style="width:395px;"');
+		   $r = $form->addElement('text',$domid,'style="width:335px;"');
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 		   case 'media_description' : 
 		   $form->addElement('static','','',array('content'=>$label));	
-		   $r = $form->addElement('textarea',$domid,'style="width:395px;"');
+		   $r = $form->addElement('textarea',$domid,'style="width:335px;"');
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 		   case 'media_source' : 
@@ -69,14 +69,14 @@
 								 if(in_array('facebook',$src) || in_array('youtube',$src) || in_array('twitpic',$src) || in_array('yfrog',$src) || in_array('plixi',$src))
 								 {
 									$form->addElement('static','','',array('content'=>'Copy and Paste YouTube URL here'));	
-								    $r = $form->addElement('text',$domid,'style="width:395px;"');
+								    $r = $form->addElement('text',$domid,'style="width:335px;"');
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 								 } 
 								 elseif(in_array('file',$src))
 								 {
 									$form->addElement('static','','',array('content'=>'Upload Photo from your computer here'));	
-									$r_file = $form->addElement('file',$domid,'size="49"');
+									$r_file = $form->addElement('file',$domid,'size="40"');
 									$r_file->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									$r_file->addRule('mimetype', $label.' is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
 									$r_file->addRule('maxfilesize', $label.' filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
@@ -85,7 +85,7 @@
 								 }				
 		  }
 		}
-		$button = $form->addElement('submit','submit','value="Submit" style="border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;padding:5px;margin-left:350px;"');
+		$button = $form->addElement('submit','submit','value="Submit" style="border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;padding:5px;margin-left:290px;"');
 		
 		if ($form->validate()) {
 			$form->toggleFrozen(true);
@@ -176,7 +176,7 @@
 		$renderer = HTML_QuickForm2_Renderer::factory('default');
 		$form_layout = $form->render($renderer);
 		
-		return $form_layout;
+		return $html_done ? $html_done : $form_layout;
    }
   
    

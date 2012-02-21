@@ -1,0 +1,128 @@
+/**
+**Guinness - Generic App
+ @author      Zoeldt <zoel@think.web.com>
+ @version     1.0
+ @copyright   Copyright (c) 2012,Think Web
+**/
+/*reset*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;font:inherit;vertical-align:baseline}
+body{line-height:1}
+ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+ins{text-decoration:none}
+del{text-decoration:line-through}
+table{border-collapse:collapse;border-spacing:0}
+strong{font-weight:bold}
+/*clearfix*/
+.clearfix:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}
+.clearfix{display:block}
+html[xmlns] .clearfix{display:block}
+* html .clearfix{height:1%}
+
+/*text rule*/
+body{font:12px Helvetica,'Helvetica Neue',Arial,sans-serif;line-height:normal;color:#fff;letter-spacing:0px}
+a{text-decoration:none;color:#fff}
+a:hover{}
+a:focus{outline:none}
+p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:0px}
+ol{margin-left:20px}
+ol li,ul li{margin:0}
+p{margin-bottom:13px}
+h1{font-size:25px;line-height:30px}
+h2{font-size:22px;line-height:22px;margin-bottom:13px}
+h3{font-size:16px;margin-bottom:10px;font-weight:bold}
+.orderlist{list-style-type:decimal;margin-left:25px;text-align:justify}
+
+/*general*/
+#container{max-width:760px;margin:0 auto;background:#000;position:relative}
+#main{position:relative;padding:20px;margin:0 0 30px}
+#header{position:relative;padding:20px;background:url(../img/line-m.png) no-repeat center 100%}
+.main-header{font-size:30px;text-align:center;text-transform:uppercase;font-weight:bold;background:url(../img/line-m.png) no-repeat center 100%;padding:0 0 10px;margin:0 0 30px}
+
+
+/*header*/
+#main-nav{text-align:center;background:url(../img/line-l.png) no-repeat center bottom;padding:0 20px 20px;margin:0 0 20px}
+#main-nav li{display:inline-block;margin:0 30px;text-transform:uppercase}
+#main-nav a{font-weight:bold}
+#main-logo{text-indent:-999em;background:url(../img/guinness-logo.png) no-repeat 0 0;width:266px;height:138px;display:block;margin:0 auto}
+
+/*nav*/
+#nav{}
+#nav li{display:block;margin:0 0 15px}
+#nav a{}
+
+/*box & text*/
+.bigtext{text-align:center}
+.box{width:400px;text-align:center;margin:0 auto 20px;background:#363636}
+.box p{margin:0 0 7px}
+.box > .inner{padding:20px}
+html .gold{color:#b59859}
+.text ol, .text ul{margin-bottom:20px}
+.text li{margin-bottom:10px}
+
+.gallery{text-align:center}
+.gallery-list{margin:0 0 25px}
+.gallery-list li{display:inline-block;margin:0 7.8px 7px;height:150px;width:100px;vertical-align:top;overflow:hidden}
+.gallery-list img{vertical-align:top;background:#121212}
+.posted-by{font-size:9px;margin-top:3px}
+.owner{font-size:12px;font-weight:bold;text-transform:uppercase}
+.owner a{}
+
+.pagination{text-align:center}
+.pagination li{display:inline-block;font-size:12px;margin:0 1px;color:#666;border-right:1px solid #666;padding-right:5px }
+.pagination .active{background:#222;color:#666;padding:2px 5px;border:none}
+.pagination li:first-child, .pagination li:last-child{border-right:none}
+.pagination a{padding:2px 5px}
+.pagination a:hover{background:#222}
+
+.big-img{background:#121212;width:480px;height:auto;position:relative;text-align:center;margin:0 auto 20px}
+.big-img img{vertical-align:top}
+.info{width:480px;margin:0 auto 20px;text-align:left;padding:0 0 40px;background:url(../img/line-s.png) no-repeat center 100%}
+.info img{float:left;margin:3px 10px 0 0;vertical-align:top}
+#next-img, #prev-img{position:absolute;top:41%;background-image:url(../img/arrow.png);background-repeat:no-repeat;text-indent:-999em;height:52px;width:34px;opacity:0}
+
+#prev-img{left:-17px;background-position:0 0}
+#prev-img:hover{opacity:0.85}
+#prev-img:active{background-position:0 100%}
+
+#next-img{right:-17px;background-position:100% 0}
+#next-img:hover{opacity:0.85}
+#next-img:active{background-position:100% 100%}
+
+.comments{width:480px;margin:0 auto}
+.winner{background:#555 url(../img/gradient-ver.png) repeat-x 0 100%;width:480px;margin:0 auto}
+.winner-list{border:1px solid #b3b3b3;padding:20px}
+.winner-list li{padding:0 0 10px;border-bottom:1px dashed #b3b3b3;margin:0 0 10px}
+/*faceboook misc*/
+.authorize{text-align:center}
+
+
+/*image*/
+.teaser{text-align:center}
+.teaser a{}
+.teaser img{background:#ccc;width:auto;height:auto}
+
+
+/*footer*/
+#footer{position:relative;background:url(../img/line-s.png) no-repeat center 0;padding:18px 0;font-family:Arial, Helvetica, sans-serif}
+#footer a{text-decoration:none}
+#footer ul{text-align:center;margin:0 0 10px}
+#footer li{margin:0 15px 0 0;display:inline}
+
+/*form*/
+.form > div{display:inline-block;text-align:center}
+.form1{width:275px;margin:auto}
+input.text{background:url(../img/gradien_1.png) repeat-y 0 0;width:245px;border:1px solid #b3b3b3;;padding:7px 0}
+.submit{position:relative;top:5px}
+.submit > input[type=submit]{background:url(../img/submit.jpg) no-repeat 0 0;display:block;height:21px;width:21px;text-indent:-999em;border:none;padding:0}
+input[type=submit]:hover{cursor:pointer;opacity:1}
+
+
+.left{float:left}
+.right{float:right}
+.center{text-align:center}
+.hidden{display:none}
+.invisible{visibility:hidden}
+.relative{position:relative}
+.clear{clear:both}

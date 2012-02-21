@@ -52,8 +52,36 @@ Class Media_m extends CI_Model {
   {
    return "<fb:comments href='$href' $attr ></fb:comments>";
   }
-  
-  function gallery($media,$pagination = null,$use_default_style = true){
+ 
+
+ function gallery($media,$pagination = null,$use_default_style = true){
+
+   if(!is_array($media)){
+     $media = array();
+   }
+
+    if(count($media)>0):
+		$html .=  '<ul class="gallery-list">';
+		foreach($media as $row):
+		$html .= '<li>'.
+				 '<div style="width:100px;height:100px;"><a href="'.menu_url('media').'/?m='.$row['media_id'].'">'.$this->showMedia($row).'</a></div>'.
+				 '<div class="posted-by">Posted by</div>'.
+				 '<div class="owner"><fb:name uid="'.$row['uid'].'"></fb:name></div>'.
+				 '</li>';
+		endforeach;   
+		$html .= '</ul>';
+		$html .= '<div class="pagination">'.$pagination['all'].'</div>';
+    else:
+		$html .= '<div style="color:#fff" >'.
+					'<a href="'.menu_url().'" >Click here and submit yours!</a>'.
+				 '</div>';
+	endif;
+	return $html;			  
+ }
+
+
+
+  function gallery_deprecated($media,$pagination = null,$use_default_style = true){
 
    if(!is_array($media)){
      $media = array();
@@ -88,6 +116,7 @@ Class Media_m extends CI_Model {
 	endif;
 	return $html;			  
   }
+  
   
   function mediaContainer($media = array(),$use_default_style = true)
   { 
@@ -134,6 +163,33 @@ Class Media_m extends CI_Model {
 	$html .= '</div>';
 	return $html;	
   }
+  
+  function getPlugin($media){
+    
+	$fblike_href = menu_url('media').'/?m='.$media['media_id'];
+	//$fbcomment_href = $this->setting_m->get('APP_FANPAGE').'&app_data=redirect|'.menu_url('media',true).'/?m='.$media['media_id'];
+	$plugins = array('fblike'=>'','fbcomment'=>'','votebutton'=>'');
+    $activeCampaign = $this->campaign_m->getActiveCampaign();
+	
+	if($activeCampaign['media_has_fblike']){
+		$plugins['fblike'] = $this->fblike($fblike_href);
+	}
+	
+	if($activeCampaign['media_has_vote']){
+		$plugins['votebutton'] = $this->showVote($media);
+	}
+	
+	if($activeCampaign['media_has_fbcomment']){	
+		$plugins['fbcomment'] =	$this->fbcomment($fblike_href);
+	}	
+	
+	return $plugins;	  
+  }
+  
+  function showVote($media){
+	return "<button>Vote</button>";
+  }
+  
   
   function showMedia($media_id,$thumb = true,$attribute=null){
    

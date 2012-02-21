@@ -1,7 +1,14 @@
 <?php $this->load->view('site/header'); //Begin HTML ?>
-<?php $this->load->view('site/menu'); //menu HTML ?>
-<?php $this->load->view('site/header_image'); //header image HTML ?>
+<div id="main">
 
-<div><?=nl2br($rules)?></div>
+<div class="main-header">
+	<h2>Rules</h2>
+</div>
+
+<div class="text">
+<?=nl2br($rules)?>
+</div>
+
+</div>
 	
 <?php $this->load->view('site/footer');//End HTML ?>

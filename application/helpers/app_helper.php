@@ -80,7 +80,9 @@
 	function callback_validateAppIDRangeDate(){
 	 $CI = &get_instance();
 	 $CI->load->library('ezsql_mysql');
-	 $sql = "SELECT enddate FROM campaign_group WHERE campaign_group.APP_APPLICATION_ID = ".addslashes($_POST['APP_APPLICATION_ID'])." ORDER BY campaign_group.enddate DESC LIMIT 1";
+	 $exclude_sql = @$_POST['gid'] ? " AND campaign_group.GID <> ".addslashes($_POST['gid'])." " : "";
+	 
+	 $sql = "SELECT enddate FROM campaign_group WHERE campaign_group.APP_APPLICATION_ID = ".addslashes($_POST['APP_APPLICATION_ID']).$exclude_sql." ORDER BY campaign_group.enddate DESC LIMIT 1";
 	 if($latest_enddate = $CI->ezsql_mysql->get_var($sql)){
 	 
 	  extract($_POST['startdate']);
