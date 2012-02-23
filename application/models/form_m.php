@@ -51,7 +51,7 @@
 	 
      $form = new HTMLQuickForm2('uploadmedia','POST');
 	 $form->setAttribute('action', '');
-	 /**Setup default value*
+	 /**Setup default value*/
 	 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
 	 )));
 	 /**/
@@ -211,22 +211,22 @@
 	$form = new HTMLQuickForm2('customer_register','POST','action=""  ');
 		
 		 $form->addElement('static','','',array('content'=>'Your Firstname :'));	
-		 $firstname = $form->addElement('text','FIRSTNAME','style="width:335px;"');
+		 $firstname = $form->addElement('text','FIRSTNAME','');
 		 $firstname->addRule('required', 'Firstname is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 $form->addElement('static','','',array('content'=>'Your Lastname :'));	
-		 $lastname = $form->addElement('text','LASTNAME','style="width:335px;"');
+		 $lastname = $form->addElement('text','LASTNAME','');
 		 $lastname->addRule('required', 'Lastname is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 $form->addElement('static','','',array('content'=>'Email :'));	
-		 $email = $form->addElement('text','EMAIL','style="width:335px;"');
+		 $email = $form->addElement('text','EMAIL','');
 		 $email->addRule('required', 'Email is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 $form->addElement('static','','',array('content'=>'Phone no :'));	
-		 $mobile = $form->addElement('text','MOBILE','style="width:335px;"');
+		 $mobile = $form->addElement('text','MOBILE','');
 		 $mobile->addRule('required', 'Phone no. is required', null,HTML_QuickForm2_Rule::SERVER);
 		
-		$button = $form->addElement('submit','submit','value="Submit Registration" style="border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;padding:5px;margin-left:220px;"');
+		$button = $form->addElement('submit','submit','value="Submit Registration"');
 		
 		if ($form->validate()) {
 			$form->toggleFrozen(true);
@@ -238,7 +238,6 @@
 			$data['3031180'] = $data['MOBILE'];//TRAC_ATTR_MOBILE2
 			
 			unset($data['MOBILE']);
-			
 			
 			
 			if($registered = $this->customer_m->add($data)){

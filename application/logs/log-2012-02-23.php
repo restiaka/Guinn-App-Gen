@@ -1286,3 +1286,999 @@ ERROR - 2012-02-23 12:59:22 --> Severity: Notice  --> Constant DB_NAME already d
 ERROR - 2012-02-23 12:59:22 --> Severity: Notice  --> Constant DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
 ERROR - 2012-02-23 12:59:22 --> Severity: Notice  --> Constant DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
 ERROR - 2012-02-23 12:59:22 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 13:05:18 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 13:05:21 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 13:05:21 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 13:05:21 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 13:05:28 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 13:05:28 --> Severity: User Warning  --> Unknown column 'canvas' in 'where clause' C:\xampp\htdocs\guinnessapp.dev\application\libraries\ezsql_mysql.php 218
+ERROR - 2012-02-23 15:39:09 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:09 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:09 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:09 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:09 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:09 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:14 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 15
+ERROR - 2012-02-23 15:39:14 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 15:39:14 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 44
+ERROR - 2012-02-23 15:39:14 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 45
+ERROR - 2012-02-23 15:39:15 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:16 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:16 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:16 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:16 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:17 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:34 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:34 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:34 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:34 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:34 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:34 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Undefined index: pageID C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 102
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 106
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 106
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Undefined variable: html C:\xampp\htdocs\guinnessapp.dev\application\models\media_m.php 64
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:36 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:36 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:37 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:37 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:38 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:38 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:38 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:38 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:38 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:38 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:38 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:38 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:38 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:39 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:39 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:39 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:39 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:39 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:39 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 15:39:41 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 15
+ERROR - 2012-02-23 15:39:41 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 15:39:41 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 44
+ERROR - 2012-02-23 15:39:41 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 45
+ERROR - 2012-02-23 15:39:41 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:42 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:42 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:42 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 15:39:42 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:00:33 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:00:35 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:00:35 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:00:35 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:00:35 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:00:35 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:01:44 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:01:44 --> Severity: User Warning  --> Unknown column 'canvas' in 'where clause' C:\xampp\htdocs\guinnessapp.dev\application\libraries\ezsql_mysql.php 218
+ERROR - 2012-02-23 16:05:12 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:05:15 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:05:15 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:05:15 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:05:15 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:05:15 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:07:17 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:07:20 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:07:20 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:07:20 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:07:20 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:07:20 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:07:22 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:07:25 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:07:25 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:07:25 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:07:25 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:07:25 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:07:25 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:07:37 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:07:37 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:07:37 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:07:37 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:07:37 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:07:37 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:07:37 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:07:39 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:07:39 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:07:39 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:07:39 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:07:39 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:07:42 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:07:45 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:07:45 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:07:45 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:07:45 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:07:45 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:07:45 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:07:47 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:07:47 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:07:47 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:07:47 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:07:47 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:07:49 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:07:51 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:07:51 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:07:51 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:07:51 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:07:51 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:07:54 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:07:56 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:07:56 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:07:56 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:07:56 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:07:56 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:07:58 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:08:00 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:08:00 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:08:00 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:08:00 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:08:00 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:08:00 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:08:01 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:08:04 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:08:04 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:08:04 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:08:04 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:08:04 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:08:06 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:08:08 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:08:08 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:08:08 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:08:08 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:08:08 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:08:24 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:08:27 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:08:27 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:08:27 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:08:27 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:08:27 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:08:27 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:09:25 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:09:31 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:09:33 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:09:33 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:09:33 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:09:33 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:09:33 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:09:33 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:09:40 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:09:42 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:09:43 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:09:43 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:09:43 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:09:43 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:09:45 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:09:48 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:09:48 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:09:48 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:09:48 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:09:48 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:09:51 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:09:54 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:09:54 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:09:54 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:09:54 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:09:54 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:09:54 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:09:57 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:10:00 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:10:00 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:10:00 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:10:00 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:10:00 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:12:33 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:12:35 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:12:35 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:12:42 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:12:42 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:12:42 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:12:42 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:14:26 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:14:30 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:14:30 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:14:34 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:14:34 --> Severity: Notice  --> Undefined variable: ch C:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-23 16:14:35 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:14:35 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:14:35 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:14:46 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:14:50 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:14:50 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:14:55 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:14:55 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:14:55 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:14:55 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:14:59 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:15:01 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:15:08 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:15:08 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:15:08 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:15:08 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:15:16 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:15:18 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:15:22 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:15:22 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:15:22 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:15:22 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:16:19 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:16:21 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:16:24 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:16:24 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:16:24 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:16:24 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:16:24 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:16:27 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:16:30 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:16:30 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:16:30 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:16:30 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:16:32 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:16:34 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:16:37 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:16:37 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:16:37 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:16:37 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:18:51 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:18:51 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:18:51 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:18:51 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:18:51 --> Severity: Warning  --> Missing argument 1 for Facebook::__construct(), called in C:\xampp\htdocs\codeigniter201_system\core\Loader.php on line 960 and defined C:\xampp\htdocs\guinnessapp.dev\application\libraries\facebook.php 35
+ERROR - 2012-02-23 16:18:51 --> Severity: Notice  --> Undefined variable: config C:\xampp\htdocs\guinnessapp.dev\application\libraries\facebook.php 39
+ERROR - 2012-02-23 16:18:51 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:18:51 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:18:51 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:18:51 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 16:19:16 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:19:22 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:19:22 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:19:25 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:19:25 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:19:25 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:19:25 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:21:17 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:21:20 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:21:20 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:21:20 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 16:21:29 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:21:29 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:21:29 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:21:29 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:21:29 --> Severity: Warning  --> Missing argument 1 for Facebook::__construct(), called in C:\xampp\htdocs\codeigniter201_system\core\Loader.php on line 960 and defined C:\xampp\htdocs\guinnessapp.dev\application\libraries\facebook.php 35
+ERROR - 2012-02-23 16:21:29 --> Severity: Notice  --> Undefined variable: config C:\xampp\htdocs\guinnessapp.dev\application\libraries\facebook.php 39
+ERROR - 2012-02-23 16:21:36 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:21:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:21:38 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:21:52 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:21:54 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:22:08 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:22:10 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:23:06 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:23:06 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:23:06 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:23:06 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:23:06 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:23:06 --> Severity: Notice  --> Undefined variable: campaign_info C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 23
+ERROR - 2012-02-23 16:23:06 --> Severity: Notice  --> Undefined variable: is_authorized C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 26
+ERROR - 2012-02-23 16:23:06 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 16:23:36 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:23:38 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:23:38 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:23:38 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:23:38 --> Severity: Notice  --> Undefined variable: campaign_info C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 23
+ERROR - 2012-02-23 16:23:38 --> Severity: Notice  --> Undefined variable: is_authorized C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 26
+ERROR - 2012-02-23 16:23:48 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:23:51 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:23:51 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:23:51 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:23:51 --> Severity: Notice  --> Undefined variable: campaign_info C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 23
+ERROR - 2012-02-23 16:23:51 --> Severity: Notice  --> Undefined variable: is_authorized C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 26
+ERROR - 2012-02-23 16:23:53 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:23:56 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:23:56 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:23:56 --> Severity: Notice  --> Undefined variable: campaign_info C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 23
+ERROR - 2012-02-23 16:23:56 --> Severity: Notice  --> Undefined variable: is_authorized C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 26
+ERROR - 2012-02-23 16:24:02 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:24:04 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:24:04 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:24:04 --> Severity: Notice  --> Undefined variable: campaign_info C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 23
+ERROR - 2012-02-23 16:24:04 --> Severity: Notice  --> Undefined variable: is_authorized C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 26
+ERROR - 2012-02-23 16:24:08 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:24:10 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:24:10 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:24:10 --> Severity: Notice  --> Undefined variable: campaign_info C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 23
+ERROR - 2012-02-23 16:24:10 --> Severity: Notice  --> Undefined variable: is_authorized C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 26
+ERROR - 2012-02-23 16:24:12 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:24:17 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:24:17 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:24:17 --> Severity: Notice  --> Undefined variable: campaign_info C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 23
+ERROR - 2012-02-23 16:24:17 --> Severity: Notice  --> Undefined variable: is_authorized C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_home.php 26
+ERROR - 2012-02-23 16:26:54 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:26:56 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:26:59 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:26:59 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:26:59 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:26:59 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:26:59 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 16:27:26 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:27:29 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:27:35 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:27:35 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:27:35 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 48
+ERROR - 2012-02-23 16:27:35 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:27:35 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 16:32:51 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 16:33:04 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:33:08 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:33:08 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:33:08 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 16:34:16 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:34:19 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:34:19 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:34:19 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 16:34:23 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:34:28 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:34:28 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:34:33 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:34:36 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:34:36 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:34:36 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:35:35 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:35:37 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:35:37 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:35:37 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:35:39 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:35:42 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:35:42 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:35:44 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:35:46 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:35:46 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:35:59 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:36:01 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:36:01 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:36:09 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:36:11 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:36:11 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:36:12 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:36:16 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:36:16 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:36:18 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:36:20 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:36:20 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:36:22 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:36:24 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:36:24 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:36:24 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:36:27 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:36:30 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:36:30 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:36:30 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:36:33 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:36:35 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:36:35 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:36:36 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:36:42 --> Severity: Notice  --> Undefined offset: 1 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 16
+ERROR - 2012-02-23 16:36:42 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:38:45 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:38:47 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:38:47 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:38:52 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:38:54 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:39:10 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:39:14 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:39:14 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 16:39:19 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:39:21 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:39:21 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:39:27 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:39:29 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:40:13 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:40:16 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:40:16 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:40:18 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:40:26 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:40:26 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 16:40:26 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:40:26 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:40:30 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:40:37 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:40:37 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 16:40:37 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:40:37 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:40:49 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:40:54 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:40:54 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:43:56 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:43:59 --> Severity: Notice  --> Undefined variable: form C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 67
+ERROR - 2012-02-23 16:43:59 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 67
+ERROR - 2012-02-23 16:43:59 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 67
+ERROR - 2012-02-23 16:43:59 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:43:59 --> Severity: Notice  --> Undefined variable: is_authorized C:\xampp\htdocs\guinnessapp.dev\application\views\mobile\mobile_register.php 3
+ERROR - 2012-02-23 16:43:59 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 16:44:07 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:44:09 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:44:09 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:44:13 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:44:15 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:44:21 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:44:23 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:45:01 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:45:04 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:45:04 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:45:06 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:45:08 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:45:22 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:45:24 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:45:34 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:45:36 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:46:19 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:46:21 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:46:21 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:46:23 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:46:25 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:46:27 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:46:29 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:46:29 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:46:29 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:46:32 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:46:32 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:46:32 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:46:34 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:46:34 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:51:37 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:51:41 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:51:41 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:51:44 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:51:46 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:51:46 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 16:51:46 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:51:46 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:51:48 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:51:51 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:51:51 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:51:52 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:51:55 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:51:57 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:52:00 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:52:00 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:52:02 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:52:04 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:52:06 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:52:08 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:52:08 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:52:10 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:52:12 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:52:21 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:52:23 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:52:23 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:52:25 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:52:27 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:52:31 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:52:33 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:52:33 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:52:36 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:52:38 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:52:40 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:52:43 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:52:43 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:52:46 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:52:53 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:52:53 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 16:52:53 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:52:53 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:53:24 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:53:39 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:53:39 --> Severity: Notice  --> Undefined variable: ch C:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-23 16:53:40 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 16:53:40 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:53:40 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:53:50 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:53:54 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 16:53:54 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 16:53:57 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 16:54:02 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 16:54:02 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 16:54:02 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 16:54:02 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:52:29 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:52:31 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 18:52:31 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:52:36 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:52:41 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 18:52:41 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 18:52:41 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 18:52:41 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:55:14 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:55:16 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 18:55:16 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:55:19 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:55:37 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 18:55:37 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 18:55:37 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 18:55:37 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:55:37 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:55:40 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:55:45 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:55:49 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 18:55:49 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:55:52 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:56:01 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 18:56:01 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 18:56:01 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 18:56:01 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:56:21 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:56:23 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 18:56:23 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 18:56:23 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 18:56:23 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:56:56 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 18:56:56 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 18:56:56 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 18:56:56 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 18:56:56 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 18:56:56 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:56:59 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 15
+ERROR - 2012-02-23 18:57:03 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 18:57:03 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 44
+ERROR - 2012-02-23 18:57:03 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 45
+ERROR - 2012-02-23 18:57:03 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:57:03 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:57:18 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 18:57:18 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 18:57:18 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 18:57:18 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:57:30 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 18:57:30 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 18:57:30 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 18:57:30 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 18:57:30 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 18:57:30 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:57:33 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 15
+ERROR - 2012-02-23 18:57:35 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 18:57:35 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 44
+ERROR - 2012-02-23 18:57:35 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 45
+ERROR - 2012-02-23 18:57:35 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 18:57:35 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 18:57:35 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 18:57:35 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 18:57:35 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 18:57:35 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 18:57:35 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 18:57:35 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 18:57:35 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 18:57:36 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 18:57:36 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 18:57:36 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 18:57:36 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 18:57:36 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 18:57:36 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 18:57:36 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 18:57:36 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 18:57:36 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 18:57:36 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:59:05 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 18:59:21 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 18:59:21 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 18:59:21 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 18:59:21 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:01:53 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:01:53 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 19:02:32 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:02:32 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:02:32 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:02:32 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:02:32 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:02:32 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:02:39 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 19:02:39 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:02:44 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:02:44 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:02:44 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:02:44 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:02:44 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:02:44 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:02:55 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 19:02:55 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 19:02:55 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 19:02:55 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:03:33 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:03:33 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:03:33 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:03:33 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:03:33 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:03:33 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:03:59 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 19:03:59 --> Severity: Notice  --> Undefined variable: ch C:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-23 19:04:03 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 19:04:03 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 19:04:03 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:04:39 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:04:39 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:04:39 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:04:39 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:04:39 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:04:39 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:04:42 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 15
+ERROR - 2012-02-23 19:04:48 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 19:04:48 --> Severity: Notice  --> Undefined variable: ch C:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 44
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 45
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:04:49 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:04:49 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:04:49 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:05:28 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:05:28 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:05:28 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:05:28 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:05:28 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:05:28 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:05:30 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 15
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Undefined property: Campaign::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 44
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Undefined property: Campaign::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 45
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:05:33 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:05:33 --> 404 Page Not Found --> assets
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:05:33 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:05:37 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:05:37 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:05:37 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:05:37 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:05:37 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:05:37 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:05:39 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 19:05:39 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:05:41 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:05:41 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:05:41 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:05:41 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:05:41 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:05:41 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:05:43 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:05:44 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:05:44 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:05:44 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:05:44 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:05:44 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:05:44 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:05:46 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 19:05:46 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:05:50 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:05:50 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:05:50 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:05:50 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:05:50 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:05:50 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:05:59 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 19:05:59 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 19:05:59 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 19:05:59 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:09:13 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:09:13 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:09:13 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:09:13 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:09:13 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:09:13 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:09:15 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 19:09:15 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 19:48:42 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 19:48:42 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 19:48:42 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 19:48:42 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 19:48:42 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 19:48:42 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 19:48:57 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 19:48:57 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 19:48:57 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 19:48:57 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 20:11:21 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 20:11:21 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 20:11:21 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 20:11:21 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 20:11:21 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 20:11:21 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 20:11:23 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 20:11:23 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 20:11:27 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 20:11:27 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 20:11:27 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 20:11:27 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 20:11:27 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 20:11:27 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 20:11:34 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 20:11:34 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 20:11:34 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 20:11:34 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 20:11:50 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 20:11:50 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 20:11:50 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 20:11:50 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 20:11:50 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 20:11:50 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 20:11:57 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 20:11:57 --> Severity: Notice  --> Undefined variable: ch C:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-23 20:12:00 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 20:12:00 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 20:12:00 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 20:20:47 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 20:20:47 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 20:20:47 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 20:20:47 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 20:20:47 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 20:20:47 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 20:20:54 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 20:20:54 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 20:21:03 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 20:21:03 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 20:21:03 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 20:21:03 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 20:21:03 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 20:21:03 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 20:21:09 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 20:21:09 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 20:21:09 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 20:21:09 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 20:21:26 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 20:21:26 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 20:21:26 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 20:21:26 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 20:21:26 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 20:21:26 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 20:21:37 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 20:21:37 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 20:21:37 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 20:21:37 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 20:21:37 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 20:21:37 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 20:21:37 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 20:21:37 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 20:21:37 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 20:21:37 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 20:25:45 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 20:25:45 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 20:25:45 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 20:25:45 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 20:25:45 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 20:25:45 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 20:25:51 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 20:25:51 --> Severity: Notice  --> Undefined variable: ch C:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-23 20:25:51 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 20:25:51 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 20:25:51 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 20:28:41 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 20:28:41 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 20:28:41 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 20:28:41 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 20:28:41 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 20:28:41 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 20:28:43 --> Severity: Notice  --> Undefined offset: 0 C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 20:28:43 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 20:28:48 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 20:28:48 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 20:28:48 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 20:28:48 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 20:28:48 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 20:28:48 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 20:28:53 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 20:28:53 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 20:28:53 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 20:28:53 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 20:29:15 --> Severity: Notice  --> Undefined index: HTTPS C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 20:29:15 --> Severity: Notice  --> Constant DB_HOST already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 20:29:15 --> Severity: Notice  --> Constant DB_NAME already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 20:29:15 --> Severity: Notice  --> Constant DB_USER already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 20:29:15 --> Severity: Notice  --> Constant DB_PASSWORD already defined C:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 20:29:15 --> Severity: Notice  --> A session had already been started - ignoring session_start() C:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 20:29:20 --> Severity: Notice  --> Undefined variable: html_done C:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 20:29:20 --> Severity: Notice  --> Undefined variable: ch C:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-23 20:29:21 --> Severity: Notice  --> Undefined property: Mobile::$notify C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 20:29:21 --> Severity: Notice  --> Undefined property: Mobile::$error C:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 20:29:21 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' C:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 21:07:40 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 21:07:40 --> Severity: Notice  --> Constant DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 21:07:40 --> Severity: Notice  --> Constant DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 21:07:40 --> Severity: Notice  --> Constant DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 21:07:40 --> Severity: Notice  --> Constant DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 21:07:41 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 21:07:43 --> Severity: Notice  --> Undefined offset: 0 D:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 21:07:43 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' D:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 21:07:43 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 21:07:43 --> Severity: Notice  --> Constant DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 21:07:43 --> Severity: Notice  --> Constant DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 21:07:43 --> Severity: Notice  --> Constant DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 21:07:43 --> Severity: Notice  --> Constant DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 21:07:43 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-02-23 21:07:47 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 21:07:47 --> Severity: Notice  --> Constant DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 21:07:47 --> Severity: Notice  --> Constant DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 21:07:47 --> Severity: Notice  --> Constant DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 21:07:47 --> Severity: Notice  --> Constant DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 21:07:47 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 21:07:52 --> Severity: Notice  --> Undefined variable: html_done D:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 21:07:52 --> Severity: Notice  --> Undefined property: Mobile::$notify D:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 21:07:52 --> Severity: Notice  --> Undefined property: Mobile::$error D:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 21:07:52 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' D:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 21:08:12 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 21:08:12 --> Severity: Notice  --> Constant DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 21:08:12 --> Severity: Notice  --> Constant DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 21:08:12 --> Severity: Notice  --> Constant DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 21:08:12 --> Severity: Notice  --> Constant DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 21:08:12 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 21:08:17 --> Severity: Notice  --> Undefined variable: html_done D:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 21:08:17 --> Severity: Notice  --> Undefined variable: ch D:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-23 21:08:18 --> Severity: Notice  --> Undefined property: Mobile::$notify D:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 21:08:18 --> Severity: Notice  --> Undefined property: Mobile::$error D:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 21:08:18 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' D:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 21:08:22 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 21:08:22 --> Severity: Notice  --> Constant DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 21:08:22 --> Severity: Notice  --> Constant DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 21:08:22 --> Severity: Notice  --> Constant DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 21:08:22 --> Severity: Notice  --> Constant DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 21:08:22 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 21:08:24 --> Severity: Notice  --> Undefined offset: 0 D:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 15
+ERROR - 2012-02-23 21:08:24 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' D:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 21:08:28 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 21:08:28 --> Severity: Notice  --> Constant DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 21:08:28 --> Severity: Notice  --> Constant DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 21:08:28 --> Severity: Notice  --> Constant DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 21:08:28 --> Severity: Notice  --> Constant DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 21:08:28 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 21:08:33 --> Severity: Notice  --> Undefined variable: html_done D:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 21:08:33 --> Severity: Notice  --> Undefined property: Mobile::$notify D:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 21:08:33 --> Severity: Notice  --> Undefined property: Mobile::$error D:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 21:08:33 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' D:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-23 21:08:48 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-23 21:08:48 --> Severity: Notice  --> Constant DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 381
+ERROR - 2012-02-23 21:08:48 --> Severity: Notice  --> Constant DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 382
+ERROR - 2012-02-23 21:08:48 --> Severity: Notice  --> Constant DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 383
+ERROR - 2012-02-23 21:08:48 --> Severity: Notice  --> Constant DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 384
+ERROR - 2012-02-23 21:08:48 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-23 21:08:53 --> Severity: Notice  --> Undefined variable: html_done D:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 200
+ERROR - 2012-02-23 21:08:53 --> Severity: Notice  --> Undefined variable: ch D:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-23 21:08:54 --> Severity: Notice  --> Undefined variable: ch D:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-23 21:08:54 --> Severity: Notice  --> Undefined property: Mobile::$notify D:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 46
+ERROR - 2012-02-23 21:08:54 --> Severity: Notice  --> Undefined property: Mobile::$error D:\xampp\htdocs\guinnessapp.dev\application\controllers\mobile.php 47
+ERROR - 2012-02-23 21:08:54 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' D:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56

@@ -1,6 +1,6 @@
 <pre>
 <?php
-phpinfo();
+
 $traction = new Traction(array('USERID' => 'fbdev',
 								'PASSWORD' => 'th1nkw3b',
 								'ENDPOINTID' => '17259'));
@@ -9,6 +9,7 @@ $traction = new Traction(array('USERID' => 'fbdev',
 'MATCHVALUE' => 'kh411d@yahoo.com'));
 
  print_r($r);
+ phpinfo();
  
 Class Traction {
  

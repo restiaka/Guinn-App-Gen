@@ -1,7 +1,18 @@
 <?php extract(load::c('home_c')->getOutput()); //Load and extract controller variables ?>
 
 <?php load::v('header'); //Begin HTML ?>
-
+	<!-- MENU -->
+<?php load::v('menu'); //menu HTML ?>
+    <!--/MENU -->
+    
+    <!-- LOGO -->
+<?php $this->load->view('site/header_image'); //header image HTML ?> 
+ <!-- /LOGO -->
+    
+    <!-- BANNER -->
+  <div class="topbanner"><img src="<?=themeUrl()?>images/banner_1.jpg" /></div>
+    <!-- /BANNER -->
+    
 	  <?php $already = false;//$db->get_var("SELECT video_id from video WHERE fbid = ".$facebook->getUser());?>
 		<?php if((count($notify)<=0 && isset($post['submitvideo'])) || $already):?>
 		 <!-- TEXT TOP -->
