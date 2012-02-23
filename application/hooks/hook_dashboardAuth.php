@@ -17,8 +17,8 @@
    $CI->load->model('app_m');
    $CI->load->model('setting_m','settings');
    
-   if($CI->uri->segment(2) == 'canvas' || $CI->uri->segment(2) == 'tab'){
-		if($APP_APPLICATION_ID =  $CI->uri->segment(3)){
+   if($CI->uri->segment(1) == 'campaign' || $CI->uri->segment(1) == 'mobile'){
+		if($APP_APPLICATION_ID =  $CI->uri->segment(2)){
 			if($rows = $CI->app_m->detailApp($APP_APPLICATION_ID)){
 				foreach($rows as $k => $v) $CI->settings->set($k,$v);
 				
