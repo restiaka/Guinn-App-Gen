@@ -324,7 +324,7 @@
 	  echo "</pre>";
 	}
 
-	function resizeImage( $file, $thumbpath, $max_side , $fixfor = NULL ) {
+	function resizeImage( $file, $thumbpath, $max_side , $fixfor = NULL, $cropped = false ) {
 
 			// 1 = GIF, 2 = JPEG, 3 = PNG
 
@@ -374,6 +374,17 @@
 					$image_ratio = $image_height / $image_new_height;
 					$image_new_width = $image_width / $image_ratio;	
 					}
+			}elseif($cropped){
+			  $cropX = 0;
+			  $cropY = 0;
+			  if ($image_attr[0] > $max_side){
+				$cropX = intval(($image_attr[0] - $max_side) / 2);
+				$cropY = $cropX;
+			  }elseif ($image_attr[1] > $max_side){
+				$cropY = intval(($image_attr[1] - $max_side) / 2);
+				$cropX = $cropY;
+			  }
+			
 			}else{
 				if ( $image_attr[0] > $image_attr[1] ) {
 					$image_width = $image_attr[0];
@@ -395,25 +406,12 @@
 			}	
 
 				$thumbnail = imagecreatetruecolor( $image_new_width, $image_new_height);
-				@ imagecopyresampled( $thumbnail, $image, 0, 0, 0, 0, $image_new_width, $image_new_height, $image_attr[0], $image_attr[1] );
-
-				// move the thumbnail to its final destination
-				/*
-				if ( $type[2] == 1 ) {
-					if (!imagegif( $thumbnail, $thumbpath ) ) {
-						$error = 0;
-					}
+				if(!$cropped){
+					@imagecopyresampled( $thumbnail, $image, 0, 0, 0, 0, $image_new_width, $image_new_height, $image_attr[0], $image_attr[1] );
+				}else{
+					@imagecopyresampled( $thumbnail, $image, 0, 0, $cropX, $cropY, $maxside, $maxside, $maxside, $maxside);				
 				}
-				elseif ( $type[2] == 2 ) {
-					if (!imagejpeg( $thumbnail, $thumbpath ) ) {
-						$error = 0;
-					}
-				}
-				elseif ( $type[2] == 3 ) {
-					if (!imagepng( $thumbnail, $thumbpath ) ) {
-						$error = 0;
-					}
-				}*/
+				
 				if (!imagejpeg( $thumbnail, $thumbpath ) ) {
 						$error = 0;
 					}

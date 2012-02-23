@@ -18,11 +18,20 @@
 	</div>
   
   <div class="info clearfix">
-    <fb:name uid="<?php echo $media['media_owner']?>"></fb:name>
+   <table width="100%"><tr><td width="30%">
+    <fb:profile-pic uid="<?php echo $media['uid']?>"></fb:profile-pic>
     <div class="posted-by">Posted by</div>
-    <div class="owner"><fb:profile-pic uid="<?php echo $media['media_owner']?>"></fb:profile-pic></div>
+    <div class="owner"><fb:name firstnameonly="true" uid="<?php echo $media['uid']?>"></fb:name></div>
+	</td><Td width="70%">
+	<div style="margin-left:10px;">
+	<?php echo @nl2br($media['media_description']);?>
+	</div>
+	</td>
+	</tr>
+	<tr><td colspan="2" align="left"><?php echo @$votebutton?></td></tr>
+	</table>
   </div>
-  <?php echo @$votebutton?>
+ 
   <div class="comments clearfix">
 	<?php echo @$fblike?>
 	<?php echo @$fbcomment?>

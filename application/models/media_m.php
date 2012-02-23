@@ -187,7 +187,9 @@ Class Media_m extends CI_Model {
   }
   
   function showVote($media){
-	return "<button>Vote</button>";
+	$this->load->model('form_m');
+	$form = $this->form_m->vote_form($media['media_id'],$media['media_vote_total']);
+	return $form;
   }
   
   
@@ -307,6 +309,21 @@ Class Media_m extends CI_Model {
    $sql .= "INNER JOIN campaign_media_owner ON campaign_media.media_id = campaign_media_owner.media_id ";
    $sql .= "WHERE campaign_media.media_id = ".$media_id;
    return $this->db->get_row($sql,'ARRAY_A');
+  }
+  
+  public function setVote($media_id)
+  {
+   $this->load->library('facebook');
+    if($uid = $this->facebook->getUser()){
+	  $result = @$this->db->insert('campaign_media_vote',array('media_id' => $media_id,'uid' => $uid,'unix_timestamp' => time()));
+	  if($result){
+	    $totalnow = $this->db->get_var("SELECT count(*) as total FROM campaign_media_vote WHERE media_id = ".$media_id);
+	    $this->db->update('campaign_media',array('media_vote_total'=>$totalnow),array('media_id'=>$media_id));
+		return $totalnow;
+	  }
+	  return null;
+	}
+	return null;
   }
   
   public function setStatusMedia($media_id,$status)

@@ -21,12 +21,33 @@
 		$this->load->model('campaign_m');
    }
    
+   function vote_form($media_id,$media_vote_total) {
+	 
+      $form = new HTMLQuickForm2('votemedia','POST');
+	  $form->setAttribute('action', '');
+	   $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array('id'=>$media_id)));
+	 $form->addElement('hidden','id');
+	 
+	if ($form->validate()) {
+	  $media_vote_total = $this->media_m->setVote(addslashes($media_id));
+	}
+	
+	 $form->addElement('static','boxcount','',array('content'=>'<table><tbody><tr>
+																<td><input type="submit" value="VOTE" style="background-color:#000;color:#D9BB75;border:1px solid #D9BB75;"></td>
+																<td><div style="margin-left:5px;padding:2px;border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;">'.$media_vote_total.'</div></td>
+																</tr></tbody></table>'));		
+
+	 $renderer = HTML_QuickForm2_Renderer::factory('default');
+	 $form_layout = $form->render($renderer);
+	 return $form_layout;
+   }
+   
    function upload_media($campaign)
    { 
    $this->load->model('setting_m');
      $this->load->library('facebook');
      $uid = $this->facebook->getUser();
-
+	
 	 
      $form = new HTMLQuickForm2('uploadmedia','POST');
 	 $form->setAttribute('action', '');
@@ -103,7 +124,7 @@
 						}
 							
 						$image = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/".$uid."_".$time.".jpg", 500 , 'width' );
-						$thumb = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/thumb_".$uid."_".$time.".jpg", 90 , 'width' );
+						$thumb = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/thumb_".$uid."_".$time.".jpg", 100 , 'width',null,true );
 						$data['media_source'] = 'file';
 						$data['media_url'] = base_url()."image?gid=".$active_campaign_gid."&src=".$uid."_".$time.".jpg";
 						$data['media_thumb_url'] = base_url."image?gid=".$active_campaign_gid."&src=thumb_".$uid."_".$time.".jpg";
