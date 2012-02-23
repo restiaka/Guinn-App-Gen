@@ -2,6 +2,20 @@
 
 class Welcome extends CI_Controller {
 
+	function __construct()
+	{
+	 parent::__construct();
+	 $this->load->library('ezsql_mysql');
+	 $this->load->library('mobiledetection');
+	 $this->load->model('campaign_m','campaign');
+	 $this->load->model('form_m','form');
+	 $this->load->model('media_m','media');
+	 if ($this->mobiledetection->isMobile())
+		{
+			redirect('mobile', 'location');  
+		}
+	}
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,6 +34,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('welcome_message');
+
 		echo "<pre>";
 		print_r($_SESSION);
 		exit;
