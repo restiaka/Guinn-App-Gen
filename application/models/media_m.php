@@ -150,7 +150,6 @@ Class Media_m extends CI_Model {
 				//$this->fblike(menu_url('media').'&m='.$media['media_id'])
 	
 	$fblike_href = menu_url('media').'/?m='.$media['media_id'];
-	//$fbcomment_href = $this->setting_m->get('APP_FANPAGE').'&app_data=redirect|'.menu_url('media',true).'/?m='.$media['media_id'];
 	
     $activeCampaign = $this->campaign_m->getActiveCampaign();
 	$html .=	'<div id="media_social_wrapper">';

@@ -56,9 +56,9 @@
 	 $CI->load->model('setting_m');
       if($appid = $CI->setting_m->get('APP_APPLICATION_ID')){
 	    if(!$path_only){
-	     return $filename ? site_url("campaign/canvas/$appid/$filename") : site_url("campaign/canvas/$appid");
+	     return $filename ? site_url("campaign/$appid/$filename") : site_url("campaign/$appid");
 		}else{
-		 return $filename ? "campaign/canvas/$appid/$filename" : "campaign/canvas/$appid";
+		 return $filename ? "campaign/$appid/$filename" : "campaign/$appid";
 		}
 	  }else{
 		return "#";
@@ -375,16 +375,11 @@
 					$image_new_width = $image_width / $image_ratio;	
 					}
 			}elseif($cropped){
-			  $cropX = 0;
-			  $cropY = 0;
-			  if ($image_attr[0] > $max_side){
-				$cropX = intval(($image_attr[0] - $max_side) / 2);
-				$cropY = $cropX;
-			  }elseif ($image_attr[1] > $max_side){
-				$cropY = intval(($image_attr[1] - $max_side) / 2);
-				$cropX = $cropY;
-			  }
-			
+			  $image_new_width = $max_side;
+			  $image_new_height = $max_side;
+			  $cropX = intval(($image_attr[0] - $max_side) / 2);
+			  $cropY = intval(($image_attr[1] - $max_side) / 2);
+			 
 			}else{
 				if ( $image_attr[0] > $image_attr[1] ) {
 					$image_width = $image_attr[0];
@@ -409,7 +404,7 @@
 				if(!$cropped){
 					@imagecopyresampled( $thumbnail, $image, 0, 0, 0, 0, $image_new_width, $image_new_height, $image_attr[0], $image_attr[1] );
 				}else{
-					@imagecopyresampled( $thumbnail, $image, 0, 0, $cropX, $cropY, $maxside, $maxside, $maxside, $maxside);				
+					@imagecopyresampled( $thumbnail, $image, 0, 0, $cropX, $cropY, $image_new_width, $image_new_height, $max_side, $max_side);				
 				}
 				
 				if (!imagejpeg( $thumbnail, $thumbpath ) ) {

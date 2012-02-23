@@ -10,15 +10,10 @@ Class Campaign extends CI_Controller {
 	 $this->load->model('media_m','media');
 	}
 	
-	public function _remap($app_env, $params = array())
+	public function _remap($appID, $params = array())
 	{
-	 $appID = $params[0];
-	  $method = $params[1];
-	  unset($params[0],$params[1]);
-	  
-	  if(!$method){
-	     $method = 'home';
-	  }
+	  $method = $params[0] ? $params[0] : 'home';	  
+	  unset($params[0]);
 	  
 		if (method_exists($this, $method))
 		{
