@@ -375,10 +375,15 @@
 					$image_new_width = $image_width / $image_ratio;	
 					}
 			}elseif($cropped){
-			  $image_new_width = $max_side;
-			  $image_new_height = $max_side;
-			  $cropX = intval(($image_attr[0] - $max_side) / 2);
-			  $cropY = intval(($image_attr[1] - $max_side) / 2);
+			  $image_new_width = $max_side*2;
+			  $image_ratio = $image_attr[0] / $image_new_width;
+			  $image_new_height = $image_attr[1] / $image_ratio;
+			  
+			  $image_resized_crop = imagecreatetruecolor( $image_new_width, $image_new_height);
+			  @imagecopyresampled( $image_resized_crop, $image, 0, 0, 0, 0, $image_new_width, $image_new_height, $image_attr[0], $image_attr[1] );
+
+			  $cropX = intval((imagesx($image_resized_crop) - $max_side) / 2);
+			  $cropY = intval((imagesy($image_resized_crop) - $max_side) / 2);
 			 
 			}else{
 				if ( $image_attr[0] > $image_attr[1] ) {
@@ -400,11 +405,13 @@
 				}
 			}	
 
-				$thumbnail = imagecreatetruecolor( $image_new_width, $image_new_height);
+				
 				if(!$cropped){
+					$thumbnail = imagecreatetruecolor( $image_new_width, $image_new_height);
 					@imagecopyresampled( $thumbnail, $image, 0, 0, 0, 0, $image_new_width, $image_new_height, $image_attr[0], $image_attr[1] );
-				}else{
-					@imagecopyresampled( $thumbnail, $image, 0, 0, $cropX, $cropY, $image_new_width, $image_new_height, $max_side, $max_side);				
+				}elseif($cropped){
+					$thumbnail = imagecreatetruecolor( $max_side, $max_side);
+					@imagecopyresampled( $thumbnail, $image_resized_crop, 0, 0, $cropX, $cropY, $max_side, $max_side, $max_side, $max_side);				
 				}
 				
 				if (!imagejpeg( $thumbnail, $thumbpath ) ) {
@@ -586,7 +593,9 @@
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); //Set curl to return the data instead of printing it to the browser.
 	curl_setopt($ch, CURLOPT_URL, $url);
-	
+	curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, 0);
+	curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
 	$data = curl_exec($ch);
 	curl_close($ch);
 	

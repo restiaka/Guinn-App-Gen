@@ -27,8 +27,9 @@ Class Campaign extends CI_Controller {
 	{
 		$this->load->model('customer_m','customer');
 		$this->load->library('facebook');
-		
+
 		$isAuthorized = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
+		$isFan = user_isFan();
 	 
 	    if($campaign = $this->campaign->getActiveCampaign()){
 			$form = (date('Y-m-d H:i:s') > $campaign['upload_enddate']) ? "Sorry! Your time for Uploading Media has ended. <Br/> Thank you." : $this->form->upload_media($campaign);
@@ -41,6 +42,7 @@ Class Campaign extends CI_Controller {
 										   'html_form_register' => $this->form->customer_register(),
 										   'customer_registered' => ($this->customer->isRegistered() ? true : false),
 										   'is_authorized' => $isAuthorized,
+										   'is_fan' => $isFan,
 										   'notification' => $this->notify,
 										   'error' => $this->error));	
 	}
