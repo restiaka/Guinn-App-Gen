@@ -21,6 +21,7 @@
 		<!-- REGISTRATION FORM -->
 		<div class="box brown">
 		<div class="inner">
+		<div align="center"><h1>Register to Join Contest</h1></div>
 					  <?php if($html_form_register):?>
 					   <?=$html_form_register?>
 					  <?php else:?>

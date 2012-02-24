@@ -52,13 +52,13 @@ require_once "ez_sql_core.php";
 		
 		function ezSQL_mysql()
 		{
-		  if(!defined('DB_HOST') || !defined('DB_NAME') || !defined('DB_USER') || !defined('DB_PASSWORD'))
+		  if(!defined('EZSQL_DB_HOST') || !defined('EZSQL_DB_NAME') || !defined('EZSQL_DB_USER') || !defined('EZSQL_DB_PASSWORD'))
 			die('undefined db credential');
 			
-			$this->dbuser = DB_USER;
-			$this->dbpassword = DB_PASSWORD;
-			$this->dbname = DB_NAME;
-			$this->dbhost = DB_HOST;
+			$this->dbuser = EZSQL_DB_USER;
+			$this->dbpassword = EZSQL_DB_PASSWORD;
+			$this->dbname = EZSQL_DB_NAME;
+			$this->dbhost = EZSQL_DB_HOST;
 		}
 		
 		

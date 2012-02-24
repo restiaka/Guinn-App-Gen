@@ -7,7 +7,6 @@
     <title>
       Guinness Contests
     </title>
-
 <?php echo setMetaTags(); //Set Additional Meta Tag from registerMetaTags() | REQUIRED!!! ?>
 <?php $this->load->view('fbjs'); //Set Facebook JS SDK | REQUIRED!!! ?>
   </head>
@@ -15,5 +14,5 @@
     <?php $this->load->view('fbjs_async_load'); //Async Facebook js sdk Load (Always put after <body> tag!) | REQUIRED!!! ?>
     <div id="container">
 	<div>
-	<a href="<?=mobile_menu_url()?>">Home</a>
-	</div
+	<a href="<?=mobile_menu_url()?>">Home</a>	
+	</div>

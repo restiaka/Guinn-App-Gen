@@ -23,7 +23,22 @@ Class Mobile extends CI_Controller {
 	}
 
 	function home(){
-		$this->load->view('mobile/mobile_home');
+		$this->load->model('customer_m','customer');
+		$this->load->library('facebook');
+		$data = array();		
+
+		$isAuthorized = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
+		$isRegistered = $this->customer->isRegistered();
+		
+		dg($isRegistered.$isAuthorized);
+
+		if($isAuthorized && $isRegistered){
+			$data['registered'] = TRUE;
+		}else{
+			$data['registered'] = FALSE;
+		}
+
+		$this->load->view('mobile/mobile_home',$data);
 	}
 	
 	function login(){
@@ -39,6 +54,27 @@ Class Mobile extends CI_Controller {
 		}
 
 		$this->load->view('mobile/mobile_login',array('campaign_info'=>$campaign,
+										   'html_form_upload' => $form,
+										   'html_form_register' => $this->form->customer_register(),
+										   'customer_registered' => ($this->customer->isRegistered() ? true : false),
+										   'is_authorized' => $isAuthorized,
+										   'notification' => $this->notify,
+										   'error' => $this->error));
+	}
+	
+	function upload(){
+		$this->load->model('customer_m','customer');
+		$this->load->library('facebook');
+		
+		$isAuthorized = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
+	 
+	    if($campaign = $this->campaign->getActiveCampaign()){
+			$form = (date('Y-m-d H:i:s') > $campaign['upload_enddate']) ? "Sorry! Your time for Uploading Media has ended. <Br/> Thank you." : $this->form->upload_media($campaign);
+		}else{
+			$form = 'Sorry No Contest Available Yet!'; 
+		}
+
+		$this->load->view('mobile/mobile_upload',array('campaign_info'=>$campaign,
 										   'html_form_upload' => $form,
 										   'html_form_register' => $this->form->customer_register(),
 										   'customer_registered' => ($this->customer->isRegistered() ? true : false),

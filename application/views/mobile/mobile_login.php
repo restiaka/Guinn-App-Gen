@@ -29,11 +29,18 @@
 		<!-- CONTAINER FORM AUTHORIZED -->
 		<div class="box brown">
 			<div class="inner">
-						  <?php if($html_form_upload):?>
-						   <?=$html_form_upload?>
-						  <?php else:?>
-						   <?=implode("<br/>",$notification)?>
-						  <?php endif;?>
+			Thank You, You have successfully registered			
+			<ul>
+		  		<li>
+          	  <a href="<?=mobile_menu_url('upload')?>">Contest Upload</a>
+          	</li>
+          	<li>
+          	  <a href="<?=mobile_menu_url('gallery')?>">Gallery</a>
+          	</li>
+		    	<li>
+          	  <a href="<?=mobile_menu_url('rules')?>">Rules/FAQ</a>
+          	</li>
+        	</ul>
 			</div>
 		</div>
 		<!-- /CONTAINER FORM AUTHORIZED -->
