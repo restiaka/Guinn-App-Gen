@@ -185,10 +185,20 @@ Class Media_m extends CI_Model {
 	return $plugins;	  
   }
   
-  function showVote($media){
+  function showVote($media){ 
 	$this->load->model('form_m');
-	$form = $this->form_m->vote_form($media['media_id'],$media['media_vote_total']);
-	return $form;
+	$this->load->model('setting_m');
+	$this->load->library('facebook');
+	
+	$isAuthorized = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
+	if($isAuthorized){
+		$content = $this->form_m->vote_form($media['media_id'],$media['media_vote_total']);
+	}else{
+	 $redirectURL = $this->setting_m->get('APP_FANPAGE')."&app_data=redirect_media|".$media['media_id'];
+	 $content = authorizeButton('Login to Vote',$redirectURL);
+	}
+	
+	return $content;
   }
   
   
@@ -203,8 +213,10 @@ Class Media_m extends CI_Model {
    switch($m['media_source']){
 		case "file" :
 		 if($m['media_type']=="image"){
-			$src = !$thumb ?  $m['media_basename'] : "thumb_".$m['media_basename'];
-			$link = $this->setting_m->get('SITE_URL')."image?gid=".$m['GID']."&src=".$src;
+			//$src = !$thumb ?  $m['media_basename'] : "thumb_".$m['media_basename'];
+			//$link = base_url()."image?gid=".$m['GID']."&src=".$src;
+			$src = !$thumb ?  $m['media_url'] : $m['media_thumb_url'];
+			$link = $src;
 			return "<img src='$link' $attribute/>";
 		 }elseif($m['media_type']=="video"){
 			//$link = "video?gid=".$m['media_id']."&src=".$m['media_basename'];

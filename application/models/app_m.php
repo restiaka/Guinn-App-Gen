@@ -10,6 +10,12 @@ Class App_m extends CI_model {
   
 	public function add($data)
 	  {
+	   if($this->input->post('APP_AGE_RESTRICTION') == 1){
+		   $app_accesstoken = getAppAccessToken(array('app_id'=> $this->input->post('APP_APPLICATION_ID'),
+													  'app_secret'=> $this->input->post('APP_SECRET_KEY')));
+		   setAppRestriction($this->config->item('APP_APPLICATION_ID'),$app_accesstoken,array("age_distribution"=>"21+")); 
+	   }
+		
 		$ok = $this->db->insert('campaign_app',$data);
 		return $ok;
 	  }
@@ -23,6 +29,16 @@ Class App_m extends CI_model {
 	  
 	public function update($data)
 	  {
+		$app_accesstoken = getAppAccessToken(array('app_id'=> $this->input->post('APP_APPLICATION_ID'),
+									  'app_secret'=> $this->input->post('APP_SECRET_KEY')));
+	  if($app_accesstoken && $this->input->post('APP_AGE_RESTRICTION') == 1){
+	    $result = setAppRestriction($this->input->post('APP_APPLICATION_ID'),$app_accesstoken,array("age_distribution"=>"21+")); 
+	   }elseif($app_accesstoken && !$this->input->post('APP_AGE_RESTRICTION')){
+	     setAppRestriction($this->input->post('APP_APPLICATION_ID'),$app_accesstoken,array("age_distribution"=>"")); 	   
+	   }else{
+		return false;
+	   }
+	  
 		$ok = $this->db->update('campaign_app',$data,array('APP_APPLICATION_ID'=>$data['APP_APPLICATION_ID']));
 		
 		if($ok){

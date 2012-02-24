@@ -48,10 +48,68 @@
  function callback_isAppIDregistered(){
    $CI = &get_instance();
    $CI->load->library('ezsql_mysql');
-   $var = $CI->ezsql_mysql->get_var('SELECT APP_APPLICATION_ID FROM campaign_app WHERE APP_APPLICATION_ID = '.addslashes($_POST['APP_APPLICATION_ID']));
+   $filter = '';
+   if($_POST['task'] == 'edit'){
+     $filter = " AND APP_APPLICATION_ID <> ".addslashes($_POST['APP_APPLICATION_ID']);
+   }
+   $var = $CI->ezsql_mysql->get_var('SELECT APP_APPLICATION_ID FROM campaign_app WHERE APP_APPLICATION_ID = '.addslashes($_POST['APP_APPLICATION_ID']).$filter);
    return $var ? false : true;
  }
  
+ function isFan(){
+   $CI = &get_instance();
+   $CI->load->library('facebook');
+   $sr = $CI->facebook->getSignedRequest();
+   if(!$sr['page']['liked'])return false; 
+   return true;
+ }
+ 
+ function user_isFan($pageID = null){
+   $CI = &get_instance();
+   $CI->load->library('facebook');
+   if(!$pageID){
+	   if($pages = getFacebookPage()){
+		$pageID = $pages['id'];
+	   }else{
+	    return false;
+	   }
+   }
+   
+	$isFan = $CI->facebook->api(array(
+									"method"    => "pages.isFan",
+									"page_id"   => $pageID,
+									"uid"       =>  $CI->facebook->getUser()
+								 ));					 
+	if($isFan === TRUE)
+		return true;
+	else
+		return false;
+ }
+ 
+ function getFacebookPage(){
+  $CI = &get_instance();
+  $CI->load->library('facebook');
+  $regx = $CI->config->item('facebook_page_url_format');
+  $url = $CI->config->item('APP_FANPAGE');
+  
+	if($url = parse_url($url)){
+	  $new_url = $url['scheme']."://".$url['host'].$url['path'];
+		foreach($regx as $key => $pattern){
+			if(preg_match($pattern, $new_url, $matches)){
+				switch($key){
+					case 'standard': $content = $CI->facebook->api('/'.$matches[2]);								 
+									 return $content;
+									 break;
+					case 'custom' :  $content = $CI->facebook->api('/'.$matches[1]);			
+									 return $content;
+									 break;
+				}
+				break;
+			}
+		}
+	}
+  return null;	
+ }
  
  /*
  *
@@ -74,11 +132,29 @@
 	return $request;
 }
 
+/*
+location = Restriction based on location, such as 'DE' for apps restricted to Germany 	
+age = Minimum age restriction 	
+age_distribution =	Restriction based on an age range 	
+id = App ID read-only field. 	
+type = Always application for apps; read-only field. 	
+*/
+function setAppRestriction($appid,$app_accesstoken,$fields = array()){
+  if(!$fields){
+	$fields = array("age_distribution"=>"21+");
+  }
+    $parameter = array( 'restrictions' => json_encode($fields),
+					   'access_token' => $app_accesstoken );
+ 	$request = graph_request('/'.$appid, 'POST',$parameter,true,false);
+	//$request = file_get_contents("https://graph.facebook.com/$appid?".http_build_query($parameter, null, '&'));
+	return $request;
+}
+
 function appToPage_dialog(){
 // http://www.facebook.com/dialog/pagetab?app_id=YOUR_APP_ID&next=YOUR_URL
 }
  
- function graph_request($path,$method = "POST",$args = array(),$ssl = true,$json_decode = true){
+ function graph_request($path,$method = "POST",$args = array(),$ssl = true,$json_decode = true,$debug=false){
    $ch = curl_init();
    $domain = "graph.facebook.com";
    $method = strtoupper($method);
@@ -107,11 +183,16 @@ function appToPage_dialog(){
 	
 	$result = curl_exec($ch);
 	if ($result === false) {
-      curl_close($ch);
-	  //return curl_error($ch);
+      
+	  curl_close($ch);
+	 	
+	  curl_error($ch);
 		return false;	  
     }
+	
 	curl_close($ch);
+	
+
 	
 	return $json_decode ? json_decode($result,true) : $result;
    }
@@ -184,12 +265,12 @@ function appToPage_dialog(){
  
 
 
- function authorizeButton($text = 'Click here to Authorize'){
- $CI = &get_instance();
-    	$CI->load->model('setting_m');
-      return "<a onclick=\"fbDialogLogin('fb_login','".$CI->setting_m->get('APP_FANPAGE')."'); return false;\" class=\"fb_button fb_button_medium\"><span class=\"fb_button_text\">".$text."</span></a>";
+ function authorizeButton($text = 'Click here to Authorize',$redirectURL = null){
+	$CI = &get_instance();
+    $CI->load->model('setting_m');
+	$redirectURL = $redirectURL ? $redirectURL : $CI->setting_m->get('APP_FANPAGE');
 	
-	return null;
+    return "<a onclick=\"fbDialogLogin('fb_login','".$redirectURL."'); return false;\" class=\"fb_button fb_button_medium\"><span class=\"fb_button_text\">".$text."</span></a>";
  }
  
  function isExtPermsAllowed(){

@@ -368,7 +368,14 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
-//Config Admin
+/*
+|--------------------------------------------------------------------------
+| Backend Authentication Configuration
+|--------------------------------------------------------------------------
+|
+| Configuration for User Login on Backend Control Panel
+|
+*/
 $config['authConfig'] = array(   "postUsername" => "username",
 								  "postPassword" => "password",
 								  "passwordcol" => "user_password",
@@ -378,10 +385,58 @@ $config['authConfig'] = array(   "postUsername" => "username",
 					              "db_fields" => "user_id,user_name,user_email,user_last_active,user_access_level,user_registered_date",
 					              "advancedsecurity" => false );	
 
- define('DB_HOST','localhost');
- define('DB_NAME','guinnessapp');
- define('DB_USER','root');
- define('DB_PASSWORD','');
+/*
+|--------------------------------------------------------------------------
+| Facebook Page Domain URL Regex format
+|--------------------------------------------------------------------------
+|
+| It is a URL segment format for Facebook Page
+| Used for getting Page ID from URL through Graph API 
+| Facebook Page has 2 URL format, Standard URL and Custom URL
+| ex: http://www.facebook.com/pages/my-facebook-page/12345678 [WITHOUT USERNAME]
+| 	  http://www.facebook.com/myfbpage [WITH USERNAME]
+|     
+| nb: Do check preg_match Regex from first array index  
+|
+*/
+$config['facebook_page_url_format'] = array(
+											"standard" => "/^http:\/\/www.facebook.com\/pages\/([a-zA-Z0-9\.\-_]+)\/([0-9]+)/",
+											"custom" => "/^http:\/\/www.facebook.com\/([a-zA-Z\.\-_]+)/"
+										   );
+
+/*
+|--------------------------------------------------------------------------
+| EzSQL MySQL Configuration						
+|--------------------------------------------------------------------------
+|
+| Configuration EzSQL Database Library
+|
+*/
+ define('EZSQL_DB_HOST','localhost');
+ define('EZSQL_DB_NAME','guinnessapp');
+ define('EZSQL_DB_USER','root');
+ define('EZSQL_DB_PASSWORD','');
+
+
+/*
+|--------------------------------------------------------------------------
+| TRACTION platform credential					
+|--------------------------------------------------------------------------
+|
+| Traction API configuration
+| https://int.tractionplatform.com/
+| Required for All Guinness Web Application 
+| 
+|
+*/ 
+$config['TRAC_USERID'] = 'fbdev';
+$config['TRAC_PASSWORD'] = 'th1nkw3b';	
+$config['TRAC_ENDPOINTID'] = 17259;	
+//$config['TRAC_ATTR_FBUID'] = 3012669;	
+$config['TRAC_ATTR_GID'] = 3014098;
+$config['TRAC_ATTR_MOBILE2'] = 3031180;	
+
+ 
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

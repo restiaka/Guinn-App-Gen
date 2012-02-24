@@ -124,10 +124,13 @@
 						}
 							
 						$image = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/".$uid."_".$time.".jpg", 500 , 'width' );
+						$image_medium = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/medium_".$uid."_".$time.".jpg", 300 , 'width' );
+						
 						$thumb = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/thumb_".$uid."_".$time.".jpg", 100 , null,true );
 						$data['media_source'] = 'file';
 						$data['media_url'] = base_url()."image?gid=".$active_campaign_gid."&src=".$uid."_".$time.".jpg";
-						$data['media_thumb_url'] = base_url."image?gid=".$active_campaign_gid."&src=thumb_".$uid."_".$time.".jpg";
+						$data['media_medium_url'] = base_url()."image?gid=".$active_campaign_gid."&src=medium_".$uid."_".$time.".jpg";
+						$data['media_thumb_url'] = base_url()."image?gid=".$active_campaign_gid."&src=thumb_".$uid."_".$time.".jpg";
 						$data['media_type'] = $allowed_media_type;
 						$data['media_basename'] = $uid."_".$time.".jpg";
 					}else{
@@ -341,8 +344,11 @@
 	
 	if($gid){
 		$default_data = $this->app_m->detailApp($gid) ;
+		$default_data['task'] = 'edit';
 		$form->addDataSource(new HTML_QuickForm2_DataSource_Array($default_data));
 	}
+	
+	$form->addElement('hidden','task');
 	
 	$APP_APPLICATION_NAME = $form->addElement('text','APP_APPLICATION_NAME','style=""')->setLabel('APPLICATION NAME &nbsp;:&nbsp;&nbsp;');
 	$APP_APPLICATION_NAME->addRule('required', 'APP_APPLICATION_NAME is required', null,HTML_QuickForm2_Rule::SERVER);		
@@ -376,8 +382,9 @@
 	$APP_FANPAGE = $form->addElement('text','APP_FANPAGE','style=""')->setLabel('FACEBOOK PAGE URL &nbsp;:&nbsp;&nbsp;');
 	$APP_FANPAGE->addRule('required', 'Facebook Page URL is required', null,HTML_QuickForm2_Rule::SERVER);		
 	 
-		
-	$button = $form->addElement('submit','submit','value="Submit Application"');
+	$APP_RESTRICTION = $form->addElement('checkbox','APP_AGE_RESTRICTION','style="width:10px;margin-top:10px;float:left;"',array('content'=>'<div style="width:150px;margin-top:10px;">Age 21+ Restriction</div>'));
+	
+	$button = $form->addElement('submit','submit','style="margin-top:20px;" value="Submit Application"');
 	
 	
 	if ($form->validate()) 
@@ -387,10 +394,10 @@
 		$form->toggleFrozen(true);
 		
 		$data = $form->getValue();
-		unset($data['submit'],$data['_qf__appaddform']);
+		unset($data['submit'],$data['_qf__appaddform'],$data['task']);
 		
 		if($url = parse_url($data['APP_FANPAGE'])){
-		  $new_url = $url['scheme']."://".$url['host'].$url['path']."?sk=app_".$rows['APP_APPLICATION_ID'];
+		  $new_url = $url['scheme']."://".$url['host'].$url['path'];//."?sk=app_".$rows['APP_APPLICATION_ID'];
 		  $data['APP_FANPAGE'] = $new_url;
 		}
 		
