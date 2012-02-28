@@ -13,7 +13,7 @@
 											));
   //Check for facebook session , redirect to Login Url for unauthorized user
   dg($facebook->getUser(),$facebook->getLoginStatusUrl(),"<a href='{$facebook->getLoginStatusUrl()}'>login status</a>");
-	if (!$facebook->getUser() && isExtPermsAllowed()) {
+	if (!$facebook->getUser() || !isExtPermsAllowed()) {
 	   echo "<script>window.top.location.href = '$loginUrl';</script>";
 	   echo "<a href='$loginUrl' style='font-weight:bold;font-size:15px;'>Click here if you're not redirected</a>";
 	  
