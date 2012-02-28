@@ -25,11 +25,25 @@ Class Mobile extends CI_Controller {
 	function home(){
 		$this->load->model('customer_m','customer');
 		$this->load->library('facebook');
+<<<<<<< HEAD
+		$data = array();		
 
+		$isAuthorized = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
+		$isRegistered = $this->customer->isRegistered();
+		
+		dg($isRegistered.$isAuthorized);
+
+		if($isAuthorized && $isRegistered){
+			$data['registered'] = TRUE;
+		}else{
+			$data['registered'] = FALSE;
+		}
+
+=======
 		
 		$data['isAuthorized'] = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
 		
-
+>>>>>>> 07f30bb2aa4546128c02fc6f98d51cb905e58590
 		$this->load->view('mobile/mobile_home',$data);
 	}
 	

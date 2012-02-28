@@ -59,8 +59,8 @@
 							<p class="goldthick">Please "Allow Pop Up" from this application to authorize the application.</p></td>
 					  </tr>
 						<tr>
-						  <td class="padform_center">
-						  <?php echo authorizeButton();?>
+						  <td class="padform_center">asdf
+						  <?php echo mobile_authorizeButton();?>
 						  </td>
 					  </tr>
 						<tr>

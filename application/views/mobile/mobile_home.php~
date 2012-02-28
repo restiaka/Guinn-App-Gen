@@ -4,6 +4,18 @@
 	  <li>
             <a href="<?=mobile_menu_url('about')?>">About The Contest</a>
           </li>
+<<<<<<< HEAD
+          <?php if(!$registered): ?>
+	  <li>
+            <a href="<?=mobile_menu_url('login')?>">Login And Authorize</a>
+          </li>
+	  <?php else: ?>
+	  <li>
+            <a href="<?=mobile_menu_url('upload')?>">Contest Upload</a>
+          </li>
+	  <?php endif; ?>	
+          <li>
+=======
 		  <?php if($isAuthorized): ?>
           <li>
             <a href="<?=mobile_menu_url('login')?>">Contest Upload</a>
@@ -14,7 +26,7 @@
           </li>	
 		  <?php endif; ?>
 		  <li>
-
+>>>>>>> 07f30bb2aa4546128c02fc6f98d51cb905e58590
             <a href="<?=mobile_menu_url('gallery')?>">Gallery</a>
           </li>
 		    <li>

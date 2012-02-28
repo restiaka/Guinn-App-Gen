@@ -202,10 +202,9 @@
     }
   }
   
-  function fbDialogLogin(dialogType,redirectURL,displayDialog)
+  function fbDialogLogin(dialogType,redirectURL)
   {
    var dialogType = dialogType || "fb_login";
-   var displayDialog = displayDialog || "page";
    fbEnsureInit(function(){
 				switch(dialogType){
 				  case "fb_login" : FB.login(function(response) {
@@ -217,10 +216,17 @@
 									   } else {
 										 alert('Authorized user only');
 									   }
-									}, {scope: APP_EXT_PERMISSIONS,display: displayDialog });	
+									}, {scope: APP_EXT_PERMISSIONS});	
 									break;
 				}	
    });
   }
+  
+function mobile_logout()
+ {
+   FB.logout(function(response)){
+	windows.location.reload();
+	});
+ }
   
 </script>
