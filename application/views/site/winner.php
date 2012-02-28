@@ -1,6 +1,5 @@
 <?php $this->load->view('site/header'); //Begin HTML ?>
-<?php $this->load->view('site/menu'); //menu HTML ?>
-<?php $this->load->view('site/header_image'); //header image HTML ?>
+<?php $this->load->view('site/header_main_navigation'); //Begin HTML ?>
 
 <div>
 <table>

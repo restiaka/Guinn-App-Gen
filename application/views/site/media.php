@@ -1,5 +1,5 @@
-<?php $CI = &get_instance(); $CI->load->model('media_m'); extract($CI->media_m->getPlugin($media));?>
 <?php $this->load->view('site/header'); //Begin HTML ?>
+<?php $this->load->view('site/header_main_navigation'); //Begin HTML ?>
 <style>.big-img img{width:480px;}</style>	
 <div id="main">
 
@@ -10,7 +10,7 @@
 <div class="gallery detail">
 
 	<div class="big-img">
-		<?php echo $CI->media_m->showMedia($media,false);?>
+		<?php echo $media['media_container']?>
 		<div class="img-nav">
 			<a href="#" id="prev-img">Previous Image</a>
 			<a href="#" id="next-img">Next Image</a>
@@ -28,13 +28,13 @@
 	</div>
 	</td>
 	</tr>
-	<tr><td colspan="2" align="left"><?php echo @$votebutton?></td></tr>
+	<tr><td colspan="2" align="left"><?php echo @$plugin['votebutton']?></td></tr>
 	</table>
   </div>
  
   <div class="comments clearfix">
-	<?php echo @$fblike?>
-	<?php echo @$fbcomment?>
+	<?php echo @$plugin['fblike']?>
+	<?php echo @$plugin['fbcomment']?>
   </div>
 </div>
 </div>	

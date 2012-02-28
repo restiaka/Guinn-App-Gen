@@ -1,5 +1,6 @@
 <?php $CI = &get_instance(); $CI->load->model('media_m');?>
 <?php $this->load->view('site/header'); //Begin HTML ?>
+<?php $this->load->view('site/header_main_navigation'); //Begin HTML ?>
 <div id="main">
 	<div class="main-header">
 		<h2>Contest Gallery</h2>

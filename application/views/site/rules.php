@@ -1,4 +1,5 @@
 <?php $this->load->view('site/header'); //Begin HTML ?>
+<?php $this->load->view('site/header_main_navigation'); //Begin HTML ?>
 <div id="main">
 
 <div class="main-header">

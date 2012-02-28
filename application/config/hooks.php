@@ -12,13 +12,13 @@
 
 $hook['post_controller_constructor'][] = array(
                                 'function' => 'dashboardAuth',
-                                'filename' => 'hook_dashboardAuth.php',
+                                'filename' => 'hook_auth.php',
                                 'filepath' => 'hooks'
                                 );
 
 $hook['post_controller_constructor'][] = array(
                                 'function' => 'appAuth',
-                                'filename' => 'hook_dashboardAuth.php',
+                                'filename' => 'hook_auth.php',
                                 'filepath' => 'hooks'
                                 );								
 								

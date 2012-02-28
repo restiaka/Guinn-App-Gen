@@ -417,7 +417,63 @@ $config['facebook_page_url_format'] = array(
  define('EZSQL_DB_USER','root');
  define('EZSQL_DB_PASSWORD','');
 
+/*
+|--------------------------------------------------------------------------
+| Customer Support Email				
+|--------------------------------------------------------------------------
+|
+| List of Web Mail for customer support
+|
+*/
+$config['email_customer_support'] = 'your@example.com';
+$config['email_administrator'] = 'your@example.com';
+$config['email_noreply'] = 'your@example.com';
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Mail Notification Template			
+|--------------------------------------------------------------------------
+|
+| List of Mail template for notifying customer
+|
+*/
+
+$config['notification_mail_approved'] = array(
+"mail_from" => $config['email_noreply'],
+"mail_from_name" => "Web Administrator",										  
+"mail_subject" => "[NOTIFICATION] Your Media has been Approved for {{campaign_title}}",
+"mail_message" => "Hello, {{firstname}} {{lastname}} \n\r\n\r". 
+				  "Your {{media_type}} for \"{{campaign_title}}\" has been Approved by Web Administrator \n\r\n\r". 
+				  "Here is the URL for your {{media_type}}, you may now share this link to your friends! \n\r\n\r".
+				  "{{url}} \n\r\n\r".
+				  "Best Regards, \n".
+				  "Web Administrator \n".
+				  "Facebook Guinness Indonesia"
+);
+										
+$config['notification_mail_banned'] = array(
+"mail_from" => $config['email_noreply'],	
+"mail_from_name" => "Web Administrator",											  
+"mail_subject" => "[NOTIFICATION] Your Media has been Banned for {{campaign_title}}",
+"mail_message" => "Hello, {{firstname}} {{lastname}} \n\r\n\r".
+					"Your {{media_type}} for \"{{campaign_title}}\" has been Banned by Web Administrator \n\r\n\r". 
+					"Best Regards, \n".
+					"Web Administrator \n".
+					"Facebook Guinness Indonesia"
+);
+										
+$config['notification_mail_pending'] = array(
+"mail_from" => $config['email_noreply'],	
+"mail_from_name" => "Web Administrator",											  
+"mail_subject" => "[NOTIFICATION] Your Media is still Pending for {{campaign_title}}",
+"mail_message" => "Hello, {{firstname}} {{lastname}} \n\r\n\r".
+				  "Your {{media_type}} for \"{{campaign_title}}\" is pending for moderation by Web Administrator \n\r\n\r".
+				  "Best Regards, \n".
+				  "Web Administrator \n".
+				  "Facebook Guinness Indonesia"
+);
 /*
 |--------------------------------------------------------------------------
 | TRACTION platform credential					
