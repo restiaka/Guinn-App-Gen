@@ -4,10 +4,16 @@
 		  <li>
             <a href="<?=mobile_menu_url('about')?>">About The Contest</a>
           </li>
+		  <?php if($isAuthorized): ?>
           <li>
-            <a href="<?=mobile_menu_url('login')?>">Login And Authorize</a>
+            <a href="<?=mobile_menu_url('login')?>">Contest Upload</a>
           </li>
-          <li>
+          <?php else: ?>
+		  <li>
+            <a href="<?=mobile_menu_url('login')?>">Login And Authorize</a>
+          </li>	
+		  <?php endif; ?>
+		  <li>
             <a href="<?=mobile_menu_url('gallery')?>">Gallery</a>
           </li>
 		  <li>

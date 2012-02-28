@@ -1,5 +1,5 @@
 <?php
- function requireLogin($redirect_uri=''){
+ function requireLogin($redirect_uri='',$display = 'page'){
    $CI = &get_instance();
    $CI->load->library('facebook');
    $CI->load->model('setting_m');
@@ -8,14 +8,16 @@
   //Get Login Url for redirection if user not yet authorized your apps
    $loginUrl = $facebook->getLoginUrl(array(
 											'scope' => $CI->setting_m->get('APP_EXT_PERMISSIONS'),
-											'fbconnect' => 0,
-											'canvas' => 1,
+											'display' => $display,
 											 'redirect_uri' => $redirect_uri
 											));
   //Check for facebook session , redirect to Login Url for unauthorized user
-	if (!$facebook->getUser()) {
+  dg($facebook->getUser(),$facebook->getLoginStatusUrl(),"<a href='{$facebook->getLoginStatusUrl()}'>login status</a>");
+	if (!$facebook->getUser() && isExtPermsAllowed()) {
 	   echo "<script>window.top.location.href = '$loginUrl';</script>";
 	   echo "<a href='$loginUrl' style='font-weight:bold;font-size:15px;'>Click here if you're not redirected</a>";
+	  
+
 	   exit;
 	}
  }			
@@ -246,13 +248,13 @@ function appToPage_dialog(){
     if(empty($code)){ 
 	  header("Location: ".$dialog_url); exit();  
 	}elseif(isset($code) && !empty($code)){
-	   $access_token = file_get_contents_curl($token_url);
+	   /*$access_token = file_get_contents_curl($token_url);
 	   parse_str($access_token);
 	   if($access_token){
 			$params = generateSessionVars($access_token);
 			//SET COOKIE DIRECTLY TO BE USED BY PHP SDK
 			//TO DO SET PERSISTENT DATA FOR PHPSDK 3
-	   }
+	   }*/
 	}   
    }
 

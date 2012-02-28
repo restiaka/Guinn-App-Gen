@@ -8,7 +8,8 @@
 			<div class="gold"><p>Please "Allow Pop Up" from this application to authorize the application</p></div>
 
 			<div class="authorize btn">
-			<?php echo authorizeButton();?>
+			<?php mobile_loginUrl('https://apps.facebook.com/guinnidgentestone/')?>
+			
 			</div>
 			</div>
 		</div>

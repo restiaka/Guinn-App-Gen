@@ -23,7 +23,12 @@ Class Mobile extends CI_Controller {
 	}
 
 	function home(){
-		$this->load->view('mobile/mobile_home');
+		$this->load->model('customer_m','customer');
+		$this->load->library('facebook');
+		
+		$data['isAuthorized'] = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
+		
+		$this->load->view('mobile/mobile_home',$data);
 	}
 	
 	function login(){
@@ -64,6 +69,8 @@ Class Mobile extends CI_Controller {
 	}
 
 	function gallery(){
+		requireLogin('https://guinnessapp.dev/mobile/282088055180043','popup');
+		//graphRequireLogin('https://guinnessapp.dev/mobile/282088055180043','wap');
 		$this->load->view('mobile/mobile_gallery');
 	}
 
