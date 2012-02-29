@@ -16,18 +16,12 @@ Class Campaign extends CI_Controller {
 	  $method = $params[0] ? $params[0] : 'home';	  
 	  unset($params[0]);
 	  
-	  if(!$campaign = $this->campaign->getActiveCampaign()){
-		show_404();
-	  }
-	  
 		if (method_exists($this, $method))
 		{
 			return call_user_func_array(array($this, $method), $params);
 		}
 		show_404();
 	}
-	
-
 
 	
 	public function home()
@@ -40,10 +34,12 @@ Class Campaign extends CI_Controller {
 		$isFan = user_isFan();
 	 
 	    if($campaign = $this->campaign->getActiveCampaign()){
-			$form = $campaign['on_upload'] ? "Sorry! Your time for Uploading Media has ended. <Br/> Thank you." : $this->form->upload_media($campaign);
+			$form = !$campaign['on_upload'] ? "Sorry! Upload Time has ended. <Br/> Thank you." : $this->form->upload_media($campaign);
 		}else{
 			show_404();
 		}
+		
+
 		
 		$this->load->view('site/tab',array('campaign_info'=>$campaign,
 											'html_form_upload' => $form,
@@ -102,12 +98,20 @@ Class Campaign extends CI_Controller {
 		if($rowMedia = $this->media->detailMedia($media_id)){
 			$campaign = $this->campaign->detailCampaign($rowMedia['GID']);
 			//if campaign out of date
-			if(date('Y-m-d H:i:s') >= $campaign['enddate'] || $rowMedia['media_status'] == 'pending' || $rowMedia['media_status'] == 'banned'){
+			$campaign_status = $this->campaign->getStatus($campaign);
+			if($campaign_status['is_off'] || $rowMedia['media_status'] == 'pending' || $rowMedia['media_status'] == 'banned'){
 				$rowMedia['media_container'] = $this->media->showMedia($rowMedia,false);
 				$this->load->view('site/media_preview',array('campaign_info'=>$campaign,'media' => $rowMedia,'notification' => $this->notify,'error' => $this->error));	
 			}else{
 			   $fblike_href = $this->setting_m->get('APP_CANVAS_PAGE').menu_url('media',true).'/?m='.$rowMedia['media_id'];
-				$plugin = $this->media->getPlugin($rowMedia);
+				
+				$plugin_switch = array();
+				$plugin_switch[] = $campaign['media_has_vote'] && $campaign_status['on_vote'] ? 'vote' : null;
+				$plugin_switch[] = $campaign['media_has_fblike'] ? 'fblike' : null;
+				$plugin_switch[] = $campaign['media_has_fbcomment'] ? 'fbcomment' : null;
+				
+				$plugin = $this->media->getPlugin($rowMedia,$plugin_switch);
+				
 				$rowMedia['media_container'] = $this->media->showMedia($rowMedia,false);
 				$meta = $this->media->setOpenGraphMeta(array(
 															 'title' => 'Photo Contest Beta',
