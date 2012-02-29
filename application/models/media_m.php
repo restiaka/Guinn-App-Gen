@@ -20,9 +20,6 @@ Class Media_m extends CI_Model {
     $this->load->library('facebook');
     if(!$this->facebook->getUser())return false;
 	
-
-	
-	
 	$ok = $this->db->insert('campaign_media',$data);
 	$media_id = $this->db->insert_id;
 	if($ok && $media_id){
@@ -318,13 +315,10 @@ Class Media_m extends CI_Model {
    switch($m['media_source']){
 		case "file" :
 		 if($m['media_type']=="image"){
-			//$src = !$thumb ?  $m['media_basename'] : "thumb_".$m['media_basename'];
-			//$link = base_url()."image?gid=".$m['GID']."&src=".$src;
 			$src = !$thumb ?  $m['media_url'] : $m['media_thumb_url'];
 			$link = $src;
 			return "<img src='$link' $attribute/>";
 		 }elseif($m['media_type']=="video"){
-			//$link = "video?gid=".$m['media_id']."&src=".$m['media_basename'];
 			return null;
 		 }		 
 		break;

@@ -626,6 +626,7 @@
                             'description' => $campaign['description'],
 							'startdate' => $campaign['startdate'],
 							'upload_enddate' => $campaign['upload_enddate'],
+							'winner_selectiondate' => $campaign['winner_selectiondate'],
 							'enddate' => $campaign['enddate'],
 							'gid' => $campaign['GID'],
 							'media_has_approval' => $campaign['media_has_approval'],
