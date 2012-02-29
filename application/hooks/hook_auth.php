@@ -17,7 +17,6 @@
    $CI->load->model('app_m');
    $CI->load->model('setting_m','settings');
 
-   
    if($CI->uri->segment(1) == 'campaign' || $CI->uri->segment(1) == 'mobile'){
 		if($APP_APPLICATION_ID =  $CI->uri->segment(2)){
 			if($rows = $CI->app_m->detailApp($APP_APPLICATION_ID)){
@@ -69,6 +68,8 @@
 								  break;				  
 			   }
 			 }
+		}else{
+			show_404();
 		}
    }
  }

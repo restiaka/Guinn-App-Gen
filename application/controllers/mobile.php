@@ -52,16 +52,6 @@ Class Mobile extends CI_Controller {
 										   'error' => $this->error));
 	}
 
-	function register(){
-	    $campaign = $this->campaign->getActiveCampaign();
-						 
-	  	$this->load->view('mobile/mobile_register',array('campaign_info'=>$campaign,
-											'html_form_register' => $form,
-											'notification' => $this->notify,
-											'error' => $this->error));										
-	
-	}
-
 	function about(){
 		$campaign = $this->campaign->getActiveCampaign();
 		//dg($campaign);
