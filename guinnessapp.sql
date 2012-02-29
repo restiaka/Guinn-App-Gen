@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: guinnessapp
 Target Host: localhost
 Target Database: guinnessapp
-Date: 2/24/2012 10:01:21 PM
+Date: 2/29/2012 3:41:06 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -57,6 +57,7 @@ CREATE TABLE `campaign_group` (
   `startdate` datetime NOT NULL,
   `upload_enddate` datetime NOT NULL,
   `enddate` datetime NOT NULL,
+  `winner_selectiondate` datetime NOT NULL,
   `status` varchar(12) NOT NULL DEFAULT 'active',
   `code` varchar(255) DEFAULT NULL,
   `allowed_media_source` varchar(20) NOT NULL,
@@ -75,6 +76,8 @@ CREATE TABLE `campaign_group` (
   `media_has_fblike` tinyint(4) NOT NULL DEFAULT '0',
   `media_has_vote` tinyint(4) NOT NULL DEFAULT '0',
   `image_header` varchar(255) DEFAULT NULL,
+  `media_has_uploadonce` tinyint(4) NOT NULL,
+  `winner_announced` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`GID`),
   UNIQUE KEY `campaign_code` (`code`),
   UNIQUE KEY `APP_APPLICATION_ID` (`APP_APPLICATION_ID`)
@@ -122,31 +125,18 @@ CREATE TABLE `campaign_media_vote` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Table structure for campaign_post
+-- Table structure for campaign_page
 -- ----------------------------
-CREATE TABLE `campaign_post` (
-  `post_id` int(11) NOT NULL AUTO_INCREMENT,
-  `post_content` longtext NOT NULL,
-  `post_excerpt` text,
-  `post_category` varchar(100) NOT NULL,
-  `post_submitted_date` datetime DEFAULT NULL,
-  `post_publish_date` datetime NOT NULL,
-  `post_status` varchar(100) NOT NULL DEFAULT 'active',
-  `post_author` int(11) DEFAULT NULL,
-  `GID` int(11) NOT NULL,
-  PRIMARY KEY (`post_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Table structure for campaign_setting
--- ----------------------------
-CREATE TABLE `campaign_setting` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `value` varchar(255) DEFAULT NULL,
-  `description` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+CREATE TABLE `campaign_page` (
+  `page_id` int(11) NOT NULL AUTO_INCREMENT,
+  `GID` int(11) DEFAULT NULL,
+  `page_title` varchar(150) DEFAULT NULL,
+  `page_short_name` varchar(30) DEFAULT NULL,
+  `page_body` longtext,
+  `page_status` varchar(10) NOT NULL DEFAULT 'publish',
+  `page_publish_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`page_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for campaign_user
@@ -170,16 +160,16 @@ CREATE TABLE `campaign_user` (
 -- Records 
 -- ----------------------------
 INSERT INTO `campaign_app` VALUES ('209681662395432', 'b805f7f9ad97c442eae2f29ee4705f1b', '6c29c3dc1ded207ac217cbe48deb29ef', 'http://apps.facebook.com/guinnidphotocontest/', 'http://fbguinnessphotocontest.think.web.id/', 'Guinness Photo Contest', 'publish_stream,email,offline_access', 'http://www.facebook.com/guinnessindonesia', '0');
-INSERT INTO `campaign_app` VALUES ('201876996523314', '201876996523314', '364639819b4649d19c1b0533e96bdda9', 'http://apps.facebook.com/guinidcontesttwo/', 'http://guinnessapp.dev/', 'Guinness photo contest 2', 'publish_stream,email', 'http://www.facebook.com/guinnessindonesia', '0');
-INSERT INTO `campaign_app` VALUES ('282088055180043', '282088055180043', 'a00334433dd5a7e5acd5f86f7c12928a', 'http://apps.facebook.com/guinnidgentestone/', 'http://guinnessapp.dev/campaign/canvas/282088055180043/', 'Guinness App Dev', 'publish_stream,email,user_birthday,user_hometown,user_interests,user_likes', 'http://www.facebook.com/guinnessindonesia', '1');
+INSERT INTO `campaign_app` VALUES ('201876996523314', '201876996523314', '364639819b4649d19c1b0533e96bdda9', 'http://apps.facebook.com/guinidcontesttwo/', 'http://guinnessapp.dev/', 'Guinness photo contest 2', 'publish_stream,email,user_birthday,user_hometown,user_interests,user_likes', 'http://www.facebook.com/guinnessindonesia', '1');
+INSERT INTO `campaign_app` VALUES ('282088055180043', '282088055180043', 'a00334433dd5a7e5acd5f86f7c12928a', 'http://apps.facebook.com/guinnidgentestone/', 'http://guinnessapp.dev/campaign/canvas/282088055180043/', 'Guinness App Dev', 'publish_stream,email,user_birthday,user_hometown,user_interests,user_likes', 'http://www.facebook.com/guinnessindonesia', '0');
 INSERT INTO `campaign_customer` VALUES ('730189516', '74881399', 'active');
 INSERT INTO `campaign_customer` VALUES ('811922327', '98123136', 'active');
 INSERT INTO `campaign_customer_fbauthorization` VALUES ('730189516', '282088055180043', '2012-02-21 09:07:34', null, '1', 'AAAEAjr5TCwsBALZBy18E0TZAqUDCa5rtDjXnYMbryraxfOKTZAcH60I1CCV7LPqmJkRsrAkGjz78GIlcwRB34BzY7NxuLIrGa5PCjfZAWwZDZD');
 INSERT INTO `campaign_customer_fbauthorization` VALUES ('730189516', '201876996523314', '2012-02-06 01:11:19', null, '1', 'AAAC3myaqhTIBAGwIdMvCUw5NlJKynMDHU5rsHLccBh5OYDWZAVAJP1JQ0g5SrwVbLf0F068HF2LZCFseYr9Et5LKLElLKsJTjfHZC2zdgZDZD');
 INSERT INTO `campaign_customer_fbauthorization` VALUES ('811922327', '282088055180043', '2012-02-22 07:18:40', null, '1', 'AAAEAjr5TCwsBAJIlqEnp9845A6LzIfODZAQ49JZB0wsUTXIzVeSU1EGz0gb3XcvkMREsdyBSZAsG3izTxRf8kBjyuVqnZAhyVKiA307dPQZDZD');
-INSERT INTO `campaign_group` VALUES ('1', 'Testing Campaign', 'its a test', '2012-02-01 00:00:00', '2012-06-27 00:00:00', '2012-06-29 00:00:00', 'active', null, 'youtube', 'video', 'media_source=Upload Content Here&media_description=It\'s About', 'image/gif,image/jpeg,image/pjpeg,image/png', 'No Rules defined yeah', '', 'No Policy defined yeah', '', '', '201876996523314', 'gwsopphotocontest', '1', '1', '1', '0', 'c56b26c68601d05f8788b15d6c4e99c8.jpg');
-INSERT INTO `campaign_group` VALUES ('3', 'Campaign Lagi Coba', 'Campaign Lagi Coba', '2011-05-10 00:00:00', '2011-06-30 16:10:46', '2011-09-13 00:00:00', 'active', null, 'file', 'image', 'media_source=Upload Content Here&media_description=About', 'image/gif,image/jpeg,image/pjpeg,image/png', '&lt;ul&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;/ul&gt;', '&lt;ul&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;/ul&gt;', '&lt;ul&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;/ul&gt;', '', '', '', 'gwsopphotocontest', '1', '1', '1', '0', null);
-INSERT INTO `campaign_group` VALUES ('10', 'Campaign app new dev', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere.', '2012-01-30 00:00:00', '2012-02-25 00:00:00', '2012-02-27 00:00:00', 'active', null, 'file', 'image', 'media_source=Upload Content Here&media_description=It\'s About', 'image/gif,image/jpeg,image/pjpeg,image/png', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere.', null, '', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere.\r\n\n\r\n\n', null, '282088055180043', null, '1', '1', '0', '1', '35bdfa45dee1f1ea34258fbf9623e34f.jpg');
+INSERT INTO `campaign_group` VALUES ('1', 'Testing Campaign', 'its a test', '2012-02-01 00:00:00', '2012-06-27 00:00:00', '2012-06-29 00:00:00', '0000-00-00 00:00:00', 'active', null, 'youtube', 'video', 'media_source=Upload Content Here&media_description=It\'s About', 'image/gif,image/jpeg,image/pjpeg,image/png', 'No Rules defined yeah', '', 'No Policy defined yeah', '', '', '201876996523314', 'gwsopphotocontest', '1', '1', '1', '0', 'c56b26c68601d05f8788b15d6c4e99c8.jpg', '0', '0');
+INSERT INTO `campaign_group` VALUES ('3', 'Campaign Lagi Coba', 'Campaign Lagi Coba', '2011-05-10 00:00:00', '2011-06-30 16:10:46', '2011-09-13 00:00:00', '0000-00-00 00:00:00', 'active', null, 'file', 'image', 'media_source=Upload Content Here&media_description=About', 'image/gif,image/jpeg,image/pjpeg,image/png', '&lt;ul&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;/ul&gt;', '&lt;ul&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;/ul&gt;', '&lt;ul&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;/ul&gt;', '', '', '', 'gwsopphotocontest', '1', '1', '1', '0', null, '0', '0');
+INSERT INTO `campaign_group` VALUES ('10', 'Campaign app new dev', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere.', '2012-01-30 00:00:00', '2012-02-25 00:00:00', '2012-03-13 00:00:00', '2012-03-06 00:00:00', 'active', null, 'file', 'image', 'media_source=Upload Content Here&media_description=It\'s About', 'image/gif,image/jpeg,image/pjpeg,image/png', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere.</p>', null, '', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere.\r\n\n\r\n\n', null, '282088055180043', null, '1', '1', '0', '1', '35bdfa45dee1f1ea34258fbf9623e34f.jpg', '1', '0');
 INSERT INTO `campaign_media` VALUES ('1', 'asdfas', 'asdfasdf', 'video', 'youtube', 'http://www.youtube.com/v/B37wW9CGWyY', 'http://img.youtube.com/vi/B37wW9CGWyY/2.jpg', null, 'active', '1', '2011-05-12 05:50:38', '1305197438', 'B37wW9CGWyY', '0', '0');
 INSERT INTO `campaign_media` VALUES ('2', 'Ini Image aja', 'asdfadf', 'image', 'file', 'http://fbguinnessphotocontest.think.web.id/image?src=730189516_4a089236413a09114548e6d061d78406.jpg&gid=1', 'http://fbguinnessphotocontest.think.web.id/image?src=thumb_730189516_4a089236413a09114548e6d061d78406.jpg&gid=1', null, 'active', '1', '2011-05-12 05:50:38', '1305197438', '730189516_4a089236413a09114548e6d061d78406.jpg', '0', '0');
 INSERT INTO `campaign_media` VALUES ('3', 'asdf', 'asdfasdf', 'video', 'youtube', 'http://www.youtube.com/v/QeWNvvmwDwg', 'http://img.youtube.com/vi/QeWNvvmwDwg/2.jpg', null, 'banned', '1', '2011-05-24 07:22:14', '1306239734', null, '0', '0');
@@ -228,15 +218,15 @@ INSERT INTO `campaign_media` VALUES ('48', null, 'asdvasvas asdasd asd asd asd a
 INSERT INTO `campaign_media` VALUES ('49', null, 'kjhk kh', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_72fba5d0b6a1e3ea25e13df0bdf55c23.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_72fba5d0b6a1e3ea25e13df0bdf55c23.jpg', null, 'pending', '10', '2012-02-23 12:01:41', '1329973301', '730189516_72fba5d0b6a1e3ea25e13df0bdf55c23.jpg', '0', '0');
 INSERT INTO `campaign_media` VALUES ('50', null, 'dgsdgsdf', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_b3d0161c4001e2f7adc5677e00e12c3d.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_b3d0161c4001e2f7adc5677e00e12c3d.jpg', null, 'pending', '10', '2012-02-23 12:02:53', '1329973373', '730189516_b3d0161c4001e2f7adc5677e00e12c3d.jpg', '0', '0');
 INSERT INTO `campaign_media` VALUES ('51', null, 'asdfasdf', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_9300e97107f467b418667c907e0f8aaf.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_9300e97107f467b418667c907e0f8aaf.jpg', null, 'pending', '10', '2012-02-23 12:04:30', '1329973470', '730189516_9300e97107f467b418667c907e0f8aaf.jpg', '0', '0');
-INSERT INTO `campaign_media` VALUES ('52', null, 'afasdfs asfas asdfasdf', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_827bbc553396f71e912e2a709f77ea94.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_827bbc553396f71e912e2a709f77ea94.jpg', null, 'pending', '10', '2012-02-23 12:06:50', '1329973610', '730189516_827bbc553396f71e912e2a709f77ea94.jpg', '0', '0');
+INSERT INTO `campaign_media` VALUES ('52', null, 'afasdfs asfas asdfasdf', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_827bbc553396f71e912e2a709f77ea94.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_827bbc553396f71e912e2a709f77ea94.jpg', null, 'active', '10', '2012-02-23 12:06:50', '1329973610', '730189516_827bbc553396f71e912e2a709f77ea94.jpg', '0', '0');
 INSERT INTO `campaign_media` VALUES ('53', null, 'sdfsdfsd sdfsdf sdf sdfsdf', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_6e886e39e1b38ad5448e1ce7d4e96850.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_6e886e39e1b38ad5448e1ce7d4e96850.jpg', null, 'pending', '10', '2012-02-23 14:12:47', '1329981167', '730189516_6e886e39e1b38ad5448e1ce7d4e96850.jpg', '0', '0');
 INSERT INTO `campaign_media` VALUES ('54', null, 'sdfsd sdfsdf sdf sdfsdf sdf sdf', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_195670e0c99f3bf99b29832ff7891bdc.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_195670e0c99f3bf99b29832ff7891bdc.jpg', null, 'pending', '10', '2012-02-23 14:14:09', '1329981249', '730189516_195670e0c99f3bf99b29832ff7891bdc.jpg', '0', '0');
 INSERT INTO `campaign_media` VALUES ('55', null, 'sdfsdfsdfsdfsdf', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_033568fd64fc9b41b1c89864272cc77f.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_033568fd64fc9b41b1c89864272cc77f.jpg', null, 'pending', '10', '2012-02-23 14:20:08', '1329981608', '730189516_033568fd64fc9b41b1c89864272cc77f.jpg', '0', '0');
 INSERT INTO `campaign_media` VALUES ('56', null, 'adfa asfasf asdfasdfa asdf asdfasdfas', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_6085caec3593c44bd34f75440929ceee.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_6085caec3593c44bd34f75440929ceee.jpg', null, 'pending', '10', '2012-02-23 14:33:06', '1329982386', '730189516_6085caec3593c44bd34f75440929ceee.jpg', '0', '0');
 INSERT INTO `campaign_media` VALUES ('57', null, 'asdf asd fasd fasdfasdfas', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_55aa76b36e3e936a9e407f0040f8c909.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_55aa76b36e3e936a9e407f0040f8c909.jpg', null, 'pending', '10', '2012-02-23 14:46:28', '1329983188', '730189516_55aa76b36e3e936a9e407f0040f8c909.jpg', '0', '0');
 INSERT INTO `campaign_media` VALUES ('58', null, 'fsdfsdfsdf', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_f165c357972026f62ebef247b98e530d.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_f165c357972026f62ebef247b98e530d.jpg', null, 'pending', '10', '2012-02-23 15:39:07', '1329986347', '730189516_f165c357972026f62ebef247b98e530d.jpg', '0', '0');
-INSERT INTO `campaign_media` VALUES ('59', null, 'sdfsdfsdf', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_b3a5a96ea9bee09d3a1c2205b0565666.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_b3a5a96ea9bee09d3a1c2205b0565666.jpg', null, 'pending', '10', '2012-02-23 15:41:45', '1329986505', '730189516_b3a5a96ea9bee09d3a1c2205b0565666.jpg', '0', '0');
-INSERT INTO `campaign_media` VALUES ('60', null, 'fsdgs sdg sd gsdg sdfgsdfgsd', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_a9a1c8d9d1dbd8faa4fb25b2744cb55d.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_a9a1c8d9d1dbd8faa4fb25b2744cb55d.jpg', null, 'pending', '10', '2012-02-23 15:47:20', '1329986840', '730189516_a9a1c8d9d1dbd8faa4fb25b2744cb55d.jpg', '0', '0');
+INSERT INTO `campaign_media` VALUES ('59', null, 'sdfsdfsdf', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_b3a5a96ea9bee09d3a1c2205b0565666.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_b3a5a96ea9bee09d3a1c2205b0565666.jpg', null, 'active', '10', '2012-02-23 15:41:45', '1329986505', '730189516_b3a5a96ea9bee09d3a1c2205b0565666.jpg', '0', '0');
+INSERT INTO `campaign_media` VALUES ('60', null, 'fsdgs sdg sd gsdg sdfgsdfgsd', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_a9a1c8d9d1dbd8faa4fb25b2744cb55d.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_a9a1c8d9d1dbd8faa4fb25b2744cb55d.jpg', null, 'active', '10', '2012-02-23 15:47:20', '1329986840', '730189516_a9a1c8d9d1dbd8faa4fb25b2744cb55d.jpg', '0', '0');
 INSERT INTO `campaign_media` VALUES ('61', null, 'asdf asdfasdfas fas asfas a s', 'image', 'file', 'http://guinnessapp.dev/image?gid=10&src=730189516_e1eb20c41408f038fafbb3615ee71996.jpg', 'https://guinnessapp.dev/image?gid=10&src=thumb_730189516_e1eb20c41408f038fafbb3615ee71996.jpg', null, 'active', '10', '2012-02-23 15:48:18', '1329986898', '730189516_e1eb20c41408f038fafbb3615ee71996.jpg', '0', '1');
 INSERT INTO `campaign_media_owner` VALUES ('1', '730189516', '1');
 INSERT INTO `campaign_media_owner` VALUES ('2', '82948234', '1');
@@ -303,12 +293,6 @@ INSERT INTO `campaign_media_vote` VALUES ('40', '730189516', '1329988079');
 INSERT INTO `campaign_media_vote` VALUES ('40', '811922327', '1329913318');
 INSERT INTO `campaign_media_vote` VALUES ('40', '100000413942502', '1330056531');
 INSERT INTO `campaign_media_vote` VALUES ('61', '100000413942502', '1330056482');
-INSERT INTO `campaign_setting` VALUES ('23', 'SITE_URL_SSL', 'https://guinnessapp.dev/', 'SSL Base App Site URL');
-INSERT INTO `campaign_setting` VALUES ('9', 'SITE_URL', 'http://guinnessapp.dev/', 'Base App Site URL');
-INSERT INTO `campaign_setting` VALUES ('17', 'TRAC_USERID', 'fbdev', 'Traction API UserID');
-INSERT INTO `campaign_setting` VALUES ('18', 'TRAC_PASSWORD', 'th1nkw3b', 'Traction API Password');
-INSERT INTO `campaign_setting` VALUES ('19', 'TRAC_ENDPOINTID', '17259', 'Traction API EndpointID');
-INSERT INTO `campaign_setting` VALUES ('20', 'TRAC_ATTR_FBUID', '3012669', 'Traction Custom Attribute ID for user Facebook ID');
-INSERT INTO `campaign_setting` VALUES ('21', 'TRAC_ATTR_GID', '3014098', 'Traction Custom Attribute for GID');
-INSERT INTO `campaign_setting` VALUES ('24', 'TRAC_ATTR_MOBILE2', '3031180', 'Traction Custom Attribute for MOBILE 2nd');
+INSERT INTO `campaign_page` VALUES ('1', '10', 'Testing winner page', 'Winner Page', '<table border=\"1\">\r\n\n<thead>\r\n\n<tr>\r\n\n<td>Column 1</td>\r\n\n<td>Column 2</td>\r\n\n</tr>\r\n\n</thead>\r\n\n<tbody>\r\n\n<tr>\r\n\n<td>Username: {$username}</td>\r\n\n<td>Staffid: {$staffid}</td>\r\n\n</tr>\r\n\n</tbody>\r\n\n</table>', 'publish', '2012-02-28 15:05:05');
+INSERT INTO `campaign_page` VALUES ('2', '10', 'Outlet and Star', 'Outlet 2012', '&lt;table border=&quot;1&quot;&gt;\r\n\n&lt;thead&gt;\r\n\n&lt;tr&gt;\r\n\n&lt;td&gt;Column 1&lt;/td&gt;\r\n\n&lt;td&gt;Column 2&lt;/td&gt;\r\n\n&lt;/tr&gt;\r\n\n&lt;/thead&gt;\r\n\n&lt;tbody&gt;\r\n\n&lt;tr&gt;\r\n\n&lt;td&gt;Username: {$username}&lt;/td&gt;\r\n\n&lt;td&gt;Staffid: {$staffid}&lt;/td&gt;\r\n\n&lt;/tr&gt;\r\n\n&lt;/tbody&gt;\r\n\n&lt;/table&gt;\r\n\n&lt;p&gt;outlet woiiii sdfgsdfg&lt;/p&gt;', 'publish', '2012-02-28 16:29:44');
 INSERT INTO `campaign_user` VALUES ('1', null, 'Admin', 'admin@demo.com', '76a2173be6393254e72ffa4d6df1030a', 'administrator', 'active', null, null, null);
