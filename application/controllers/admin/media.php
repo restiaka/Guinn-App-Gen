@@ -17,6 +17,8 @@ Class Media extends CI_Controller {
 		$this->load('admin/media_edit',array('content'=> $this->form->media_add($gid)));
 	}
 	
+
+	
 	
 	function lists(){
 	  require_once 'Pager/Sliding.php';
@@ -29,6 +31,14 @@ Class Media extends CI_Controller {
 			   case 'delete': $this->media->removeMedia($v); break;
 			   case 'winner': $this->media->setWinnerMedia($v,1); break;
 			   case 'resetwinner': $this->media->setWinnerMedia($v,0); break;
+			  }
+			  
+			  if($_POST['notify'] && in_array($_POST['task'],array('activate','deactivate'))){
+			  $data = $this->media->detailMedia($v);
+			    switch($_POST['task']){
+				 case 'activate': $this->media->sendNotificationMail('approved',$data); break;
+				 case 'deactivate': $this->media->sendNotificationMail('banned',$data); break;
+			    }
 			  }
 			 }
 		 }

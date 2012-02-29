@@ -207,6 +207,11 @@ Class Customer_m extends CI_Model{
 		EXTUSERID
 		ACTIVE
 		XXXX(The numeric Attribute ID of the Custom Attribute which is to be returned)
+	 Available for Match Key
+		E = Email Address
+		M = Mobile Number
+		X = External User ID
+		C = Traction internal ID – can only be used to update existing customers. The internal ID is returned in most API responses.	
 	Result for EMAILOPT AND SMSOPT
 		I = opt-in
 		O = opt-out

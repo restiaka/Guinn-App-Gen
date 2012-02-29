@@ -15,8 +15,8 @@
 							<tr>
 								<th width="5%">#</th>
                                 <th>No</th>
-								<th style="width:30%">App ID/Name</th>
-								<th style="width:20%">Canvas Page</th>
+								<th style="width:30%">Name</th>
+								<th style="width:20%">App ID</th>
                            	<th style="width:20%">Canvas Fan Page</th>
 								<th  >Actions</th>
 							</tr>
@@ -37,8 +37,8 @@
 								<tr>
 								 <td><input style="width:10px" type="checkbox" name="cid[]" value="<?=$v['APP_APPLICATION_ID']?>"/></td>
 									<td><?=++$i?></td>
-									<td><?=$v['APP_APPLICATION_ID']?><Br/><?=$v['APP_APPLICATION_NAME']?></td>
-									<td><?=$v['APP_CANVAS_PAGE']?></td>
+									<td><?=$v['APP_APPLICATION_NAME']?></td>
+									<td><a href="https://developers.facebook.com/apps/<?=$v['APP_APPLICATION_ID']?>" target="_blank"><?=$v['APP_APPLICATION_ID']?></a></td>
 									<td><?=$v['APP_FANPAGE']?></td>
 									<td><a href="<?=site_url('admin/app/add/'.$v['APP_APPLICATION_ID'])?>">Edit</a></td>
 								</tr>

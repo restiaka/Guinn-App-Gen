@@ -143,6 +143,20 @@
 	  
 	  return true;
 	}
+	
+	function callback_validateWinnerDate(){
+	  extract($_POST['enddate']);
+	  $o_enddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
+	  $enddate = $o_enddate->getTimestamp();
+	  
+	  extract($_POST['winner_selectiondate']);
+	  $o_winner_selectiondate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
+	  $winner_selectiondate = $o_winner_selectiondate->getTimestamp();
+
+	  if($winner_selectiondate > $enddate) return false;
+	  
+	  return true;
+	}
  
 	 function get_image_from_url($url) {
 	 $CI = &get_instance();

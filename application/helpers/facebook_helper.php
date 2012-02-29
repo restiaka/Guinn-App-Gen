@@ -11,8 +11,6 @@
 											'display' => $display,
 											 'redirect_uri' => $redirect_uri
 											));
-  //Check for facebook session , redirect to Login Url for unauthorized user
-  dg($facebook->getUser(),$facebook->getLoginStatusUrl(),"<a href='{$facebook->getLoginStatusUrl()}'>login status</a>");
 	if (!$facebook->getUser() && isExtPermsAllowed()) {
 	   echo "<script>window.top.location.href = '$loginUrl';</script>";
 	   echo "<a href='$loginUrl' style='font-weight:bold;font-size:15px;'>Click here if you're not redirected</a>";
@@ -263,6 +261,18 @@ function appToPage_dialog(){
  function getFacebookUser($uid){
 	$content = file_get_contents('http://graph.facebook.com/'.$uid);
 	return json_decode($content);
+ }
+ 
+ function getAuthorizedUser(){
+  $CI = &get_instance();
+  $CI->load->library('facebook');
+   try {
+		// Proceed knowing you have a logged in user who's authenticated.
+		$profile = $CI->facebook->api('/me?fields=id,name,link');
+		return $profile;
+	} catch (Exception $e) {
+		return null;
+	}
  }
  
 

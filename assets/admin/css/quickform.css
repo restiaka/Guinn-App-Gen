@@ -65,10 +65,16 @@
     font-size: 80%;
     margin: 0.5em 0 0 1em;
 }
+
 .quickform span.error, .quickform span.required {
     color: red;
 }
+
 .quickform div.error {
     border: 1px solid red;
     padding: 0.5em;
 }
+
+
+
+

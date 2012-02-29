@@ -1603,3 +1603,159 @@ ERROR - 2012-02-24 17:24:52 --> Severity: Notice  --> Constant EZSQL_DB_NAME alr
 ERROR - 2012-02-24 17:24:52 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
 ERROR - 2012-02-24 17:24:53 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
 ERROR - 2012-02-24 17:24:53 --> 404 Page Not Found --> assets
+ERROR - 2012-02-24 17:39:45 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:39:49 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:39:50 --> Severity: Notice  --> Undefined index: cid D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\app.php 25
+ERROR - 2012-02-24 17:39:50 --> Severity: Notice  --> Undefined index: pageID D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\app.php 41
+ERROR - 2012-02-24 17:39:50 --> Severity: Notice  --> Undefined variable: where D:\xampp\htdocs\guinnessapp.dev\application\models\app_m.php 91
+ERROR - 2012-02-24 17:39:50 --> Severity: Notice  --> Undefined variable: idx D:\xampp\htdocs\guinnessapp.dev\application\views\admin\app.php 35
+ERROR - 2012-02-24 17:40:00 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:00 --> Severity: Notice  --> Undefined index: cid D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\customer.php 24
+ERROR - 2012-02-24 17:40:00 --> Severity: Notice  --> Undefined index: pageID D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\customer.php 41
+ERROR - 2012-02-24 17:40:00 --> Severity: Notice  --> Undefined variable: where D:\xampp\htdocs\guinnessapp.dev\application\models\customer_m.php 157
+ERROR - 2012-02-24 17:40:00 --> Severity: Notice  --> Undefined variable: idx D:\xampp\htdocs\guinnessapp.dev\application\views\admin\customer.php 33
+ERROR - 2012-02-24 17:40:01 --> Severity: Notice  --> Undefined index: email D:\xampp\htdocs\guinnessapp.dev\application\views\admin\customer.php 41
+ERROR - 2012-02-24 17:40:01 --> Severity: Notice  --> Undefined index: email_active D:\xampp\htdocs\guinnessapp.dev\application\views\admin\customer.php 47
+ERROR - 2012-02-24 17:40:01 --> Severity: Notice  --> Undefined variable: ch D:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-24 17:40:02 --> Severity: Notice  --> Undefined index: email D:\xampp\htdocs\guinnessapp.dev\application\views\admin\customer.php 41
+ERROR - 2012-02-24 17:40:02 --> Severity: Notice  --> Undefined property: stdClass::$link D:\xampp\htdocs\guinnessapp.dev\application\views\admin\customer.php 43
+ERROR - 2012-02-24 17:40:02 --> Severity: Notice  --> Undefined index: email_active D:\xampp\htdocs\guinnessapp.dev\application\views\admin\customer.php 47
+ERROR - 2012-02-24 17:40:02 --> Severity: Notice  --> Undefined variable: ch D:\xampp\htdocs\guinnessapp.dev\application\libraries\traction.php 84
+ERROR - 2012-02-24 17:40:19 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:19 --> Severity: Notice  --> Undefined index: cid D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\media.php 24
+ERROR - 2012-02-24 17:40:19 --> Severity: Notice  --> Undefined index: bycampaign D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\media.php 37
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined index: byuid D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\media.php 40
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined index: bystatus D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\media.php 43
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined variable: where D:\xampp\htdocs\guinnessapp.dev\application\models\media_m.php 302
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined variable: limit_number D:\xampp\htdocs\guinnessapp.dev\application\models\media_m.php 307
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined variable: limit_number D:\xampp\htdocs\guinnessapp.dev\application\models\media_m.php 309
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined index: bycampaign D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\media.php 53
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined index: byuid D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\media.php 54
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined index: bystatus D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\media.php 55
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined index: pageID D:\xampp\htdocs\guinnessapp.dev\application\controllers\admin\media.php 59
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined variable: where D:\xampp\htdocs\guinnessapp.dev\application\models\campaign_m.php 133
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined variable: limit_number D:\xampp\htdocs\guinnessapp.dev\application\models\campaign_m.php 138
+ERROR - 2012-02-24 17:40:20 --> Severity: Notice  --> Undefined variable: limit_number D:\xampp\htdocs\guinnessapp.dev\application\models\campaign_m.php 140
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined variable: where D:\xampp\htdocs\guinnessapp.dev\application\models\media_m.php 302
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: byorder D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 21
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: byorder D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 22
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: bystatus D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 28
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: bystatus D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 29
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: bystatus D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 30
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: bycampaign D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 35
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: bycampaign D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 37
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: bycampaign D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 37
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: bycampaign D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 37
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: pageID D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 50
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: byuid D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 50
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: bycampaign D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 50
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined index: bystatus D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 50
+ERROR - 2012-02-24 17:40:21 --> Severity: Notice  --> Undefined variable: idx D:\xampp\htdocs\guinnessapp.dev\application\views\admin\media.php 75
+ERROR - 2012-02-24 17:40:27 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:27 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:28 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:28 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:28 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:29 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:29 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:29 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:30 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:30 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:31 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:31 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:31 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:31 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 17:40:31 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 19:04:47 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:04:47 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:04:47 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:04:48 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:04:48 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:04:49 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 19:05:13 --> Severity: Notice  --> Undefined offset: 0 D:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 15
+ERROR - 2012-02-24 19:05:16 --> Severity: Notice  --> Undefined variable: html_done D:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 203
+ERROR - 2012-02-24 19:05:16 --> Severity: Notice  --> Undefined property: Campaign::$notify D:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 46
+ERROR - 2012-02-24 19:05:16 --> Severity: Notice  --> Undefined property: Campaign::$error D:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 47
+ERROR - 2012-02-24 19:05:17 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' D:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-24 19:05:17 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:05:18 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:05:18 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:05:18 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:05:18 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:05:19 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:05:19 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:05:19 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:05:19 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:05:19 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:05:19 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:05:19 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:05:19 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:05:19 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:05:19 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:05:20 --> 404 Page Not Found --> assets
+ERROR - 2012-02-24 19:05:20 --> 404 Page Not Found --> assets
+ERROR - 2012-02-24 19:05:20 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 19:09:07 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:09:07 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:09:07 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:09:08 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:09:08 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:09:08 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 19:09:19 --> Severity: Notice  --> Undefined offset: 0 D:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 15
+ERROR - 2012-02-24 19:09:22 --> Severity: Notice  --> Undefined variable: html_done D:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 203
+ERROR - 2012-02-24 19:09:22 --> Severity: Notice  --> Undefined property: Campaign::$notify D:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 46
+ERROR - 2012-02-24 19:09:22 --> Severity: Notice  --> Undefined property: Campaign::$error D:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 47
+ERROR - 2012-02-24 19:09:22 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' D:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-24 19:09:22 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:09:22 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:09:23 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:09:23 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:09:23 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:09:23 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:09:23 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:09:24 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:09:24 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:09:24 --> 404 Page Not Found --> assets
+ERROR - 2012-02-24 19:09:24 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:09:24 --> 404 Page Not Found --> assets
+ERROR - 2012-02-24 19:09:25 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:09:25 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:09:25 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:09:25 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:09:25 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:09:26 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 19:11:57 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:11:57 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:11:57 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:11:57 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:11:57 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:11:58 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146
+ERROR - 2012-02-24 19:12:19 --> Severity: Notice  --> Undefined offset: 0 D:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 15
+ERROR - 2012-02-24 19:12:21 --> Severity: Notice  --> Undefined variable: html_done D:\xampp\htdocs\guinnessapp.dev\application\models\form_m.php 203
+ERROR - 2012-02-24 19:12:22 --> Severity: Notice  --> Undefined property: Campaign::$notify D:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 46
+ERROR - 2012-02-24 19:12:22 --> Severity: Notice  --> Undefined property: Campaign::$error D:\xampp\htdocs\guinnessapp.dev\application\controllers\campaign.php 47
+ERROR - 2012-02-24 19:12:22 --> Severity: Notice  --> Use of undefined constant APP_CANVAS_URL - assumed 'APP_CANVAS_URL' D:\xampp\htdocs\guinnessapp.dev\application\views\fbjs.php 56
+ERROR - 2012-02-24 19:12:22 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:12:22 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:12:23 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:12:23 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:12:23 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:12:23 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:12:23 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:12:23 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:12:23 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:12:24 --> 404 Page Not Found --> assets
+ERROR - 2012-02-24 19:12:24 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:12:24 --> 404 Page Not Found --> assets
+ERROR - 2012-02-24 19:12:24 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:12:24 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:12:25 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:12:25 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:12:25 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:12:25 --> 404 Page Not Found --> assets
+ERROR - 2012-02-24 19:12:26 --> Severity: Notice  --> Undefined index: HTTPS D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 20
+ERROR - 2012-02-24 19:12:26 --> Severity: Notice  --> Constant EZSQL_DB_HOST already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 415
+ERROR - 2012-02-24 19:12:26 --> Severity: Notice  --> Constant EZSQL_DB_NAME already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 416
+ERROR - 2012-02-24 19:12:26 --> Severity: Notice  --> Constant EZSQL_DB_USER already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 417
+ERROR - 2012-02-24 19:12:27 --> Severity: Notice  --> Constant EZSQL_DB_PASSWORD already defined D:\xampp\htdocs\guinnessapp.dev\application\config\config.php 418
+ERROR - 2012-02-24 19:12:27 --> Severity: Notice  --> A session had already been started - ignoring session_start() D:\xampp\htdocs\guinnessapp.dev\application\libraries\Session.php 146

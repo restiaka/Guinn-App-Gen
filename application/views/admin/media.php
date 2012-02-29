@@ -53,10 +53,11 @@
 					<table>
 						<thead>
 							<tr>
-								<th width="5%">#</th>
+								<th  width="5%" >#</th>
+								<th  width="5%">(<b>!</b>)</th>
                                 <th width="5%" >No</th>
 								<th width="50%">Media</th>
-								<th width="30%">Information</th>
+								<th width="25%">Information</th>
                                 <th width="10%">Status</th>
 					
 							</tr>
@@ -64,9 +65,6 @@
 						<tfoot>
 							<tr>
 								<td colspan="8" class="pagination">
-								<!--
-									<span class="active curved">1</span><a href="#" class="curved">2</a><a href="#" class="curved">3</a><a href="#" class="curved">4</a> ... <a href="#" class="curved">10 million</a>
-								-->
 								<?=$pagination['all']?>
 								</td>
 							</tr>
@@ -75,8 +73,9 @@
 						<?php if($data): $i = $offset ? $offset : $idx; $this->load->model('media_m');$this->load->model('campaign_m');?>
 							<?php  foreach($data as $v): ?>
 								<tr>
-								 <td style="vertical-align:top;<?=$v['media_winner'] ? 'background-color:#A1EAB3;' : ''?>"><input style="width:10px" type="checkbox" name="cid[]" value="<?=$v['media_id']?>"/></td>
-									<td style="vertical-align:top;"><?=++$i?></td>
+								 <td style="padding:2px;vertical-align:top;<?=$v['media_winner'] ? 'background-color:#A1EAB3;' : ''?>"><input style="width:5px" type="checkbox" name="cid[]" value="<?=$v['media_id']?>"/></td>
+								 <td style="padding:2px;vertical-align:top;"><input style="width:5px" type="checkbox" name="notify[]" value="<?=$v['media_id']?>"/></td>
+								<td style="vertical-align:top;"><?=++$i?></td>
 									<td style="vertical-align:top;">
 										<div id="mediathumb" style="width:135px;float:left;">
 										<?=$this->media_m->showMedia($v);?>

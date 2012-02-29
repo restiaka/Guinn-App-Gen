@@ -14,14 +14,6 @@
 			});
 	fbApiInitialized = true;
 	FB.Canvas.setAutoGrow(91);
-	
-	FB.Event.subscribe('auth.login', function(response) {
-	  window.top.location.reload();
-	});
-	
-	FB.Event.subscribe('auth.logout', function(response) {
-	  window.top.location.reload();
-	});
   };
   
   function fbRequireLogin(dialogType,redirectURL)
@@ -210,12 +202,10 @@
 				switch(dialogType){
 				  case "fb_login" : FB.login(function(response) {
 									   if (response.authResponse) {
-									   //alert('Authorized ok');
-									   //window.top.location.reload();
-											//if(redirectURL) 
+									       if(redirectURL) 
 											 window.top.location.href = redirectURL;
 									   } else {
-										 alert('Authorized user only');
+										 
 									   }
 									}, {scope: APP_EXT_PERMISSIONS,display: displayDialog });	
 									break;

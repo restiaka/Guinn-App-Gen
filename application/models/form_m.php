@@ -259,6 +259,8 @@
 		$form_layout = $form->render($renderer);
 		return $form_layout;
    }
+   
+   
     
    
    function setting_form()
@@ -382,7 +384,7 @@
 	$APP_FANPAGE = $form->addElement('text','APP_FANPAGE','style=""')->setLabel('FACEBOOK PAGE URL &nbsp;:&nbsp;&nbsp;');
 	$APP_FANPAGE->addRule('required', 'Facebook Page URL is required', null,HTML_QuickForm2_Rule::SERVER);		
 	 
-	$APP_RESTRICTION = $form->addElement('checkbox','APP_AGE_RESTRICTION','style="width:10px;margin-top:10px;float:left;"',array('content'=>'<div style="width:150px;margin-top:10px;">Age 21+ Restriction</div>'));
+	$APP_RESTRICTION = $form->addElement('checkbox','APP_AGE_RESTRICTION','style="width:10px;float:left;"',array('content'=>'Age 21+ Restriction'));
 	
 	$button = $form->addElement('submit','submit','style="margin-top:20px;" value="Submit Application"');
 	
@@ -395,6 +397,8 @@
 		
 		$data = $form->getValue();
 		unset($data['submit'],$data['_qf__appaddform'],$data['task']);
+		
+		if(!$data['APP_AGE_RESTRICTION']) $data['APP_AGE_RESTRICTION'] = '0';
 		
 		if($url = parse_url($data['APP_FANPAGE'])){
 		  $new_url = $url['scheme']."://".$url['host'].$url['path'];//."?sk=app_".$rows['APP_APPLICATION_ID'];
@@ -514,6 +518,99 @@
 		$form_layout = $form->render($renderer);
 		return $form_layout;
    }
+   
+   function page_add($page_id = 0){
+    $this->load->model('page_m');
+   
+	$form = new HTMLQuickForm2('page','POST','action="'.site_url('admin/page/add/'.$page_id).'"');
+	if($page_id){
+		 $page = $this->page_m->detailPage($page_id) ;
+		 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
+                           'title' => $page['page_title'],
+							'page_id' => $page['page_id'],
+							'GID' => $page['GID'],	
+							'page_title' => $page['page_title'],		
+							'page_short_name' => $page['page_short_name'],		
+							'page_body' => $page['page_body'],	
+							'page_status' => $page['page_status'],		
+							'page_publish_date' => $page['page_publish_date'] 
+                        )));
+	}else{
+		 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
+							'page_publish_date' => date('Y-m-d H:i:s')
+							)));
+	}
+	
+	$form->addElement('hidden','page_id');
+	$cmp_options[''] = "Choose Campaign";
+	if($campaignRow = $this->db->get_results("SELECT GID,title FROM campaign_group",'ARRAY_A'))
+	{
+		foreach($campaignRow as $conf){
+		  $cmp_options[$conf['GID']] = $conf['title'];
+		}
+	}
+	
+	$form->addElement('static','','',array('content'=>'<b>Please choose Campaign for your Custom Page</b>'));
+	$GID = $form->addElement('select','GID','',array('options'=>$cmp_options));
+	$GID->addRule('required', 'Campaign is required', null,HTML_QuickForm2_Rule::SERVER);
+	
+		$form->addElement('static','','',array('content'=>'<b>Publish Date</b>'));
+	$date_set = $gid ? array('format'=>'dFY His','maxYear'=>date('Y')) : array('format'=>'dFY His','minYear'=>date('Y'),'maxYear'=>date('Y')+1);
+		
+	$page_publish_date = $form->addElement('group');	 
+	$page_publish_date->addElement('date','page_publish_date','',$date_set,'style="width:100px;"');
+			
+	$form->addElement('static','','',array('content'=>'<b>Status</b>'));
+	$GID = $form->addElement('select','page_status','',array('options'=>array('publish'=>'Publish','draft'=>'Draft')));
+
+	
+	$form->addElement('static','','',array('content'=>'<b>Page Title</b>'));
+	$page_title = $form->addElement('text','page_title');
+	$page_title->addRule('required', 'Title is required', null,HTML_QuickForm2_Rule::SERVER);
+	$page_title->addRule('regex', 'Should contain only letters, digits and underscores','/^[a-zA-Z0-9_ ]+$/');
+	
+	$form->addElement('static','','',array('content'=>'<b>Page Anchor Link Name</b>'));
+	$page_short_name = $form->addElement('text','page_short_name',array('maxlength'=>'30'));
+	$page_short_name->addRule('required', 'Anchor Link Name is required', null,HTML_QuickForm2_Rule::SERVER);
+	$page_short_name->addRule('regex', 'Should contain only letters, digits and underscores','/^[a-zA-Z0-9_ ]+$/');
+   
+	   
+	$form->addElement('static','','',array('content'=>'<b>Page Body</b>'));
+	$page_body = $form->addElement('textarea','page_body',array('style'=>'height:768px;'));
+	$page_body->addRule('required', 'Body is required', null,HTML_QuickForm2_Rule::SERVER);
+	
+   
+    $button = $form->addElement('submit','','value="Submit Page"');
+		$html = array();
+		if ($form->validate()) {
+			$data = $form->getValue();
+		   unset($data['submit'],$data['_qf__page']);
+
+		    extract($data['page_publish_date']);
+			$data['page_publish_date'] = $Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s;			
+
+	
+
+		   if($page_id){
+			   if(!$this->page_m->updatePage($data)){
+				 $error = $this->page_m->error;
+			   }
+		   }else{
+		       unset($data['page_id']);
+			   if(!$this->page_m->addPage($data)){
+				 $error = $this->page_m->error;
+			   }		   
+		   }
+		   
+			$form->removeChild($button);
+			$form->toggleFrozen(true);
+		}
+		
+		$renderer = HTML_QuickForm2_Renderer::factory('default');		
+		$form_layout = $form->render($renderer);
+		return $form_layout;
+   
+   }
   
    
     function campaign_add($gid = 0){
@@ -534,22 +631,15 @@
 							'media_has_fbcomment' => $campaign['media_has_fbcomment'],
 							'media_has_fblike' => $campaign['media_has_fblike'],
 							'media_has_vote' => $campaign['media_has_vote'],
-							//'allowed_media_source'=> $campaign['allowed_media_source'],
-							//'allowed_media_type'=>$campaign['allowed_media_type'],
-							//'allowed_media_fields'=>$campaign['allowed_media_fields'],
-							//'allowed_mimetype'=>$campaign['allowed_mimetype'],
 							'campaign_rules'=>html_entity_decode($campaign['campaign_rules']),
-							//'campaign_policy'=>html_entity_decode($campaign['campaign_policy']),
-							//'campaign_mechanism'=>html_entity_decode($campaign['campaign_mechanism']),
-							//'campaign_fbshare_media'=>$campaign['campaign_fbshare_media'],
-							//'campaign_twshare_media'=>$campaign['campaign_twshare_media'],
 							'APP_APPLICATION_ID'=>$campaign['APP_APPLICATION_ID']
                         )));
 		}else{
 		 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
 							'startdate' => date('Y-m-d H:i:s'),
 							'upload_enddate' => date('Y-m-d H:i:s'),
-							'enddate' => date('Y-m-d H:i:s')
+							'enddate' => date('Y-m-d H:i:s'),
+							'winner_selectiondate' => date('Y-m-d H:i:s')
                         )));
 		}
 		/**/
@@ -558,17 +648,7 @@
 		
 		$form->addElement('static','','',array('content'=>'<b>Your Facebook Application Name/ID ?</b> <a href="'.site_url('admin/app/add').'">Add</a>'));
 		$fb_options[''] = 'Select Apps Name';
-		/* if($appIDrow = $this->db->get_results("SELECT APP_APPLICATION_ID, APP_APPLICATION_NAME 
-											   FROM campaign_app  
-											   WHERE campaign_app.APP_APPLICATION_ID NOT IN 
-													 (SELECT APP_APPLICATION_ID FROM campaign_group 
-													  WHERE APP_APPLICATION_ID <> '' ".($gid ? "AND campaign_group.GID <> $gid" : "").") ",'ARRAY_A'))
-		{
-		 
-			foreach($appIDrow as $conf){
-			  $fb_options[$conf['APP_APPLICATION_ID']] = $conf['APP_APPLICATION_NAME'];
-			}
-		} */
+
 		if($appIDrow = $this->db->get_results("SELECT APP_APPLICATION_ID, APP_APPLICATION_NAME 
 											   FROM campaign_app",'ARRAY_A'))
 		{
@@ -590,7 +670,7 @@
 		$stitle = $form->addElement('text','title',array('style'=>''));
 		
 		$form->addElement('static','','',array('content'=>'<b>What is your campaign all about ?</b>'));
-		$sdescription = $form->addElement('textarea','description',array('style'=>''));
+		$sdescription = $form->addElement('textarea','description',array('class'=>'mceNoEditor'));
 		
 		$allowed_maxfilesize = 1024*1024;
 		$allowed_mimetype = 'image/gif,image/jpeg,image/pjpeg,image/png';
@@ -611,12 +691,18 @@
 		$startdate_group->addElement('date','startdate','',$date_set,'style="width:100px;"');
 		$startdate_group->addRule('callback','Start Date with this Facebook App Name/ID cannot be Overlap with other Campaigns','callback_validateAppIDRangeDate');
 		
-		$form->addElement('static','','',array('content'=>'<b>When will Upload Task end ?</b>'));
+		$form->addElement('static','','',array('content'=>'<b>When will Upload end ?</b>'));
 		$upload_enddate_group = $form->addElement('group');	 
 		$upload_enddate_group->addElement('date','upload_enddate','',$date_set,'style="width:100px;"');
 		
 		$upload_enddate_group->addRule('callback','Date must be longer than start date','callback_validateUploadEndDate');
 		
+		$form->addElement('static','','',array('content'=>'<b>Judging and Announcement before campaign end ?</b>'));
+		$winner_selectiondate_group = $form->addElement('group');	 
+		$winner_selectiondate_group->addElement('date','winner_selectiondate','',$date_set,'style="width:100px;"');		
+		$winner_selectiondate_group->addRule('callback','Date must be longer than upload end date','callback_validateEndDate');
+		$winner_selectiondate_group->addRule('callback','Date must be shorter or the same as end date','callback_validateWinnerDate');
+
 		
 		$form->addElement('static','','',array('content'=>'<b>When will your campaign end ?</b>'));
 		$enddate_group = $form->addElement('group');	 
@@ -635,58 +721,27 @@
 			$fsAddFields->addElement('static','','',array('content'=>$v.'<br/>'));
 		}
 		
-		//$allowed_media_source = $form->addElement('text','allowed_media_source',array('style'=>''));
-		
-		
-		//$form->addElement('static','','',array('content'=>'<b>Allowed Media Type : Video | Image'));
-		//$allowed_media_type = $form->addElement('text','allowed_media_type',array('style'=>''));
-		
-		//$form->addElement('static','','',array('content'=>'<b>Allowed Media Fields : <Br/>ex: media_title=Judul&media_description=Deskripsi&media_source=Upload your media'));
 		$allowed_media_fields = $form->addElement('hidden','allowed_media_fields',array('style'=>''))->setValue('media_source=Upload Content Here&media_description=It\'s About');
-		
-		
-		//$form->addElement('static','','',array('content'=>'<br/><b>You may fill one of this field below if allowed media source is a file</b> <br/><hr/>'));
-		
-		//$form->addElement('static','','',array('content'=>'<b>Allowed mimetype for File Upload: <Br/>ex: image/gif,image/jpeg,image/pjpeg,image/png'));
+				
 		$allowed_mimetype = $form->addElement('hidden','allowed_mimetype',array('style'=>''))->setValue('image/gif,image/jpeg,image/pjpeg,image/png');
 
-		//$form->addElement('static','','',array('content'=>'<br/><b>You may fill in Campaign rules,policy,mechanism,share feed</b> <br/><hr/>'));
+		$form->addElement('static','','',array('content'=>'<b>Does User can only upload once ?</b>'));
+		$media_has_uploadonce = $form->addElement('select','media_has_uploadonce','',array('options'=>array('1'=>'Yes','0'=>'No')));
 		
 		$form->addElement('static','','',array('content'=>'<b>Does the uploaded media has vote system ?</b>'));
-		$media_has_approval = $form->addElement('select','media_has_vote','',array('options'=>array('0'=>'No','1'=>'Yes')));
-		
-		
+		$media_has_approval = $form->addElement('select','media_has_vote','',array('options'=>array('1'=>'Yes','0'=>'No')));
+			
 		$form->addElement('static','','',array('content'=>'<b>Does the uploaded media need approval by admin before published ?</b>'));
-		$media_has_approval = $form->addElement('select','media_has_approval','',array('options'=>array('0'=>'No','1'=>'Yes')));
+		$media_has_approval = $form->addElement('select','media_has_approval','',array('options'=>array('1'=>'Yes','0'=>'No')));
 		
 		$form->addElement('static','','',array('content'=>'<b>Does media use Facebook Comments (Social Plugin) ?</b>'));
-		$media_has_fbcomment = $form->addElement('select','media_has_fbcomment','',array('options'=>array('0'=>'No','1'=>'Yes')));
+		$media_has_fbcomment = $form->addElement('select','media_has_fbcomment','',array('options'=>array('1'=>'Yes','0'=>'No')));
 		
 		$form->addElement('static','','',array('content'=>'<b>Does media use Facebook Like (Social Plugin) ?</b>'));
-		$media_has_fblike = $form->addElement('select','media_has_fblike','',array('options'=>array('0'=>'No','1'=>'Yes')));
+		$media_has_fblike = $form->addElement('select','media_has_fblike','',array('options'=>array('1'=>'Yes','0'=>'No')));
 		
 		$form->addElement('static','','',array('content'=>'<b>Define your Campaign Rules/FAQ ?</b>'));
 		$campaign_rules = $form->addElement('textarea','campaign_rules',array('style'=>'height:400px','id'=>'campaign_rules'));
-		/*
-		$form->addElement('static','','',array('content'=>'<b>Define your Campaign Policy ?</b>'));
-		$campaign_policy = $form->addElement('textarea','campaign_policy',array('style'=>'height:200px','id'=>'campaign_policy'));
-		
-		
-		$form->addElement('static','','',array('content'=>'<b>Define your Campaign Mechanism ?</b>'));
-		$campaign_mechanism = $form->addElement('textarea','campaign_mechanism',array('style'=>'height:200px','id'=>'campaign_mechanism'));	
-		*/
-		
-		/*
-		$form->addElement('static','','',array('content'=>'<b>Any Facebook Feed Description for sharing media ?</b>'));
-		$campaign_fbshare_media = $form->addElement('textarea','campaign_fbshare_media',array('style'=>'height:60px'));
-			*/
-		/*	
-		$form->addElement('static','','',array('content'=>'<b>Any Twitter status for sharing media ?</b>'));
-		$campaign_twshare_media = $form->addElement('textarea','campaign_twshare_media',array('style'=>'height:60px'));	
-		*/
-	
-
-		
 		
 		$stitle->addRule('required', 'Title is required', null,HTML_QuickForm2_Rule::SERVER);
 		$sdescription->addRule('required', 'Description is required', null,HTML_QuickForm2_Rule::SERVER);		
@@ -703,7 +758,8 @@
 			$data['enddate'] = $Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s;	
 			extract($data['upload_enddate']);
 			$data['upload_enddate'] = $Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s;	
-			
+			extract($data['winner_selectiondate']);
+			$data['winner_selectiondate'] = $Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s;				
 
 			
 			$data['allowed_media_fields'] = html_entity_decode($data['allowed_media_fields']);
@@ -740,7 +796,7 @@
 				 $error = $this->campaign_m->error;
 			   }		   
 		   }
-		   
+		    $form->removeChild($r_file);
 			$form->removeChild($button);
 			$form->toggleFrozen(true);
 		}

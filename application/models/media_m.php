@@ -10,7 +10,7 @@ Class Media_m extends CI_Model {
    $this->load->library('ezsql_mysql');
 		$this->db = $this->ezsql_mysql;
 		
-	$this->load->model('customer_m','customer');
+	$this->load->model('customer_m');
 	$this->load->model('setting_m');
 	$this->load->model('campaign_m');
   }
@@ -32,7 +32,68 @@ Class Media_m extends CI_Model {
 	}else{
 	  return false;
 	}
-  } 
+  }
+
+  /*
+  *
+  * Send Email notification when media status (Activated,Deactivated) changed
+  * [fields] => Array
+        (
+            [LASTNAME] => asfasf
+            [3014098] => 10
+            [0] => 
+            [EMAILOPT] => undefined
+            [EMAIL] => kh411d@yahoo.com
+            [ACTIVE] => Active
+            [MOBILE] => 62818999999
+            [FIRSTNAME] => adadfadf
+        )
+  *
+  *
+  */
+  public function sendNotificationMail($status,$data){
+  $this->load->model('app_m');
+  $this->load->library('email');
+
+    if($TRAC = $this->customer_m->detailTRAC($data['customer_id'],NULL,"C")){ 
+	  $customer['firstname'] = $TRAC['fields']['FIRSTNAME'];
+	  $customer['lastname'] = $TRAC['fields']['LASTNAME'];
+	  $customer['media_type'] = $data['media_type'];
+	  $customer['email'] = $TRAC['fields']['EMAIL'];
+	  $customer['campaign_title'] = $data['title'];
+	  $customer['status'] = $data['media_status'] == 'active' ? 'Approved' : ucfirst($data['media_status']);
+	  $customer['url'] = "http://apps.facebook.com/".$data['APP_APPLICATION_ID'].'/media?m='.$data['media_id'];
+
+	
+	if($customer['status'] == "Approved"){
+	    $mail = $this->config->item('notification_mail_approved');
+	}elseif($customer['status'] == "Banned"){
+	    $mail = $this->config->item('notification_mail_banned');
+	}elseif($customer['status'] == "Pending"){
+	    $mail = $this->config->item('notification_mail_pending');
+	}
+	
+		$this->email->from($mail['mail_from'], $mail['mail_from_name']);
+		$this->email->to($customer['email']);
+		
+		$subject = str_replace("{{campaign_title}}", $customer['campaign_title'], $mail['mail_subject']);
+		$this->email->subject($subject);
+	    
+		$body = '';
+		 foreach($customer as $key => $value){
+		    $body = $body ? $body : $mail['mail_message'];
+			$body = str_replace("{{".$key."}}", $value, $body);
+		 }
+		
+		$this->email->message($body);
+
+		return @$this->email->send() ? true : false;
+	}else{
+		 return false;
+	}
+ }
+
+ 
   
   function fblike($href,$attr = "show_faces='false' width='430' font=''")
   {
@@ -148,6 +209,50 @@ Class Media_m extends CI_Model {
 				  </table>
 				</div>';
 				//$this->fblike(menu_url('media').'&m='.$media['media_id'])
+	
+	$fblike_href = menu_url('media').'/?m='.$media['media_id'];
+	
+    $activeCampaign = $this->campaign_m->getActiveCampaign();
+	$html .=	'<div id="media_social_wrapper">';
+	if($activeCampaign['media_has_fblike']){
+		$html .= '<div id="media_social_fblike">'.$this->fblike($fblike_href).'</div>';
+	}
+	if($activeCampaign['media_has_fbcomment']){	
+		$html .=	'<div id="media_social_fbcomment">'.$this->fbcomment($fblike_href).'</div>';
+	}	
+	$html .= '</div>';
+	return $html;	
+  }
+  
+    function mediaContainerPreview($media = array(),$use_default_style = true)
+  { 
+    $default_style = '#media_container_wrapper { margin-bottom:20px; }
+					  #media_container_source {}
+					  #media_container_source img {width:400px;}
+					  #media_meta_wrapper { margin-bottom:20px; }
+					  #media_meta_user{ margin-bottom:20px; }
+					  #media_meta_user td {padding:10px;}
+					  #media_meta_user th {padding:10px;}
+					  #media_social_wrapper{margin-bottom:20px;background-color:white;padding:5px;width:100%}
+					  
+					  #media_social_fblike {margin-bottom:10px;}
+					  #media_social_fbcomment {margin-bottom:10px;}';
+					  
+	$html = $use_default_style ? '<style>'.$default_style.'</style>' : '';
+	
+	$html .=   '<div id="media_container_wrapper" >
+					<div id="media_container_source" align="center">    
+						'.$this->showMedia($media,false).' 
+					</div>
+				</div>';
+	$html .=	'<div id="media_meta_wrapper">
+				  <table id="media_meta_user">
+					  <tr>
+						  <th style="text-align:top;">Shared By : </th>
+						  <td><fb:name uid="'.$media['uid'].'"></fb:name></td>
+					  </tr>
+				  </table>
+				</div>';
 	
 	$fblike_href = menu_url('media').'/?m='.$media['media_id'];
 	
@@ -315,9 +420,17 @@ Class Media_m extends CI_Model {
   
   public function detailMedia($media_id) 
   {
-   $sql  = "SELECT campaign_media.*,campaign_media_owner.uid ";
+   $sql  = "SELECT  campaign_media.*,
+					campaign_customer.customer_id,
+					campaign_customer.status as customer_status,
+					campaign_group.title,
+					campaign_group.description,
+					campaign_group.APP_APPLICATION_ID,
+					campaign_media_owner.uid ";
    $sql .= "FROM campaign_media ";
    $sql .= "INNER JOIN campaign_media_owner ON campaign_media.media_id = campaign_media_owner.media_id ";
+   $sql .= "INNER JOIN campaign_group ON campaign_media.GID = campaign_group.GID ";
+   $sql .= "INNER JOIN campaign_customer ON campaign_media_owner.uid = campaign_customer.uid ";
    $sql .= "WHERE campaign_media.media_id = ".$media_id;
    return $this->db->get_row($sql,'ARRAY_A');
   }
