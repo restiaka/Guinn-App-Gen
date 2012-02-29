@@ -268,23 +268,23 @@ Class Media_m extends CI_Model {
 	return $html;	
   }
   
-  function getPlugin($media){
+  function getPlugin($media,array $switch){
     
-	$fblike_href = menu_url('media').'/?m='.$media['media_id'];
-	//$fbcomment_href = $this->setting_m->get('APP_FANPAGE').'&app_data=redirect|'.menu_url('media',true).'/?m='.$media['media_id'];
-	$plugins = array('fblike'=>'','fbcomment'=>'','votebutton'=>'');
-    $activeCampaign = $this->campaign_m->getActiveCampaign();
+	$switch = $switch ? $switch : array('vote','fblike','fbcomment');
 	
-	if($activeCampaign['media_has_fblike']){
-		$plugins['fblike'] = $this->fblike($fblike_href);
+	$url = menu_url('media').'/?m='.$media['media_id'];
+	$plugins = array('fblike'=>'','fbcomment'=>'','votebutton'=>'');
+	
+	if(in_array('fblike',$switch)){
+		$plugins['fblike'] = $this->fblike($url);
 	}
 	
-	if($activeCampaign['media_has_vote']){
+	if(in_array('vote',$switch)){
 		$plugins['votebutton'] = $this->showVote($media);
 	}
 	
-	if($activeCampaign['media_has_fbcomment']){	
-		$plugins['fbcomment'] =	$this->fbcomment($fblike_href);
+	if(in_array('fbcomment',$switch)){	
+		$plugins['fbcomment'] =	$this->fbcomment($url);
 	}	
 	
 	return $plugins;	  

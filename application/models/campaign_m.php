@@ -14,10 +14,11 @@ Class Campaign_m extends CI_Model {
   
   public function getActiveCampaign()
   {
-    $sql = "SELECT * FROM campaign_group 
-			WHERE status = 'active' AND 
-		   ( startdate <= '".date('Y-m-d h:i:s')."' AND enddate >= '".date('Y-m-d h:i:s')."' ) AND 
-			APP_APPLICATION_ID = '".$this->setting_m->get('APP_APPLICATION_ID')."'  
+    $sql = "SELECT * 
+			FROM campaign_group 
+			WHERE status = 'active' 
+				  AND( startdate <= '".date('Y-m-d h:i:s')."' AND enddate >= '".date('Y-m-d h:i:s')."' ) 
+				  AND APP_APPLICATION_ID = '".$this->setting_m->get('APP_APPLICATION_ID')."'  
 			ORDER BY startdate DESC 
 			LIMIT 1";
 	  if($result = $this->db->get_row($sql,'ARRAY_A')){
@@ -29,22 +30,22 @@ Class Campaign_m extends CI_Model {
       return 	$result ? $result : null;
   }
   
-/*
-*
-*  Setup Status of Campaign
-*   
-*                ______________ON PROGRESS__________________________
-*   ___ON WAIT___                                                    ___IS OFF___
-*   
-*   -------------|---------------|------------------|---------------|-----------
-*              Start            Upload             Judging          End
-*                               End                Time
-*             
-*                ___CAN UPLOAD___
-*                _____________CAN VOTE______________
-*				                                    ___ON JUDGING___
-*
-*/
+/**
+ *
+ *  SETUP STATUS OF CAMPAIGN
+ *   
+ *                 _____________ON_PROGRESS__________________________
+ *   ___ON_WAIT___                                                    ___IS_OFF___
+ *   
+ *   -------------|---------------|------------------|---------------|------------
+ *              Start            Upload             Judging          End
+ *                               End                Time
+ *             
+ *                ___ON_UPLOAD____
+ *                ______________ON_VOTE______________
+ *				                                    ___ON_JUDGING___
+ *
+ **/
  
   public function getStatus($data)
   {

@@ -23,17 +23,16 @@ Class Campaign extends CI_Controller {
 	function lists(){
 	  require_once 'Pager/Sliding.php';
 	 
-	if(@$_POST['cid']){ 
-		 foreach($_POST['cid'] as $v){
-		  switch($_POST['task']){
-		   case 'activate': $this->campaign->setStatusCampaign($v,'active'); break;
-		   case 'deactivate': $this->campaign->setStatusCampaign($v,'inactive'); break;
-		   case 'delete': $this->campaign->removeCampaign($v); break;
-		  }
+		if(@$_POST['cid']){ 
+			 foreach($_POST['cid'] as $v){
+			  switch($_POST['task']){
+			   case 'activate': $this->campaign->setStatusCampaign($v,'active'); break;
+			   case 'deactivate': $this->campaign->setStatusCampaign($v,'inactive'); break;
+			   case 'delete': $this->campaign->removeCampaign($v); break;
+			  }
+			 }
 		 }
-	 }
 	  
-	  //echo "test";
 	    $sql_filter = "";
         //$config['path'] = APP_ADMIN_URL;
 		$config['totalItems'] = $this->db->get_var("SELECT COUNT(*) FROM campaign_group ".$sql_filter);
@@ -46,8 +45,6 @@ Class Campaign extends CI_Controller {
 		$data = $this->campaign->retrieveCampaign(NULL,array('limit_number' => $config['perPage'],'limit_offset' => --$from));
 		
 		$this->load->view('admin/campaign',array('data'=> $data,'pagination'=>$links));
-		
-		
 	}
 	
 	function exportlist($gid){
