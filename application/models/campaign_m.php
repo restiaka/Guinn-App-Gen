@@ -48,24 +48,19 @@ Class Campaign_m extends CI_Model {
  
   public function getStatus($data)
   {
-	  extract(date("Y-m-d H:i:s"));
-	  $o_nowdate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
+	  $o_nowdate = new DateTime(date("Y-m-d H:i:s")); 
 	  $nowTime = $o_nowdate->getTimestamp();
 	  
-	  extract($data['startdate']);
-	  $o_startdate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
+	  $o_startdate = new DateTime($data['startdate']); 
 	  $startTime = $o_startdate->getTimestamp();
 	  
-	  extract($data['upload_enddate']);
-	  $o_upload_enddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
+	  $o_upload_enddate = new DateTime($data['upload_enddate']); 
 	  $uploadEndTime = $o_upload_enddate->getTimestamp();
 	  
-	  extract($data['winner_selectiondate']);
-	  $o_judging = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
+	  $o_judging = new DateTime($data['winner_selectiondate']); 
 	  $judgingTime = $o_judging->getTimestamp();
 	  
-	  extract($data['enddate']);
-	  $o_enddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
+	  $o_enddate = new DateTime($data['enddate']); 
 	  $endTime = $o_enddate->getTimestamp();
 	  
 	  if($nowTime < $startTime){
