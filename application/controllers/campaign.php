@@ -40,11 +40,11 @@ Class Campaign extends CI_Controller {
 		$isFan = user_isFan();
 	 
 	    if($campaign = $this->campaign->getActiveCampaign()){
-			$form = (date('Y-m-d H:i:s') > $campaign['upload_enddate']) ? "Sorry! Your time for Uploading Media has ended. <Br/> Thank you." : $this->form->upload_media($campaign);
+			$form = $campaign['on_upload'] ? "Sorry! Your time for Uploading Media has ended. <Br/> Thank you." : $this->form->upload_media($campaign);
 		}else{
-			$form = 'Sorry No Contest Available Yet!'; 
+			show_404();
 		}
-
+		
 		$this->load->view('site/tab',array('campaign_info'=>$campaign,
 											'html_form_upload' => $form,
 										   'html_form_register' => $this->form->customer_register(),
@@ -74,7 +74,7 @@ Class Campaign extends CI_Controller {
 		$campaign = $this->campaign->getActiveCampaign();
 		$now = date('Y-m-d h:i:s');
 		$data = array();
-		if($campaign['upload_enddate'] >= $now){
+		if($campaign['on_judging']){
 		  //Get Winner
 		  if($media = $this->media->retrieveMedia(array('GID'=>$campaign['GID'],'media_winner' => 1))){
 			$data['media'] = $media;
@@ -128,7 +128,11 @@ Class Campaign extends CI_Controller {
 	  public function gallery()
 	  { 
 	   require_once 'Pager/Sliding.php';
-	   $active_campaign = $this->campaign->getActiveCampaign();
+	   if(!$active_campaign = $this->campaign->getActiveCampaign()){
+			show_404();
+	   }
+	   
+	   
 	   $sql_filter = "WHERE campaign_media.media_status = 'active' AND campaign_media.GID = ".$active_campaign['GID'];
 	   $sumPerCampaign = $this->ezsql_mysql->get_var("SELECT COUNT(*) FROM campaign_media ".$sql_filter);
         //$config['path'] = APP_ADMIN_URL;
@@ -150,7 +154,10 @@ Class Campaign extends CI_Controller {
   
 	  public function rules()
 	  {
-	    $campaign = $this->campaign->getActiveCampaign();
+	    if(!$campaign = $this->campaign->getActiveCampaign()){
+			show_404();
+		}
+		
 		$this->load->view('site/rules',array('campaign_info'=>$campaign,
 		'rules' => $campaign['campaign_rules'],
 		'notification' => $this->notify,'error' => $this->error,
@@ -158,25 +165,6 @@ Class Campaign extends CI_Controller {
 		));	
 	  }
 	  
-	  public function mechanism()
-	  {
-	   $campaign = $this->campaign->getActiveCampaign();
-	   $this->load->view('site/mechanism',array('campaign_info'=>$campaign,
-										'mechanism' => $campaign['campaign_mechanism'],
-										'notification' => $this->notify,
-										'error' => $this->error,
-										'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null)
-										));	
-	  }
 	  
-	  public function policy()
-	  {
-	   $campaign = $this->campaign->getActiveCampaign();
-	   $this->load->view('site/policy',array('campaign_info'=>$campaign,
-											'policy' => $campaign['campaign_policy'],
-											'notification' => $this->notify,
-											'error' => $this->error,
-											'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null)));	
-	  }
 
 }

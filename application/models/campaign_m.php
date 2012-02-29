@@ -20,10 +20,73 @@ Class Campaign_m extends CI_Model {
 			APP_APPLICATION_ID = '".$this->setting_m->get('APP_APPLICATION_ID')."'  
 			ORDER BY startdate DESC 
 			LIMIT 1";
-		$q = $this->db->get_row($sql,'ARRAY_A');						  
+	  if($result = $this->db->get_row($sql,'ARRAY_A')){
+	    $result = array_merge($result,$this->getStatus($result));
+	  }else{
+		$result = null;
+	  }	  
 
-      return 	$q ? $q : null;
+      return 	$result ? $result : null;
   }
+  
+/*
+*
+*  Setup Status of Campaign
+*   
+*                ______________ON PROGRESS__________________________
+*   ___ON WAIT___                                                    ___IS OFF___
+*   
+*   -------------|---------------|------------------|---------------|-----------
+*              Start            Upload             Judging          End
+*                               End                Time
+*             
+*                ___CAN UPLOAD___
+*                _____________CAN VOTE______________
+*				                                    ___ON JUDGING___
+*
+*/
+ 
+  public function getStatus($data)
+  {
+	  extract(date("Y-m-d H:i:s"));
+	  $o_nowdate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
+	  $nowTime = $o_nowdate->getTimestamp();
+	  
+	  extract($data['startdate']);
+	  $o_startdate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
+	  $startTime = $o_startdate->getTimestamp();
+	  
+	  extract($data['upload_enddate']);
+	  $o_upload_enddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
+	  $uploadEndTime = $o_upload_enddate->getTimestamp();
+	  
+	  extract($data['winner_selectiondate']);
+	  $o_judging = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
+	  $judgingTime = $o_judging->getTimestamp();
+	  
+	  extract($data['enddate']);
+	  $o_enddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
+	  $endTime = $o_enddate->getTimestamp();
+	  
+	  if($nowTime < $startTime){
+		$status = $this->setStatus(true,false,false,false,false,false);
+	  }elseif($nowTime >= $startTime && $nowTime < $uploadEndTime){
+	    $status = $this->setStatus(false,true,true,true,false,false);
+	  }elseif($nowTime >= $uploadEndTime && $nowTime < $judgingTime){
+	    $status = $this->setStatus(false,true,false,true,false,false);
+	  }elseif($nowTime >= $judgingTime && $nowTime < $endTime){
+	    $status = $this->setStatus(false,true,false,false,true,false);
+	  }else{
+	    $status = $this->setStatus(false,false,false,false,false,true);
+	  }
+	  
+	  return $status;
+  }
+  
+  public function setStatus($on_wait = false,$on_progress = false,$on_upload = false,$on_vote = false,$on_judging = false,$is_off = true){
+	return compact('on_wait','on_progress','on_upload','on_vote','on_judging','is_off');
+  }
+  
   
   public function getByAppId()
   {
