@@ -555,8 +555,8 @@
 	$GID = $form->addElement('select','GID','',array('options'=>$cmp_options));
 	$GID->addRule('required', 'Campaign is required', null,HTML_QuickForm2_Rule::SERVER);
 	
-		$form->addElement('static','','',array('content'=>'<b>Publish Date</b>'));
-	$date_set = $gid ? array('format'=>'dFY His','maxYear'=>date('Y')) : array('format'=>'dFY His','minYear'=>date('Y'),'maxYear'=>date('Y')+1);
+	$form->addElement('static','','',array('content'=>'<b>Publish Date</b>'));
+	$date_set = $page_id ? array('format'=>'dFY His','maxYear'=>date('Y')) : array('format'=>'dFY His','minYear'=>date('Y'),'maxYear'=>date('Y')+1);
 		
 	$page_publish_date = $form->addElement('group');	 
 	$page_publish_date->addElement('date','page_publish_date','',$date_set,'style="width:100px;"');
@@ -679,8 +679,8 @@
 
 		$form->addElement('static','','',array('content'=>'<b>Upload Header Image for your Campaign ? (image width will be resize to 400px)</b>'));
 		$r_file = $form->addElement('file','image_header_uploadfile','size="80"');
-		$r_file->addRule('mimetype', $label.' is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
-		$r_file->addRule('maxfilesize', $label.' filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
+		$r_file->addRule('mimetype', 'Image is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
+		$r_file->addRule('maxfilesize', 'Image filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
 		
 		if($gid){
 			$form->addElement('static','','',array('content'=>'<img src="'.site_url('image/campaign')."?src=".$campaign['image_header'].'">'));
@@ -691,7 +691,7 @@
 		$form->addElement('static','','',array('content'=>'<b>When will your campaign will start ?</b>'));
 		$startdate_group = $form->addElement('group');	 
 		$startdate_group->addElement('date','startdate','',$date_set,'style="width:100px;"');
-		$startdate_group->addRule('callback','Start Date with this Facebook App Name/ID cannot be Overlap with other Campaigns','callback_validateAppIDRangeDate');
+		$startdate_group->addRule('callback','Start Date with this Facebook App Name/ID cannot be Overlap with other Campaigns','callback_validateStartDate');
 		
 		$form->addElement('static','','',array('content'=>'<b>When will Upload end ?</b>'));
 		$upload_enddate_group = $form->addElement('group');	 
@@ -702,7 +702,6 @@
 		$form->addElement('static','','',array('content'=>'<b>Judging and Announcement before campaign end ?</b>'));
 		$winner_selectiondate_group = $form->addElement('group');	 
 		$winner_selectiondate_group->addElement('date','winner_selectiondate','',$date_set,'style="width:100px;"');		
-		$winner_selectiondate_group->addRule('callback','Date must be longer than upload end date','callback_validateEndDate');
 		$winner_selectiondate_group->addRule('callback','Date must be shorter or the same as end date','callback_validateWinnerDate');
 
 		

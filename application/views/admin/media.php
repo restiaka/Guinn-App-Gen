@@ -13,28 +13,28 @@
 				</div>
 				
 				<div class="grid_4 omega" >
-					<form name="search" method="POST">
+					<form name="search" method="POST" action="<?=site_url('admin/media/lists')."?pageID=1"?>">
 					<div style="margin-bottom:10px;"><input type="submit" style="width:220px;" value="Go Filter"></div>
 					<div style="margin-bottom:10px;">
 					<select name="byorder" style="width:220px;">
 						<option value="">Order by?</option>
-						<option value="mostvoted" <?=($_REQUEST['byorder'] == 'mostvoted' ? "selected='selected'" : "");?>>Most Voted</option>
-						<option value="lessvoted" <?=($_REQUEST['byorder'] == 'lessvoted' ? "selected='selected'" : "");?>>Less Voted</option>
+						<option value="mostvoted" <?=($this->input->get_post('byorder', TRUE) == 'mostvoted' ? "selected='selected'" : "");?>>Most Voted</option>
+						<option value="lessvoted" <?=($this->input->get_post('byorder', TRUE) == 'lessvoted' ? "selected='selected'" : "");?>>Less Voted</option>
 					</select>
 					</div>
 					<div style="margin-bottom:10px;">
 					<select name="bystatus" style="width:220px;">
 								<option value="" >Pick Status?</option>
-								<option value="active" <?=($_REQUEST['bystatus'] == 'active' ? "selected='selected'" : "");?>>Active</option>
-								<option value="banned" <?=($_REQUEST['bystatus'] == 'banned' ? "selected='selected'" : "");?>>Banned</option>
-								<option value="pending" <?=($_REQUEST['bystatus'] == 'pending' ? "selected='selected'" : "");?>>Pending</option>
+								<option value="active" <?=($this->input->get_post('bystatus', TRUE) == 'active' ? "selected='selected'" : "");?>>Active</option>
+								<option value="banned" <?=($this->input->get_post('bystatus', TRUE) == 'banned' ? "selected='selected'" : "");?>>Banned</option>
+								<option value="pending" <?=($this->input->get_post('bystatus', TRUE) == 'pending' ? "selected='selected'" : "");?>>Pending</option>
 					</select>
 					</div>
 					<div style="margin-bottom:10px;">
 					<select name="bycampaign" size="100" style="width:220px;">				
-					<option value="" <?=(!$_REQUEST['bycampaign'] ? "selected='selected'" : "");?> >All Campaign</option>
+					<option value="" <?=(!$this->input->get_post('bycampaign', TRUE) ? "selected='selected'" : "");?> >All Campaign</option>
 					<?php foreach($campaigns as $row):?>
-					<option value="<?=$row['GID']?>" <?=($_REQUEST['bycampaign'] == $row['GID'] ? "selected='selected'" : "");?>><?=$row['title']?></option>
+					<option value="<?=$row['GID']?>" <?=($this->input->get_post('bycampaign', TRUE) == $row['GID'] ? "selected='selected'" : "");?>><?=$row['title']?></option>
 					<?php endforeach;?>
 					</select>
 					</div>
@@ -47,7 +47,7 @@
 				<div class="grid_12">
 
 				<?php 
-				$qs = http_build_query(array('pageID'=>@$_REQUEST['pageID'],'byuid'=>@$_REQUEST['byuid'],'bycampaign'=>@$_REQUEST['bycampaign'],'bystatus'=>@$_REQUEST['bystatus']));
+				$qs = http_build_query(array('pageID'=>@$this->input->get_post('pageID', TRUE),'byuid'=>@$this->input->get_post('byuid', TRUE),'bycampaign'=>@$this->input->get_post('bycampaign', TRUE),'bystatus'=>@$this->input->get_post('bystatus', TRUE)));
 				?>
 				<form name="adminform" method="POST" action="<?=site_url('admin/media/lists').($qs ? '?'.$qs : '')?>">
 					<table>
@@ -70,7 +70,7 @@
 							</tr>
 						</tfoot>
 						<tbody>
-						<?php if($data): $i = $offset ? $offset : $idx; $this->load->model('media_m');$this->load->model('campaign_m');?>
+						<?php if($data): $i = isset($offset) ? $offset : $idx; $this->load->model('media_m');$this->load->model('campaign_m');?>
 							<?php  foreach($data as $v): ?>
 								<tr>
 								 <td style="padding:2px;vertical-align:top;<?=$v['media_winner'] ? 'background-color:#A1EAB3;' : ''?>"><input style="width:5px" type="checkbox" name="cid[]" value="<?=$v['media_id']?>"/></td>
@@ -82,7 +82,7 @@
 										<br/>
 										<a href="<?=$v['media_url']?>" target="_blank">Link</a>
 										<?php $u = getFacebookUser($v['uid']);?>
-										<a href="<?=$u->link?>" target="_blank">Author</a>
+										<a href="http://www.facebook.com/profile.php?id=<?=$v['uid']?>" target="_blank">Author</a>
 										</div>
 										<div id="mediacaption" style="width:165px;float:left;">
 										<?=$v['media_description']?>

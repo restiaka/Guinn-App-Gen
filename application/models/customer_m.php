@@ -154,7 +154,7 @@ Class Customer_m extends CI_Model{
 		  }
 		}
 		
-		if(count($where)>0)
+		if(isset($where) && count($where)>0)
 			$sql .= " WHERE ".implode(" AND ",$where);
 		
 		$sql .= " ORDER BY ".$orderby." ".$order;
@@ -234,7 +234,8 @@ Class Customer_m extends CI_Model{
 							'EMAILOPT',
 							'ACTIVE',
 							$this->setting_m->get('TRAC_ATTR_FBUID'),
-							$this->setting_m->get('TRAC_ATTR_GID'));
+							$this->setting_m->get('TRAC_ATTR_GID'),
+							$this->setting_m->get('TRAC_ATTR_MOBILE2'));
 	   } 
 	   
 		$i=0;
@@ -257,7 +258,7 @@ Class Customer_m extends CI_Model{
 			 case 'SMSOPT': if($value == 'I')$value = 'opt-in';
 							elseif($value == 'O')$value = 'opt-out';
 							elseif($value == 'B')$value = 'opt-out blocked';
-							elseif($value == 'U')$value = 'undefined';
+							elseif($value == 'U')$value = 'Not Set';
 							else $value = 'unknown';break;
 			 case 'ACTIVE' : if($value=='T')$value = 'Active';
 							 elseif($value=='F')$value = 'Not Active';

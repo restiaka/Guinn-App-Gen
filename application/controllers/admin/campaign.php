@@ -23,9 +23,9 @@ Class Campaign extends CI_Controller {
 	function lists(){
 	  require_once 'Pager/Sliding.php';
 	 
-		if(@$_POST['cid']){ 
-			 foreach($_POST['cid'] as $v){
-			  switch($_POST['task']){
+		if(@$this->input->post('cid')){ 
+			 foreach($this->input->post('cid') as $v){
+			  switch($this->input->post('task')){
 			   case 'activate': $this->campaign->setStatusCampaign($v,'active'); break;
 			   case 'deactivate': $this->campaign->setStatusCampaign($v,'inactive'); break;
 			   case 'delete': $this->campaign->removeCampaign($v); break;
@@ -39,7 +39,7 @@ Class Campaign extends CI_Controller {
 		$config['perPage'] = 20; 
 		$config['urlVar'] = 'pageID';
 		$pager = new Pager_Sliding($config);
-		$links = $pager->getLinks(@$_GET['pageID']);
+		$links = $pager->getLinks(@$this->input->get('pageID'));
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		$data = $this->campaign->retrieveCampaign(NULL,array('limit_number' => $config['perPage'],'limit_offset' => --$from));

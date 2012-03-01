@@ -81,7 +81,7 @@ Class Traction {
 	
 	private function makeRequest($url,$params)
 	{
-	  if (!$ch) {
+	  if (!isset($ch)) {
 		$ch = curl_init();
 	  }
 	  

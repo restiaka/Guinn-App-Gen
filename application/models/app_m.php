@@ -88,14 +88,14 @@ Class App_m extends CI_model {
 		  }
 		}
 		
-		if(count($where)>0)
+		if(isset($where) && count($where)>0)
 			$sql .= " WHERE ".implode(" AND ",$where);
 		
 		$sql .= " ORDER BY ".$orderby." ".$order;
 
-		if($limit_number && $limit_offset)
+		if(isset($limit_number) && isset($limit_offset))
 			$sql .= " LIMIT ".$limit_offset.",".$limit_number;
-		elseif($limit_number)
+		elseif(isset($limit_number))
 			$sql .= " LIMIT ".$limit_number;
 
 	  return $this->db->get_results($sql,'ARRAY_A');

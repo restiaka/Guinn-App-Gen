@@ -22,9 +22,9 @@ Class App extends CI_Controller {
 	function lists(){
 	  require_once 'Pager/Sliding.php';
 	 
-	if($_POST['cid']){ 
-		 foreach($_POST['cid'] as $v){
-		  switch($_POST['task']){
+	if($this->input->post('cid')){ 
+		 foreach($this->input->post('cid') as $v){
+		  switch($this->input->post('task')){
 		   case 'delete': $this->app->remove($v); break;
 		   case 'dispatch': $this->app->dispatch($v); break;
 		  }
@@ -38,7 +38,7 @@ Class App extends CI_Controller {
 		$config['perPage'] = 20; 
 		$config['urlVar'] = 'pageID';
 		$pager = new Pager_Sliding($config);
-		$links = $pager->getLinks($_GET['pageID']);
+		$links = $pager->getLinks($this->input->get('pageID'));
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		$data = $this->app->retrieve(NULL,array('limit_number' => $config['perPage'],'limit_offset' => --$from));
