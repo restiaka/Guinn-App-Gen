@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: guinnessapp
 Target Host: localhost
 Target Database: guinnessapp
-Date: 3/2/2012 9:48:59 PM
+Date: 3/2/2012 9:55:30 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -96,7 +96,7 @@ CREATE TABLE `campaign_group` (
   PRIMARY KEY (`GID`),
   UNIQUE KEY `campaign_code` (`code`),
   UNIQUE KEY `APP_APPLICATION_ID` (`APP_APPLICATION_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for campaign_group_assets
@@ -188,7 +188,4 @@ INSERT INTO `campaign_app` VALUES ('201876996523314', '201876996523314', '364639
 INSERT INTO `campaign_app` VALUES ('282088055180043', '282088055180043', 'a00334433dd5a7e5acd5f86f7c12928a', 'http://apps.facebook.com/guinnidgentestone/', 'http://guinnessapp.dev/campaign/canvas/282088055180043/', 'Guinness App Dev', 'publish_stream,email,user_birthday,user_hometown,user_interests,user_likes', 'http://www.facebook.com/guinnessindonesia', '0');
 INSERT INTO `campaign_customer` VALUES ('730189516', '74881399', 'active');
 INSERT INTO `campaign_customer_fbauthorization` VALUES ('730189516', '282088055180043', '2012-02-21 09:07:34', null, '1', 'AAAEAjr5TCwsBALZBy18E0TZAqUDCa5rtDjXnYMbryraxfOKTZAcH60I1CCV7LPqmJkRsrAkGjz78GIlcwRB34BzY7NxuLIrGa5PCjfZAWwZDZD');
-INSERT INTO `campaign_group` VALUES ('1', 'Testing Campaign', 'its a test', '2012-02-01 00:00:00', '2012-06-27 00:00:00', '2012-06-29 00:00:00', '0000-00-00 00:00:00', 'active', null, 'youtube', 'video', 'media_source=Upload Content Here&media_description=It\'s About', 'image/gif,image/jpeg,image/pjpeg,image/png', 'No Rules defined yeah', '', 'No Policy defined yeah', '', '', '201876996523314', 'gwsopphotocontest', '1', '1', '1', '0', 'c56b26c68601d05f8788b15d6c4e99c8.jpg', '0', '0');
-INSERT INTO `campaign_group` VALUES ('3', 'Campaign Lagi Coba', 'Campaign Lagi Coba', '2011-05-10 00:00:00', '2011-06-30 16:10:46', '2011-09-13 00:00:00', '0000-00-00 00:00:00', 'active', null, 'file', 'image', 'media_source=Upload Content Here&media_description=About', 'image/gif,image/jpeg,image/pjpeg,image/png', '&lt;ul&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;/ul&gt;', '&lt;ul&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;/ul&gt;', '&lt;ul&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;li&gt;asdfasdfasdfasdfasfasdfasdf&lt;/li&gt;\n&lt;/ul&gt;', '', '', '', 'gwsopphotocontest', '1', '1', '1', '0', null, '0', '0');
-INSERT INTO `campaign_group` VALUES ('10', 'Campaign app new dev', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere.', '2012-01-30 00:00:00', '2012-02-25 00:00:00', '2012-03-13 00:00:00', '2012-03-06 00:00:00', 'active', null, 'file', 'image', 'media_source=Upload Content Here&media_description=It\'s About', 'image/gif,image/jpeg,image/pjpeg,image/png', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere.</p>', null, '', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet lorem orci, id pretium augue. Pellentesque vitae justo est. In hac habitasse platea dictumst. Quisque sagittis viverra sapien non tincidunt. Morbi id massa tellus. Proin in risus at enim rutrum posuere.\r\n\n\r\n\n', null, '282088055180043', null, '1', '1', '0', '1', '35bdfa45dee1f1ea34258fbf9623e34f.jpg', '1', '1');
 INSERT INTO `campaign_user` VALUES ('1', null, 'Admin', 'admin@demo.com', '76a2173be6393254e72ffa4d6df1030a', 'administrator', 'active', null, null, null);
