@@ -1,0 +1,195 @@
+/**
+**Guinness - GUINNESS GENERIC APPS MOBILE VERSION
+ @author      Zoeldt <zoel@think.web.id>
+ @version     1.0
+ @copyright   Copyright (c) 2012,Think Web
+**/
+/*reset*/
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,img,strong,b,u,i,ol,ul,li,fieldset,form,label,table,tbody,tfoot,thead,tr,th,td,/*aditional*/input[type=text],input[type=submit]{margin:0;padding:0;border:0;outline:0;font-size:100%;font:inherit;vertical-align:baseline}
+body{line-height:1}
+ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+ins{text-decoration:none}
+del{text-decoration:line-through}
+table{border-collapse:collapse;border-spacing:0}
+strong{font-weight:bold}
+/*clearfix*/
+.clearfix:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}
+.clearfix{display:block}
+html[xmlns] .clearfix{display:block}
+* html .clearfix{height:1%}
+
+/*text rule*/
+body{font:12px Arial,Helvetica,sans-serif;line-height:normal;color:#fff;letter-spacing:0px}
+a{text-decoration:none;color:#cc9e50}
+a:hover{color:#f0c984}
+a:focus{outline:none}
+em{font-style:italic}
+p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:0px}
+ol{margin-left:20px}
+ol li,ul li{margin:0}
+p{margin-bottom:13px}
+h1{font-size:25px;line-height:30px}
+h2{font-size:18px;line-height:18px;margin-bottom:13px}
+h3{font-size:16px;margin-bottom:10px;font-weight:bold}
+
+/*general*/
+#container{width:320px;margin:0 auto;background:#090909;position:relative}
+.main{position:relative;margin:10px 0 10px}
+.main > .inner{padding:0 10px}
+#header{position:relative;padding:10px}
+.main-header{font-size:30px;text-align:center;text-transform:uppercase;font-weight:bold;background:url(../img/line-m.png) no-repeat center 100%;padding:0 0 10px;margin:0 0 30px}
+.padding-inside{padding:0 10px}
+
+/*header*/
+#top-banner{display:block;text-align:center;max-width:480px}
+#top-banner img{vertical-align:top;height:auto !important;max-width:100%}
+#main-nav{background:url(../img/lines/line1.png) no-repeat center bottomfont-size:14px}
+#main-logo{text-indent:-999em;background:url(../img/guinness-logo.png) no-repeat 0 0;width:266px;height:138px;display:block;margin:0 auto}
+
+/*box & text*/
+.box{margin:0 auto 20px;background:#1b1b1b url(../img/lines/line2.png) no-repeat bottom center;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;-moz-box-shadow:0 2px 6px rgba(0,0,0,0.5);-webkit-box-shadow:0 2px 6px rgba(0,0,0,0.5);box-shadow:0 2px 6px rgba(0,0,0,0.5)}
+.box.box-m{width:400px}
+.box.box-l{width:480px}
+.box p{margin:0 0 7px}
+.box > .inner{padding:20px}
+html .gold{color:#b59859}
+.text ol,.text ul{margin-bottom:20px}
+.text li{margin-bottom:10px}
+.title{margin:0 0 18px}
+
+.pagination{text-align:center}
+.pager li{}
+.pager a{background-image:url(../img/pager.png);background-repeat:no-repeat;background-color:#090909;display:block;line-height:46px;font-weight:bold;font-size:14px;color:#fff}
+.pager .next a{background-position:right 0;padding-left:50%}
+.pager .next a:hover{background-position:right -46px}
+.pager .prev a{background-position:left -92px;padding-right:50%;text-align:right}
+.pager .prev a:hover{background-position:left -138px}
+.winner{background:#555 url(../img/gradient-ver.png) repeat-x 0 100%;width:480px;margin:0 auto}
+.winner-list{border:1px solid #b3b3b3;padding:20px}
+.winner-list li{padding:0 0 10px;border-bottom:1px dashed #b3b3b3;margin:0 0 10px}
+
+/*footer*/
+#footer{position:relative;background:url(../img/lines/line1.png) no-repeat center 0;padding:20px 0 15px;font-size:11px}
+#footer a{color:#fff;text-decoration:none}
+#footer ul{text-align:center}
+#footer li{margin:0 15px 0 0;display:inline}
+
+/*form*/
+form{font-size:14px}
+form .input-wrapper{display:block;margin:0 0 5px}
+form label{width:100px;text-align:left;clear:both;display:block;font-weight:bold}
+form input.input-text,form textarea{border:2px solid #f0c984;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;-moz-box-shadow:inset 0 3px 6px #777;-webkit-box-shadow:inset 0 3px 6px #777;box-shadow:inset 0 3px 6px #777;padding:7px;width:280px}
+form input.input-submit{width:100%;font-weight:bold}
+.button{background:#919191 url(../img/gr1.png) repeat-x 0 0;padding:0 10px;display:block;height:46px;display:block;font-weight:bold;line-height:46px;font-size:14px;position:relative}
+.button:hover{background:#f0c984}
+.button.gold{background:#919191 url(../img/gr1.png) repeat-x 0 0;color:#000}
+.button.black{background:url(../img/gr2.png) repeat-x 0 0;height:46px;line-height:46px;color:#fff;font-weight:bold}
+.button.black:hover{background:url(../img/gr1.png) repeat-x 0 0;color:#000}
+.button:active{-moz-box-shadow:inset 0 3px 6px #777;-webkit-box-shadow:inset 0 3px 6px #777;box-shadow:inset 0 3px 6px #777}
+a.button i{width:9px;height:14px;display:block;background:url(../img/arrow.png) no-repeat 0 0;position:absolute;top:16px;right:20px}
+a.button:hover i{background-position:0 100%}
+
+.submit{position:relative;top:5px}
+.submit > input[type=submit]{background:url(../img/submit.jpg) no-repeat 0 0;display:block;height:21px;width:21px;text-indent:-999em;border:none;padding:0}
+input[type=submit]:hover{cursor:pointer;opacity:1}
+
+/*#home*/
+.main-banner{text-align:center}
+.main-banner img{vertical-align:top}
+
+/*#success*/
+#success{}
+#success-text{margin:0 0 20px}
+#success .button{margin:0 0 15px}
+
+
+/*gallery*/
+.main#gallery{margin-top:0}
+.gallery-list{clear:both}
+.thumbnail{position:relative;float:left;margin:0 15px 0 0}
+.thumbnail img{border:1px solid #fff;background:#fff}
+.see-more{background:transparent url(../img/transparent1.png) repeat 0 0;position:absolute;top:0;left:0;height:102px;width:102px;opacity:0}
+.see-more i{background:#f0c984;color:#fff;display:inline-block;font-weight:bold;opacity:0.6;padding:2px 3px;vertical-align:super;margin:45px 0 0;font-size:10px;color:#000}
+.see-more i:hover{opacity:1}
+.gallery{text-align:center}
+.gallery-list{margin:0 0 1px}
+.gallery-list li{margin:0 0 1px}
+.gallery-list img{vertical-align:top;background:#121212}
+.gallery-list a{display:block;background:#2d2d2d;padding:10px;color:#fff;height:105px}
+.gallery-list a:hover{background:#444}
+.vote{font-weight:bold}
+.gallery-list .owner{margin:0 0 7px}
+.owner{font-size:12px;font-weight:bold}
+.owner a{color:#fff}
+
+/*breadcrumb*/
+.breadcrumb{padding:0 0 0 10px;background:url(../img/gr3.png) repeat-x 0 0;height:28px}
+.breadcrumb li{display:inline;color:#fff;line-height:28px;font-weight:bold}
+.breadcrumb a{margin:0 5px 0 0;padding:0 5px 0 0;border-right:1px solid #cc9e50}
+
+.top-panel{background:#090909;border-top:1px solid #090909;border-bottom:1px solid #090909;padding:0 5px 0 0}
+.user-panel-link{width:40%;float:left}
+.user-panel-link a{dislay:block;height:30px;line-height:30px}
+.sort-list{float:right;margin:5px 0 0}
+.user-panel{clear:both;display:block;margin:0 0 20px;position:relative}
+.main-wrapper > .inner{background:#2d2c2b;padding:20px;clear:both;display:block;margin:0 0 20px}
+.user-panel .thumbnail{float:left;margin:0 15px 0 0}
+.user-panel .vote{margin:0 0 10px;font-size:14px}
+.user-panel .button{color:#000}
+.hide{position:absolute;top:10px;right:10px}
+
+/*detail*/
+#detail.main{margin-top:0}
+.media-info{margin:0 0 5px;display:block}
+.media-info .vote{font-size:14px;padding:3px 7px;margin:0 5px 0 0;line-height:27px}
+.media-info #form-vote input{padding:6px 23px}
+.media-info > div{float:right}
+.media-wrapper{clear:both;margin:0 0 3px}
+.media-wrapper .thumbnail{background:#000;text-align:center;word-wrap:break-word;margin:0}
+.media-wrapper img{border:none;vertical-align:top;width:100%;max-width:100%;height:auto}
+.info li{border-bottom:1px solid #666;padding:5px 0 5px}
+.info li > div{padding:0 10px} 
+.about-media{color:#666;margin:0 0 5px}
+.uploader{overflow:auto}
+.uploader img{float:left;display:block;margin:0 7px 0 0}
+.posted-by{font-size:9px}
+
+
+/*winner*/
+.main#winner-gallery{margin-top:0}
+.list-winner{text-align:center}
+.list-winner > div:last-child{height:auto}
+.win-wrapper{border-bottom:1px solid #666;padding:15px 0 15px;width:100%;display:inline-block;height:auto;vertical-align:top}
+.win-wrapper:hover{background:#242424}
+.w{text-align:center;margin:auto}
+.win-list li{display:inline-block;margin:0 2px 2px 0}
+.win-list .ny,.win-list .won a{width:22px;height:27px;display:inline-block;background-image:url(../img/harp.png);background-repeat:no-repeat;text-indent:-999em}
+.win-list .won a{background-position:0 0;opacity:0.6}
+.win-list .won a:hover{opacity:1}
+.win-list .ny{background-position:0 100%}
+.other-winner{display:inline-block}
+.other-outlet .win-wrapper{width:100%;height:auto}
+.list-item{clear:both;margin:0 0 10px}
+.list-item > div{float:left}
+.list-item .left-content{width:21%}
+.list-item .right-content{width:74%}
+.list-item .right-content{margin-left:5%}
+.left-content h4{font-size:14px}
+
+/*text-format*/
+.text-format{padding:0 10px}
+.text-format ul,.text-format ol,.text-format li,.text-format p{margin:0 0 10px}
+.text-format ol,.text-format ul{margin:0 0 15px 20px}
+.text-format ol{list-style:outside decimal}
+.text-format ul{list-style:outside disc}
+
+.left{float:left}
+.right{float:right}
+.center{text-align:center}
+.hidden{display:none}
+.invisible{visibility:hidden}
+.relative{position:relative}
+.clear{clear:both}
+.center{text-align:center}

@@ -32,10 +32,7 @@
 
    //Check for facebook session , redirect to Login Url for unauthorized user
    if ($facebook->getUser()) {
-	   //echo '<a href="'.$loginUrl.'" style="font-weight:bold;font-size:15px;">Click here to Authorize</a>';
-	   echo $logoutUrl;
-	    
-	   exit;
+	   echo '<a href="'.$logoutUrl.'" data-inline="true" data-role="button" data-icon="delete" data-theme="a">Logout</a>';
 	}
  }	
 

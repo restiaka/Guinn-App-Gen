@@ -24,5 +24,5 @@
 	
 	<div data-role="controlgroup" data-type="horizontal">
 	<a href="<?=mobile_menu_url()?>" data-inline="true" data-role="button" data-icon="home" data-theme="b">Home</a>
-	<a href="<?=mobile_logoutUrl()?>" data-inline="true" data-role="button" data-icon="delete" data-theme="a">Logout</a>
+	<?=mobile_logoutUrl()?>
 	</div>
