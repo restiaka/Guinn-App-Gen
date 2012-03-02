@@ -64,7 +64,11 @@ $autoload['libraries'] = array('auth','session','user_agent','mobiledetection');
 |	$autoload['helper'] = array('url', 'file');
 */
 
+<<<<<<< HEAD
+$autoload['helper'] = array('url','app','facebook','mobile');
+=======
 $autoload['helper'] = array('url','app','facebook','mobilefacebook');
+>>>>>>> 07f30bb2aa4546128c02fc6f98d51cb905e58590
 
 
 /*

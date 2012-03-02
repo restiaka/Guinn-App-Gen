@@ -14,6 +14,14 @@
 			});
 	fbApiInitialized = true;
 	FB.Canvas.setAutoGrow(91);
+	
+	FB.Event.subscribe('auth.login', function(response) {
+	  window.top.location.reload();
+	});
+	
+	FB.Event.subscribe('auth.logout', function(response) {
+	  window.top.location.reload();
+	});
   };
   
   function fbRequireLogin(dialogType,redirectURL)
@@ -194,23 +202,31 @@
     }
   }
   
-  function fbDialogLogin(dialogType,redirectURL,displayDialog)
+  function fbDialogLogin(dialogType,redirectURL)
   {
    var dialogType = dialogType || "fb_login";
-   var displayDialog = displayDialog || "page";
    fbEnsureInit(function(){
 				switch(dialogType){
 				  case "fb_login" : FB.login(function(response) {
 									   if (response.authResponse) {
-									       if(redirectURL) 
+									   //alert('Authorized ok');
+									   //window.top.location.reload();
+											//if(redirectURL) 
 											 window.top.location.href = redirectURL;
 									   } else {
-										 
+										 alert('Authorized user only');
 									   }
-									}, {scope: APP_EXT_PERMISSIONS,display: displayDialog });	
+									}, {scope: APP_EXT_PERMISSIONS});	
 									break;
 				}	
    });
   }
+  
+function mobile_logout()
+ {
+   FB.logout(function(response)){
+	windows.location.reload();
+	});
+ }
   
 </script>

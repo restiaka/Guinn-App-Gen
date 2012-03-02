@@ -1,0 +1,22 @@
+<?php
+
+function mobile_authorizeButton($text = 'Click here to Authorize'){
+   $CI = &get_instance();
+   $CI->load->model('setting_m');
+	
+   $api_key = $CI->setting_m->get('APP_API_KEY');
+   $interstitial_page = "https://guinnessapp.dev/index.php/mobile/282088055180043"; //URL with no 3rd party apps
+
+   $url='http://www.facebook.com/login.php?api_key=' . $api_key  
+   . '&session_version=3&next=' . urlencode($interstitial_page)
+   . '&v=1.0&return_session=1&fbconnect=1'
+   . '&cancel_url=' . urlencode($interstitial_page);
+
+   return("<a href='" . $url . "'>"
+   . "<img src='http://static.ak.facebook.com/images/"
+   . "devsite/facebook_login.gif'></a>");
+	
+	return null;
+}
+
+?>
