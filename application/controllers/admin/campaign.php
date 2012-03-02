@@ -29,6 +29,8 @@ Class Campaign extends CI_Controller {
 			   case 'activate': $this->campaign->setStatusCampaign($v,'active'); break;
 			   case 'deactivate': $this->campaign->setStatusCampaign($v,'inactive'); break;
 			   case 'delete': $this->campaign->removeCampaign($v); break;
+			   case 'announcewinner' : $this->campaign->announceWinner($v,'1'); break;
+			   case 'haltwinner' : $this->campaign->announceWinner($v,'0'); break;
 			  }
 			 }
 		 }
@@ -36,10 +38,11 @@ Class Campaign extends CI_Controller {
 	    $sql_filter = "";
         //$config['path'] = APP_ADMIN_URL;
 		$config['totalItems'] = $this->db->get_var("SELECT COUNT(*) FROM campaign_group ".$sql_filter);
-		$config['perPage'] = 20; 
+		$config['perPage'] = 50; 
 		$config['urlVar'] = 'pageID';
+		$pageID = $this->input->get('pageID') ? $this->input->get('pageID') : 1;
 		$pager = new Pager_Sliding($config);
-		$links = $pager->getLinks(@$this->input->get('pageID'));
+		$links = $pager->getLinks($pageID);
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		$data = $this->campaign->retrieveCampaign(NULL,array('limit_number' => $config['perPage'],'limit_offset' => --$from));

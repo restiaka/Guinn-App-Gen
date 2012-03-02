@@ -215,4 +215,9 @@ Class Campaign_m extends CI_Model {
   {
    return $this->db->update('campaign_group', array('status'=>$status), array('GID'=>$gid));
   }
+  
+  public function announceWinner($gid,$status)
+  {
+   return $this->db->update('campaign_group', array('winner_announced'=>$status), array('GID'=>$gid));
+  }
 }

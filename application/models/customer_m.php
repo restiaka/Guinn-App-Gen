@@ -50,7 +50,7 @@ Class Customer_m extends CI_Model{
 	
 	$ok = $this->db->insert('campaign_customer',$db_data,$extra_sql);
 	
-
+	
 	
 	if($this->db->result){
 	 if(!$this->isAppAuthorized()){
@@ -275,6 +275,35 @@ Class Customer_m extends CI_Model{
   public function setStatus($gid,$status)
   {
    return $this->db->update('campaign_customer', array('status'=>$status), array('uid'=>$gid));
+  }
+  
+  public function getCampaign_byCustomerApp($facebook_uid)
+  {
+   $sql = "SELECT
+			campaign_group.title,
+			campaign_group.GID
+			FROM
+			campaign_customer_fbauthorization
+			Inner Join campaign_group ON campaign_customer_fbauthorization.APP_APPLICATION_ID = campaign_group.APP_APPLICATION_ID
+			WHERE
+			campaign_customer_fbauthorization.uid = $facebook_uid";
+	return $this->db->get_results($sql,'ARRAY_A');		
+  }
+  
+  public function getCampaign_byCustomerMedia($facebook_uid,$clause = array())
+  {
+   
+   $sql = "SELECT
+			campaign_group.GID,
+			campaign_group.title,
+			campaign_media.media_winner
+			FROM
+			campaign_group
+			Inner Join campaign_media ON campaign_group.GID = campaign_media.GID
+			Inner Join campaign_media_owner ON campaign_media.media_id = campaign_media_owner.media_id
+			WHERE
+			campaign_media_owner.uid = $facebook_uid";
+	return $this->db->get_results($sql,'ARRAY_A');				
   }
   
   public function isRegistered()

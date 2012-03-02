@@ -175,6 +175,7 @@
 	define('CUSTOMER_IMAGE_DIR',ROOT_DIR.'assets/customer/img/');
 	define('CUSTOMER_VIDEO_DIR',ROOT_DIR.'assets/customer/vid/');	
 	define('CAMPAIGN_IMAGE_DIR',ROOT_DIR.'assets/campaign/img/');	
+	define('CAMPAIGN_ASSETS_DIR',ROOT_DIR.'assets/campaign/img/');	
 	
 	
 	

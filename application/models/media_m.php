@@ -97,8 +97,9 @@ Class Media_m extends CI_Model {
      return "<fb:like href='$href' $attr ></fb:like>";
   }
   
-  function setOpenGraphMeta($meta){
-    if(!is_array($meta))$meta = array();
+  function setOpenGraphMeta(array $meta){
+    if(count($meta) <= 0)return null;
+	$meta_tag = "";
 	foreach ($meta as $key => $value)
 		$meta_tag .= '<meta property="og:'.$key.'" content="'.$value.'"/> ';
 	$meta_tag .= '<meta property="fb:app_id" content="'.$this->setting_m->get('APP_APPLICATION_ID').'"/> ';	
@@ -117,8 +118,8 @@ Class Media_m extends CI_Model {
    if(!is_array($media)){
      $media = array();
    }
-
-    if(count($media)>0):
+  $html = "";
+    if(isset($media) && count($media)>0):
 		$html .=  '<ul class="gallery-list">';
 		foreach($media as $row):
 		$html .= '<li>'.
@@ -139,10 +140,10 @@ Class Media_m extends CI_Model {
 
 
 
-  function gallery_deprecated($media,$pagination = null,$use_default_style = true){
+  function gallery_deprecated(array $media,$pagination = null,$use_default_style = true){
 
-   if(!is_array($media)){
-     $media = array();
+   if(count($media) <= 0){
+     return null;
    }
 	$default_style = '#media_container_wrapper {width:100px;height:140px;float:left;}
 					  #media_container_thumb {height:100px;}
@@ -151,8 +152,9 @@ Class Media_m extends CI_Model {
 					  #media_gallery_empty a{color:#fff;}
 					  #media_paging_links_top {margin-bottom:20px;}
 					  #media_paging_links_bottom {margin-top:20px;}';
+					  $html = "";
 	$html .= $use_default_style ? '<style>'.$default_style.'</style>' : '';			  
-    if(count($media)>0):
+    if(isset($media) && count($media)>0):
 		$html .=  '<div id="media_paging_links_top">'.$pagination['all'].'</div>';
 						foreach($media as $row):
 						$html .= '<div id="media_container_wrapper" >
@@ -274,14 +276,20 @@ Class Media_m extends CI_Model {
 	
 	if(in_array('fblike',$switch)){
 		$plugins['fblike'] = $this->fblike($url);
+	}else{
+		$plugins['fblike'] = "";
 	}
 	
 	if(in_array('vote',$switch)){
 		$plugins['votebutton'] = $this->showVote($media);
+	}else{
+		$plugins['votebutton'] = "";
 	}
 	
 	if(in_array('fbcomment',$switch)){	
 		$plugins['fbcomment'] =	$this->fbcomment($url);
+	}else{
+		$plugins['fbcomment'] =	"";
 	}	
 	
 	return $plugins;	  

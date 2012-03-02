@@ -44,6 +44,8 @@ Class Media extends CI_Controller {
 		 }
 	 
 	    $clauses = array();
+		$orderby = 'campaign_media.media_id';
+		$order = 'DESC';
 		if($this->input->get_post('bycampaign', TRUE)){
 			$clauses['campaign_media.GID'] = $this->input->get_post('bycampaign', TRUE);
 		}	
@@ -52,7 +54,14 @@ Class Media extends CI_Controller {
 		}
 		if($this->input->get_post('bystatus', TRUE)){
 			$clauses['campaign_media.media_status'] = $this->input->get_post('bystatus', TRUE);
-		}	
+		}
+		if($byorder = $this->input->get_post('byorder', TRUE)){		
+			$orderby = "campaign_media.media_vote_total";
+			switch($byorder){
+				case "mostvoted" :  $order = "DESC"; break;
+				case "lessvoted" :  $order = "ASC"; break;
+			}
+		}			
 			
 
         //$config['path'] = APP_ADMIN_URL;
@@ -63,17 +72,19 @@ Class Media extends CI_Controller {
 		$config['urlVar'] = ($this->input->post('bycampaign') ? 'bycampaign='.$this->input->post('bycampaign').'&' : '').
 							($this->input->post('byuid') != '' ? 'byuid='.$this->input->post('byuid').'&' : '').
 							($this->input->post('bystatus') ? 'bystatus='.$this->input->post('bystatus').'&' : '').
+							($this->input->post('byorder') ? 'byorder='.$this->input->post('byorder').'&' : '').
 							'pageID';
 		
 		$pager = new Pager_Sliding($config);
-		$links = $pager->getLinks($this->input->get_post('pageID', TRUE));
+		$pageID = $this->input->get_post('pageID') ? $this->input->get_post('pageID') : 1;
+		$links = $pager->getLinks($pageID);
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		
 		$campaigns = $this->campaign->retrieveCampaign(null,array('fields'=>'campaign_group.GID,campaign_group.title'));
 		
 			
-		$data = $this->media->retrieveMedia($clauses,array('limit_number' => $config['perPage'],'limit_offset' => --$from));
+		$data = $this->media->retrieveMedia($clauses,array('orderby'=>$orderby,'order'=>$order,'limit_number' => $config['perPage'],'limit_offset' => --$from));
 		
 		
 		$this->load->view('admin/media',array('data'=> $data,'offset'=>$from,'pagination'=>$links,'campaigns'=>$campaigns));

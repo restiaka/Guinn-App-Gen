@@ -37,8 +37,9 @@ Class Customer extends CI_Controller {
 		$config['totalItems'] = $this->db->get_var("SELECT COUNT(*) FROM campaign_customer ".$sql_filter);
 		$config['perPage'] = 20; 
 		$config['urlVar'] = 'pageID';
+		$pageID = $this->input->get('pageID') ? $this->input->get('pageID') : 1;
 		$pager = new Pager_Sliding($config);
-		$links = $pager->getLinks($this->input->get('pageID'));
+		$links = $pager->getLinks($pageID);
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		$data = $this->customer->retrieve(NULL,array('limit_number' => $config['perPage'],'limit_offset' => --$from));

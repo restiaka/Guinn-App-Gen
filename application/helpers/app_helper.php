@@ -76,16 +76,70 @@
 		  return ($relative_path ? "" : SITE_URL).$basepath;
 		}
 	 }
+	 
+	 function callback_validateAppID(){
+	 $CI = &get_instance();
+	   $appid = $CI->input->post('APP_APPLICATION_ID');
+	   $secret = $CI->input->post('APP_SECRET_KEY');
+		$token = getAppAccessToken(array('app_id'=>$appid,'app_secret'=>$secret));
+		if($app_detail = getAppDetail($appid,$token)){
+			if(!$app_detail['canvas_url'])return false;
+			return true;
+		}else{
+			return false;
+		}
+	 }
+ 
+	 function callback_isAppIDregistered(){
+	   $CI = &get_instance();
+	   $CI->load->library('ezsql_mysql');
+	   $filter = '';
+	   if($_POST['task'] == 'edit'){
+		 $filter = " AND APP_APPLICATION_ID <> ".addslashes($CI->input->post('APP_APPLICATION_ID'));
+	   }
+	   $var = $CI->ezsql_mysql->get_var('SELECT APP_APPLICATION_ID FROM campaign_app WHERE APP_APPLICATION_ID = '.addslashes($CI->input->post('APP_APPLICATION_ID')).$filter);
+	   return $var ? false : true;
+	 } 
+	 
+	function callback_validateAppID_availability(){
+		$CI = &get_instance();
+	    $CI->load->library('ezsql_mysql');
+		if($gid = $CI->input->post('gid')){
+		 
+		 $appid = $CI->ezsql_mysql->get_var("SELECT campaign_group.APP_APPLICATION_ID FROM campaign_group WHERE campaign_group.GID = ".addslashes($gid));
+		 
+		 /*Alternate query*
+		 $sql = "SELECT count(campaign_customer_fbauthorization.uid)
+				   FROM campaign_customer_fbauthorization
+				   WHERE campaign_customer_fbauthorization.APP_APPLICATION_ID = $appid";
+		 **/
+		 
+		 $sql = "SELECT
+					count(campaign_media_owner.uid)
+					FROM
+					campaign_media
+					Inner Join campaign_media_owner ON campaign_media.media_id = campaign_media_owner.media_id
+					Inner Join campaign_group ON campaign_media.GID = campaign_group.GID
+					WHERE
+					APP_APPLICATION_ID = $appid 
+					AND
+					campaign_group.GID = $gid";
+		   
+		  $total_registered = $CI->ezsql_mysql->get_var($sql);
+		  return $total_registered > 0 ? false : true;
+		}
+		return true;
+	}
 
 	function callback_validateAppIDRangeDate(){
 	 $CI = &get_instance();
 	 $CI->load->library('ezsql_mysql');
-	 $exclude_sql = isset($_POST['gid']) ? " AND campaign_group.GID <> ".addslashes($_POST['gid'])." " : "";
+	 $exclude_sql = $CI->input->post('gid') ? " AND campaign_group.GID <> ".addslashes($CI->input->post('gid'))." " : "";
 	 
-	 $sql = "SELECT enddate FROM campaign_group WHERE campaign_group.APP_APPLICATION_ID = ".addslashes($_POST['APP_APPLICATION_ID']).$exclude_sql." ORDER BY campaign_group.enddate DESC LIMIT 1";
+	 $sql = "SELECT enddate FROM campaign_group WHERE campaign_group.APP_APPLICATION_ID = ".addslashes($CI->input->post('APP_APPLICATION_ID')).$exclude_sql." ORDER BY campaign_group.enddate DESC LIMIT 1";
 	 if($latest_enddate = $CI->ezsql_mysql->get_var($sql)){
 	 
-	  extract($_POST['startdate']);
+	  extract($CI->input->post('startdate'));
 	  $o_startdate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
 	  $startdate = $o_startdate->getTimestamp();
 	  
@@ -100,16 +154,16 @@
 	function callback_validateStartDate(){
 	 $CI = &get_instance();
 	 $CI->load->library('ezsql_mysql');
-	 $exclude_sql = isset($_POST['gid']) ? " AND campaign_group.GID <> ".addslashes($_POST['gid'])." " : "";
+	 $exclude_sql = $CI->input->post('gid') ? " AND campaign_group.GID <> ".addslashes($CI->input->post('gid'))." " : "";
 	 
-		  extract($_POST['startdate']);
+		  extract($CI->input->post('startdate'));
 		  $post_startdate = $Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s;
 		  $o_newdate = new DateTime($post_startdate); 
 		  $newdate = $o_newdate->getTimestamp();
 	 
 	 $sql = "SELECT startdate,enddate 
 			 FROM campaign_group 
-			 WHERE campaign_group.APP_APPLICATION_ID = ".addslashes($_POST['APP_APPLICATION_ID']).
+			 WHERE campaign_group.APP_APPLICATION_ID = ".addslashes($CI->input->post('APP_APPLICATION_ID')).
 					" AND campaign_group.startdate <= '".$post_startdate."' ".
 					$exclude_sql.
 			 " ORDER BY campaign_group.startdate DESC LIMIT 1";
@@ -134,12 +188,12 @@
 	}
  
 	function callback_validateUploadEndDate(){
-	
-	  extract($_POST['startdate']);
+		$CI = &get_instance();
+	  extract($CI->input->post('startdate'));
 	  $o_startdate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
 	  $startdate = $o_startdate->getTimestamp();
 	 
-	  extract($_POST['upload_enddate']);
+	  extract($CI->input->post('upload_enddate'));
 	  $o_uploadenddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
 	  $uploadenddate = $o_uploadenddate->getTimestamp();
 	  
@@ -153,11 +207,12 @@
 	
 
 	function callback_validateEndDate_deprecated(){
-	  extract($_POST['enddate']);
+	  $CI = &get_instance();
+	  extract($CI->input->post('enddate'));
 	  $o_enddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
 	  $enddate = $o_enddate->getTimestamp();
 	  
-	  extract($_POST['upload_enddate']);
+	  extract($CI->input->post('upload_enddate'));
 	  $o_uploadenddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
 	  $uploadenddate = $o_uploadenddate->getTimestamp();
 
@@ -170,20 +225,20 @@
 	function callback_validateEndDate(){
 	 $CI = &get_instance();
 	 $CI->load->library('ezsql_mysql');
-	 $exclude_sql = isset($_POST['gid']) ? " AND campaign_group.GID <> ".addslashes($_POST['gid'])." " : "";
+	 $exclude_sql = $CI->input->post('gid') ? " AND campaign_group.GID <> ".addslashes($CI->input->post('gid'))." " : "";
 	 
-	 		  extract($_POST['startdate']);
+	 		  extract($CI->input->post('startdate'));
 		  $post_startdate = $Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s;;
 	 
 	 $sql = "SELECT startdate,enddate 
 			 FROM campaign_group 
-			 WHERE campaign_group.APP_APPLICATION_ID = ".addslashes($_POST['APP_APPLICATION_ID']).
+			 WHERE campaign_group.APP_APPLICATION_ID = ".addslashes($CI->input->post('APP_APPLICATION_ID')).
 					" AND campaign_group.startdate > '".$post_startdate."' ".
 					$exclude_sql.
 			 " ORDER BY campaign_group.startdate ASC LIMIT 1";
 	 if($date = $CI->ezsql_mysql->get_row($sql)){
 	 
-		  extract($_POST['enddate']);
+		  extract($CI->input->post('enddate'));
 		  $o_newdate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
 		  $newdate = $o_newdate->getTimestamp();
 		  
@@ -193,7 +248,7 @@
 		  $o_enddate = new DateTime($date['enddate']); 
 		  $enddate = $o_enddate->getTimestamp();
 		  
-	      extract($_POST['winner_selectiondate']);
+	      extract($CI->input->post('winner_selectiondate'));
 		  $o_winner_selectiondate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
 		  $winner_selectiondate = $o_winner_selectiondate->getTimestamp();
 		 
@@ -210,11 +265,12 @@
 	}
 	
 	function callback_validateWinnerDate(){
-	  extract($_POST['enddate']);
+	 $CI = &get_instance();
+	  extract($CI->input->post('enddate'));
 	  $o_enddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
 	  $enddate = $o_enddate->getTimestamp();
 	  
-	  extract($_POST['winner_selectiondate']);
+	  extract($CI->input->post('winner_selectiondate'));
 	  $o_winner_selectiondate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
 	  $winner_selectiondate = $o_winner_selectiondate->getTimestamp();
 

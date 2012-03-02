@@ -1,4 +1,3 @@
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
   <script>
   <?php $CI = &get_instance(); $CI->load->model('setting_m'); ?>
   var APP_APPLICATION_ID = '<?php echo $CI->setting_m->get('APP_APPLICATION_ID');?>';
@@ -174,12 +173,12 @@
     }
  }
   
-   function addToPage() {
+   function addToPage(redirectURI) {
 
         // calling the API ...
         var obj = {
           method: 'pagetab',
-          redirect_uri: '',
+          redirect_uri: redirectURI,
         };
 
         FB.ui(obj);
@@ -203,9 +202,7 @@
 									   if (response.authResponse) {
 									       if(redirectURL) 
 											 window.top.location.href = redirectURL;
-									   } else {
-										 
-									   }
+									   } 
 									}, {scope: APP_EXT_PERMISSIONS});	
 									break;
 				}	

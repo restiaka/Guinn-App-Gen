@@ -1,10 +1,8 @@
-<?php $this->load->view('site/header'); //Begin HTML ?>
-<?php $this->load->view('site/header_main_navigation'); //Begin HTML 
-dg($custom_page_url);
-?>
+<?php echo $this->load->view('site/header',null,true); ?>
+<?php echo $this->load->view('site/header_main_navigation',null,true);  ?>
 <div id="main">
 	<div class="bigtext">
-	<p><?=nl2br($campaign_info['description'])?></p>
+	<?=nl2br($campaign_info['description'])?>
 	</div>
   
     <?php if(!$is_authorized):?>	
@@ -48,4 +46,4 @@ dg($custom_page_url);
 	<?php endif;?>
 
 </div>
-<?php $this->load->view('site/footer');//End HTML ?>
+<?php echo $this->load->view('site/footer',null,true);//End HTML ?>

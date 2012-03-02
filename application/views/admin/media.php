@@ -4,11 +4,16 @@
 			
 				
 				<div class="grid_16">
-					<a href="#" onclick="document.getElementById('task').value='activate'; document.forms['adminform'].submit();">Activate Selected</a> | 
-					<a href="#" onclick="document.getElementById('task').value='deactivate'; document.forms['adminform'].submit();">Ban Selected</a> | 
-					<a href="#" onclick="document.getElementById('task').value='delete'; document.forms['adminform'].submit();">Delete Selected</a> | 
-					<a href="#" onclick="document.getElementById('task').value='winner'; document.forms['adminform'].submit();">Pick Selected as WINNER</a>
-					<a href="#" onclick="document.getElementById('task').value='resetwinner'; document.forms['adminform'].submit();">Reset Seleted WINNER</a>
+					<div style="float:left;">
+					<a href="#" onclick="document.getElementById('task').value='activate'; document.forms['adminform'].submit();">Activate Selected Media</a>  
+					<a href="#" onclick="document.getElementById('task').value='deactivate'; document.forms['adminform'].submit();">Banned Selected Media</a>  
+					<a href="#" onclick="document.getElementById('task').value='delete'; document.forms['adminform'].submit();">Delete Selected Media</a>  
+					</div>
+					<div style="float:right">
+					<a href="#" onclick="document.getElementById('task').value='winner'; document.forms['adminform'].submit();">Pick selected as WINNER</a>
+					<a href="#" onclick="document.getElementById('task').value='resetwinner'; document.forms['adminform'].submit();">Reset selected WINNER</a>
+					</div>
+					<div style="clear:both;"></div>
 				<br/><br/>
 				</div>
 				
@@ -47,7 +52,11 @@
 				<div class="grid_12">
 
 				<?php 
-				$qs = http_build_query(array('pageID'=>@$this->input->get_post('pageID', TRUE),'byuid'=>@$this->input->get_post('byuid', TRUE),'bycampaign'=>@$this->input->get_post('bycampaign', TRUE),'bystatus'=>@$this->input->get_post('bystatus', TRUE)));
+				$qs = http_build_query(array('pageID'=>@$this->input->get_post('pageID', TRUE),
+											'byuid'=>@$this->input->get_post('byuid', TRUE),
+											'bycampaign'=>@$this->input->get_post('bycampaign', TRUE),
+											'bystatus'=>@$this->input->get_post('bystatus', TRUE),
+											'byorder'=>@$this->input->get_post('byorder', TRUE)));
 				?>
 				<form name="adminform" method="POST" action="<?=site_url('admin/media/lists').($qs ? '?'.$qs : '')?>">
 					<table>
@@ -73,10 +82,10 @@
 						<?php if($data): $i = isset($offset) ? $offset : $idx; $this->load->model('media_m');$this->load->model('campaign_m');?>
 							<?php  foreach($data as $v): ?>
 								<tr>
-								 <td style="padding:2px;vertical-align:top;<?=$v['media_winner'] ? 'background-color:#A1EAB3;' : ''?>"><input style="width:5px" type="checkbox" name="cid[]" value="<?=$v['media_id']?>"/></td>
+								 <td style="padding:2px;vertical-align:top;"><input style="width:5px" type="checkbox" name="cid[]" value="<?=$v['media_id']?>"/></td>
 								 <td style="padding:2px;vertical-align:top;"><input style="width:5px" type="checkbox" name="notify[]" value="<?=$v['media_id']?>"/></td>
 								<td style="vertical-align:top;"><?=++$i?></td>
-									<td style="vertical-align:top;">
+									<td style="vertical-align:top;padding:4px;font-size:11px">
 										<div id="mediathumb" style="width:135px;float:left;">
 										<?=$this->media_m->showMedia($v);?>
 										<br/>
@@ -89,15 +98,19 @@
 										</div>
 										<div style="clear:both;"></div>
 									</td>
-									<td style="vertical-align:top;">
+									<td style="vertical-align:top;padding:4px;font-size:11px">
 									<?php $campaign = $this->campaign_m->detailCampaign($v['GID'])?>
 										<?=$campaign['title']?><br/>
+										By <?php echo @$u->name?><Br/>
 										<?=format_date($v['media_uploaded_date'])?> 
 										<?=format_date($v['media_uploaded_date'],'time')?>
 										<br/>
 										<b>Vote <?=$v['media_vote_total']?></b>
 									</td>
-									<td style="vertical-align:top;"><?=$v['media_status']?></td>
+									<td style="vertical-align:top;text-align:center;">
+									<div style="font-weight:bold;"><?=ucfirst($v['media_status'])?></div>
+									<div><?=$v['media_winner'] ? '<img src="'.base_url().'assets/admin/img/trophy50px.png" />' : ''?></div>
+									</td>
 									
 								</tr>
                             <?php endforeach;?>
