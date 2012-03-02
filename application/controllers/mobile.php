@@ -27,7 +27,6 @@ Class Mobile extends CI_Controller {
 		$this->load->library('facebook');
 		
 		$data['isAuthorized'] = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
-		
 		$this->load->view('mobile/mobile_home',$data);
 	}
 	
@@ -59,9 +58,31 @@ Class Mobile extends CI_Controller {
 	}
 
 	function gallery(){
-		requireLogin('https://guinnessapp.dev/mobile/282088055180043','popup');
+		//requireLogin('https://guinnessapp.dev/mobile/282088055180043','popup');
 		//graphRequireLogin('https://guinnessapp.dev/mobile/282088055180043','wap');
-		$this->load->view('mobile/mobile_gallery');
+		require_once 'Pager/Sliding.php';
+	   if(!$active_campaign = $this->campaign->getActiveCampaign()){
+			show_404();
+	   }
+	   
+	   
+	   $sql_filter = "WHERE campaign_media.media_status = 'active' AND campaign_media.GID = ".$active_campaign['GID'];
+	   $sumPerCampaign = $this->ezsql_mysql->get_var("SELECT COUNT(*) FROM campaign_media ".$sql_filter);
+        //$config['path'] = APP_ADMIN_URL;
+		$config['totalItems'] = $sumPerCampaign;
+		$config['perPage'] = 2; 
+		$config['urlVar'] = 'pageID';
+		$pager = new Pager_Sliding($config);
+		$links = $pager->getLinks($_GET['pageID']);
+		list($from, $to) = $pager->getOffsetByPageId();
+		
+		$rowsMedia = $this->media->retrieveMedia(array('campaign_media.media_status'=>'active','campaign_media.GID'=>$active_campaign['GID']),array('limit_number' => $config['perPage'],'limit_offset' => --$from));
+		$this->load->view('mobile/mobile_gallery',array('campaign_info'=>$active_campaign,
+												'media' => $rowsMedia,
+												'pagination'=>$links,
+												'notification' => $this->notify,
+												'error' => $this->error,
+												 'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null)));
 	}
 
 	function rules(){

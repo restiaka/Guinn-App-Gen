@@ -1,5 +1,5 @@
 <?php $this->load->view('mobile/mobile_header'); //Begin HTML ?>
-<div id="main">
+
     <?php if(!$is_authorized):?>	
 		<!-- CONTAINER FORM UNAUTHORIZED -->
 		<div class="box brown">
@@ -40,5 +40,5 @@
 		<!-- /CONTAINER FORM AUTHORIZED -->
 	<?php endif;?>
 
-</div>
+
 <?php $this->load->view('mobile/mobile_footer'); //End HTML ?>

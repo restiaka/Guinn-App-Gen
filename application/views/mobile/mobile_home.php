@@ -1,6 +1,6 @@
 <?php $this->load->view('mobile/mobile_header'); //Begin HTML ?>
-<div>
-        <ul>
+
+        <ul data-role="listview" data-inset="true">
 		  <li>
             <a href="<?=mobile_menu_url('about')?>">About The Contest</a>
           </li>
@@ -20,5 +20,5 @@
             <a href="<?=mobile_menu_url('rules')?>">Rules/FAQ</a>
           </li>
         </ul>
-</div>
+
 <?php $this->load->view('mobile/mobile_footer');//End HTML ?>

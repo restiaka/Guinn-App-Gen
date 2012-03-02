@@ -21,6 +21,24 @@
 	}
  }			
 
+ function mobile_logoutUrl(){
+   $CI = &get_instance();
+   $CI->load->library('facebook');
+   $CI->load->model('setting_m');
+  
+   $facebook = $CI->facebook;
+   //Get Logout Url for redirection if user not yet authorized your apps
+   $logoutUrl = $facebook->getLogoutUrl();
+
+   //Check for facebook session , redirect to Login Url for unauthorized user
+   if ($facebook->getUser()) {
+	   //echo '<a href="'.$loginUrl.'" style="font-weight:bold;font-size:15px;">Click here to Authorize</a>';
+	   echo $logoutUrl;
+	    
+	   exit;
+	}
+ }	
+
  function mobile_isExtPermsAllowed(){
   $CI = &get_instance();
    $CI->load->library('facebook');
