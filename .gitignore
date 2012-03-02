@@ -3,5 +3,5 @@
 */logs/!index.html
 */cache/*
 */cache/!index.html
-*/customer/img/*.jpg
-*/campaign/img/*.jpg
+./assets/customer/img/*.jpg
+./assets/campaign/img/*.jpg
