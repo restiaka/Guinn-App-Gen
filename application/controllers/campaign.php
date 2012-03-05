@@ -39,8 +39,6 @@ Class Campaign extends CI_Controller {
 			show_404();
 		}
 		
-
-		
 		$this->load->view('site/tab',array('campaign_info'=>$campaign,
 											'html_form_upload' => $form,
 										   'html_form_register' => $this->form->customer_register(),

@@ -315,7 +315,7 @@ Class Media_m extends CI_Model {
   function showUploadForm($campaign){
     $this->load->model('form_m');
 	$this->load->library('facebook');
-	$isAuthorized = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
+	$isAuthorized = (!$this->facebook->getUser()) ? false : true;
 	if($isAuthorized && isset($campaign['GID'])){
 	  	if($campaign['on_upload']){
 			 if($campaign['has_uploadonce']){
