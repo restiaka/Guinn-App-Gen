@@ -40,7 +40,7 @@
 									<td><?=++$i?></td>
 									<td><?=$v['page_title']?></td>
 									<td><?=format_date($v['page_publish_date'])?> <?=format_date($v['page_publish_date'],'time')?></td>
-									<td><?=$v['status']?></td>
+									<td><?=$v['page_status']?></td>
 									<td><a href="<?=site_url('admin/page/add/'.$v['page_id'])?>">Edit</a></td>
 								</tr>
                             <?php endforeach;?>

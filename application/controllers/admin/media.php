@@ -23,9 +23,9 @@ Class Media extends CI_Controller {
 	function lists(){
 	  require_once 'Pager/Sliding.php';
 	 
-		if($_POST['cid']){ 
-			 foreach($_POST['cid'] as $v){
-			  switch($_POST['task']){
+		if($this->input->post('cid')){ 
+			 foreach($this->input->post('cid') as $v){
+			  switch($this->input->post('task')){
 			   case 'activate': $this->media->setStatusMedia($v,'active'); break;
 			   case 'deactivate': $this->media->setStatusMedia($v,'banned'); break;
 			   case 'delete': $this->media->removeMedia($v); break;
@@ -33,9 +33,9 @@ Class Media extends CI_Controller {
 			   case 'resetwinner': $this->media->setWinnerMedia($v,0); break;
 			  }
 			  
-			  if($_POST['notify'] && in_array($_POST['task'],array('activate','deactivate'))){
+			  if($this->input->post('notify') && in_array($this->input->post('task'),array('activate','deactivate'))){
 			  $data = $this->media->detailMedia($v);
-			    switch($_POST['task']){
+			    switch($this->input->post('task')){
 				 case 'activate': $this->media->sendNotificationMail('approved',$data); break;
 				 case 'deactivate': $this->media->sendNotificationMail('banned',$data); break;
 			    }
@@ -44,15 +44,24 @@ Class Media extends CI_Controller {
 		 }
 	 
 	    $clauses = array();
-		if($_REQUEST['bycampaign']){
-			$clauses['campaign_media.GID'] = $_REQUEST['bycampaign'];
+		$orderby = 'campaign_media.media_id';
+		$order = 'DESC';
+		if($this->input->get_post('bycampaign', TRUE)){
+			$clauses['campaign_media.GID'] = $this->input->get_post('bycampaign', TRUE);
 		}	
-		if($_REQUEST['byuid']){
-			$clauses['campaign_media_owner.uid'] = $_REQUEST['byuid'];	
+		if($this->input->get_post('byuid', TRUE)){
+			$clauses['campaign_media_owner.uid'] = $this->input->get_post('byuid', TRUE);	
 		}
-		if($_REQUEST['bystatus']){
-			$clauses['campaign_media.media_status'] = $_REQUEST['bystatus'];
-		}	
+		if($this->input->get_post('bystatus', TRUE)){
+			$clauses['campaign_media.media_status'] = $this->input->get_post('bystatus', TRUE);
+		}
+		if($byorder = $this->input->get_post('byorder', TRUE)){		
+			$orderby = "campaign_media.media_vote_total";
+			switch($byorder){
+				case "mostvoted" :  $order = "DESC"; break;
+				case "lessvoted" :  $order = "ASC"; break;
+			}
+		}			
 			
 
         //$config['path'] = APP_ADMIN_URL;
@@ -60,20 +69,22 @@ Class Media extends CI_Controller {
 		$config['totalItems'] = $total[0]['total'];
 		$config['perPage'] = 15; 
 		//$config['urlVar'] = 'pageID';
-		$config['urlVar'] = ($_POST['bycampaign'] ? 'bycampaign='.$_POST['bycampaign'].'&' : '').
-							($_POST['byuid'] != '' ? 'byuid='.$_POST['byuid'].'&' : '').
-							($_POST['bystatus'] ? 'bystatus='.$_POST['bystatus'].'&' : '').
+		$config['urlVar'] = ($this->input->post('bycampaign') ? 'bycampaign='.$this->input->post('bycampaign').'&' : '').
+							($this->input->post('byuid') != '' ? 'byuid='.$this->input->post('byuid').'&' : '').
+							($this->input->post('bystatus') ? 'bystatus='.$this->input->post('bystatus').'&' : '').
+							($this->input->post('byorder') ? 'byorder='.$this->input->post('byorder').'&' : '').
 							'pageID';
 		
 		$pager = new Pager_Sliding($config);
-		$links = $pager->getLinks($_REQUEST['pageID']);
+		$pageID = $this->input->get_post('pageID') ? $this->input->get_post('pageID') : 1;
+		$links = $pager->getLinks($pageID);
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		
 		$campaigns = $this->campaign->retrieveCampaign(null,array('fields'=>'campaign_group.GID,campaign_group.title'));
 		
 			
-		$data = $this->media->retrieveMedia($clauses,array('limit_number' => $config['perPage'],'limit_offset' => --$from));
+		$data = $this->media->retrieveMedia($clauses,array('orderby'=>$orderby,'order'=>$order,'limit_number' => $config['perPage'],'limit_offset' => --$from));
 		
 		
 		$this->load->view('admin/media',array('data'=> $data,'offset'=>$from,'pagination'=>$links,'campaigns'=>$campaigns));

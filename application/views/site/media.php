@@ -1,5 +1,5 @@
-<?php $this->load->view('site/header'); //Begin HTML ?>
-<?php $this->load->view('site/header_main_navigation'); //Begin HTML ?>
+<?php echo $this->load->view('site/header',null,true); //Begin HTML ?>
+<?php echo $this->load->view('site/header_main_navigation',null,true); //Begin HTML ?>
 <style>.big-img img{width:480px;}</style>	
 <div id="main">
 
@@ -24,20 +24,20 @@
     <div class="owner"><fb:name firstnameonly="true" uid="<?php echo $media['uid']?>"></fb:name></div>
 	</td><Td width="70%">
 	<div style="margin-left:10px;">
-	<?php echo @nl2br($media['media_description']);?>
+	<?php echo isset($media['media_description']) ? nl2br($media['media_description']) : '';?>
 	</div>
 	</td>
 	</tr>
-	<tr><td colspan="2" align="left"><?php echo @$plugin['votebutton']?></td></tr>
+	<tr><td colspan="2" align="left"><?php echo (isset($plugin['votebutton']) ? $plugin['votebutton'] : "") ?></td></tr>
 	</table>
   </div>
  
   <div class="comments clearfix">
-	<?php echo @$plugin['fblike']?>
-	<?php echo @$plugin['fbcomment']?>
+	<?php echo isset($plugin['fblike'] ? $plugin['fblike'] : "")?>
+	<?php echo isset($plugin['fbcomment'] ? $plugin['fbcomment'] : "")?>
   </div>
 </div>
 </div>	
 	
 	
-<?php $this->load->view('site/footer');//End HTML ?>
+<?php echo $this->load->view('site/footer',null,true);//End HTML ?>

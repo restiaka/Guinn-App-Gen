@@ -72,7 +72,7 @@
 
 		<h1 id="head">Control Panel <span style="font-size:12px;">Generic Media Contest Application</span></h1>
 		<?php
-		$nav = array('dashboard'=>'dashboard','campaign'=>'campaign/lists/','user'=>'user/lists/','customer'=>'customer/lists/','page'=>'page/lists/','media'=>'media/lists/','app'=>'app/lists/');
+		$nav = array('dashboard'=>'dashboard','campaign'=>'campaign/lists/','assets'=>'assets/lists/','user'=>'user/lists/','customer'=>'customer/lists/','page'=>'page/lists/','media'=>'media/lists/','app'=>'app/lists/');
 		?>
 		<ul id="navigation">
 		<?php foreach($nav as $k => $v):?>

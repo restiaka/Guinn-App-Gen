@@ -16,13 +16,13 @@
 */
 
 
-///*
-if($_SERVER['HTTPS']){
+/**/
+if(isset($_SERVER['HTTPS'])){
 	$config['base_url']	= 'https://guinnessapp.dev/';
 }else{
 	$config['base_url']	= 'http://guinnessapp.dev/';
 } 
-//*/
+/**/
 //$config['base_url']	= 'https://guinnessapp.dev/';
 
 
@@ -36,8 +36,8 @@ if($_SERVER['HTTPS']){
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
-
+//$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL

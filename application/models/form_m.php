@@ -554,8 +554,8 @@
 	$GID = $form->addElement('select','GID','',array('options'=>$cmp_options));
 	$GID->addRule('required', 'Campaign is required', null,HTML_QuickForm2_Rule::SERVER);
 	
-		$form->addElement('static','','',array('content'=>'<b>Publish Date</b>'));
-	$date_set = $gid ? array('format'=>'dFY His','maxYear'=>date('Y')) : array('format'=>'dFY His','minYear'=>date('Y'),'maxYear'=>date('Y')+1);
+	$form->addElement('static','','',array('content'=>'<b>Publish Date</b>'));
+	$date_set = $page_id ? array('format'=>'dFY His','maxYear'=>date('Y')) : array('format'=>'dFY His','minYear'=>date('Y'),'maxYear'=>date('Y')+1);
 		
 	$page_publish_date = $form->addElement('group');	 
 	$page_publish_date->addElement('date','page_publish_date','',$date_set,'style="width:100px;"');
@@ -611,6 +611,91 @@
 		return $form_layout;
    
    }
+   
+   function asset_add($asset_id){
+    $this->load->model('assets_m');
+		$form = new HTMLQuickForm2('assets','POST','action="'.site_url('admin/assets/add/'.$asset_id).'"');
+		$form->setAttribute('enctype', 'multipart/form-data');	
+		if($asset_id){
+		  $assets = $this->assets_m->detailAssets($asset_id);
+		  		 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
+							'asset_id' => $assets['asset_id'],
+                            'asset_name' => $assets['asset_name'],
+							'asset_type' => $assets['asset_type'],
+							'asset_platform' => $assets['asset_platform']
+                        )));
+		}
+		$form->addElement('hidden','asset_id');
+		$form->addElement('static','','',array('content'=>'<b>Asset Name ?</b>'));
+		$asset_name = $form->addElement('text','asset_name',array('style'=>''));
+		$asset_name->addRule('required', 'Required', null,HTML_QuickForm2_Rule::SERVER);
+		
+		$form->addElement('static','','',array('content'=>'<b>Asset Platform ?</b>'));
+		$asset_platform = $form->addElement('select','asset_platform','',array('options'=>array('facebook'=>'On Facebook',
+																						'mobile'=>'On Mobile Web')));
+		$asset_platform->addRule('required', 'Required', null,HTML_QuickForm2_Rule::SERVER);
+		
+		$form->addElement('static','','',array('content'=>'<b>Asset Type ?</b>'));
+		$asset_type = $form->addElement('select','asset_type','',array('options'=>array('banner_header'=>'Banner Header',
+																						'banner_main'=>'Banner Main',
+																						'banner_footer'=>'Banner Footer',
+																						'background_norepeat'=>'Background No Repeat',
+																						'background_repeat'=>'Background Repeat')));
+		$asset_type->addRule('required', 'Required', null,HTML_QuickForm2_Rule::SERVER);
+		
+		$form->addElement('static','','',array('content'=>'<b>Upload Assets ? (GIF,JPG,PNG)</b>'));
+		$asset_uploadedfile = $form->addElement('file','uploadedfile','size="80"');
+		$asset_uploadedfile->addRule('mimetype', 'Asset is not a valid file type', array('image/gif','image/jpeg','image/pjpeg','image/png'),HTML_QuickForm2_Rule::SERVER);
+		//$asset_file->addRule('maxfilesize', 'Asset filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
+
+		$form->addElement('static','','',array('content'=>'<b>Set Width Size? (Height resized by width Ratio)</b>'));
+		$asset_resizeto = $form->addElement('select','asset_resizeto','',array('options'=>array(''=>'No Resizing','90'=>'90px','100'=>'100px','500'=>'500px','520'=>'520px','760'=>'760px','800'=>'800px')));
+		
+		$button = $form->addElement('submit','','value="Submit Asset"');
+		
+		if ($form->validate()) {
+			$data = $form->getValue();
+			$asset_resizeto = $data['asset_resizeto'];
+		    unset($data['submit'],$data['_qf__assets'],$data['asset_resizeto']);
+
+			if ($data['uploadedfile']['error'] == UPLOAD_ERR_OK) {
+				$tmp_name = $data['uploadedfile']["tmp_name"];
+				$time = md5(uniqid(rand(), true).time());
+				$img = resizeImage( $tmp_name, CAMPAIGN_IMAGE_DIR."/".$time.".jpg", $asset_resizeto , 'width' );	
+				$info_img = getimagesize($img); 
+				//Thumb Creation
+				$thm = resizeImage( $tmp_name, CAMPAIGN_IMAGE_DIR."/thumb_".$time.".jpg", 100 , null,true );
+				$data['asset_basename'] = $time.".jpg";
+				$data['asset_width'] = isset($info_img[0]) ? $info_img[0] : '';
+				$data['asset_height'] = isset($info_img[1]) ? $info_img[1] : '';
+				$data['asset_mimetype'] = isset($info_img['mime']) ? $info_img['mime'] : '';
+				unset($data['uploadedfile']);
+			}
+			if(isset($data['uploadedfile'])) unset($data['uploadedfile']);
+			
+		   if($asset_id){
+		  
+			   if(!$this->assets_m->updateAssets($data)){
+				 
+			   }
+		   }else{
+		       unset($data['asset_id']);
+			   if(!$this->assets_m->addAssets($data)){
+				 
+			   }		   
+		   }
+		    $form->removeChild($asset_uploadedfile);
+			$form->removeChild($button);
+			$form->toggleFrozen(true);
+		}
+		
+			
+		$renderer = HTML_QuickForm2_Renderer::factory('default');		
+		$form_layout = $form->render($renderer);
+		return $form_layout;
+		
+		
+   }
   
    
     function campaign_add($gid = 0){
@@ -663,8 +748,9 @@
 		if(count($fb_options) <= 1) 
 		$form->addElement('static','','',array('content'=>'<b style="color:red;">*All APPLICATION ID has been registered please create new one! Please go to <a href="'.site_url('admin/app/add').'">App</a> panel.</b>'));
 
-		$APP_APPLICATION_ID->addRule('required', 'Facebook App Name is required', null,HTML_QuickForm2_Rule::SERVER);
-							
+		$APP_APPLICATION_ID->addRule('required', 'Facebook App Name is required', null,HTML_QuickForm2_Rule::SERVER);				
+		$APP_APPLICATION_ID->addRule('callback','Can\'t change this, someone already registered','callback_validateAppID_availability');
+				
 		
 		
 		$form->addElement('static','','',array('content'=>'<b>Title for your campaign ?</b>'));
@@ -678,8 +764,8 @@
 
 		$form->addElement('static','','',array('content'=>'<b>Upload Header Image for your Campaign ? (image width will be resize to 400px)</b>'));
 		$r_file = $form->addElement('file','image_header_uploadfile','size="80"');
-		$r_file->addRule('mimetype', $label.' is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
-		$r_file->addRule('maxfilesize', $label.' filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
+		$r_file->addRule('mimetype', 'Image is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
+		$r_file->addRule('maxfilesize', 'Image filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
 		
 		if($gid){
 			$form->addElement('static','','',array('content'=>'<img src="'.site_url('image/campaign')."?src=".$campaign['image_header'].'">'));
@@ -690,7 +776,7 @@
 		$form->addElement('static','','',array('content'=>'<b>When will your campaign will start ?</b>'));
 		$startdate_group = $form->addElement('group');	 
 		$startdate_group->addElement('date','startdate','',$date_set,'style="width:100px;"');
-		$startdate_group->addRule('callback','Start Date with this Facebook App Name/ID cannot be Overlap with other Campaigns','callback_validateAppIDRangeDate');
+		$startdate_group->addRule('callback','Start Date with this Facebook App Name/ID cannot be Overlap with other Campaigns','callback_validateStartDate');
 		
 		$form->addElement('static','','',array('content'=>'<b>When will Upload end ?</b>'));
 		$upload_enddate_group = $form->addElement('group');	 
@@ -701,7 +787,6 @@
 		$form->addElement('static','','',array('content'=>'<b>Judging and Announcement before campaign end ?</b>'));
 		$winner_selectiondate_group = $form->addElement('group');	 
 		$winner_selectiondate_group->addElement('date','winner_selectiondate','',$date_set,'style="width:100px;"');		
-		$winner_selectiondate_group->addRule('callback','Date must be longer than upload end date','callback_validateEndDate');
 		$winner_selectiondate_group->addRule('callback','Date must be shorter or the same as end date','callback_validateWinnerDate');
 
 		

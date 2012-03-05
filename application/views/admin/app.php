@@ -32,7 +32,7 @@
 							</tr>
 						</tfoot>
 						<tbody>
-						<?php if($data): $i = $idx;?>
+						<?php if($data): $i = (isset($idx) ? $idx : 0);?>
                             <?php foreach($data as $v): ?>
 								<tr>
 								 <td><input style="width:10px" type="checkbox" name="cid[]" value="<?=$v['APP_APPLICATION_ID']?>"/></td>
@@ -40,7 +40,10 @@
 									<td><?=$v['APP_APPLICATION_NAME']?></td>
 									<td><a href="https://developers.facebook.com/apps/<?=$v['APP_APPLICATION_ID']?>" target="_blank"><?=$v['APP_APPLICATION_ID']?></a></td>
 									<td><?=$v['APP_FANPAGE']?></td>
-									<td><a href="<?=site_url('admin/app/add/'.$v['APP_APPLICATION_ID'])?>">Edit</a></td>
+									<td>
+									<a href="<?=site_url('admin/app/add/'.$v['APP_APPLICATION_ID'])?>">Edit</a>
+									<a target="_blank" href="<?php echo appToPage_dialog_url($v['APP_APPLICATION_ID'],site_url("campaign/{$v['APP_APPLICATION_ID']}"))?>">Add to Page</a>
+									</td>
 								</tr>
                             <?php endforeach;?>
 						<?php else:?>

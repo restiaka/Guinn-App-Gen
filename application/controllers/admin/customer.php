@@ -21,9 +21,9 @@ Class Customer extends CI_Controller {
 	function lists(){
 	  require_once 'Pager/Sliding.php';
 	 
-	if($_POST['cid']){ 
-		 foreach($_POST['cid'] as $v){
-		  switch($_POST['task']){
+	if($this->input->post('cid')){ 
+		 foreach($this->input->post('cid') as $v){
+		  switch($this->input->post('task')){
 		   case 'activate': $this->customer->setStatus($v,'active'); break;
 		   case 'deactivate': $this->customer->setStatus($v,'inactive'); break;
 		   case 'delete': $this->customer->remove($v); break;
@@ -37,8 +37,9 @@ Class Customer extends CI_Controller {
 		$config['totalItems'] = $this->db->get_var("SELECT COUNT(*) FROM campaign_customer ".$sql_filter);
 		$config['perPage'] = 20; 
 		$config['urlVar'] = 'pageID';
+		$pageID = $this->input->get('pageID') ? $this->input->get('pageID') : 1;
 		$pager = new Pager_Sliding($config);
-		$links = $pager->getLinks($_GET['pageID']);
+		$links = $pager->getLinks($pageID);
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		$data = $this->customer->retrieve(NULL,array('limit_number' => $config['perPage'],'limit_offset' => --$from));

@@ -13,7 +13,7 @@ Class Campaign extends CI_Controller {
 	
 	public function _remap($appID, $params = array())
 	{
-	  $method = $params[0] ? $params[0] : 'home';	  
+	  $method = isset($params[0]) ? $params[0] : 'home';	  
 	  unset($params[0]);
 	  
 		if (method_exists($this, $method))
@@ -48,8 +48,7 @@ Class Campaign extends CI_Controller {
 										   'is_authorized' => $isAuthorized,
 										   'is_fan' => $isFan,
 										   'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null),
-										   'notification' => $this->notify,
-										   'error' => $this->error));	
+										   ));	
 	}
 	
 	public function page($pageID)
@@ -59,7 +58,7 @@ Class Campaign extends CI_Controller {
 		if(date('Y-m-d H:i:s') >= $page['page_publish_date'] || $page['status'] == 'draft'){
 			show_404();
 		}else{
-		  $page['custom_page_url'] = ($page['GID'] ? $this->page_m->getPageURL($page['GID']) : null);
+		  $page['custom_page_url'] = (isset($page['GID']) ? $this->page_m->getPageURL($page['GID']) : null);
 			$this->load->view('site/page',$page);	
 		}
 		
@@ -84,14 +83,14 @@ Class Campaign extends CI_Controller {
 	  {
 	     $campaign = $this->campaign->getActiveCampaign();
 		 
-	  	$this->load->view('site/register',array('campaign_info'=>$campaign,'html_form_register' => $form,'notification' => $this->notify,'error' => $this->error));										
+	  	$this->load->view('site/register',array('campaign_info'=>$campaign,'html_form_register' => $form));										
 	
 	  }
 	  
 	  public function media($media_id = null)
 	  { 
 	    if(!$media_id){
-			$media_id = addslashes($_GET['m']);
+			$media_id = addslashes($this->input->get('m', TRUE));
 		}
 	    $this->load->model('setting_m');
 		
@@ -122,7 +121,7 @@ Class Campaign extends CI_Controller {
 															  'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null),
 															));
 				registerMetaTags($meta);
-				$this->load->view('site/media',array('campaign_info'=>$campaign,'plugin'=>$plugin,'media' => $rowMedia,'notification' => $this->notify,'error' => $this->error));										
+				$this->load->view('site/media',array('campaign_info'=>$campaign,'plugin'=>$plugin,'media' => $rowMedia));										
 			}
 		}else{
 		 show_404(); 
@@ -144,16 +143,14 @@ Class Campaign extends CI_Controller {
 		$config['perPage'] = 8; 
 		$config['urlVar'] = 'pageID';
 		$pager = new Pager_Sliding($config);
-		$links = $pager->getLinks($_GET['pageID']);
+		$links = $pager->getLinks($this->input->get('pageID', TRUE));
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		$rowsMedia = $this->media->retrieveMedia(array('campaign_media.media_status'=>'active','campaign_media.GID'=>$active_campaign['GID']),array('limit_number' => $config['perPage'],'limit_offset' => --$from));
 		$this->load->view('site/gallery',array('campaign_info'=>$active_campaign,
 												'media' => $rowsMedia,
 												'pagination'=>$links,
-												'notification' => $this->notify,
-												'error' => $this->error,
-												 'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null)));	
+												 'custom_page_url' => ($active_campaign ? $this->page_m->getPageURL($active_campaign['GID']) : null)));	
 	  } 
   
 	  public function rules()
@@ -164,7 +161,6 @@ Class Campaign extends CI_Controller {
 		
 		$this->load->view('site/rules',array('campaign_info'=>$campaign,
 		'rules' => $campaign['campaign_rules'],
-		'notification' => $this->notify,'error' => $this->error,
 		'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null)
 		));	
 	  }

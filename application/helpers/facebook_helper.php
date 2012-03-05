@@ -37,28 +37,7 @@
 	return $request;						 
  }
  
- function callback_validateAppID(){
-   $appid = $_POST['APP_APPLICATION_ID'];
-   $secret = $_POST['APP_SECRET_KEY'];
-    $token = getAppAccessToken(array('app_id'=>$appid,'app_secret'=>$secret));
-	if($app_detail = getAppDetail($appid,$token)){
-		if(!$app_detail['canvas_url'])return false;
-		return true;
-	}else{
-		return false;
-	}
- }
- 
- function callback_isAppIDregistered(){
-   $CI = &get_instance();
-   $CI->load->library('ezsql_mysql');
-   $filter = '';
-   if($_POST['task'] == 'edit'){
-     $filter = " AND APP_APPLICATION_ID <> ".addslashes($_POST['APP_APPLICATION_ID']);
-   }
-   $var = $CI->ezsql_mysql->get_var('SELECT APP_APPLICATION_ID FROM campaign_app WHERE APP_APPLICATION_ID = '.addslashes($_POST['APP_APPLICATION_ID']).$filter);
-   return $var ? false : true;
- }
+
  
  function isFan(){
    $CI = &get_instance();
@@ -154,8 +133,8 @@ function setAppRestriction($appid,$app_accesstoken,$fields = array()){
 	return $request;
 }
 
-function appToPage_dialog(){
-// http://www.facebook.com/dialog/pagetab?app_id=YOUR_APP_ID&next=YOUR_URL
+function appToPage_dialog_url($appid,$redirecturl){
+  return "http://www.facebook.com/dialog/pagetab?app_id=$appid&next=$redirecturl";
 }
  
  function graph_request($path,$method = "POST",$args = array(),$ssl = true,$json_decode = true,$debug=false){
