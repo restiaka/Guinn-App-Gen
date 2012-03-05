@@ -312,6 +312,32 @@ Class Media_m extends CI_Model {
 	return $content;
   }
   
+  function showUploadForm($campaign){
+    $this->load->model('form_m');
+	$this->load->library('facebook');
+	$isAuthorized = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
+	if($isAuthorized && isset($campaign['GID'])){
+	  	if($campaign['on_upload']){
+			 if($campaign['has_uploadonce']){
+			   $media = $this->media->mediaByUID($this->facebook->getUser(),$campaign['GID']);
+			    if($media['media_status'] == "pending" || $media['media_status'] == "approved"){
+					$form = "Sorry! You can only upload once.";
+				}else{
+					$form = $this->form_m->upload_media($campaign);
+				}
+			 }else{
+				$form = $this->form_m->upload_media($campaign);
+			 }
+		}else{
+			 $form = "Sorry! Upload Time has ended. <Br/> Thank you.";
+		}
+	}else{
+		$form = "";
+	}
+	return $form;
+  }
+
+  
   
   function showMedia($media_id,$thumb = true,$attribute=null){
    
@@ -357,6 +383,7 @@ Class Media_m extends CI_Model {
    return null;
 		
   }
+  
 
   
   public function removeMedia($media_id)
@@ -436,6 +463,20 @@ Class Media_m extends CI_Model {
    $sql .= "INNER JOIN campaign_customer ON campaign_media_owner.uid = campaign_customer.uid ";
    $sql .= "WHERE campaign_media.media_id = ".$media_id;
    return $this->db->get_row($sql,'ARRAY_A');
+  }
+  
+  public function mediaByUID($uid,$GID = null,$status = null)
+  {
+    $params['campaign_media_owner.uid'] = $uid;
+	if($GID) $params['campaign_media.GID'] = $GID;
+	if($status) $params['campaign_media.media_status'] = $status;
+	
+    if($result = $this->retrieveMedia($params,array('limit_number'=>1))){
+	  foreach($result as $row)$media = $row;  
+	  return $media;
+	}else{
+	  return null;
+	}
   }
   
   public function setVote($media_id)

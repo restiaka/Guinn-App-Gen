@@ -34,7 +34,7 @@ Class Campaign extends CI_Controller {
 		$isFan = user_isFan();
 	 
 	    if($campaign = $this->campaign->getActiveCampaign()){
-			$form = !$campaign['on_upload'] ? "Sorry! Upload Time has ended. <Br/> Thank you." : $this->form->upload_media($campaign);
+			$form = $this->media->showUploadForm($campaign);
 		}else{
 			show_404();
 		}

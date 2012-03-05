@@ -62,7 +62,7 @@ Class Page_m extends CI_Model {
 		
 		$sql = "SELECT ";
 		$sql .= $fields." ";
-		$sql .= "FROM campaign_page LEFT JOIN campaign_group ON campaign_page.GID = campaign_group.GID ";
+		$sql .= "FROM campaign_page INNER JOIN campaign_group ON campaign_page.GID = campaign_group.GID ";
 
 		foreach ($clauses as $key => $value){
 		  if(is_array($value)){
