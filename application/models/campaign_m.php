@@ -114,13 +114,12 @@ Class Campaign_m extends CI_Model {
 		 }
 	   }		
 	 }else{
-	  $this->error[] = "Submission Failed, Try Again!";	 
 	  return false;
 	 }
 	}else{
-	  $this->error[] = "Submission Failed, Try Again!";	 
 		return false;
 	}
+	return true;
   }
   
   public function updateCampaign($data)
@@ -129,7 +128,7 @@ Class Campaign_m extends CI_Model {
 	
 	if($ok){
 	 $gid = $data['gid'];
-     return $gid;
+     return true;
 	}else{
 	   $this->error[] = "Submission Update has Failed, Try Again or Contact Web Administrator";
 		return false;

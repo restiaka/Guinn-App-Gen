@@ -2,14 +2,16 @@
 			<div id="content" class="container_16 clearfix">
 
 			
-				
+				<div class="grid_16"><?php echo printNotification()?></div>
 				<div class="grid_16">
 					<div style="float:left;">
-					<a href="#" onclick="document.getElementById('task').value='connect'; document.forms['adminform'].submit();">Connect Assets Campaign</a>  
 					<a href="#" onclick="document.getElementById('task').value='filter'; document.forms['adminform'].submit();">Filter By Campaign</a>  
 					<a href="#" onclick="document.getElementById('task').value='delete'; document.forms['adminform'].submit();">Delete Selected Assets</a>  
 					</div>
 					<div style="float:right;">
+					<a href="#" onclick="document.getElementById('task').value='link'; document.forms['adminform'].submit();">Link Assets to Campaign</a>  
+					<a href="#" onclick="document.getElementById('task').value='unlink'; document.forms['adminform'].submit();">Unlink Assets from Campaign</a>  
+					
 					<a href="<?=site_url('admin/assets/add')?>">Add an Asset</a>
 					</div>
 					<div style="clear:both;"></div>
@@ -55,7 +57,9 @@
 						<?php if($data): $i = isset($offset) ? $offset : $idx; ?>
 							<?php  foreach($data as $v): ?>
 								<tr>
-								 <td style="padding:2px;vertical-align:top;"><input style="width:5px" type="checkbox" name="cid[]" value="<?=$v['asset_id']?>"/></td>
+								 <td style="padding:2px;vertical-align:top;">
+								 <input style="width:5px" type="checkbox" name="cid[]" value="<?=$v['asset_id']?>|<?=$v['asset_type']?>"/>
+								 </td>
 								<td style="vertical-align:top;"><?=++$i?></td>
 									<td>
 										<img src="<?php echo site_url('image/campaign').'?src=thumb_'.$v['asset_basename']?>"/>

@@ -27,7 +27,11 @@
 	}
 	
 	
-  	
+  	function printNotification(){
+	  $CI = &get_instance();
+	  $CI->load->library('notify');
+	  return $CI->notify->output(true);
+	}
 
 	
 	function registerMetaTags($meta)
@@ -167,7 +171,7 @@
 					" AND campaign_group.startdate <= '".$post_startdate."' ".
 					$exclude_sql.
 			 " ORDER BY campaign_group.startdate DESC LIMIT 1";
-	 if($date = $CI->ezsql_mysql->get_row($sql)){
+	 if($date = $CI->ezsql_mysql->get_row($sql,'ARRAY_A')){
 	 
 		  
 		  
@@ -236,7 +240,7 @@
 					" AND campaign_group.startdate > '".$post_startdate."' ".
 					$exclude_sql.
 			 " ORDER BY campaign_group.startdate ASC LIMIT 1";
-	 if($date = $CI->ezsql_mysql->get_row($sql)){
+	 if($date = $CI->ezsql_mysql->get_row($sql,'ARRAY_A')){
 	 
 		  extract($CI->input->post('enddate'));
 		  $o_newdate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 

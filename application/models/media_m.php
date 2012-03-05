@@ -26,6 +26,7 @@ Class Media_m extends CI_Model {
 	   $this->db->insert('campaign_media_owner',array('media_id'=>$media_id,
 													          'uid'=>$this->facebook->getUser(),
 													          'GID'=>$data['GID']));	
+		return $media_id;
 	}else{
 	  return false;
 	}

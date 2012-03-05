@@ -16,8 +16,10 @@ Class Page_m extends CI_Model {
 	$ok = $this->db->insert('campaign_page',$data);
 	
 	if($ok){
-	 $gid = $this->db->last_insert_id();
-	 
+	 $id = $this->db->last_insert_id();
+	 return $id;
+	}else{
+		return false;
 	}
   }
   
@@ -29,8 +31,7 @@ Class Page_m extends CI_Model {
 	 $page_id = $data['page_id'];
      return $page_id;
 	}else{
-	   $this->error[] = "Submission Update has Failed, Try Again or Contact Web Administrator";
-		return false;
+	  return false;
 	}
   }
   
@@ -43,7 +44,6 @@ Class Page_m extends CI_Model {
 	if($deleted){
 		return true;
 	}
-	$this->error[] = "Deleting has Failed, Try Again or Contact Web Administrator";
 	return false;
   }
   

@@ -1,5 +1,6 @@
 <?php $this->load->view('admin/header');?>
 			<div id="content" class="container_16 clearfix">
+			<div class="grid_16"><?php echo printNotification()?></div>
 			<div class="grid_16" style="text-align:right;">
 			<a href="<?=site_url('admin/campaign/add')?>">Add Campaign</a><Br/><br/>
 			</div>

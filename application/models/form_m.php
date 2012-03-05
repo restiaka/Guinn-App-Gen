@@ -407,9 +407,17 @@
 		}
 		
 		if(!$gid){
-			$this->app_m->add($data);
+			if($this->app_m->add($data)){
+			 $this->notify->set_message('success', 'Data has been successfuly submitted.');
+			}else{
+			 $this->notify->set_message('error', 'Data has failed to submit.');
+			}
 		}else{
-			$this->app_m->update($data);
+			if($this->app_m->update($data)){
+			 $this->notify->set_message('success', 'Data has been successfuly updated.');
+			}else{
+			 $this->notify->set_message('error', 'Data has been failed to be updated.');
+			}
 		}
 	}
 		
@@ -421,7 +429,8 @@
    
    function user_add($userID=0)
    {
-     $form = new HTMLQuickForm2('userform','POST','action="'.site_url('admin/user/add/').$userID.'"');
+    $this->load->model('user_m');
+     $form = new HTMLQuickForm2('userform','POST','action="'.site_url('admin/user/add/'.$userID).'"');
 	
       $fsCredential = $form->addElement('fieldset')
 							  ->setLabel('User Detail');	
@@ -479,7 +488,7 @@
 		$repPassword = $fsPasswords->addElement('password', 'PasswordRepeat', array('style' => 'width: 200px;'))
 								   ->setLabel('Repeat new password:');
 		$newPassword->addRule('nonempty', 'User Password', null, HTML_QuickForm2_Rule::SERVER)
-			->and_($repPassword->createRule('nonempty', 'Repeat password', $newPassword))
+			//->and_($repPassword->createRule('nonempty', 'Repeat password', $newPassword))
 			->and_($repPassword->createRule('eq', 'The passwords do not match', $newPassword))
 			->and_($newPassword->createRule('minlength', 'The password is too short', 6));		
 		
@@ -497,9 +506,9 @@
 		{  
 		   $this->is_validated = true;
 		   $data = $form->getValue();
-		   unset($data['submit'],$data['_qf__userform']);
-		  if($this->user_model->add($data)){
-			if(!$data['user_ID']){
+		   unset($data['submit'],$data['_qf__userform'],$data['PasswordRepeat']);
+		  if($this->user_m->add($data)){
+			if(!isset($data['user_ID'])){
 			 $fslogcred = $form->addElement('fieldset')->setLabel('User Login Credential (Please Write this note)');
 			 $fslogcred->addElement('static','','',array('content'=>"<div>
 															<b>Email : {$data['user_email']}</b><br>
@@ -507,6 +516,9 @@
 															</div>"));	
 			 $form->addElement('static','','',array('content'=>"<Br><br><a href='".site_url('admin/user/add')."'>Add another User</a>"));													
 			}
+			$this->notify->set_message('success', 'Data has been successfuly submitted.');
+		  }else{
+		    $this->notify->set_message('error', 'Data has failed to be submitted.');
 		  }
 			$form->removeChild($button);
 			$form->toggleFrozen(true);
@@ -594,13 +606,17 @@
 
 		   if($page_id){
 			   if(!$this->page_m->updatePage($data)){
-				 $error = $this->page_m->error;
+				 $this->notify->set_message('error', 'Data has failed to be updated.');
+			   }else{
+			    $this->notify->set_message('success', 'Data has been successfuly updated.');
 			   }
 		   }else{
 		       unset($data['page_id']);
 			   if(!$this->page_m->addPage($data)){
-				 $error = $this->page_m->error;
-			   }		   
+				 $this->notify->set_message('error', 'Data has failed to be submitted.');
+			   }else{
+				$this->notify->set_message('success', 'Data has been successfuly submitted.');
+				}			   
 		   }
 		   
 			$form->removeChild($button);
@@ -644,7 +660,7 @@
 																						'background_repeat'=>'Background Repeat')));
 		$asset_type->addRule('required', 'Required', null,HTML_QuickForm2_Rule::SERVER);
 		
-		$form->addElement('static','','',array('content'=>'<b>Upload Assets ? (GIF,JPG,PNG)</b>'));
+		$asset_uploadedtext = $form->addElement('static','','',array('content'=>'<b>Upload Assets ? (GIF,JPG,PNG)</b>'));
 		$asset_uploadedfile = $form->addElement('file','uploadedfile','size="80"');
 		$asset_uploadedfile->addRule('mimetype', 'Asset is not a valid file type', array('image/gif','image/jpeg','image/pjpeg','image/png'),HTML_QuickForm2_Rule::SERVER);
 		//$asset_file->addRule('maxfilesize', 'Asset filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
@@ -670,21 +686,29 @@
 				$data['asset_width'] = isset($info_img[0]) ? $info_img[0] : '';
 				$data['asset_height'] = isset($info_img[1]) ? $info_img[1] : '';
 				$data['asset_mimetype'] = isset($info_img['mime']) ? $info_img['mime'] : '';
+				$data['asset_url'] = site_url('image/campaign').'?src='.$data['asset_basename'];
+				$data['asset_thumb_url'] = site_url('image/campaign').'?src=thumb_'.$data['asset_basename'];
 				unset($data['uploadedfile']);
+				$form->addElement('static','','',array('content'=>'<div style="margin-top:10px;">Uploaded Asset :</div><div><img src="'.$data['asset_url'].'" /></div>'));
 			}
 			if(isset($data['uploadedfile'])) unset($data['uploadedfile']);
 			
 		   if($asset_id){
 		  
-			   if(!$this->assets_m->updateAssets($data)){
-				 
+			   if($this->assets_m->updateAssets($data)){
+				 $this->notify->set_message('success', 'Data has been successfuly updated.');
+			   }else{
+			    $this->notify->set_message('error', 'Data has failed to be updated.');
 			   }
 		   }else{
 		       unset($data['asset_id']);
-			   if(!$this->assets_m->addAssets($data)){
-				 
-			   }		   
+			   if($this->assets_m->addAssets($data)){
+				 $this->notify->set_message('success', 'Data has been successfuly submitted.');
+			   }else{
+				$this->notify->set_message('error', 'Data has failed to be submitted.');
+			   }			   
 		   }
+		    $form->removeChild($asset_uploadedtext);
 		    $form->removeChild($asset_uploadedfile);
 			$form->removeChild($button);
 			$form->toggleFrozen(true);
@@ -760,7 +784,7 @@
 		$form->addElement('static','','',array('content'=>'<b>What is your campaign all about ?</b>'));
 		$sdescription = $form->addElement('textarea','description',array('class'=>'mceNoEditor'));
 		
-		$allowed_maxfilesize = 1024*1024;
+/* 		$allowed_maxfilesize = 1024*1024;
 		$allowed_mimetype = 'image/gif,image/jpeg,image/pjpeg,image/png';
 
 		$form->addElement('static','','',array('content'=>'<b>Upload Header Image for your Campaign ? (image width will be resize to 400px)</b>'));
@@ -770,7 +794,7 @@
 		
 		if($gid){
 			$form->addElement('static','','',array('content'=>'<img src="'.site_url('image/campaign')."?src=".$campaign['image_header'].'">'));
-		}
+		} */
 			
 		$date_set = $gid ? array('format'=>'dFY His','maxYear'=>date('Y')) : array('format'=>'dFY His','minYear'=>date('Y'),'maxYear'=>date('Y')+1);
 		
@@ -864,7 +888,7 @@
 			 $data['allowed_media_type'] = 'image';
 			}
 			
-			if ($data['image_header_uploadfile']['error'] == UPLOAD_ERR_OK) {
+/* 			if ($data['image_header_uploadfile']['error'] == UPLOAD_ERR_OK) {
 				$tmp_name = $data['image_header_uploadfile']["tmp_name"];
 				$time = md5(uniqid(rand(), true).time());
 				$image = resizeImage( $tmp_name, CAMPAIGN_IMAGE_DIR."/".$time.".jpg", 400 , 'width' );					
@@ -872,18 +896,22 @@
 				unset($data['image_header_uploadfile']);
 			}
 			
-			unset($data['image_header_uploadfile']);
+			unset($data['image_header_uploadfile']); */
 		   if($gid){
-			   if(!$this->campaign_m->updateCampaign($data)){
-				 $error = $this->campaign_m->error;
+			   if($this->campaign_m->updateCampaign($data)){
+				 $this->notify->set_message('success', 'Data has been successfuly updated.');
+			   }else{
+			    $this->notify->set_message('error', 'Data has failed to be updated.');
 			   }
 		   }else{
 		       unset($data['gid']);
-			   if(!$this->campaign_m->addCampaign($data)){
-				 $error = $this->campaign_m->error;
-			   }		   
+			   if($this->campaign_m->addCampaign($data)){
+				 $this->notify->set_message('success', 'Data has been successfuly submitted.');
+			   }else{
+				 $this->notify->set_message('error', 'Data has failed to be submitted.');
+			   }			   
 		   }
-		    $form->removeChild($r_file);
+		    //$form->removeChild($r_file);
 			$form->removeChild($button);
 			$form->toggleFrozen(true);
 		}

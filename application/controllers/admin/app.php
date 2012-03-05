@@ -17,6 +17,17 @@ Class App extends CI_Controller {
 	function add($gid = 0){
 		$this->load->view('admin/app_add',array('content'=>$this->form->app_add($gid)));		
 	}
+		
+	public function getMsg($type){
+		$template = array("submission_true"=>"Your data has been successfuly submitted.",
+					 "submission_false"=>"Submission has Failed, Please Try Again.",
+					 "update_true"=>"Item(s) has been successfuly updated.",
+					 "update_false"=>"Item(s) has failed to be updated. Please Try Again.",
+					 "delete_true"=>"Item(s) has been successfuly deleted",
+					 "delete_false"=>"Item(s) has failed to be deleted. Please Try Again.");
+					 
+	    return isset($template[$type]) ? $template[$type] : '';	   
+	}	
 	
 	
 	function lists(){
@@ -25,8 +36,17 @@ Class App extends CI_Controller {
 	if($this->input->post('cid')){ 
 		 foreach($this->input->post('cid') as $v){
 		  switch($this->input->post('task')){
-		   case 'delete': $this->app->remove($v); break;
-		   case 'dispatch': $this->app->dispatch($v); break;
+		   case 'delete': if($this->app->remove($v)){
+		   $this->notify->set_message('success', $this->getMsg('delete_true'));
+		   }else{
+		   $this->notify->set_message('error', $this->getMsg('delete_false'));
+		   }
+		   break;
+		   case 'dispatch': if($this->app->dispatch($v)){
+		   $this->notify->set_message('success', $this->getMsg('update_true'));
+		   }else{
+		   $this->notify->set_message('error', $this->getMsg('update_false'));
+		   } break;
 		  }
 		 }
 	 }
