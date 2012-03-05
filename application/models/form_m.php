@@ -106,8 +106,11 @@
 								 }				
 		  }
 		}
+
+		$button = $form->addElement('submit','submit','value="Submit"');
+		/*
 		$button = $form->addElement('submit','submit','value="Submit" style="border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;padding:5px;margin-left:290px;"');
-		
+		*/
 		if ($form->validate()) {
 			$form->toggleFrozen(true);
 			$data = $form->getValue();
@@ -119,9 +122,7 @@
 					if ($data['media_source']['error'] == UPLOAD_ERR_OK) {
 						$tmp_name = $data['media_source']["tmp_name"];
 						$time = md5(uniqid(rand(), true).time());
-						if(!is_dir(CUSTOMER_IMAGE_DIR.$gid)){
-							mkdir(CUSTOMER_IMAGE_DIR.$gid, 0700);
-						}
+
 							
 						$image = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/".$uid."_".$time.".jpg", 500 , 'width' );
 						$image_medium = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/medium_".$uid."_".$time.".jpg", 300 , 'width' );
@@ -200,7 +201,7 @@
 		$renderer = HTML_QuickForm2_Renderer::factory('default');
 		$form_layout = $form->render($renderer);
 		
-		return $html_done ? $html_done : $form_layout;
+		return isset($html_done) ? $html_done : $form_layout;
    }
   
    

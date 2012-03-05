@@ -44,9 +44,7 @@
 			 },
 			 function(response) {
 				    if(response) {
-						$.post('<?php echo APP_CANVAS_URL?>rpc/invite',response, function(data) {
-						  console.log(data);
-						});
+
 					 }
 				   }
 			 );

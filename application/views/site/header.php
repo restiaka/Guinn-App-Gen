@@ -8,11 +8,18 @@
     <title>
       Guinness Contests
     </title>
-<script src="<?php echo base_url()?>assets/js/jquery-1.5.1.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>assets/js/script.js" type="text/javascript"></script>
-<?php //echo setMetaTags(); //Set Additional Meta Tag from registerMetaTags() | REQUIRED!!! ?>
-<?php $this->load->view('fbjs'); //Set Facebook JS SDK | REQUIRED!!! ?>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>
+
+	<script src="<?php echo base_url()?>assets/js/jquery-1.5.1.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url()?>assets/js/script.js" type="text/javascript"></script>
+	<?php //echo setMetaTags(); //Set Additional Meta Tag from registerMetaTags() | REQUIRED!!! ?>
+	<?php $this->load->view('fbjs'); //Set Facebook JS SDK | REQUIRED!!! ?>
   </head>
   <body>
     <?php $this->load->view('fbjs_async_load'); //Async Facebook js sdk Load (Always put after <body> tag!) | REQUIRED!!! ?>
-    <div id="container">
+    <div data-role="page" data-theme="e">
+	<div data-role="header"></div>
+	<div data-role="content">
+	<div id="container">

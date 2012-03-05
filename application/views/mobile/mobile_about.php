@@ -1,5 +1,5 @@
-<?php $this->load->view('mobile/mobile_header'); //Begin HTML ?>
+<?php echo $this->load->view('mobile/mobile_header',null,true); //Begin HTML ?>
 
 ABOUT
 
-<?php $this->load->view('mobile/mobile_footer'); //End HTML ?>
+<?php echo $this->load->view('mobile/mobile_footer',null,true); //End HTML ?>

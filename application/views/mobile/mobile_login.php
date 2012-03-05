@@ -1,15 +1,13 @@
-<?php $this->load->view('mobile/mobile_header'); //Begin HTML ?>
-
+<?php echo $this->load->view('mobile/mobile_header',null,true); //Begin HTML ?>
+<ul class="breadcrumb">
+  <li><a href="<?=mobile_menu_url()?>">Home</a></li>
+  <li>Login</li>
+</ul>
     <?php if(!$is_authorized):?>	
 		<!-- CONTAINER FORM UNAUTHORIZED -->
 		<div class="box brown">
-			<div class="inner">
-			<p>Only users that have permission Authorized for this application may join</p>
-			<div class="gold"><p>Please "Allow Pop Up" from this application to authorize the application</p></div>
-
 			<div class="authorize btn">
 			<?php mobile_loginUrl('https://apps.facebook.com/guinnidgentestone/')?>
-			
 			</div>
 			</div>
 		</div>
@@ -46,4 +44,5 @@
 		</div>
 		<!-- /CONTAINER FORM AUTHORIZED -->
 	<?php endif;?>
-<?php $this->load->view('mobile/mobile_footer'); //End HTML ?>
+
+<?php echo $this->load->view('mobile/mobile_footer',null,true); //End HTML ?>

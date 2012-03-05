@@ -461,4 +461,47 @@ Class Media_m extends CI_Model {
   {
    return $this->db->update('campaign_media', array('media_winner'=>$value), array('media_id'=>$media_id));
   }
+
+  function mobile_gallery($media,$pagination = null,$use_default_style = true){
+
+   if(!is_array($media)){
+     $media = array();
+   }
+
+  $html = "";
+    if(isset($media) && count($media)>0):
+		$html .=  '<ul class="gallery-list">';
+		foreach($media as $row):
+		
+		  try {
+		    // Proceed knowing you have a logged in user who's authenticated.
+		    $user_profile = $this->facebook->api($row['uid']);
+			//dg($user_profile);
+		  } catch (FacebookApiException $e) {
+		    $user_profile = null;
+		  }
+		
+		$html .= '
+				<li>
+					<a href="'.mobile_menu_url('media').'/?m='.$row['media_id'].'" title="See detail">
+					  <div class="thumbnail">
+					  <img src="'.$row['media_thumb_url'].'">
+					</div>
+					<div class="vote">99 votes</div>
+					<div class="owner">'.$user_profile['name'].'</div>
+					<p>'.$row['media_description'].'</p>
+				    </a>
+				</li>			
+				';
+		endforeach;   
+	
+		$html .= '</ul>';
+		$html .= '<div class="pager">'.$pagination['all'].'</div>';
+    else:
+		$html .= '<div style="color:#fff" >'.
+					'<a href="'.mobile_menu_url('home').'" >Click here and submit yours!</a>'.
+				 '</div>';
+	endif;
+	return $html;			  
+ }
 }
