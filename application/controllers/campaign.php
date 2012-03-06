@@ -34,12 +34,12 @@ Class Campaign extends CI_Controller {
 	    if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
-		$sr = $this->facebook->getSignedRequest()
-		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".urlencode(menu_url('upload')) : urlencode(("http://apps.facebook.com/{$this->config->item('APP_APPLICATION_ID')}/upload");
+		$sr = $this->facebook->getSignedRequest();
+		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".menu_url('upload') : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/upload";
 		
 		$this->load->view('site/home',array('campaign_info'=>$campaign,
 										   'is_authorized' => $isAuthorized,
-										   'redirectURL' => $redirectURL,
+										   'redirectURL' => $redirect_url,
 										   'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null),
 										   ));	
 	}
@@ -48,8 +48,8 @@ Class Campaign extends CI_Controller {
 	{
 	 $this->load->model('customer_m','customer');
 	 
-	 $sr = $this->facebook->getSignedRequest()
-	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".urlencode(current_url()) : urlencode("http://apps.facebook.com/{$this->config->item('APP_APPLICATION_ID')}/upload");
+	 $sr = $this->facebook->getSignedRequest();
+	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/upload";
 		
 	 
 	 if(!$campaign = $this->campaign->getActiveCampaign()){
@@ -87,7 +87,7 @@ Class Campaign extends CI_Controller {
 	  if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
-	  $redirectURL = $this->input->get_post('ref');
+	  $redirectURL = urldecode($this->input->get_post('ref'));
 		
 		$this->load->view('site/authorize',array(
 											   'campaign_info'=>$campaign,
@@ -126,8 +126,8 @@ Class Campaign extends CI_Controller {
 			show_404();
 	 }
 	 
-	 $sr = $this->facebook->getSignedRequest()
-	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".urlencode(current_url()) : urlencode("http://apps.facebook.com/{$this->config->item('APP_APPLICATION_ID')}/register");
+	 $sr = $this->facebook->getSignedRequest();
+	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/register";
 	
 	 
 	 if(!$user = getAuthorizedUser(true)){
@@ -153,8 +153,8 @@ Class Campaign extends CI_Controller {
 	 	if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
-	 $sr = $this->facebook->getSignedRequest()
-	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".urlencode(current_url()) : urlencode("http://apps.facebook.com/{$this->config->item('APP_APPLICATION_ID')}/register");
+	 $sr = $this->facebook->getSignedRequest();
+	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/register";
 		
 		
 		if(!$user = getAuthorizedUser(true)){
@@ -173,8 +173,8 @@ Class Campaign extends CI_Controller {
 	 
 	 public function winner()
 	 {
-	  	 $sr = $this->facebook->getSignedRequest()
-	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".urlencode(current_url()) : urlencode("http://apps.facebook.com/{$this->config->item('APP_APPLICATION_ID')}/winner");
+	  	 $sr = $this->facebook->getSignedRequest();
+	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/winner";
 
 		 if(!$user = getAuthorizedUser(true)){
 			redirect(menu_url('authorize').'?ref='.$redirect_url);
@@ -202,8 +202,8 @@ Class Campaign extends CI_Controller {
 		if(!$media_id){
 			$media_id = addslashes($this->input->get('m', TRUE));
 		}
-	   $sr = $this->facebook->getSignedRequest()
-	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".urlencode(current_url()) : urlencode("http://apps.facebook.com/{$this->config->item('APP_APPLICATION_ID')}/media?m={$media_id}");
+	   $sr = $this->facebook->getSignedRequest();
+	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/media?m=$media_id";
 
 	   	if(!$user = getAuthorizedUser(true)){
 		  redirect(menu_url('authorize').'?ref='.$redirect_url);
@@ -253,8 +253,8 @@ Class Campaign extends CI_Controller {
 	   if(!$active_campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 	   }
-	   	  	$sr = $this->facebook->getSignedRequest()
-			$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".urlencode(current_url()) : urlencode("http://apps.facebook.com/{$this->config->item('APP_APPLICATION_ID')}/gallery");
+	   	  	$sr = $this->facebook->getSignedRequest();
+			$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/gallery";
 
 	   
 	   
@@ -285,8 +285,8 @@ Class Campaign extends CI_Controller {
 	    if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
-		$sr = $this->facebook->getSignedRequest()
-		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".urlencode(current_url()) : urlencode("http://apps.facebook.com/{$this->config->item('APP_APPLICATION_ID')}/rules");
+		$sr = $this->facebook->getSignedRequest();
+		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/rules";
 
 	    if(!$user = getAuthorizedUser(true)){
 			redirect(menu_url('authorize').'?ref='.$redirect_url);

@@ -2,9 +2,9 @@
 <div class="main">
 	<div class="main-banner">
 		<?php if(!$is_authorized):?>
-			<?php echo authorizeBanner(base_url()."assets/site/img/banner/main-banner.png",true,menu_url('upload'));?>
+			<?php echo authorizeBanner(base_url()."assets/site/img/banner/main-banner.png",true,$redirectURL);?>
 		<?php else:?>
-			<?php echo authorizeBanner(base_url()."assets/site/img/banner/main-banner.png",false,menu_url('upload'));?>
+			<?php echo authorizeBanner(base_url()."assets/site/img/banner/main-banner.png",false,$redirectURL);?>
 		<?php endif;?>	
 	</div>
 </div>
