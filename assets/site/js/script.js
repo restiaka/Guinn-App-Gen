@@ -1,15 +1,12 @@
-$(document).ready(function() {
+$(document).ready(function() {		
 	
-$('.big-img').hover(function(){
-	
-	$('.img-nav a').stop(true,false).animate({opacity: .65},200)},
-	
-	function(){$('.img-nav a').stop(true,false).animate({opacity: 0},200)
+$('.gallery-list li').hover(function(){
+	$(this).find('.see-more').stop(true,false).animate({opacity: 1},100)}, function(){
+		$(this).find('.see-more').stop(true,false).animate({opacity: 0},66)
 	});
-
-$('.img-nav a').hover(function(){
-	$(this).stop(true,false).animate({opacity: .85},100)},
-	function(){$(this).stop(true,false).animate({opacity: 0.65},50)
+	
+	$('.hide').click(function(){
+		
+		});
 });
 	
-});

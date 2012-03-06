@@ -26,6 +26,31 @@ Class Campaign extends CI_Controller {
 	
 	public function home()
 	{
+	 $user = getAuthorizedUser(true);
+	 dg($user);
+	 
+
+	 
+		$this->load->model('customer_m','customer');
+
+		$this->load->library('facebook');
+
+		$isAuthorized = $user ? true : false;
+		$isFan = user_isFan();
+	 
+	    if(!$campaign = $this->campaign->getActiveCampaign()){
+			show_404();
+		}
+		
+		$this->load->view('site/tab',array('campaign_info'=>$campaign,
+										   'is_authorized' => $isAuthorized,
+										   'is_fan' => $isFan,
+										   'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null),
+										   ));	
+	}
+	
+	public function upload()
+	{
 		$this->load->model('customer_m','customer');
 
 		$this->load->library('facebook');
@@ -39,7 +64,7 @@ Class Campaign extends CI_Controller {
 			show_404();
 		}
 		
-		$this->load->view('site/tab',array('campaign_info'=>$campaign,
+		$this->load->view('site/upload',array('campaign_info'=>$campaign,
 											'html_form_upload' => $form,
 										   'html_form_register' => $this->form->customer_register(),
 										   'customer_registered' => ($this->customer->isRegistered() ? true : false),

@@ -18,8 +18,6 @@
 			</div>
 		</div>
 		<!-- /CONTAINER FORM UNAUTHORIZED -->
-	<?php elseif(!$is_fan):?>
-	Like Us and Join the contest
 	<?php elseif(!$customer_registered): ?>
 		<!-- REGISTRATION FORM -->
 		<div class="box brown">
