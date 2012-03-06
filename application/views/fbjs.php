@@ -136,6 +136,7 @@
 	});
   } 
   
+  
    function addToPage(redirectURI) {
      fbEnsureInit(function(){		
        FB.ui({

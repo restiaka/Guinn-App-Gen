@@ -76,7 +76,7 @@
 			 if(isset($signed_request['app_data']) && $signed_request['app_data']){   
 			   list($mode,$value) = explode("|",$signed_request['app_data']);
 			   switch($mode){
-				case 'redirect' : redirect(site_url($value));
+				case 'redirect' : redirect($value);
 								  break;
 				case 'redirect_media' : redirect(menu_url('media').'?m='.$value);
 								  break;				  

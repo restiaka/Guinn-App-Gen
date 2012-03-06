@@ -8,24 +8,6 @@
 			}
 	}
 	
-	function redirectToFanPage(){
-	 $CI = &get_instance();
-        $CI->load->model('setting_m');
-		
-	  $host = parse_url($_SERVER['HTTP_REFERER'],PHP_URL_HOST);
-	  //Strip Canvas Page Host URL
-	  //ex : from -> http://apps.facebook.com/guinnidphotocontest/tab/209681662395432/media/?m=9
-	  //     to -> tab/209681662395432/media/?m=9
-	  $path = '/'.str_replace($CI->setting_m->get('APP_CANVAS_PAGE'),'',$_SERVER['HTTP_REFERER']);
-	  $redirect_url = $CI->setting_m->get('APP_FANPAGE').'&app_data=redirect|'.$path;
-	  if($host == "apps.facebook.com"){
-		echo "<script>window.top.location.href = '$redirect_url';</script>";
-		echo "<a href='$redirect_url' target='_top' style='font-weight:bold;font-size:15px;'>Click Here if you're not redirected!</a>";	
-		exit;	
-	  }
-	  return false;
-	}
-	
 	
   	function printNotification(){
 	  $CI = &get_instance();
@@ -68,18 +50,6 @@
 		return "#";
 	  }
 	}
-	
-	 function themeUrl($theme_dir_name = NULL,$relative_path = TRUE) {
-		if(!defined('THEME_DIR') && !$theme_dir_name) return null;
-		
-		if($theme_dir_name){
-		 $basepath = str_replace(ROOT_DIR,'',VIEW_DIR);
-		  return ($relative_path ? "" : SITE_URL).$basepath.$theme_dir_name."/";
-		}else{
-		  $basepath = str_replace(ROOT_DIR,'',THEME_DIR);
-		  return ($relative_path ? "" : SITE_URL).$basepath;
-		}
-	 }
 	 
 	 function callback_validateAppID(){
 	 $CI = &get_instance();

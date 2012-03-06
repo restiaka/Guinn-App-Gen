@@ -303,9 +303,19 @@ function appToPage_dialog_url($appid,$redirecturl){
     return "<a onclick=\"fbDialogLogin(".$redirectURL."); return false;\" class=\"fb_button fb_button_medium\"><span class=\"fb_button_text\">".$text."</span></a>";
  }
  
- function authorizeBanner($image_url,boolean $login,$redirectURL = null){
+ function authorizeBanner($image_url,$login,$redirectURL = null){
  	$redirectURL = $redirectURL ? "'".$redirectURL."'" : null;
 	$onclick = $login ? "onclick=\"fbDialogLogin($redirectURL); return false;\"" : "";
     $href = $login ? "#" : $redirectURL;
 	return "<a href=\"$href\" $onclick ><img src=\"$image_url\" /></a>";
  }
+ 
+  function fblike($href,$attr = "show_faces='false' width='430' font=''")
+  {
+     return "<fb:like href='$href' $attr ></fb:like>";
+  }
+  
+  function fbcomment($href,$attr = "colorscheme='light' width='460' num_posts='5'")
+  {
+   return "<fb:comments href='$href' $attr ></fb:comments>";
+  }
