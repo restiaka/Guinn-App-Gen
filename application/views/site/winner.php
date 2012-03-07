@@ -1,5 +1,4 @@
-<?php $this->load->view('site/header'); //Begin HTML ?>
-<?php $this->load->view('site/header_main_navigation'); //Begin HTML ?>
+<?php echo $this->load->view('site/header',$campaign,true); //Begin HTML ?>
 
 <div>
 <table>
@@ -10,4 +9,4 @@
 </table>
 </div>
 	
-<?php $this->load->view('site/footer');//End HTML ?>
+<?php echo $this->load->view('site/footer',$campaign,true);//End HTML ?>

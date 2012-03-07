@@ -50,7 +50,7 @@
 	
 	 
      $form = new HTMLQuickForm2('uploadmedia','POST');
-	 $form->setAttribute('action', '');
+    $form->setAttribute('action', menu_url('upload'));
 	 /**Setup default value*
 	 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
 	 )));
@@ -75,13 +75,15 @@
 		 $label = ucfirst($label).' &nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;';
 		  switch ($domid){ 
 		   case 'media_title': 
-		   $form->addElement('static','','',array('content'=>$label));	
-		   $r = $form->addElement('text',$domid,'style="width:335px;"');
+		   //$form->addElement('static','','',array('content'=>$label));	
+		   $r = $form->addElement('text',$domid,'');
+		   $r->setLabel($label);
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 		   case 'media_description' : 
-		   $form->addElement('static','','',array('content'=>$label));	
-		   $r = $form->addElement('textarea',$domid,'style="width:335px;"');
+		   //$form->addElement('static','','',array('content'=>$label));	
+		   $r = $form->addElement('textarea',$domid,'');
+		   $r->setLabel($label);
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 		   case 'media_source' : 
@@ -89,15 +91,18 @@
 		   $src = explode(',',$allowed_media_source); 
 								 if(in_array('facebook',$src) || in_array('youtube',$src) || in_array('twitpic',$src) || in_array('yfrog',$src) || in_array('plixi',$src))
 								 {
-									$form->addElement('static','','',array('content'=>'Copy and Paste YouTube URL here'));	
-								    $r = $form->addElement('text',$domid,'style="width:335px;"');
+									//$form->addElement('static','','',array('content'=>'Copy and Paste YouTube URL here'));	
+								    $r->setLabel('YouTube URL');
+									$r = $form->addElement('text',$domid,'');
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 								 } 
 								 elseif(in_array('file',$src))
 								 {
-									$form->addElement('static','','',array('content'=>'Upload Photo from your computer here'));	
-									$r_file = $form->addElement('file',$domid,'size="40"');
+									//$form->addElement('static','','',array('content'=>'Upload Photo from your computer here'));	
+									
+									$r_file = $form->addElement('file',$domid,'');
+									$r_file->setLabel('Upload Photo');
 									$r_file->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									$r_file->addRule('mimetype', $label.' is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
 									$r_file->addRule('maxfilesize', $label.' filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
@@ -106,7 +111,8 @@
 								 }				
 		  }
 		}
-		$button = $form->addElement('submit','submit','value="Submit" style="border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;padding:5px;margin-left:290px;"');
+		$button = $form->addElement('submit','submit','value="Submit" class="input-submit button big"');
+		$button->setLabel('&nbsp;');
 		
 		if ($form->validate()) {
 			$form->toggleFrozen(true);
@@ -119,9 +125,6 @@
 					if ($data['media_source']['error'] == UPLOAD_ERR_OK) {
 						$tmp_name = $data['media_source']["tmp_name"];
 						$time = md5(uniqid(rand(), true).time());
-						if(!is_dir(CUSTOMER_IMAGE_DIR.$gid)){
-							mkdir(CUSTOMER_IMAGE_DIR.$gid, 0700);
-						}
 							
 						$image = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/".$uid."_".$time.".jpg", 500 , 'width' );
 						$image_medium = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/medium_".$uid."_".$time.".jpg", 300 , 'width' );
@@ -178,9 +181,13 @@
 			$data['media_uploaded_timestamp'] = $time;
 			$data['GID'] = $active_campaign_gid;
 			
-			$media_ok = $this->media_m->addMedia($data);
+			if($media_ok = $this->media_m->addMedia($data)){
+				return "success";
+			}else{
+			    return "error";
+			}
 			
-			$html_done = '<table width="100%">
+/* 			$html_done = '<table width="100%">
 							<tr>
 								<td width="23%">'.$this->media_m->showMedia($data).'</td>
 								<td style="vertical-align:top">
@@ -189,10 +196,10 @@
 								Thank You.<br>
 								</td>
 							</tr>
-						  </table>';
+						  </table>'; */
+				//$form->addElement('static','','',array('content'=>$html_done));	
 			
 			$form->removeChild($button);
-				$form->addElement('static','','',array('content'=>$html_done));	
 			if($r_file)	
 			 $form->removeChild($r_file);
 		}
@@ -200,7 +207,7 @@
 		$renderer = HTML_QuickForm2_Renderer::factory('default');
 		$form_layout = $form->render($renderer);
 		
-		return $html_done ? $html_done : $form_layout;
+		return isset($html_done) ? $html_done : $form_layout;
    }
   
    
@@ -211,45 +218,65 @@
     $campaign = $this->campaign_m->getActiveCampaign();
 	$this->load->library('facebook');
 	
-	$form = new HTMLQuickForm2('customer_register','POST','action=""  ');
+	$form = new HTMLQuickForm2('customer_register','POST');
+    $form->setAttribute('action', menu_url('register'));
+	$user = getAuthorizedUser();
+	$form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
+																	'FIRSTNAME'=>isset($user['first_name']) ? $user['first_name'] : "" ,
+																	'LASTNAME'=>isset($user['last_name']) ? $user['last_name'] : "",
+																	'EMAIL'=>isset($user['email']) ?  $user['email'] : ""
+																	)));
 		
-		 $form->addElement('static','','',array('content'=>'Your Firstname :'));	
-		 $firstname = $form->addElement('text','FIRSTNAME','style="width:335px;"');
+		 //$form->addElement('static','','',array('content'=>'Your Firstname :'));	
+		 $firstname = $form->addElement('text','FIRSTNAME','');
+		 $firstname->setLabel('First Name');
 		 $firstname->addRule('required', 'Firstname is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
-		 $form->addElement('static','','',array('content'=>'Your Lastname :'));	
-		 $lastname = $form->addElement('text','LASTNAME','style="width:335px;"');
+		 //$form->addElement('static','','',array('content'=>'Your Lastname :'));	
+		 $lastname = $form->addElement('text','LASTNAME','');
+		 $lastname->setLabel('Last Name');
 		 $lastname->addRule('required', 'Lastname is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
-		 $form->addElement('static','','',array('content'=>'Email :'));	
-		 $email = $form->addElement('text','EMAIL','style="width:335px;"');
+		 //$form->addElement('static','','',array('content'=>'Email :'));	
+		 $email = $form->addElement('text','EMAIL','');
+		 $email->setLabel('Email');
 		 $email->addRule('required', 'Email is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
-		 $form->addElement('static','','',array('content'=>'Phone no :'));	
-		 $mobile = $form->addElement('text','MOBILE','style="width:335px;"');
+		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
+		 $mobile = $form->addElement('text','MOBILE','');
+		 $mobile->setLabel('Phone');
 		 $mobile->addRule('required', 'Phone no. is required', null,HTML_QuickForm2_Rule::SERVER);
+		 
+		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
+		 $address = $form->addElement('textarea','ADDRESS','');
+		 $address->setLabel('Address');
+		 $address->addRule('required', 'Address is required', null,HTML_QuickForm2_Rule::SERVER);
+		 
+		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
+		 $terms = $form->addElement('checkbox','TERMS','',array('content'=>'I accept Terms & Conditions'));
+		 $terms->setLabel('Regulation');
+		 $terms->addRule('required', 'Terms Agreement Required', null,HTML_QuickForm2_Rule::SERVER);
+		 
+		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
+		 $SUBSCRIPTION = $form->addElement('checkbox','SUBSCRIPTIONID1','value = "'.$this->config->item('APP_APPLICATION_ID').'|S"',array('content'=>'Please send me news & updates'));
+		 $SUBSCRIPTION->setLabel('Email Subscribe');
+		 
 		
-		$button = $form->addElement('submit','submit','value="Submit Registration" style="border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;padding:5px;margin-left:220px;"');
+		$button = $form->addElement('submit','submit','value="Register"');
+		$button->setLabel('&nbsp;');
 		
 		if ($form->validate()) {
 			$form->toggleFrozen(true);
 			$data = $form->getValue();
-			unset($data['submit'],$data['_qf__customer_register']);
+			unset($data['submit'],$data['_qf__customer_register'],$data['TERMS']);
 			
-			//$data['3012669'] = $this->facebook->getUser();//TRAC_ATTR_FBUID
-			$data['3014098'] = $campaign['GID'];//TRAC_ATTR_GID
-			$data['3031180'] = $data['MOBILE'];//TRAC_ATTR_MOBILE2
-			
-			unset($data['MOBILE']);
-			
-			
+			$data['GID'] = $campaign['GID']."_".$this->config->item('APP_APPLICATION_ID');
 			
 			if($registered = $this->customer_m->add($data)){
-				$form->addElement('static','','',array('content'=>'<div>Done</div>'));	
+			 return "success";	
 			}else{
-				$form->addElement('static','','',array('content'=>'<div>'.implode('<br/>',$this->customer_m->error).'</div>'));	
+			 return "error";
 			}
-			
 			unset($data['submit'],$data['_qf__customer_register']);
 			$form->removeChild($button);
 		}
@@ -666,7 +693,7 @@
 		//$asset_file->addRule('maxfilesize', 'Asset filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
 
 		$form->addElement('static','','',array('content'=>'<b>Set Width Size? (Height resized by width Ratio)</b>'));
-		$asset_resizeto = $form->addElement('select','asset_resizeto','',array('options'=>array(''=>'No Resizing','90'=>'90px','100'=>'100px','500'=>'500px','520'=>'520px','760'=>'760px','800'=>'800px')));
+		$asset_resizeto = $form->addElement('select','asset_resizeto','',array('options'=>array(''=>'No Resizing','90'=>'90px','100'=>'100px','120'=>'120px','200'=>'220px','320'=>'320px','400'=>'400px','520'=>'520px','760'=>'760px','810'=>'810px')));
 		
 		$button = $form->addElement('submit','','value="Submit Asset"');
 		

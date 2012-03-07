@@ -1,5 +1,4 @@
-<?php echo $this->load->view('site/header',null,true); //Begin HTML ?>
-<?php echo $this->load->view('site/header_main_navigation',null,true); //Begin HTML ?>
+<?php echo $this->load->view('site/header',$campaign,true); //Begin HTML ?>
 <style>.big-img img{width:480px;}</style>	
 <div id="main">
 
@@ -14,4 +13,4 @@
 </div>	
 	
 	
-<?php echo $this->load->view('site/footer',null,true);//End HTML ?>
+<?php echo $this->load->view('site/footer',$campaign,true);//End HTML ?>

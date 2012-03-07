@@ -14,7 +14,9 @@
 <?php $this->load->view('fbjs_async_load'); //Async Facebook js sdk Load (Always put after <body> tag!) | REQUIRED!!! ?>
 <div id="container" style="background:#090909">
 <div id="top-banner">
-<img src="<?php echo base_url()?>assets/site/img/banner/top-banner.jpg" alt="100 campaign" title="100 campaign">
+<?php if(isset($campaign['asset_facebook']['banner_header'])):?>
+<img src="<?php echo $campaign['asset_facebook']['banner_header']?>"/>
+<?php endif;?>
 </div>
 <div id="header">
 <ul id="main-nav">

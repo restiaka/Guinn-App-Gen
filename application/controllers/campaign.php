@@ -35,9 +35,12 @@ Class Campaign extends CI_Controller {
 			show_404();
 		}
 		$sr = $this->facebook->getSignedRequest();
-		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".menu_url('upload') : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/upload";
-		
-		$this->load->view('site/home',array('campaign_info'=>$campaign,
+		if($isAuthorized){
+		 $redirect_url = menu_url('upload');
+		}else{
+		 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".menu_url('upload') : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/upload";
+		}
+		$this->load->view('site/home',array('campaign'=>$campaign,
 										   'is_authorized' => $isAuthorized,
 										   'redirectURL' => $redirect_url,
 										   'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null),
@@ -66,6 +69,20 @@ Class Campaign extends CI_Controller {
 	 }
 	 
 	 $form = $this->media->showUploadForm($campaign);
+	 if($form == "success"){
+		//redirect(menu_url('upload'));
+		$media_type = $campaign['allowed_media_source'] == "file" ? "photo" : "video";
+		if($campaign['media_has_approval']){
+			$data['message_text'] = "Enjoy Your Guinness while we're moderating your $media_type Check your email for further notification, it's just a bottle away.";
+	    }else{
+			$data['message_text'] = "Thanks for participating, Your $media_type is now listed on the gallery.";
+		}
+			$data['message_title'] = "Successful";
+		$this->load->view('site/upload_notification',$data);
+	 }elseif($form == "error"){
+		$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );
+		redirect(menu_url('upload'));
+	 }else{
 	 
 		$this->load->model('customer_m','customer');
 
@@ -73,13 +90,12 @@ Class Campaign extends CI_Controller {
 
 		$isAuthorized = $user ? true : false;
 
-	 
-
 		
-		$this->load->view('site/upload',array('campaign_info'=>$campaign,
+		$this->load->view('site/upload',array('campaign'=>$campaign,
 											'html_form_upload' => $form,
 										   'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null),
 										   ));	
+	 }									   
 	}
 	
 	public function authorize()
@@ -90,7 +106,7 @@ Class Campaign extends CI_Controller {
 	  $redirectURL = urldecode($this->input->get_post('ref'));
 		
 		$this->load->view('site/authorize',array(
-											   'campaign_info'=>$campaign,
+											   'campaign'=>$campaign,
 											   'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null),
 											   'fbpage_url' => $this->config->item('APP_FANPAGE'),
 											   'redirectURL' => $redirectURL
@@ -111,7 +127,7 @@ Class Campaign extends CI_Controller {
 	 
 	 
 		
-		$this->load->view('site/likepage',array('campaign_info'=>$campaign,
+		$this->load->view('site/likepage',array('campaign'=>$campaign,
 											   'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null),
 												'fbpage' => getFacebookPage(),
 												'redirectURL' => $redirectURL
@@ -141,9 +157,17 @@ Class Campaign extends CI_Controller {
 	 if($this->customer->isRegistered()){
 	   redirect(menu_url('home'));	   
 	 }
+	 $form = $this->form->customer_register();
+	
+ 	 if($form == "success"){
+		redirect(menu_url('upload'));
+	 }elseif($form == "error"){
+		$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );
+		redirect(menu_url('register'));
+	 }
 	 
-	 $this->load->view('site/register',array('campaign_info'=>$campaign,
-										   'html_form_register' => $this->form->customer_register(),
+	 $this->load->view('site/register',array('campaign'=>$campaign,
+										   'html_form_register' => $form,
 										   'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null)
 										   ));										
 	}
@@ -219,7 +243,7 @@ Class Campaign extends CI_Controller {
 			$campaign_status = $this->campaign->getStatus($campaign);
 			if($campaign_status['is_off'] || $rowMedia['media_status'] == 'pending' || $rowMedia['media_status'] == 'banned'){
 				$rowMedia['media_container'] = $this->media->showMedia($rowMedia,false);
-				$this->load->view('site/media_preview',array('campaign_info'=>$campaign,'media' => $rowMedia,'notification' => $this->notify,'error' => $this->error));	
+				$this->load->view('site/media_preview',array('campaign'=>$campaign,'media' => $rowMedia,'notification' => $this->notify,'error' => $this->error));	
 			}else{
 			   $fblike_href = $this->setting_m->get('APP_CANVAS_PAGE').menu_url('media',true).'/?m='.$rowMedia['media_id'];
 				
@@ -240,7 +264,7 @@ Class Campaign extends CI_Controller {
 															  'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null),
 															));
 				registerMetaTags($meta);
-				$this->load->view('site/media',array('campaign_info'=>$campaign,'plugin'=>$plugin,'media' => $rowMedia));										
+				$this->load->view('site/media',array('campaign'=>$campaign,'plugin'=>$plugin,'media' => $rowMedia));										
 			}
 		}else{
 		 show_404(); 
@@ -274,7 +298,7 @@ Class Campaign extends CI_Controller {
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		$rowsMedia = $this->media->retrieveMedia(array('campaign_media.media_status'=>'active','campaign_media.GID'=>$active_campaign['GID']),array('limit_number' => $config['perPage'],'limit_offset' => --$from));
-		$this->load->view('site/gallery',array('campaign_info'=>$active_campaign,
+		$this->load->view('site/gallery',array('campaign'=>$active_campaign,
 												'media' => $rowsMedia,
 												'pagination'=>$links,
 												 'custom_page_url' => ($active_campaign ? $this->page_m->getPageURL($active_campaign['GID']) : null)));	
@@ -292,7 +316,7 @@ Class Campaign extends CI_Controller {
 			redirect(menu_url('authorize').'?ref='.$redirect_url);
 	    }
 		
-		$this->load->view('site/rules',array('campaign_info'=>$campaign,
+		$this->load->view('site/rules',array('campaign'=>$campaign,
 		'rules' => $campaign['campaign_rules'],
 		'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null)
 		));	

@@ -1,4 +1,4 @@
-<?php echo $this->load->view('site/header',null,true); ?>
+<?php echo $this->load->view('site/header',$campaign,true); ?>
 <div class="main">
 	<div class="main-banner">
 	 <div style="margin-top:20px;text-align:center;">
@@ -16,4 +16,4 @@
 		);
 	});
 </script>
-<?php echo $this->load->view('site/footer',null,true);//End HTML ?>
+<?php echo $this->load->view('site/footer',$campaign,true);//End HTML ?>

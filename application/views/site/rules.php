@@ -1,4 +1,4 @@
-<?php echo $this->load->view('site/header',null,true); //Begin HTML ?>
+<?php echo $this->load->view('site/header',$campaign,true); //Begin HTML ?>
 
 <div class="main">
 <div class="text-format">
@@ -7,4 +7,4 @@
 </div>
 </div>
 
-<?php echo $this->load->view('site/footer',null,true);//End HTML ?>
+<?php echo $this->load->view('site/footer',$campaign,true);//End HTML ?>

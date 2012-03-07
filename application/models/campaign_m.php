@@ -23,6 +23,12 @@ Class Campaign_m extends CI_Model {
 			LIMIT 1";
 	  if($result = $this->db->get_row($sql,'ARRAY_A')){
 	    $result = array_merge($result,$this->getStatus($result));
+		//Merge Assets if exists
+		if($assets = getAssets($result['GID'])){
+		  $result = array_merge($result,$assets);
+		}
+		//Merge extra Page if exists
+		//TO DO 
 	  }else{
 		$result = null;
 	  }	  
@@ -77,6 +83,21 @@ Class Campaign_m extends CI_Model {
 	  }
 	  
 	  return $status;
+  }
+  
+  public function getAssets($GID){
+    $this->load->model('assets_m','asset');
+    $data = array();
+	if($assets = $this->asset->retrieveAssets(array('campaign_group_assets.GID'=>$GID))){
+		foreach ($assets as $asset){
+			$data["asset_".$asset['asset_platform']][$asset['asset_type']] = $asset['asset_url']; 
+		}
+	}
+	return $data;
+  }
+  
+  public function getPages($GID){
+  
   }
   
   public function setStatus($on_wait = false,$on_progress = false,$on_upload = false,$on_vote = false,$on_judging = false,$is_off = true){

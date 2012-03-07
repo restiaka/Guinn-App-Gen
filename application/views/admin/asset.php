@@ -65,9 +65,9 @@
 										<img src="<?php echo site_url('image/campaign').'?src=thumb_'.$v['asset_basename']?>"/>
 									</td>
 									<td style="vertical-align:top;">
+									<?php echo ucfirst($v['asset_name']);?><Br/>
 									<?php echo strtoupper($v['asset_type']);?><Br/>
 									<?php echo "w = ".$v['asset_width']."px h = ".$v['asset_height']."px";?><Br/>
-									<?php echo "MIME ".$v['asset_mimetype'];?><Br/>
 									<a href="<?php echo site_url('image/campaign').'?src='.$v['asset_basename']?>" target="_blank">
 									ImageURL
 									</a>

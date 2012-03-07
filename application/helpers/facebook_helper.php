@@ -304,8 +304,7 @@ function appToPage_dialog_url($appid,$redirecturl){
  }
  
  function authorizeBanner($image_url,$login,$redirectURL = null){
- 	$redirectURL = $redirectURL ? "'".$redirectURL."'" : null;
-	$onclick = $login ? "onclick=\"fbDialogLogin($redirectURL); return false;\"" : "";
+ 	$onclick = $login ? "onclick=\"fbDialogLogin('$redirectURL'); return false;\"" : "";
     $href = $login ? "#" : $redirectURL;
 	return "<a href=\"$href\" $onclick ><img src=\"$image_url\" /></a>";
  }

@@ -52,8 +52,8 @@ Class Media_m extends CI_Model {
   public function sendNotificationMail($status,$data){
   $this->load->model('app_m');
   $this->load->library('email');
-
-    if($TRAC = $this->customer_m->detailTRAC($data['customer_id'],NULL,"C")){ 
+  $TRAC = $this->config->item('TRAC_API_ENABLED') ? $this->customer_m->detailTRAC($data['customer_id'],NULL,"C") : $this->customer_m->detailTRAC_dump($data['customer_id'],NULL,"C");
+    if($TRAC){ 
 	  $customer['firstname'] = $TRAC['fields']['FIRSTNAME'];
 	  $customer['lastname'] = $TRAC['fields']['LASTNAME'];
 	  $customer['media_type'] = $data['media_type'];
@@ -318,7 +318,7 @@ Class Media_m extends CI_Model {
 	$isAuthorized = (!$this->facebook->getUser()) ? false : true;
 	if($isAuthorized && isset($campaign['GID'])){
 	  	if($campaign['on_upload']){
-			 if($campaign['has_uploadonce']){
+			 if($campaign['media_has_uploadonce']){
 			   $media = $this->media->mediaByUID($this->facebook->getUser(),$campaign['GID']);
 			    if($media['media_status'] == "pending" || $media['media_status'] == "approved"){
 					$form = "Sorry! You can only upload once.";

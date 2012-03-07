@@ -485,6 +485,7 @@ $config['notification_mail_pending'] = array(
 | 
 |
 */ 
+$config['TRAC_API_ENABLED'] = false;
 $config['TRAC_USERID'] = 'fbdev';
 $config['TRAC_PASSWORD'] = 'th1nkw3b';	
 $config['TRAC_ENDPOINTID'] = 17259;	

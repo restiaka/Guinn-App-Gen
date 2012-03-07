@@ -448,7 +448,7 @@
 	  echo "</pre>";
 	}
 
-	function resizeImage( $file, $thumbpath, $max_side , $fixfor = NULL, $cropped = false ) {
+	function resizeImage( $file, $thumbpath, $max_side = NULL , $fixfor = NULL, $cropped = false ) {
 
 			// 1 = GIF, 2 = JPEG, 3 = PNG
 
@@ -480,7 +480,7 @@
 					imageantialias( $image, TRUE );
 
 				$image_attr = getimagesize( $file );
-
+				$max_side = $max_side ? $max_side : $image_attr[0]; 
 				// figure out the longest side
 			if($fixfor){
 					if($fixfor == 'width'){
