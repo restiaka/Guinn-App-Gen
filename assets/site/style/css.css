@@ -35,7 +35,7 @@ h2{font-size:22px;line-height:22px;margin-bottom:13px}
 h3{font-size:16px;margin-bottom:10px;font-weight:bold}
 
 /*general*/
-#container{width:520px;0px;margin:0 auto;background:#090909;position:relative}
+#container{width:100%;margin:0 auto;background:#090909;position:relative}
 .main{position:relative;margin:10px 0 30px;min-height:350px;height:auto !important;height:350px}
 #header{position:relative;padding:10px}
 .main-header{font-size:30px;text-align:center;text-transform:uppercase;font-weight:bold;background:url(../img/line-m.png) no-repeat center 100%;padding:0 0 10px;margin:0 0 30px}
@@ -145,7 +145,7 @@ input[type=submit]:hover{cursor:pointer;opacity:1}
 .media-info > div{float:right}
 .media-wrapper{clear:both;margin:0 0 3px}
 .media-wrapper .thumbnail{background:#000;text-align:center}
-.media-wrapper img{border:none;vertical-align:top}
+.media-wrapper img{border:none;vertical-align:top;width:100%;}
 .info .left-content{width:180px;float:left}
 .info .right-content{width:227px;float:right;font-size:11px;padding-left:10px;border-left:1px solid #444}
 .posted-by{font-size:9px}

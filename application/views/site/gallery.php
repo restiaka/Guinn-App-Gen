@@ -9,30 +9,37 @@
   	<li><a href="#">Home</a></li>
     <li>Gallery</li>
   </ul>
-  
+  <?php if(isset($user_media)):?>
   <div class="user-panel">
     <div class="main-wrapper">
     <div class="inner clearfix">
     	<h3>My photo</h3>
       <div class="thumbnail">
-        <a href="gallery-detail.php" title="See detail">
-          <img src="img/upload/thumb.png" width="100" height="100" alt="img">
+        <a href="<?php echo menu_url('media').'/?m='.$user_media['media_id']?>" title="See detail">
+           <?php echo $CI->media_m->showMedia($user_media);?>
           <span class="see-more"><i class="button">See detail</i></span>
         </a>
       </div>
-      <div class="vote">99 votes</div>
+      <div class="vote"><?php echo $user_media['media_vote_total']?> vote(s)</div>
       <div class="share"><a href="#" class="button big">Share to Friends</a></div>
     </div>
     <a href="#" class="hide">hide this -</a>
+   </div>
   </div>
+  <?php endif;?>
+  <?php if(isset($random_media)):?>
+  <div style="float:left;">
+  <a href="<?php echo menu_url('media').'/?m='.$random_media['media_id']?>" class="button" style="font-weight:bold;color:#000000">Random <?php echo $campaign['allowed_media_type'] == "image" ? "Photo" : "Video"?></a>
   </div>
-  
+  <?php endif;?>
   <div class="sort-list clearfix">
+  <form id="sortform" name="sortform" method="POST"></form>
   	<label>Sort by:</label>
-  	<select>
-      <option value="volvo">Most Voted</option>
-      <option value="saab">Latest Upload</option>
+  	<select name="orderby" onchange="document.getElementById('sortform').submit();">
+      <option value="mostvote">Most Voted</option>
+      <option value="latest">Latest Upload</option>
     </select> 
+	
   </div>
   
   <?php if(isset($media) && !empty($media)):?>
@@ -41,29 +48,20 @@
 	<li>
       <div class="thumbnail">
         <a href="<?php echo menu_url('media').'/?m='.$m['media_id']?>" title="See detail">
-          <?php $this->media_m->showMedia($row)?>
+          <?php echo $CI->media_m->showMedia($m);?>
           <span class="see-more"><i class="button">See detail</i></span>
         </a>
       </div>
       <div class="vote"><?php echo $m['media_vote_total']?> votes</div>
-      <div class="owner"><fb:name uid="<?php echo $m['uid']?></div>
+      <div class="owner"><fb:name uid="<?php echo $m['uid']?>" firstnameonly="true" /></div>
     </li>
 	<?php endforeach;?>
   </ul>
-  
+  <div id="pagination"><?php echo $pagination['all']?></div>
   <?php else:?>
   <div style="text-align:center;">SORRY NO SUBMITTED YET</div>
   <?php endif;?>
 
-<!--<ul class="pagination">
-<li>&laquo; Previous</li>
-<li class="active">1</li>
-<li><a href="#">2</a></li>
-<li><a href="#">3</a></li>
-<li><a href="#">4</a></li>
-<li><a href="#">Next &raquo;</a></li>
-</ul>-->
-<div id="pagination"><?php echo $pagination['all']?></div>
 </div>
 </div>
 </div>

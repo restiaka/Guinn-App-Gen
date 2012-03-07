@@ -21,7 +21,7 @@
 		$this->load->model('campaign_m');
    }
    
-   function vote_form($media_id,$media_vote_total) {
+   function vote_form($media_id,$media_vote_total,$template = null) {
 	 
       $form = new HTMLQuickForm2('votemedia','POST');
 	  $form->setAttribute('action', '');
@@ -32,10 +32,12 @@
 	  $media_vote_total = $this->media_m->setVote(addslashes($media_id));
 	}
 	
-	 $form->addElement('static','boxcount','',array('content'=>'<table><tbody><tr>
-																<td><input type="submit" value="VOTE" style="background-color:#000;color:#D9BB75;border:1px solid #D9BB75;"></td>
-																<td><div style="margin-left:5px;padding:2px;border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;">'.$media_vote_total.'</div></td>
-																</tr></tbody></table>'));		
+	$template = '<div class="media-info">'.
+                '<div><input type="submit" id="vote" name="vote" value="Vote!" /></div>'.
+				'<div class="vote"> '.$media_vote_total.' vote(s)</div>'.
+				'</div>';
+	
+	 $form->addElement('static','boxcount','',array('content'=>$template));		
 
 	 $renderer = HTML_QuickForm2_Renderer::factory('default');
 	 $form_layout = $form->render($renderer);
@@ -126,7 +128,7 @@
 						$tmp_name = $data['media_source']["tmp_name"];
 						$time = md5(uniqid(rand(), true).time());
 							
-						$image = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/".$uid."_".$time.".jpg", 500 , 'width' );
+						$image = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/".$uid."_".$time.".jpg", 440 , 'width' );
 						$image_medium = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/medium_".$uid."_".$time.".jpg", 300 , 'width' );
 						
 						$thumb = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/thumb_".$uid."_".$time.".jpg", 100 , null,true );

@@ -12,17 +12,30 @@
 <?php $this->load->view('fbjs'); //Set Facebook JS SDK | REQUIRED!!! ?>
 </head><body>
 <?php $this->load->view('fbjs_async_load'); //Async Facebook js sdk Load (Always put after <body> tag!) | REQUIRED!!! ?>
-<div id="container" style="background:#090909">
+
+<?php if(isset($campaign['asset_facebook']['background_repeat'])):?>
+  <?php $background = "background:url(".$campaign['asset_facebook']['background_repeat'].") repeat"?>
+<?php elseif(isset($campaign['asset_facebook']['background_norepeat'])):?>
+ <?php $background = "background:url(".$campaign['asset_facebook']['background_norepeat'].") no-repeat"?>
+<?php else:?>
+ <?php $background = "background:#000000"?>
+<?php endif;?>
+
+<div id="container" style="<?php echo $background?>">
 <div id="top-banner">
 <?php if(isset($campaign['asset_facebook']['banner_header'])):?>
 <img src="<?php echo $campaign['asset_facebook']['banner_header']?>"/>
 <?php endif;?>
 </div>
+<?php if(!isset($campaign['media_preview'])):?>
 <div id="header">
 <ul id="main-nav">
-	<li><a href="index.php">Home</a></li>
-  <li><a href="gallery.php">Gallery</a></li>
-  <li><a href="tnc.php">Terms & Conditions</a></li>
-  <li><a href="winner-gallery.php">Winner Gallery</a></li>
+  <li><a href="<?php echo menu_url()?>">Home</a></li>
+  <li><a href="<?php echo menu_url('gallery')?>">Gallery</a></li>
+  <li><a href="<?php echo menu_url('rules')?>">Terms & Conditions</a></li>
+  <?php if(isset($campaign['pages'])):foreach($campaign['pages'] as $page):?>
+	<li><a href="<?php echo $page['url']?>"><?php echo $page['name']?></a></li>
+	<?php endforeach;endif;?>
 </ul>
 </div>	
+<?php endif;?>

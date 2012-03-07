@@ -5,8 +5,14 @@
 			<a href="<?=site_url('admin/page/add')?>">Add Page</a><Br/><br/>
 			</div>
 				<div class="grid_16">
-					<a href="#" onclick="document.getElementById('task').value='publish'; document.forms[0].submit();">Set Publish</a> | 
-					<a href="#" onclick="document.getElementById('task').value='draft'; document.forms[0].submit();">Set Draft</a>
+				 <div style="float:left;width:300px;">
+					<a href="#" onclick="document.getElementById('task').value='publish'; document.forms[0].submit();">Set Publish</a> &nbsp; 
+					<a href="#" onclick="document.getElementById('task').value='draft'; document.forms[0].submit();">Set Draft</a> &nbsp;
+				 </div>
+				 <div style="float:right;width:200px;text-align:right;">
+					<a href="#" onclick="document.getElementById('task').value='delete'; document.forms[0].submit();">Delete Selected pages</a>
+				 </div>
+				 <div style="clear:both;"></div>
 				<br/><br/>
 				</div>
 				

@@ -594,6 +594,7 @@
 
 			rmdir($dir);
 		}
+		return true;
 	}
 	
 	function list_files_dir($dir) {

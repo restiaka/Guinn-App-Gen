@@ -1,23 +1,33 @@
 <?php echo $this->load->view('site/header',$campaign,true); //Begin HTML ?>
+<style>
+.quickform  input[type=submit] {
+    background: url("<?php echo base_url()?>assets/site/img/gr2.png") repeat-x scroll 0 0 #919191;
+    border: 1px solid #D5A658;
+    color: #000000;
+	font-size: 14px;
+    font-weight: bold;
+    padding: 10px 23px;
+}
+
+.quickform div.element {
+    display: inline;
+    float: right;
+    padding: 0;
+}
+</style>
+
 <div class="main">
 <div class="box box-l">
 
 	<div class="inner">
   
   <ul class="breadcrumb">
-  	<li><a href="index.php">Home</a></li>
-    <li><a href="gallery.php">Gallery</a></li>
+  	<li><a href="<?php echo menu_url();?>">Home</a></li>
+    <li><a href="<?php echo menu_url('gallery');?>">Gallery</a></li>
     <li>Detail</li>
   </ul>
 	
-  <div class="media-info">
-    <div>
-      <form id="form-vote">
-        <input type="submit" id="vote" name="vote" value="Vote!" class="button gold big" />
-      </form>
-    </div>
-    <div class="vote"><?php echo $media['media_vote_total']?> vote(s)</div>
-  </div>
+	<?php echo isset($plugin['votebutton']) ? $plugin['votebutton'] : "";?>	
   
 	<div class="media-wrapper">
    	<div class="thumbnail">
@@ -37,8 +47,8 @@
 	</div>
 
   <div class="comments clearfix">
-	<?php echo isset($plugin['fblike'] ? $plugin['fblike'] : "")?>
-	<?php echo isset($plugin['fbcomment'] ? $plugin['fbcomment'] : "")?>
+	<?php echo isset($plugin['fblike']) ? $plugin['fblike'] : ""?>
+	<?php echo isset($plugin['fbcomment']) ? $plugin['fbcomment'] : ""?>
   </div>
 </div>
 
