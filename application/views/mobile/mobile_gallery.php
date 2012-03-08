@@ -1,49 +1,68 @@
-<?php echo $this->load->view('mobile/mobile_header',null,true); //Begin HTML ?>
-<?php $CI = &get_instance(); $CI->load->model('media_m');?>
+<?php echo $this->load->view('mobile/mobile_header',$campaign,true); //Begin HTML ?>
+<?php $CI = & get_instance(); $CI->load->model('media_m');?>
+<div class="main">
 
-<ul class="breadcrumb">
-  <li><a href="<?=mobile_menu_url()?>">Home</a></li>
-  <li>Gallery</li>
-</ul>
-<div class="top-panel clearfix">
-  	<div class="user-panel-link">
-    	<a href="#" class="button gold">View my photo</a>
-   	</div>
-
-    <div class="sort-list clearfix">
-      <label><strong>Sort by:</strong></label>
-      <select>
-        <option value="volvo">Most Voted</option>
-        <option value="saab">Latest Upload</option>
-      </select> 
+<div class="box box-l">
+	<div class="inner">
+  
+  <ul class="breadcrumb">
+  	<li><a href="#">Home</a></li>
+    <li>Gallery</li>
+  </ul>
+  <?php if(isset($user_media)):?>
+  <div class="user-panel">
+    <div class="main-wrapper">
+    <div class="inner clearfix">
+    	<h3>My photo</h3>
+      <div class="thumbnail">
+        <a href="<?php echo menu_url('media').'/?m='.$user_media['media_id']?>" title="See detail">
+           <?php echo $CI->media_m->showMedia($user_media);?>
+          <span class="see-more"><i class="button">See detail</i></span>
+        </a>
+      </div>
+      <div class="vote"><?php echo $user_media['media_vote_total']?> vote(s)</div>
+      <div class="share"><a href="#" class="button big">Share to Friends</a></div>
     </div>
-
+    <a href="#" class="hide">hide this -</a>
+   </div>
+  </div>
+  <?php endif;?>
+  <?php if(isset($random_media)):?>
+  <div style="float:left;">
+  <a href="<?php echo menu_url('media').'/?m='.$random_media['media_id']?>" class="button" style="font-weight:bold;color:#000000">Random <?php echo $campaign['allowed_media_type'] == "image" ? "Photo" : "Video"?></a>
+  </div>
+  <?php endif;?>
+  <div class="sort-list clearfix">
+  <form id="sortform" name="sortform" method="POST"></form>
+  	<label>Sort by:</label>
+  	<select name="orderby" onchange="document.getElementById('sortform').submit();">
+      <option value="mostvote">Most Voted</option>
+      <option value="latest">Latest Upload</option>
+    </select> 
+	
   </div>
   
-<div class="main" id="gallery">
-
-  <?=$this->media_m->mobile_gallery($media,$pagination);?>
-<!--
-  <ul class="gallery-list">
-    <li>
-    	<a href="gallery-detail.php" title="See detail">
-	      <div class="thumbnail">
-          <img src="img/upload/thumb.png" width="100" height="100" alt="img">
-  	    </div>
-        <div class="vote">99 votes</div>
-        <div class="owner">David Haselhof</div>
-        <p>The old man takes the poison now the widow makes the ...</p>
-      </a>
+  <?php if(isset($media) && !empty($media)):?>
+  <ul class="gallery-list center">
+   <?php foreach($media as $m):?>
+	<li>
+      <div class="thumbnail">
+        <a href="<?php echo menu_url('media').'/?m='.$m['media_id']?>" title="See detail">
+          <?php echo $CI->media_m->showMedia($m);?>
+          <span class="see-more"><i class="button">See detail</i></span>
+        </a>
+      </div>
+      <div class="vote"><?php echo $m['media_vote_total']?> votes</div>
+      <div class="owner"><fb:name uid="<?php echo $m['uid']?>" firstnameonly="true" /></div>
     </li>
+	<?php endforeach;?>
   </ul>
+  <div id="pagination"><?php echo $pagination['all']?></div>
+  <?php else:?>
+  <div style="text-align:center;">SORRY NO SUBMITTED YET</div>
+  <?php endif;?>
 
-  <ul class="pager">
-	  <li class="next"><a href="#">Next<i></i></a></li>
-    <li class="prev"><a href="#">Previous<i></i></a></li>
-  </ul>
-	
--->
 </div>
-
-
-<?php echo $this->load->view('mobile/mobile_footer',null,true); //End HTML ?>
+</div>
+</div>
+<?php echo $this->load->view('mobile/mobile_footer',$campaign,true); //End HTML ?>

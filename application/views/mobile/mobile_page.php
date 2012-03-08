@@ -1,10 +1,9 @@
 <?php echo $this->load->view('mobile/mobile_header',$campaign,true); //Begin HTML ?>
-
-<div class="main">
-<div class="text-format">
-<h2>Terms & Conditions</h2>
-<?php echo nl2br($rules);?>
+<div class="main" >
+	<div class="box box-l">
+	  <div class="inner">
+		<?php echo $page_body?>
+	  </div>
+	</div>
 </div>
-</div>
-
 <?php echo $this->load->view('mobile/mobile_footer',$campaign,true); //End HTML ?>

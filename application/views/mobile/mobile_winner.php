@@ -2,9 +2,9 @@
 
 <div class="main">
 <div class="text-format">
-<h2>Terms & Conditions</h2>
-<?php echo nl2br($rules);?>
+<h2>The Winner</h2>
+<?php echo $content?>
 </div>
 </div>
-
+	
 <?php echo $this->load->view('mobile/mobile_footer',$campaign,true); //End HTML ?>

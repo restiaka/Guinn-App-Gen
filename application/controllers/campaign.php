@@ -44,8 +44,7 @@ Class Campaign extends CI_Controller {
 		}
 		$this->load->view('site/home',array('campaign'=>$campaign,
 										   'is_authorized' => $isAuthorized,
-										   'redirectURL' => $redirect_url,
-										   'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null),
+										   'redirectURL' => $redirect_url
 										   ));	
 	}
 	
@@ -80,6 +79,7 @@ Class Campaign extends CI_Controller {
 			$data['message_text'] = "Thanks for participating, Your $media_type is now listed on the gallery.";
 		}
 			$data['message_title'] = "Successful";
+			$data['campaign'] = $campaign;
 		$this->load->view('site/upload_notification',$data);
 	 }elseif($form == "error"){
 		$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );

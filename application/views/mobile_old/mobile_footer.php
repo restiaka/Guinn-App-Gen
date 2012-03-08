@@ -1,9 +1,7 @@
 <div id="footer">
   <div class="footer-content center">
   	<div>
-    	<?php if(isset($campaign['asset_mobile']['banner_footer'])):?>
-    		<img src="<?php echo $campaign['asset_mobile']['banner_footer']?>" alt="Guinness" title="Guinness"/>
-		<?php endif;?>
+    	<img src="<?php echo base_url()?>assets/mobile/img/banner/bottom-banner.png" alt="Guinness" title="Guinness"/>
     </div>
     <ul class="mb10">
    		<li><a href="http://www.drinkiq.com/" target="_blank">www.DRINKIQ.com</a></li>

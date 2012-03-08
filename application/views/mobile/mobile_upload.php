@@ -1,21 +1,13 @@
-<?php echo $this->load->view('mobile/mobile_header',null,true); //Begin HTML ?>
-<ul class="breadcrumb">
-  <li><a href="<?=mobile_menu_url()?>">Home</a></li>
-  <li>Upload</li>
-</ul>
-<div id="main">
+<?php echo $this->load->view('mobile/mobile_header',$campaign,true); //Begin HTML ?>
+<div class="main">
 
-		<!-- CONTAINER FORM AUTHORIZED -->
-		<div class="box brown">
-			<div class="inner">
-						  <?php if($html_form_upload):?>
-						   <?=$html_form_upload?>
-						  <?php else:?>
-						   <?=implode("<br/>",$notification)?>
-						  <?php endif;?>
-			</div>
-		</div>
-		<!-- /CONTAINER FORM AUTHORIZED -->
+<div class="box box-m">
+  <div class="inner">
+  <h2 class="title">Upload Your's</h2>
+  <p>Just a few seconds away, choose your best photo with Guinness photo booth and upload now.</p>
+  <?php echo $html_form_upload?>
+  </div>
+</div>
 
 </div>
-<?php echo $this->load->view('mobile/mobile_footer',null,true); //End HTML ?>
+<?php echo $this->load->view('mobile/mobile_footer',$campaign,true); //End HTML ?>
