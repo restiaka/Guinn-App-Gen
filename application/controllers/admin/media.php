@@ -17,7 +17,18 @@ Class Media extends CI_Controller {
 		$this->load('admin/media_edit',array('content'=> $this->form->media_add($gid)));
 	}
 	
-
+	
+	public function getMsg($type){
+		$template = array("submission_true"=>"Your data has been successfuly submitted.",
+					 "submission_false"=>"Submission has Failed, Please Try Again.",
+					 "update_true"=>"Item(s) has been successfuly updated.",
+					 "update_false"=>"Item(s) has failed to be updated. Please Try Again.",
+					 "delete_true"=>"Item(s) has been successfuly deleted",
+					 "delete_false"=>"Item(s) has failed to be deleted. Please Try Again.");
+					 
+	    return isset($template[$type]) ? $template[$type] : '';	   
+	}	
+	
 	
 	
 	function lists(){
@@ -26,11 +37,31 @@ Class Media extends CI_Controller {
 		if($this->input->post('cid')){ 
 			 foreach($this->input->post('cid') as $v){
 			  switch($this->input->post('task')){
-			   case 'activate': $this->media->setStatusMedia($v,'active'); break;
-			   case 'deactivate': $this->media->setStatusMedia($v,'banned'); break;
-			   case 'delete': $this->media->removeMedia($v); break;
-			   case 'winner': $this->media->setWinnerMedia($v,1); break;
-			   case 'resetwinner': $this->media->setWinnerMedia($v,0); break;
+			   case 'activate': if($this->media->setStatusMedia($v,'active')){
+			   $this->notify->set_message('success', $this->getMsg('update_true'));
+			   }else{
+			   $this->notify->set_message('error', $this->getMsg('update_false'));
+			   } break;
+			   case 'deactivate': if($this->media->setStatusMedia($v,'banned')){
+			   $this->notify->set_message('success', $this->getMsg('update_true'));
+			   }else{
+			   $this->notify->set_message('error', $this->getMsg('update_false'));
+			   } break;
+			   case 'delete': if($this->media->removeMedia($v)){
+			   $this->notify->set_message('success', $this->getMsg('delete_true'));
+			   }else{
+			   $this->notify->set_message('error', $this->getMsg('delete_false'));
+			   } break;
+			   case 'winner': if($this->media->setWinnerMedia($v,1)){
+			   $this->notify->set_message('success', $this->getMsg('update_true'));
+			   }else{
+			   $this->notify->set_message('error', $this->getMsg('update_false'));
+			   } break;
+			   case 'resetwinner': if($this->media->setWinnerMedia($v,0)){
+			   $this->notify->set_message('success', $this->getMsg('update_true'));
+			   }else{
+			   $this->notify->set_message('error', $this->getMsg('update_false'));
+			   } break;
 			  }
 			  
 			  if($this->input->post('notify') && in_array($this->input->post('task'),array('activate','deactivate'))){

@@ -108,10 +108,31 @@ Class Assets_m extends CI_Model {
    return $this->db->get_row($sql,'ARRAY_A');
   }
   
-  public function setConnectionCampaign($asset_id,$campaign_id){
+  public function setConnectionCampaign($asset_id,$campaign_id,$asset_type){
+	$this->removeDuplicateAssetType($campaign_id,$asset_type);
+  
     $extra_sql = " ON DUPLICATE KEY UPDATE GID = values(GID),asset_id = values(asset_id)"; 
 	$result = $this->db->insert('campaign_group_assets',array('asset_id'=>addslashes($asset_id),'GID'=>addslashes($campaign_id)),$extra_sql);
+    return $this->db->result;
   }
+  
+  public function unsetConnectionCampaign($asset_id,$campaign_id){
+	$result = $this->db->query("DELETE FROM campaign_group_assets WHERE asset_id = $asset_id and GID = $campaign_id");
+    return $result;
+  }
+  
+  public function removeDuplicateAssetType($campaign_id,$asset_type){
+  
+   $sql = "SELECT campaign_group_assets.asset_id
+		  FROM campaign_group_assets
+		  Inner Join campaign_assets ON campaign_assets.asset_id = campaign_group_assets.asset_id 
+		  WHERE campaign_group_assets.GID = $campaign_id AND campaign_assets.asset_type = '$asset_type'";
+	
+	if($already_asset_id = $this->db->get_var($sql)){
+		$this->unsetConnectionCampaign($already_asset_id,$campaign_id);
+	}
+  }
+  
   
 
 }

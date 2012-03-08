@@ -42,14 +42,16 @@
 									</td>
 									<td>
 									<?php 
-									$t = $CI->customer_m->detailTRAC($v['customer_id'],null,'C'); $t = @$t['fields'];?> 
+									$t = ($CI->config->item('TRAC_API_ENABLED') ? $CI->customer_m->detailTRAC($v['customer_id'],null,'C') : $CI->customer_m->detailTRAC_dump($v['customer_id'],null,'C')); $t = @$t['fields'];?> 
 									<b>FirstName :</b> <?=@$t['FIRSTNAME']?><Br/>
 									<b>LastName :</b> <?=@$t['LASTNAME']?><Br/>
 									<b>Email :</b> <?=@$t['EMAIL']?><Br/>
-									<b>Email OPT :</b> <?=@$t['EMAILOPT']?><Br/>
+									<?php if($CI->config->item('TRAC_API_ENABLED')):?>
+									<b>Mobile :</b> <?=@$t[$CI->config->item('TRAC_ATTR_MOBILE2')]?><Br/>
+									<?php else:?>
 									<b>Mobile :</b> <?=@$t['MOBILE']?><Br/>
-									<b>Mobile 2nd :</b> <?=@$t[$this->config->item('TRAC_ATTR_MOBILE2')]?><Br/>
-									<b>Active :</b> <?=@$t['ACTIVE']?><Br/>
+									<b>Address :</b> <?=@$t['ADDRESS']?><Br/>
+									<?php endif;?>
 									</td>
 									
 									<td><?=$v['status']?></td>

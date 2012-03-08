@@ -17,7 +17,7 @@ Class App_m extends CI_model {
 	   }
 		
 		$ok = $this->db->insert('campaign_app',$data);
-		return $ok;
+		return $this->db->result;
 	  }
 	  
 	public function dispatch($appid)
@@ -27,8 +27,7 @@ Class App_m extends CI_model {
 		return $ok ? true : false;
 	}
 	  
-	public function update($data)
-	  {
+	public function update($data){
 		$app_accesstoken = getAppAccessToken(array('app_id'=> $this->input->post('APP_APPLICATION_ID'),
 									  'app_secret'=> $this->input->post('APP_SECRET_KEY')));
 	  if($app_accesstoken && $this->input->post('APP_AGE_RESTRICTION') == 1){

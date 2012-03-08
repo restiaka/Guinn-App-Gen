@@ -26,6 +26,7 @@ Class Media_m extends CI_Model {
 	   $this->db->insert('campaign_media_owner',array('media_id'=>$media_id,
 													          'uid'=>$this->facebook->getUser(),
 													          'GID'=>$data['GID']));	
+		return $media_id;
 	}else{
 	  return false;
 	}
@@ -51,8 +52,8 @@ Class Media_m extends CI_Model {
   public function sendNotificationMail($status,$data){
   $this->load->model('app_m');
   $this->load->library('email');
-
-    if($TRAC = $this->customer_m->detailTRAC($data['customer_id'],NULL,"C")){ 
+  $TRAC = $this->config->item('TRAC_API_ENABLED') ? $this->customer_m->detailTRAC($data['customer_id'],NULL,"C") : $this->customer_m->detailTRAC_dump($data['customer_id'],NULL,"C");
+    if($TRAC){ 
 	  $customer['firstname'] = $TRAC['fields']['FIRSTNAME'];
 	  $customer['lastname'] = $TRAC['fields']['LASTNAME'];
 	  $customer['media_type'] = $data['media_type'];
@@ -297,19 +298,47 @@ Class Media_m extends CI_Model {
   
   function showVote($media){ 
 	$this->load->model('form_m');
-	$this->load->model('setting_m');
 	$this->load->library('facebook');
-	
-	$isAuthorized = (!$this->facebook->getUser() || !isExtPermsAllowed()) ? false : true;
-	if($isAuthorized){
-		$content = $this->form_m->vote_form($media['media_id'],$media['media_vote_total']);
-	}else{
-	 $redirectURL = $this->setting_m->get('APP_FANPAGE')."&app_data=redirect_media|".$media['media_id'];
-	 $content = authorizeButton('Login to Vote',$redirectURL);
-	}
-	
+	$content = $this->form_m->vote_form($media['media_id'],$media['media_vote_total']);
+	/*
+		$user = getAuthorizedUser();
+		if($user){
+			$content = $this->form_m->vote_form($media['media_id'],$media['media_vote_total']);
+		}else{
+		   $sr = $this->facebook->getSignedRequest();
+		 $redirectURL = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/media?m=".$media['media_id'];
+
+		 $content = authorizeButton('Login to Vote',$redirectURL);
+		}
+	*/
 	return $content;
   }
+  
+  function showUploadForm($campaign){
+    $this->load->model('form_m');
+	$this->load->library('facebook');
+	$isAuthorized = (!$this->facebook->getUser()) ? false : true;
+	if($isAuthorized && isset($campaign['GID'])){
+	  	if($campaign['on_upload']){
+			 if($campaign['media_has_uploadonce']){
+			   $media = $this->media->mediaByUID($this->facebook->getUser(),$campaign['GID']);
+			    if($media['media_status'] == "pending" || $media['media_status'] == "active"){
+					$form = "<h3 align='center'>Sorry! You can only upload once.</h3>";
+				}else{
+					$form = $this->form_m->upload_media($campaign);
+				}
+			 }else{
+				$form = $this->form_m->upload_media($campaign);
+			 }
+		}else{
+			 $form = "Sorry! Upload Time has ended. <Br/> Thank you.";
+		}
+	}else{
+		$form = "";
+	}
+	return $form;
+  }
+
   
   
   function showMedia($media_id,$thumb = true,$attribute=null){
@@ -356,6 +385,7 @@ Class Media_m extends CI_Model {
    return null;
 		
   }
+  
 
   
   public function removeMedia($media_id)
@@ -368,10 +398,10 @@ Class Media_m extends CI_Model {
 	  //Delete media Owner
 	  $this->db->query("DELETE FROM campaign_media_owner WHERE media_id = ".$media_id);
 	  //Delete Physical file if exists
-	  if($media['media_source'] == "file" && strtolower($media['type']) == "image"){
+	  if($media['media_source'] == "file" && strtolower($media['media_type']) == "image"){
 			@unlink(CUSTOMER_IMAGE_DIR.$media['GID'].'/'.$media['basename']);
 			@unlink(CUSTOMER_IMAGE_DIR.$media['GID'].'/thumb_'.$media['basename']);
-	  }elseif($media['media_source'] == "file" && strtolower($media['type']) == "video"){
+	  }elseif($media['media_source'] == "file" && strtolower($media['media_type']) == "video"){
 			@unlink(CUSTOMER_VIDEO_DIR.$media['GID'].'/'.$media['basename']);
 			@unlink(CUSTOMER_VIDEO_DIR.$media['GID'].'/thumb_'.$media['basename']);
 	  }
@@ -435,6 +465,33 @@ Class Media_m extends CI_Model {
    $sql .= "INNER JOIN campaign_customer ON campaign_media_owner.uid = campaign_customer.uid ";
    $sql .= "WHERE campaign_media.media_id = ".$media_id;
    return $this->db->get_row($sql,'ARRAY_A');
+  }
+  
+  public function mediaByUID($uid,$GID = null,$status = null)
+  {
+    $params['campaign_media_owner.uid'] = $uid;
+	if($GID) $params['campaign_media.GID'] = $GID;
+	if($status) $params['campaign_media.media_status'] = $status;
+	
+    if($result = $this->retrieveMedia($params,array('limit_number'=>1))){
+	  foreach($result as $row)$media = $row;  
+	  return $media;
+	}else{
+	  return null;
+	}
+  }
+  
+    public function mediaByRandom($GID,$status = null)
+  {
+	$params['campaign_media.GID'] = $GID;
+	if($status) $params['campaign_media.media_status'] = $status;
+	
+    if($result = $this->retrieveMedia($params,array('limit_number'=>1,'orderby'=>'RAND()'))){
+	  foreach($result as $row)$media = $row;  
+	  return $media;
+	}else{
+	  return null;
+	}
   }
   
   public function setVote($media_id)

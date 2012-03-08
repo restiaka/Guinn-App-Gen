@@ -2,7 +2,7 @@
 			<div id="content" class="container_16 clearfix">
 
 			
-				
+				<div class="grid_16"><?php echo printNotification()?></div>
 				<div class="grid_16">
 					<div style="float:left;">
 					<a href="#" onclick="document.getElementById('task').value='activate'; document.forms['adminform'].submit();">Activate Selected Media</a>  

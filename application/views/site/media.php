@@ -1,43 +1,58 @@
-<?php echo $this->load->view('site/header',null,true); //Begin HTML ?>
-<?php echo $this->load->view('site/header_main_navigation',null,true); //Begin HTML ?>
-<style>.big-img img{width:480px;}</style>	
-<div id="main">
+<?php echo $this->load->view('site/header',$campaign,true); //Begin HTML ?>
+<style>
+.quickform  input[type=submit] {
+    background: url("<?php echo base_url()?>assets/site/img/gr2.png") repeat-x scroll 0 0 #919191;
+    border: 1px solid #D5A658;
+    color: #000000;
+	font-size: 14px;
+    font-weight: bold;
+    padding: 10px 23px;
+}
 
-<div class="main-header">
-	<h2>Contest Gallery</h2>
-</div>
+.quickform div.element {
+    display: inline;
+    float: right;
+    padding: 0;
+}
+</style>
 
-<div class="gallery detail">
+<div class="main">
+<div class="box box-l">
 
-	<div class="big-img">
-		<?php echo $media['media_container']?>
-		<div class="img-nav">
-			<a href="#" id="prev-img">Previous Image</a>
-			<a href="#" id="next-img">Next Image</a>
-		</div>
-	</div>
+	<div class="inner">
+  
+  <ul class="breadcrumb">
+  	<li><a href="<?php echo menu_url();?>">Home</a></li>
+    <li><a href="<?php echo menu_url('gallery');?>">Gallery</a></li>
+    <li>Detail</li>
+  </ul>
+	
+	<?php echo isset($plugin['votebutton']) ? $plugin['votebutton'] : "";?>	
+  
+	<div class="media-wrapper">
+   	<div class="thumbnail">
+    	<?php echo $media['media_container']?>
+    </div>
+  </div>
   
   <div class="info clearfix">
-   <table width="100%"><tr><td width="30%">
-    <fb:profile-pic uid="<?php echo $media['uid']?>"></fb:profile-pic>
-    <div class="posted-by">Posted by</div>
-    <div class="owner"><fb:name firstnameonly="true" uid="<?php echo $media['uid']?>"></fb:name></div>
-	</td><Td width="70%">
-	<div style="margin-left:10px;">
+  	<div class="left-content">
+     <fb:profile-pic uid="<?php echo $media['uid']?>" size="square"></fb:profile-pic>
+      <div class="posted-by">Posted by</div>
+      <div class="owner"><fb:name uid="<?php echo $media['uid']?>" firstnameonly="true"></div>
+    </div>
+    <div class="right-content">
 	<?php echo isset($media['media_description']) ? nl2br($media['media_description']) : '';?>
 	</div>
-	</td>
-	</tr>
-	<tr><td colspan="2" align="left"><?php echo (isset($plugin['votebutton']) ? $plugin['votebutton'] : "") ?></td></tr>
-	</table>
-  </div>
- 
+	</div>
+
   <div class="comments clearfix">
-	<?php echo isset($plugin['fblike'] ? $plugin['fblike'] : "")?>
-	<?php echo isset($plugin['fbcomment'] ? $plugin['fbcomment'] : "")?>
+	<?php echo isset($plugin['fblike']) ? $plugin['fblike'] : ""?>
+	<?php echo isset($plugin['fbcomment']) ? $plugin['fbcomment'] : ""?>
   </div>
 </div>
-</div>	
-	
-	
-<?php echo $this->load->view('site/footer',null,true);//End HTML ?>
+
+</div>
+
+</div>
+<?php echo $this->load->view('site/footer',$campaign,true);//End HTML ?>

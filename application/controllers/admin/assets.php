@@ -13,6 +13,17 @@ Class Assets extends CI_Controller {
 		$this->load->model('campaign_m','campaign');
 	}
 	
+	public function getMsg($type){
+		$template = array("submission_true"=>"Your data has been successfuly submitted.",
+					 "submission_false"=>"Submission has Failed, Please Try Again.",
+					 "update_true"=>"Item(s) has been successfuly updated.",
+					 "update_false"=>"Item(s) has failed to be updated. Please Try Again.",
+					 "delete_true"=>"Item(s) has been successfuly deleted",
+					 "delete_false"=>"Item(s) has failed to be deleted. Please Try Again.");
+					 
+	    return isset($template[$type]) ? $template[$type] : '';	   
+	}	
+	
 	function add($asset_id = 0){
 		$this->load->view('admin/asset_add',array('content'=> $this->form->asset_add($asset_id)));
 	}
@@ -22,16 +33,34 @@ Class Assets extends CI_Controller {
 	 
 		if($this->input->post('cid')){ 
 			 foreach($this->input->post('cid') as $v){
+			 list($asset_id,$asset_type) = explode('|',$v);
 			  switch($this->input->post('task')){
-			   case 'delete': $this->asset->removeAssets($v); break;
-			   case 'connect':  if($gid = $this->input->post('bycampaign')){
-									$this->asset->setConnectionCampaign($v,$gid); 
-								}
+			   case 'delete': if($this->asset->removeAssets($asset_id)){
+								$this->notify->set_message('success', $this->getMsg('delete_true'));
+							  }else{
+							    $this->notify->set_message('error', $this->getMsg('delete_false'));
+							  }
+							  break;
+			   case 'link':  if($gid = $this->input->post('bycampaign')){
+									if($this->asset->setConnectionCampaign($asset_id,$gid,$asset_type)){
+									   $this->notify->set_message('success', $this->getMsg('update_true'));
+									}else{
+									   $this->notify->set_message('error', $this->getMsg('update_false'));
+									}
+							  }
 								break;
+			   case 'unlink':  if($gid = $this->input->post('bycampaign')){
+					if($this->asset->unsetConnectionCampaign($asset_id,$gid)){
+					 $this->notify->set_message('success', $this->getMsg('update_true'));
+					}else{
+					 $this->notify->set_message('error', $this->getMsg('update_false'));
+					}
+				}
+				break;				
 			  }
 			 }
 		 }
-	 
+		//dg($this->notify);
 	    $clauses = array();
 		$orderby = 'campaign_media.media_id';
 		$order = 'DESC';

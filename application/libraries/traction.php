@@ -69,7 +69,8 @@ Class Traction {
 	 $calls = array(
 	  "RetrieveCustomer"=>1,
 	  "AddCustomer"=>1,
-	  "CustomerLogin"=>1
+	  "CustomerLogin"=>1,
+	  "MultiSubscribe"=>1
 	 );
 	 if(isset($calls[$method])){
 	  return $method;

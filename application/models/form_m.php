@@ -21,7 +21,7 @@
 		$this->load->model('campaign_m');
    }
    
-   function vote_form($media_id,$media_vote_total) {
+   function vote_form($media_id,$media_vote_total,$template = null) {
 	 
       $form = new HTMLQuickForm2('votemedia','POST');
 	  $form->setAttribute('action', '');
@@ -32,10 +32,12 @@
 	  $media_vote_total = $this->media_m->setVote(addslashes($media_id));
 	}
 	
-	 $form->addElement('static','boxcount','',array('content'=>'<table><tbody><tr>
-																<td><input type="submit" value="VOTE" style="background-color:#000;color:#D9BB75;border:1px solid #D9BB75;"></td>
-																<td><div style="margin-left:5px;padding:2px;border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;">'.$media_vote_total.'</div></td>
-																</tr></tbody></table>'));		
+	$template = '<div class="media-info">'.
+                '<div><input type="submit" id="vote" name="vote" value="Vote!" /></div>'.
+				'<div class="vote"> '.$media_vote_total.' vote(s)</div>'.
+				'</div>';
+	
+	 $form->addElement('static','boxcount','',array('content'=>$template));		
 
 	 $renderer = HTML_QuickForm2_Renderer::factory('default');
 	 $form_layout = $form->render($renderer);
@@ -50,8 +52,9 @@
 	
 	 
      $form = new HTMLQuickForm2('uploadmedia','POST');
-	 $form->setAttribute('action', '');
-	 /**Setup default value*/
+
+    $form->setAttribute('action', menu_url('upload'));
+	 /**Setup default value*
 	 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
 	 )));
 	 /**/
@@ -75,13 +78,15 @@
 		 $label = ucfirst($label).' &nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;';
 		  switch ($domid){ 
 		   case 'media_title': 
-		   $form->addElement('static','','',array('content'=>$label));	
-		   $r = $form->addElement('text',$domid,'style="width:335px;"');
+		   //$form->addElement('static','','',array('content'=>$label));	
+		   $r = $form->addElement('text',$domid,'');
+		   $r->setLabel($label);
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 		   case 'media_description' : 
-		   $form->addElement('static','','',array('content'=>$label));	
-		   $r = $form->addElement('textarea',$domid,'style="width:335px;"');
+		   //$form->addElement('static','','',array('content'=>$label));	
+		   $r = $form->addElement('textarea',$domid,'');
+		   $r->setLabel($label);
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 		   case 'media_source' : 
@@ -89,15 +94,18 @@
 		   $src = explode(',',$allowed_media_source); 
 								 if(in_array('facebook',$src) || in_array('youtube',$src) || in_array('twitpic',$src) || in_array('yfrog',$src) || in_array('plixi',$src))
 								 {
-									$form->addElement('static','','',array('content'=>'Copy and Paste YouTube URL here'));	
-								    $r = $form->addElement('text',$domid,'style="width:335px;"');
+									//$form->addElement('static','','',array('content'=>'Copy and Paste YouTube URL here'));	
+								    $r->setLabel('YouTube URL');
+									$r = $form->addElement('text',$domid,'');
 									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									break;
 								 } 
 								 elseif(in_array('file',$src))
 								 {
-									$form->addElement('static','','',array('content'=>'Upload Photo from your computer here'));	
-									$r_file = $form->addElement('file',$domid,'size="40"');
+									//$form->addElement('static','','',array('content'=>'Upload Photo from your computer here'));	
+									
+									$r_file = $form->addElement('file',$domid,'');
+									$r_file->setLabel('Upload Photo');
 									$r_file->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 									$r_file->addRule('mimetype', $label.' is not valid file type', explode(',',$allowed_mimetype),HTML_QuickForm2_Rule::SERVER);
 									$r_file->addRule('maxfilesize', $label.' filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
@@ -107,10 +115,10 @@
 		  }
 		}
 
-		$button = $form->addElement('submit','submit','value="Submit"');
-		/*
-		$button = $form->addElement('submit','submit','value="Submit" style="border:solid 1px #D9BB75; background-color:#000;color:#D9BB75;padding:5px;margin-left:290px;"');
-		*/
+		$button = $form->addElement('submit','submit','value="Submit" class="input-submit button big"');
+		$button->setLabel('&nbsp;');
+		
+
 		if ($form->validate()) {
 			$form->toggleFrozen(true);
 			$data = $form->getValue();
@@ -122,9 +130,8 @@
 					if ($data['media_source']['error'] == UPLOAD_ERR_OK) {
 						$tmp_name = $data['media_source']["tmp_name"];
 						$time = md5(uniqid(rand(), true).time());
-
 							
-						$image = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/".$uid."_".$time.".jpg", 500 , 'width' );
+						$image = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/".$uid."_".$time.".jpg", 440 , 'width' );
 						$image_medium = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/medium_".$uid."_".$time.".jpg", 300 , 'width' );
 						
 						$thumb = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/thumb_".$uid."_".$time.".jpg", 100 , null,true );
@@ -179,9 +186,13 @@
 			$data['media_uploaded_timestamp'] = $time;
 			$data['GID'] = $active_campaign_gid;
 			
-			$media_ok = $this->media_m->addMedia($data);
+			if($media_ok = $this->media_m->addMedia($data)){
+				return "success";
+			}else{
+			    return "error";
+			}
 			
-			$html_done = '<table width="100%">
+/* 			$html_done = '<table width="100%">
 							<tr>
 								<td width="23%">'.$this->media_m->showMedia($data).'</td>
 								<td style="vertical-align:top">
@@ -190,10 +201,10 @@
 								Thank You.<br>
 								</td>
 							</tr>
-						  </table>';
+						  </table>'; */
+				//$form->addElement('static','','',array('content'=>$html_done));	
 			
 			$form->removeChild($button);
-				$form->addElement('static','','',array('content'=>$html_done));	
 			if($r_file)	
 			 $form->removeChild($r_file);
 		}
@@ -212,44 +223,67 @@
     $campaign = $this->campaign_m->getActiveCampaign();
 	$this->load->library('facebook');
 	
-	$form = new HTMLQuickForm2('customer_register','POST','action=""  ');
+	$form = new HTMLQuickForm2('customer_register','POST');
+    $form->setAttribute('action', menu_url('register'));
+	$user = getAuthorizedUser();
+	$form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
+																	'FIRSTNAME'=>isset($user['first_name']) ? $user['first_name'] : "" ,
+																	'LASTNAME'=>isset($user['last_name']) ? $user['last_name'] : "",
+																	'EMAIL'=>isset($user['email']) ?  $user['email'] : ""
+																	)));
 		
-		 $form->addElement('static','','',array('content'=>'Your Firstname :'));	
+		 //$form->addElement('static','','',array('content'=>'Your Firstname :'));	
 		 $firstname = $form->addElement('text','FIRSTNAME','');
+		 $firstname->setLabel('First Name');
 		 $firstname->addRule('required', 'Firstname is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
-		 $form->addElement('static','','',array('content'=>'Your Lastname :'));	
+		 //$form->addElement('static','','',array('content'=>'Your Lastname :'));	
 		 $lastname = $form->addElement('text','LASTNAME','');
+		 $lastname->setLabel('Last Name');
 		 $lastname->addRule('required', 'Lastname is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
-		 $form->addElement('static','','',array('content'=>'Email :'));	
+		 //$form->addElement('static','','',array('content'=>'Email :'));	
 		 $email = $form->addElement('text','EMAIL','');
+		 $email->setLabel('Email');
 		 $email->addRule('required', 'Email is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
-		 $form->addElement('static','','',array('content'=>'Phone no :'));	
+		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
 		 $mobile = $form->addElement('text','MOBILE','');
+		 $mobile->setLabel('Phone');
+
 		 $mobile->addRule('required', 'Phone no. is required', null,HTML_QuickForm2_Rule::SERVER);
+		 
+		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
+		 $address = $form->addElement('textarea','ADDRESS','');
+		 $address->setLabel('Address');
+		 $address->addRule('required', 'Address is required', null,HTML_QuickForm2_Rule::SERVER);
+		 
+		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
+		 $terms = $form->addElement('checkbox','TERMS','',array('content'=>'I accept Terms & Conditions'));
+		 $terms->setLabel('Regulation');
+		 $terms->addRule('required', 'Terms Agreement Required', null,HTML_QuickForm2_Rule::SERVER);
+		 
+		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
+		 $SUBSCRIPTION = $form->addElement('checkbox','SUBSCRIPTIONID1','value = "'.$this->config->item('APP_APPLICATION_ID').'|S"',array('content'=>'Please send me news & updates'));
+		 $SUBSCRIPTION->setLabel('Email Subscribe');
+		 
 		
-		$button = $form->addElement('submit','submit','value="Submit Registration"');
+		$button = $form->addElement('submit','submit','value="Register"');
+		$button->setLabel('&nbsp;');
+
 		
 		if ($form->validate()) {
 			$form->toggleFrozen(true);
 			$data = $form->getValue();
-			unset($data['submit'],$data['_qf__customer_register']);
-			
-			//$data['3012669'] = $this->facebook->getUser();//TRAC_ATTR_FBUID
-			$data['3014098'] = $campaign['GID'];//TRAC_ATTR_GID
-			$data['3031180'] = $data['MOBILE'];//TRAC_ATTR_MOBILE2
-			
-			unset($data['MOBILE']);
-			
-			
+			unset($data['submit'],$data['_qf__customer_register'],$data['TERMS']);
+
+			$data['GID'] = $campaign['GID']."_".$this->config->item('APP_APPLICATION_ID');
+
 			if($registered = $this->customer_m->add($data)){
-				$form->addElement('static','','',array('content'=>'<div>Done</div>'));	
+			 return "success";	
 			}else{
-				$form->addElement('static','','',array('content'=>'<div>'.implode('<br/>',$this->customer_m->error).'</div>'));	
+			 return "error";
 			}
-			
 			unset($data['submit'],$data['_qf__customer_register']);
 			$form->removeChild($button);
 		}
@@ -407,9 +441,17 @@
 		}
 		
 		if(!$gid){
-			$this->app_m->add($data);
+			if($this->app_m->add($data)){
+			 $this->notify->set_message('success', 'Data has been successfuly submitted.');
+			}else{
+			 $this->notify->set_message('error', 'Data has failed to submit.');
+			}
 		}else{
-			$this->app_m->update($data);
+			if($this->app_m->update($data)){
+			 $this->notify->set_message('success', 'Data has been successfuly updated.');
+			}else{
+			 $this->notify->set_message('error', 'Data has been failed to be updated.');
+			}
 		}
 	}
 		
@@ -421,7 +463,8 @@
    
    function user_add($userID=0)
    {
-     $form = new HTMLQuickForm2('userform','POST','action="'.site_url('admin/user/add/').$userID.'"');
+    $this->load->model('user_m');
+     $form = new HTMLQuickForm2('userform','POST','action="'.site_url('admin/user/add/'.$userID).'"');
 	
       $fsCredential = $form->addElement('fieldset')
 							  ->setLabel('User Detail');	
@@ -479,7 +522,7 @@
 		$repPassword = $fsPasswords->addElement('password', 'PasswordRepeat', array('style' => 'width: 200px;'))
 								   ->setLabel('Repeat new password:');
 		$newPassword->addRule('nonempty', 'User Password', null, HTML_QuickForm2_Rule::SERVER)
-			->and_($repPassword->createRule('nonempty', 'Repeat password', $newPassword))
+			//->and_($repPassword->createRule('nonempty', 'Repeat password', $newPassword))
 			->and_($repPassword->createRule('eq', 'The passwords do not match', $newPassword))
 			->and_($newPassword->createRule('minlength', 'The password is too short', 6));		
 		
@@ -497,9 +540,9 @@
 		{  
 		   $this->is_validated = true;
 		   $data = $form->getValue();
-		   unset($data['submit'],$data['_qf__userform']);
-		  if($this->user_model->add($data)){
-			if(!$data['user_ID']){
+		   unset($data['submit'],$data['_qf__userform'],$data['PasswordRepeat']);
+		  if($this->user_m->add($data)){
+			if(!isset($data['user_ID'])){
 			 $fslogcred = $form->addElement('fieldset')->setLabel('User Login Credential (Please Write this note)');
 			 $fslogcred->addElement('static','','',array('content'=>"<div>
 															<b>Email : {$data['user_email']}</b><br>
@@ -507,6 +550,9 @@
 															</div>"));	
 			 $form->addElement('static','','',array('content'=>"<Br><br><a href='".site_url('admin/user/add')."'>Add another User</a>"));													
 			}
+			$this->notify->set_message('success', 'Data has been successfuly submitted.');
+		  }else{
+		    $this->notify->set_message('error', 'Data has failed to be submitted.');
 		  }
 			$form->removeChild($button);
 			$form->toggleFrozen(true);
@@ -594,13 +640,17 @@
 
 		   if($page_id){
 			   if(!$this->page_m->updatePage($data)){
-				 $error = $this->page_m->error;
+				 $this->notify->set_message('error', 'Data has failed to be updated.');
+			   }else{
+			    $this->notify->set_message('success', 'Data has been successfuly updated.');
 			   }
 		   }else{
 		       unset($data['page_id']);
 			   if(!$this->page_m->addPage($data)){
-				 $error = $this->page_m->error;
-			   }		   
+				 $this->notify->set_message('error', 'Data has failed to be submitted.');
+			   }else{
+				$this->notify->set_message('success', 'Data has been successfuly submitted.');
+				}			   
 		   }
 		   
 			$form->removeChild($button);
@@ -644,13 +694,13 @@
 																						'background_repeat'=>'Background Repeat')));
 		$asset_type->addRule('required', 'Required', null,HTML_QuickForm2_Rule::SERVER);
 		
-		$form->addElement('static','','',array('content'=>'<b>Upload Assets ? (GIF,JPG,PNG)</b>'));
+		$asset_uploadedtext = $form->addElement('static','','',array('content'=>'<b>Upload Assets ? (GIF,JPG,PNG)</b>'));
 		$asset_uploadedfile = $form->addElement('file','uploadedfile','size="80"');
 		$asset_uploadedfile->addRule('mimetype', 'Asset is not a valid file type', array('image/gif','image/jpeg','image/pjpeg','image/png'),HTML_QuickForm2_Rule::SERVER);
 		//$asset_file->addRule('maxfilesize', 'Asset filesize is exceeded ', $allowed_maxfilesize,HTML_QuickForm2_Rule::SERVER);
 
 		$form->addElement('static','','',array('content'=>'<b>Set Width Size? (Height resized by width Ratio)</b>'));
-		$asset_resizeto = $form->addElement('select','asset_resizeto','',array('options'=>array(''=>'No Resizing','90'=>'90px','100'=>'100px','500'=>'500px','520'=>'520px','760'=>'760px','800'=>'800px')));
+		$asset_resizeto = $form->addElement('select','asset_resizeto','',array('options'=>array(''=>'No Resizing','90'=>'90px','100'=>'100px','120'=>'120px','200'=>'220px','320'=>'320px','400'=>'400px','520'=>'520px','760'=>'760px','810'=>'810px')));
 		
 		$button = $form->addElement('submit','','value="Submit Asset"');
 		
@@ -670,21 +720,29 @@
 				$data['asset_width'] = isset($info_img[0]) ? $info_img[0] : '';
 				$data['asset_height'] = isset($info_img[1]) ? $info_img[1] : '';
 				$data['asset_mimetype'] = isset($info_img['mime']) ? $info_img['mime'] : '';
+				$data['asset_url'] = site_url('image/campaign').'?src='.$data['asset_basename'];
+				$data['asset_thumb_url'] = site_url('image/campaign').'?src=thumb_'.$data['asset_basename'];
 				unset($data['uploadedfile']);
+				$form->addElement('static','','',array('content'=>'<div style="margin-top:10px;">Uploaded Asset :</div><div><img src="'.$data['asset_url'].'" /></div>'));
 			}
 			if(isset($data['uploadedfile'])) unset($data['uploadedfile']);
 			
 		   if($asset_id){
 		  
-			   if(!$this->assets_m->updateAssets($data)){
-				 
+			   if($this->assets_m->updateAssets($data)){
+				 $this->notify->set_message('success', 'Data has been successfuly updated.');
+			   }else{
+			    $this->notify->set_message('error', 'Data has failed to be updated.');
 			   }
 		   }else{
 		       unset($data['asset_id']);
-			   if(!$this->assets_m->addAssets($data)){
-				 
-			   }		   
+			   if($this->assets_m->addAssets($data)){
+				 $this->notify->set_message('success', 'Data has been successfuly submitted.');
+			   }else{
+				$this->notify->set_message('error', 'Data has failed to be submitted.');
+			   }			   
 		   }
+		    $form->removeChild($asset_uploadedtext);
 		    $form->removeChild($asset_uploadedfile);
 			$form->removeChild($button);
 			$form->toggleFrozen(true);
@@ -760,7 +818,7 @@
 		$form->addElement('static','','',array('content'=>'<b>What is your campaign all about ?</b>'));
 		$sdescription = $form->addElement('textarea','description',array('class'=>'mceNoEditor'));
 		
-		$allowed_maxfilesize = 1024*1024;
+/* 		$allowed_maxfilesize = 1024*1024;
 		$allowed_mimetype = 'image/gif,image/jpeg,image/pjpeg,image/png';
 
 		$form->addElement('static','','',array('content'=>'<b>Upload Header Image for your Campaign ? (image width will be resize to 400px)</b>'));
@@ -770,7 +828,7 @@
 		
 		if($gid){
 			$form->addElement('static','','',array('content'=>'<img src="'.site_url('image/campaign')."?src=".$campaign['image_header'].'">'));
-		}
+		} */
 			
 		$date_set = $gid ? array('format'=>'dFY His','maxYear'=>date('Y')) : array('format'=>'dFY His','minYear'=>date('Y'),'maxYear'=>date('Y')+1);
 		
@@ -864,7 +922,7 @@
 			 $data['allowed_media_type'] = 'image';
 			}
 			
-			if ($data['image_header_uploadfile']['error'] == UPLOAD_ERR_OK) {
+/* 			if ($data['image_header_uploadfile']['error'] == UPLOAD_ERR_OK) {
 				$tmp_name = $data['image_header_uploadfile']["tmp_name"];
 				$time = md5(uniqid(rand(), true).time());
 				$image = resizeImage( $tmp_name, CAMPAIGN_IMAGE_DIR."/".$time.".jpg", 400 , 'width' );					
@@ -872,18 +930,22 @@
 				unset($data['image_header_uploadfile']);
 			}
 			
-			unset($data['image_header_uploadfile']);
+			unset($data['image_header_uploadfile']); */
 		   if($gid){
-			   if(!$this->campaign_m->updateCampaign($data)){
-				 $error = $this->campaign_m->error;
+			   if($this->campaign_m->updateCampaign($data)){
+				 $this->notify->set_message('success', 'Data has been successfuly updated.');
+			   }else{
+			    $this->notify->set_message('error', 'Data has failed to be updated.');
 			   }
 		   }else{
 		       unset($data['gid']);
-			   if(!$this->campaign_m->addCampaign($data)){
-				 $error = $this->campaign_m->error;
-			   }		   
+			   if($this->campaign_m->addCampaign($data)){
+				 $this->notify->set_message('success', 'Data has been successfuly submitted.');
+			   }else{
+				 $this->notify->set_message('error', 'Data has failed to be submitted.');
+			   }			   
 		   }
-		    $form->removeChild($r_file);
+		    //$form->removeChild($r_file);
 			$form->removeChild($button);
 			$form->toggleFrozen(true);
 		}

@@ -3,7 +3,7 @@ Class Customer_m extends CI_Model{
 
   private $db;
   public $error = array();
-  protected $traction_enabled = TRUE;
+  protected $traction_enabled;
 
   function __construct()
   {
@@ -11,19 +11,32 @@ Class Customer_m extends CI_Model{
     $this->load->library('ezsql_mysql');
 	    $this->db = $this->ezsql_mysql;
 	$this->load->library('traction');
+	$this->traction_enabled = $this->config->item('TRAC_API_ENABLED');
   }
   
   public function add($data)
   { 
     $this->load->library('facebook');
-	 $this->error = array();
+	 $this->error = array(); 
+	 
 	if($this->traction_enabled){
+	    	$data[$this->config->item('TRAC_ATTR_GID')] = $data['GID'];
+			$data[$this->config->item('TRAC_ATTR_MOBILE2')] = $data['MOBILE'];//TRAC_ATTR_MOBILE2
+			unset($data['MOBILE'],$data['GID']);
+	
+	
 		$r = $this->traction->api('AddCustomer',array(
 								   "CUSTOMER" => $this->traction->formatCustData($data),
 								   "MATCHKEY" =>'E',
 								   "MATCHVALUE" =>$data['EMAIL']
 								));		
-
+		if(isset($data['SUBSCRIPTIONID1'])){
+			  		$s = $this->traction->api('MultiSubscribe',array(
+								   "SUBSCRIPTIONID1" => $data['SUBSCRIPTIONID1'],
+								   "MATCHKEY" =>'E',
+								   "MATCHVALUE" =>$data['EMAIL']
+								));	
+		}
 		
 		if(!isset($r['TRAC-RESULT'])){
 		  $this->error[] = "Submission Failed (TResult), Try Again!";	 
@@ -41,6 +54,18 @@ Class Customer_m extends CI_Model{
 		  $this->error[] = "Submission Failed (Unknown Customer), Try Again!";	
 			return false;
 		}
+	}else{
+
+	foreach (array_keys($data) as $v)$trac_update[] = $v." = values(".$v.")";
+	$trac_extra_sql = " ON DUPLICATE KEY UPDATE ".implode(',',$trac_update); 
+	
+	 $ok = $this->db->insert('campaign_customer_traction',$data,$trac_extra_sql);
+	 if($this->db->result){
+	  $db_data['customer_id'] = $this->db->last_insert_id() ? $this->db->last_insert_id() : $this->db->get_var("SELECT customer_id FROM campaign_customer_traction WHERE EMAIL = '".$data['EMAIL']."'");
+	 }else{
+	   return false;
+	 }
+	
 	}
 	
 	$db_data['uid'] = $this->facebook->getUser(); 
@@ -50,8 +75,6 @@ Class Customer_m extends CI_Model{
 	
 	$ok = $this->db->insert('campaign_customer',$db_data,$extra_sql);
 	
-	
-	
 	if($this->db->result){
 	 if(!$this->isAppAuthorized()){
 	   $this->addAppAuthorization();
@@ -60,8 +83,10 @@ Class Customer_m extends CI_Model{
 	  $this->error[] = "Submission Failed, Try Again!";	 
 		return false;
 	}
+	
+	return true;
   }
-  
+    
  
   public function registerRequire(){
    $this->load->model('setting_m');
@@ -272,6 +297,17 @@ Class Customer_m extends CI_Model{
 	   return $r;
   }
   
+  public function detailTRAC_dump($matchvalue,$selection = NULL,$matchkey = "E") 
+  {
+    $r = array();
+    switch($matchkey){
+	  case 'E' : $clause = "EMAIL = '".$matchvalue."'"; break;
+	  case 'C' : $clause = "CUSTOMER_ID = ".$matchvalue; break;
+	}
+	$r['fields'] = $this->db->get_row("SELECT * FROM campaign_customer_traction WHERE ".$clause,'ARRAY_A');
+	return $r;
+  }
+  
   public function setStatus($gid,$status)
   {
    return $this->db->update('campaign_customer', array('status'=>$status), array('uid'=>$gid));
@@ -322,6 +358,9 @@ Class Customer_m extends CI_Model{
 	 if($this->traction_enabled){
 		 $trac = $this->detailTRAC($fromDB['customer_id'],null,'C');
 		 if($trac)return true; else return false;
+	 }else{
+	   $trac = $this->detailTRAC_dump($fromDB['customer_id'],null,'C');
+	   if($trac)return true; else return false;
 	 }
 	 
 	 return true;

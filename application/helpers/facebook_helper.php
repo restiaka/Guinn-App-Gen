@@ -2,27 +2,53 @@
  function requireLogin($redirect_uri='',$display = 'page'){
    $CI = &get_instance();
    $CI->load->library('facebook');
-   $CI->load->model('setting_m');
-  
-  $facebook = $CI->facebook;
+
   //Get Login Url for redirection if user not yet authorized your apps
-   $loginUrl = $facebook->getLoginUrl(array(
-											'scope' => $CI->setting_m->get('APP_EXT_PERMISSIONS'),
-											'display' => $display,
+   $loginUrl = $CI->facebook->getLoginUrl(array(
+											'scope' => $CI->config->get('APP_EXT_PERMISSIONS'),
 											 'redirect_uri' => $redirect_uri
 											));
 
   //Check for facebook session , redirect to Login Url for unauthorized user
-  dg($facebook->getUser(),$facebook->getLoginStatusUrl(),"<a href='{$facebook->getLoginStatusUrl()}'>login status</a>");
-	if (!$facebook->getUser() || !isExtPermsAllowed()) {
-
+	if (!$user = getAuthorizedUser()){
 	   echo "<script>window.top.location.href = '$loginUrl';</script>";
 	   echo "<a href='$loginUrl' style='font-weight:bold;font-size:15px;'>Click here if you're not redirected</a>";
 	  
 
 	   exit;
 	}
- }			
+ }
+ 
+ 
+ function fetchRequests(){
+   $CI = &get_instance();
+   $CI->load->library('facebook');
+   if(!$CI->input->get_post('request_ids')) return null;
+   $request_ids = explode(',', $CI->input->get_post('request_ids'));
+   $data = array();
+   foreach ($request_ids as $request_id)
+   {
+      $full_request_id = $request_id . '_' . $user_id;    
+      try { $data[] = $CI->facebook->api("/$full_request_id");}          
+      catch (Exception $e) {}
+   }
+   return $data;
+ }
+
+ function deleteRequests(){
+   $CI = &get_instance();
+   $CI->load->library('facebook');
+   if(!$CI->input->get_post('request_ids')) return;
+   $request_ids = explode(',', $CI->input->get_post('request_ids'));
+   $user_id = $CI->facebook->getUser();
+   foreach ($request_ids as $request_id)
+   {
+      $full_request_id = $request_id . '_' . $user_id;    
+      try {$facebook->api("/$full_request_id",'DELETE');}          
+      catch (Exception $e) {}
+   }
+   return;
+ } 
  
  function getAppAccessToken($app_config = array()){
     $parameter = array('client_id'   => $app_config['app_id'],
@@ -50,6 +76,7 @@
  function user_isFan($pageID = null){
    $CI = &get_instance();
    $CI->load->library('facebook');
+   $isFan = false;
    if(!$pageID){
 	   if($pages = getFacebookPage()){
 		$pageID = $pages['id'];
@@ -57,16 +84,15 @@
 	    return false;
 	   }
    }
-   
-	$isFan = $CI->facebook->api(array(
-									"method"    => "pages.isFan",
-									"page_id"   => $pageID,
-									"uid"       =>  $CI->facebook->getUser()
-								 ));					 
-	if($isFan === TRUE)
-		return true;
-	else
-		return false;
+   	try{
+		$isFan = $CI->facebook->api(array(
+										"method"    => "pages.isFan",
+										"page_id"   => $pageID,
+										"uid"       =>  $CI->facebook->getUser()
+									 ));
+	} catch (Exception $e){ return false; }
+	
+	return $isFan === TRUE ? true : false;
  }
  
  function getFacebookPage(){
@@ -225,114 +251,73 @@ function appToPage_dialog_url($appid,$redirecturl){
 	$dialog_url = "http://www.facebook.com/dialog/oauth?".http_build_query($dialog_options);		
 	$token_url = "https://graph.facebook.com/oauth/access_token?".http_build_query($token_options);
    
-   if(!$facebook->getUser()){
+   if(!$user = getAuthorizedUser()){
     if(empty($code)){ 
-	  header("Location: ".$dialog_url); exit();  
+	  redirect($dialog_url);
 	}elseif(isset($code) && !empty($code)){
 	   /*$access_token = file_get_contents_curl($token_url);
-	   parse_str($access_token);
-	   if($access_token){
-			$params = generateSessionVars($access_token);
-			//SET COOKIE DIRECTLY TO BE USED BY PHP SDK
-			//TO DO SET PERSISTENT DATA FOR PHPSDK 3
-	   }*/
+	   parse_str($access_token);*/
 	}   
    }
 
  }
+ 
  
  function getFacebookUser($uid){
 	$content = file_get_contents('http://graph.facebook.com/'.$uid);
 	return json_decode($content);
  }
  
- function getAuthorizedUser(){
+ function getAuthorizedUser($permissions = true){
   $CI = &get_instance();
   $CI->load->library('facebook');
-   try {
-		// Proceed knowing you have a logged in user who's authenticated.
-		$profile = $CI->facebook->api('/me?fields=id,name,link');
-		return $profile;
-	} catch (Exception $e) {
-		return null;
-	}
+  $profile = null;
+    try {
+		$profile = $CI->facebook->api('/me?fields=id,name,email,birthday,link,first_name,last_name,username,gender');
+		if(isset($profile['birthday'])){
+			$birthday_date = DateTime::createFromFormat('m/d/Y', $profile['birthday']);
+			$now_date = new DateTime(date('Y-m-d'));
+			$profile['age'] = (int) $birthday_date->diff($now_date)->format('%y');
+		}
+	  
+		if($permissions){
+			$APP_EXT_PERMISSIONS = explode(',',$CI->config->item('APP_EXT_PERMISSIONS'));
+			if($data = $CI->facebook->api('/me/permissions')){
+			  $scopes = $data['data'][0];
+				foreach($APP_EXT_PERMISSIONS as $PERMS){
+				  if(isset($scopes[$PERMS]) && $scopes[$PERMS] == 1) {  
+				   continue;
+				  }else{ 
+				   $profile = null; 
+				   break; 
+				  }
+				}
+			}
+			if($profile) $profile['scope'] = $scopes; 
+		}
+	} catch (Exception $e) {}
+  return $profile;
  }
  
 
 
  function authorizeButton($text = 'Click here to Authorize',$redirectURL = null){
-	$CI = &get_instance();
-    $CI->load->model('setting_m');
-	$redirectURL = $redirectURL ? $redirectURL : $CI->setting_m->get('APP_FANPAGE');
-	
-    return "<a onclick=\"fbDialogLogin('fb_login','".$redirectURL."'); return false;\" class=\"fb_button fb_button_medium\"><span class=\"fb_button_text\">".$text."</span></a>";
+	$redirectURL = $redirectURL ? "'".$redirectURL."'" : null;
+    return "<a onclick=\"fbDialogLogin(".$redirectURL."); return false;\" class=\"fb_button fb_button_medium\"><span class=\"fb_button_text\">".$text."</span></a>";
  }
  
- function isExtPermsAllowed(){
-  $CI = &get_instance();
-   $CI->load->library('facebook');
-   $CI->load->model('setting_m');
-  
-  $facebook = $CI->facebook;
-  
-  	  //Checking Permission needed
-	  try{
-		 list($permissions) = $facebook->api(array('method'=>'fql.query',
-												   'query'=>'SELECT '.$CI->setting_m->get('APP_EXT_PERMISSIONS').' 
-															 FROM permissions 
-															 WHERE uid = '.$facebook->getUser()
-									));	
-		} catch(Exception $e){
-			return false;
-		}
-		if(!$permissions) return false;
-		foreach($permissions as $value){
-		  if(!$value) { 
-		   return false;
-		  }
-		}
-		return true;
+ function authorizeBanner($image_url,$login,$redirectURL = null){
+ 	$onclick = $login ? "onclick=\"fbDialogLogin('$redirectURL'); return false;\"" : "";
+    $href = $login ? "#" : $redirectURL;
+	return "<a href=\"$href\" $onclick ><img src=\"$image_url\" /></a>";
  }
  
- function generateSessionVars($accessToken)
- {
- $e = explode('|',$accessToken);
-   $s = explode('-',$e[1]);
-  
-  
-  $params = array(
-					'uid'=>trim($s[1]),
-					'access_token' => trim($accessToken)
-				 ); 
-  $params['sig'] = generateSignature($params,APP_SECRET);	
-
-  return $params;				 
- }
- 
- function setCookieFromSession($session){
- $CI = &get_instance();
-   $CI->load->model('setting_m');
-  $value = '"' . http_build_query($session, null, '&') . '"';
-  setcookie('fbs_' . $CI->setting_m->get('APP_APPLICATION_ID'), $value, '/');
- }
- 
-
-  function generateSignature($params,$secret) {
- 
-  // work with sorted data
-    ksort($params);
-
-    // generate the base string
-    $base_string = '';
-    foreach($params as $key => $value) {
-      $base_string .= $key . '=' . $value;
-    }
-    $base_string .= $secret;
-
-    return md5($base_string);
+  function fblike($href,$attr = "show_faces='false' width='430' font=''")
+  {
+     return "<fb:like href='$href' $attr ></fb:like>";
   }
   
-
-	function base64_url_decode($input) {
-	  return base64_decode(strtr($input, '-_', '+/'));
-	} 
+  function fbcomment($href,$attr = "colorscheme='light' width='460' num_posts='5'")
+  {
+   return "<fb:comments href='$href' $attr ></fb:comments>";
+  }

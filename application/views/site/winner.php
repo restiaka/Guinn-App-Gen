@@ -1,13 +1,10 @@
-<?php $this->load->view('site/header'); //Begin HTML ?>
-<?php $this->load->view('site/header_main_navigation'); //Begin HTML ?>
+<?php echo $this->load->view('site/header',$campaign,true); //Begin HTML ?>
 
-<div>
-<table>
-<?php if($media): foreach($media as $row):?>
-<td><?php echo $this->showMedia($row);?></td>
-<td><fb:name uid="<?php echo $row['uid']?>"></fb:name></td>
-<?php endforeach; endif;?>
-</table>
+<div class="main">
+<div class="text-format">
+<h2>The Winner</h2>
+<?php echo $content?>
+</div>
 </div>
 	
-<?php $this->load->view('site/footer');//End HTML ?>
+<?php echo $this->load->view('site/footer',$campaign,true);//End HTML ?>

@@ -8,26 +8,12 @@
 			}
 	}
 	
-	function redirectToFanPage(){
-	 $CI = &get_instance();
-        $CI->load->model('setting_m');
-		
-	  $host = parse_url($_SERVER['HTTP_REFERER'],PHP_URL_HOST);
-	  //Strip Canvas Page Host URL
-	  //ex : from -> http://apps.facebook.com/guinnidphotocontest/tab/209681662395432/media/?m=9
-	  //     to -> tab/209681662395432/media/?m=9
-	  $path = '/'.str_replace($CI->setting_m->get('APP_CANVAS_PAGE'),'',$_SERVER['HTTP_REFERER']);
-	  $redirect_url = $CI->setting_m->get('APP_FANPAGE').'&app_data=redirect|'.$path;
-	  if($host == "apps.facebook.com"){
-		echo "<script>window.top.location.href = '$redirect_url';</script>";
-		echo "<a href='$redirect_url' target='_top' style='font-weight:bold;font-size:15px;'>Click Here if you're not redirected!</a>";	
-		exit;	
-	  }
-	  return false;
+	
+  	function printNotification(){
+	  $CI = &get_instance();
+	  $CI->load->library('notify');
+	  return $CI->notify->output(true);
 	}
-	
-	
-  	
 
 	
 	function registerMetaTags($meta)
@@ -65,33 +51,6 @@
 	  }
 	}
 
-	function mobile_menu_url($filename = NULL,$path_only = false)
-	{
-	 $CI = &get_instance();
-	 $CI->load->model('setting_m');
-      if($appid = $CI->setting_m->get('APP_APPLICATION_ID')){
-	    if(!$path_only){
-	     return $filename ? site_url("mobile/$appid/$filename") : site_url("mobile/$appid");
-		}else{
-		 return $filename ? "mobile/$appid/$filename" : "mobile/$appid";
-		}
-	  }else{
-		return "#";
-	  }
-	}
-	
-	 function themeUrl($theme_dir_name = NULL,$relative_path = TRUE) {
-		if(!defined('THEME_DIR') && !$theme_dir_name) return null;
-		
-		if($theme_dir_name){
-		 $basepath = str_replace(ROOT_DIR,'',VIEW_DIR);
-		  return ($relative_path ? "" : SITE_URL).$basepath.$theme_dir_name."/";
-		}else{
-		  $basepath = str_replace(ROOT_DIR,'',THEME_DIR);
-		  return ($relative_path ? "" : SITE_URL).$basepath;
-		}
-	 }
-	 
 	 function callback_validateAppID(){
 	 $CI = &get_instance();
 	   $appid = $CI->input->post('APP_APPLICATION_ID');
@@ -182,7 +141,7 @@
 					" AND campaign_group.startdate <= '".$post_startdate."' ".
 					$exclude_sql.
 			 " ORDER BY campaign_group.startdate DESC LIMIT 1";
-	 if($date = $CI->ezsql_mysql->get_row($sql)){
+	 if($date = $CI->ezsql_mysql->get_row($sql,'ARRAY_A')){
 	 
 		  
 		  
@@ -251,7 +210,7 @@
 					" AND campaign_group.startdate > '".$post_startdate."' ".
 					$exclude_sql.
 			 " ORDER BY campaign_group.startdate ASC LIMIT 1";
-	 if($date = $CI->ezsql_mysql->get_row($sql)){
+	 if($date = $CI->ezsql_mysql->get_row($sql,'ARRAY_A')){
 	 
 		  extract($CI->input->post('enddate'));
 		  $o_newdate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); 
@@ -489,7 +448,7 @@
 	  echo "</pre>";
 	}
 
-	function resizeImage( $file, $thumbpath, $max_side , $fixfor = NULL, $cropped = false ) {
+	function resizeImage( $file, $thumbpath, $max_side = NULL , $fixfor = NULL, $cropped = false ) {
 
 			// 1 = GIF, 2 = JPEG, 3 = PNG
 
@@ -521,7 +480,7 @@
 					imageantialias( $image, TRUE );
 
 				$image_attr = getimagesize( $file );
-
+				$max_side = $max_side ? $max_side : $image_attr[0]; 
 				// figure out the longest side
 			if($fixfor){
 					if($fixfor == 'width'){
@@ -635,6 +594,7 @@
 
 			rmdir($dir);
 		}
+		return true;
 	}
 	
 	function list_files_dir($dir) {

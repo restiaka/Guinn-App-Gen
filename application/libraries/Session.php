@@ -221,7 +221,8 @@ class CI_Session {
                 $flash_key = $this->flash_key.':new:'.$key;
                 $this->set_userdata($flash_key, $val);
             }
-        }
+        } 
+
 
     } 
 

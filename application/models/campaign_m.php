@@ -23,6 +23,14 @@ Class Campaign_m extends CI_Model {
 			LIMIT 1";
 	  if($result = $this->db->get_row($sql,'ARRAY_A')){
 	    $result = array_merge($result,$this->getStatus($result));
+		//Merge Assets if exists
+		if($assets = $this->getAssets($result['GID'])){
+		  $result = array_merge($result,$assets);
+		}
+		//Merge extra Page if exists
+		if($pages = $this->getPages($result['GID'])){
+		  $result = array_merge($result,$pages);
+		}
 	  }else{
 		$result = null;
 	  }	  
@@ -79,6 +87,28 @@ Class Campaign_m extends CI_Model {
 	  return $status;
   }
   
+  public function getAssets($GID){
+    $this->load->model('assets_m','asset');
+    $data = array();
+	if($assets = $this->asset->retrieveAssets(array('campaign_group_assets.GID'=>$GID))){
+		foreach ($assets as $asset){
+			$data["asset_".$asset['asset_platform']][$asset['asset_type']] = $asset['asset_url']; 
+		}
+	}
+	return $data;
+  }
+  
+  public function getPages($GID){
+  $this->load->model('page_m','page');
+    $data = array();
+	if($pages = $this->page->retrievePage(array('campaign_page.GID'=>$GID))){
+		foreach ($pages as $page){
+			$data['pages'][] = array('id'=>$page['page_id'],'name'=>$page['page_short_name'],'url'=>menu_url('page/'.$page['page_id'])); 
+		}
+	}
+	return $data;
+  }
+  
   public function setStatus($on_wait = false,$on_progress = false,$on_upload = false,$on_vote = false,$on_judging = false,$is_off = true){
 	return compact('on_wait','on_progress','on_upload','on_vote','on_judging','is_off');
   }
@@ -114,13 +144,12 @@ Class Campaign_m extends CI_Model {
 		 }
 	   }		
 	 }else{
-	  $this->error[] = "Submission Failed, Try Again!";	 
 	  return false;
 	 }
 	}else{
-	  $this->error[] = "Submission Failed, Try Again!";	 
 		return false;
 	}
+	return true;
   }
   
   public function updateCampaign($data)
@@ -129,7 +158,7 @@ Class Campaign_m extends CI_Model {
 	
 	if($ok){
 	 $gid = $data['gid'];
-     return $gid;
+     return true;
 	}else{
 	   $this->error[] = "Submission Update has Failed, Try Again or Contact Web Administrator";
 		return false;
@@ -141,7 +170,17 @@ Class Campaign_m extends CI_Model {
   
   public function removeCampaign($gid)
   {
+    
+	 $this->load->model('media_m','media');
+	 //Archive Campaign if it's already a participant
+	 if($media = $this->media->mediaByRandom($gid)){
+		return false;
+	 }
+   
 	$deleted = $this->db->query("DELETE FROM campaign_group WHERE GID = ".$gid);
+	$deleted = $this->db->query("DELETE FROM campaign_page WHERE GID = ".$gid);
+	$deleted = $this->db->query("DELETE FROM campaign_group_assets WHERE GID = ".$gid);
+	
 	if($deleted){
 		if(is_dir(CUSTOMER_IMAGE_DIR.$gid)){
 			if(!rm_all_dir(CUSTOMER_IMAGE_DIR.$gid)){
@@ -208,7 +247,20 @@ Class Campaign_m extends CI_Model {
    $sql  = "SELECT campaign_group.* ";
    $sql .= "FROM campaign_group ";
    $sql .= "WHERE campaign_group.GID = ".$gid;
-   return $this->db->get_row($sql,'ARRAY_A');
+   $result = null;
+   	  if($result = $this->db->get_row($sql,'ARRAY_A')){
+	    $result = array_merge($result,$this->getStatus($result));
+		//Merge Assets if exists
+		if($assets = $this->getAssets($result['GID'])){
+		  $result = array_merge($result,$assets);
+		}
+		//Merge extra Page if exists
+		if($pages = $this->getPages($result['GID'])){
+		  $result = array_merge($result,$pages);
+		}
+	  }	  
+   
+    return $result;
   }
   
   public function setStatusCampaign($gid,$status)

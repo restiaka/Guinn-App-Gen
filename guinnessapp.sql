@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: guinnessapp
 Target Host: localhost
 Target Database: guinnessapp
-Date: 3/2/2012 9:55:30 PM
+Date: 3/7/2012 8:43:09 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,13 +31,15 @@ CREATE TABLE `campaign_assets` (
   `asset_id` int(11) NOT NULL AUTO_INCREMENT,
   `asset_name` varchar(255) NOT NULL,
   `asset_basename` varchar(255) NOT NULL,
+  `asset_url` varchar(255) NOT NULL,
+  `asset_thumb_url` varchar(255) NOT NULL,
   `asset_type` varchar(100) NOT NULL,
   `asset_width` int(11) DEFAULT NULL,
   `asset_height` int(11) DEFAULT NULL,
   `asset_mimetype` varchar(30) DEFAULT NULL,
   `asset_platform` enum('facebook','mobile') NOT NULL,
   PRIMARY KEY (`asset_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for campaign_customer
@@ -63,6 +65,22 @@ CREATE TABLE `campaign_customer_fbauthorization` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- ----------------------------
+-- Table structure for campaign_customer_traction
+-- ----------------------------
+CREATE TABLE `campaign_customer_traction` (
+  `CUSTOMER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FIRSTNAME` varchar(255) DEFAULT NULL,
+  `LASTNAME` varchar(255) DEFAULT NULL,
+  `EMAIL` varchar(255) DEFAULT NULL,
+  `ADDRESS` varchar(255) DEFAULT NULL,
+  `MOBILE` varchar(255) DEFAULT NULL,
+  `SUBSCRIPTIONID1` varchar(255) DEFAULT NULL,
+  `GID` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`CUSTOMER_ID`),
+  UNIQUE KEY `unique emal` (`EMAIL`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
 -- Table structure for campaign_group
 -- ----------------------------
 CREATE TABLE `campaign_group` (
@@ -74,7 +92,6 @@ CREATE TABLE `campaign_group` (
   `enddate` datetime NOT NULL,
   `winner_selectiondate` datetime NOT NULL,
   `status` varchar(12) NOT NULL DEFAULT 'active',
-  `code` varchar(255) DEFAULT NULL,
   `allowed_media_source` varchar(20) NOT NULL,
   `allowed_media_type` varchar(20) NOT NULL,
   `allowed_media_fields` varchar(255) NOT NULL,
@@ -90,13 +107,10 @@ CREATE TABLE `campaign_group` (
   `media_has_fbcomment` tinyint(4) NOT NULL DEFAULT '0',
   `media_has_fblike` tinyint(4) NOT NULL DEFAULT '0',
   `media_has_vote` tinyint(4) NOT NULL DEFAULT '0',
-  `image_header` varchar(255) DEFAULT NULL,
   `media_has_uploadonce` tinyint(4) NOT NULL,
   `winner_announced` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`GID`),
-  UNIQUE KEY `campaign_code` (`code`),
-  UNIQUE KEY `APP_APPLICATION_ID` (`APP_APPLICATION_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`GID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for campaign_group_assets
@@ -160,7 +174,7 @@ CREATE TABLE `campaign_page` (
   `page_status` varchar(10) NOT NULL DEFAULT 'publish',
   `page_publish_date` datetime DEFAULT NULL,
   PRIMARY KEY (`page_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for campaign_user
@@ -178,7 +192,7 @@ CREATE TABLE `campaign_user` (
   `user_registered_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_ID`),
   UNIQUE KEY `user_email` (`user_email`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records 
@@ -186,6 +200,14 @@ CREATE TABLE `campaign_user` (
 INSERT INTO `campaign_app` VALUES ('209681662395432', 'b805f7f9ad97c442eae2f29ee4705f1b', '6c29c3dc1ded207ac217cbe48deb29ef', 'http://apps.facebook.com/guinnidphotocontest/', 'http://fbguinnessphotocontest.think.web.id/', 'Guinness Photo Contest', 'publish_stream,email,offline_access', 'http://www.facebook.com/guinnessindonesia', '0');
 INSERT INTO `campaign_app` VALUES ('201876996523314', '201876996523314', '364639819b4649d19c1b0533e96bdda9', 'http://apps.facebook.com/guinidcontesttwo/', 'http://guinnessapp.dev/', 'Guinness photo contest 2', 'publish_stream,email,user_birthday,user_hometown,user_interests,user_likes', 'http://www.facebook.com/guinnessindonesia', '1');
 INSERT INTO `campaign_app` VALUES ('282088055180043', '282088055180043', 'a00334433dd5a7e5acd5f86f7c12928a', 'http://apps.facebook.com/guinnidgentestone/', 'http://guinnessapp.dev/campaign/canvas/282088055180043/', 'Guinness App Dev', 'publish_stream,email,user_birthday,user_hometown,user_interests,user_likes', 'http://www.facebook.com/guinnessindonesia', '0');
-INSERT INTO `campaign_customer` VALUES ('730189516', '74881399', 'active');
-INSERT INTO `campaign_customer_fbauthorization` VALUES ('730189516', '282088055180043', '2012-02-21 09:07:34', null, '1', 'AAAEAjr5TCwsBALZBy18E0TZAqUDCa5rtDjXnYMbryraxfOKTZAcH60I1CCV7LPqmJkRsrAkGjz78GIlcwRB34BzY7NxuLIrGa5PCjfZAWwZDZD');
+INSERT INTO `campaign_assets` VALUES ('9', 'Banner Header', 'e8cbb2a32a77df4ec08e09a3dac4778b.jpg', 'http://guinnessapp.dev/image/campaign?src=e8cbb2a32a77df4ec08e09a3dac4778b.jpg', 'http://guinnessapp.dev/image/campaign?src=thumb_e8cbb2a32a77df4ec08e09a3dac4778b.jpg', 'banner_header', '520', '100', 'image/jpeg', 'facebook');
+INSERT INTO `campaign_assets` VALUES ('10', 'Main banner aja deh', '414b967de265a087d3d147e6f9254bed.jpg', 'http://guinnessapp.dev/image/campaign?src=414b967de265a087d3d147e6f9254bed.jpg', 'http://guinnessapp.dev/image/campaign?src=thumb_414b967de265a087d3d147e6f9254bed.jpg', 'banner_main', '400', '318', 'image/jpeg', 'facebook');
+INSERT INTO `campaign_assets` VALUES ('11', 'Footer aja deh', 'fa77afca845a7105c1b09d2473a8d983.jpg', 'http://guinnessapp.dev/image/campaign?src=fa77afca845a7105c1b09d2473a8d983.jpg', 'http://guinnessapp.dev/image/campaign?src=thumb_fa77afca845a7105c1b09d2473a8d983.jpg', 'banner_footer', '120', '67', 'image/jpeg', 'facebook');
+INSERT INTO `campaign_group` VALUES ('1', 'Just another contest', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum. Curabitur tempus libero vel erat cursus et accumsan lorem euismod. Phasellus sit amet magna magna, eu vehicula quam. Aenean accumsan accumsan scelerisque. ', '2012-03-05 10:19:44', '2012-03-08 10:19:44', '2012-03-12 10:19:44', '2012-03-10 10:19:44', 'active', 'file', 'image', 'media_source=Upload Content Here&media_description=It\'s About', 'image/gif,image/jpeg,image/pjpeg,image/png', '<ol>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n</ol>', null, null, null, null, '282088055180043', null, '1', '1', '1', '1', '1', '0');
+INSERT INTO `campaign_group_assets` VALUES ('1', '9');
+INSERT INTO `campaign_group_assets` VALUES ('1', '10');
+INSERT INTO `campaign_group_assets` VALUES ('1', '11');
+INSERT INTO `campaign_page` VALUES ('1', '1', 'Outlet 2012 aja', 'Outlet 2012 ', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />Integer vel neque et orci sollicitudin placerat non at dui.<br />Nulla at mi in risus viverra facilisis elementum quis sem.<br />Mauris vulputate augue dolor, sit amet rhoncus ante.<br /><br />Nunc iaculis mattis massa, eget congue risus suscipit a?<br />Nulla convallis metus porttitor lectus egestas pellentesque!<br />Phasellus eu tellus purus, ac volutpat libero.<br />Donec ultricies orci eget mi malesuada quis blandit sem rhoncus?<br /><br />Mauris eget dolor rhoncus mauris euismod ultrices et sed quam.<br />In pretium dui vitae justo tempor convallis.<br />Mauris aliquet vulputate nisl, sed porttitor erat interdum et.<br />Aenean nec lorem at lorem auctor molestie.<br />Proin tincidunt massa non odio pulvinar dictum.<br />Mauris vel justo diam, in dictum est.<br /><br /></p>', 'publish', '2012-03-07 16:18:48');
+INSERT INTO `campaign_page` VALUES ('2', '1', 'Winner page', 'Winner Announce', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />Integer vel neque et orci sollicitudin placerat non at dui.<br />Nulla at mi in risus viverra facilisis elementum quis sem.<br />Mauris vulputate augue dolor, sit amet rhoncus ante.<br /><br />Nunc iaculis mattis massa, eget congue risus suscipit a?<br />Nulla convallis metus porttitor lectus egestas pellentesque!<br />Phasellus eu tellus purus, ac volutpat libero.<br />Donec ultricies orci eget mi malesuada quis blandit sem rhoncus?<br /><br />Mauris eget dolor rhoncus mauris euismod ultrices et sed quam.<br />In pretium dui vitae justo tempor convallis.<br />Mauris aliquet vulputate nisl, sed porttitor erat interdum et.<br />Aenean nec lorem at lorem auctor molestie.<br />Proin tincidunt massa non odio pulvinar dictum.<br />Mauris vel justo diam, in dictum est.<br /><br /></p>', 'publish', '2012-03-07 16:28:41');
 INSERT INTO `campaign_user` VALUES ('1', null, 'Admin', 'admin@demo.com', '76a2173be6393254e72ffa4d6df1030a', 'administrator', 'active', null, null, null);
+INSERT INTO `campaign_user` VALUES ('8', null, 'Khalid', 'kh411d@yahoo.com', 'mencret', 'administrator', 'active', null, '2012-03-05 04:34:48', '1');

@@ -18,15 +18,39 @@ Class Customer extends CI_Controller {
 		$this->load->view('admin/customer',array('content'=> $this->form->customer_add($uid)));
 	}
 */	
+    	
+	public function getMsg($type){
+		$template = array("submission_true"=>"Your data has been successfuly submitted.",
+					 "submission_false"=>"Submission has Failed, Please Try Again.",
+					 "update_true"=>"Item(s) has been successfuly updated.",
+					 "update_false"=>"Item(s) has failed to be updated. Please Try Again.",
+					 "delete_true"=>"Item(s) has been successfuly deleted",
+					 "delete_false"=>"Item(s) has failed to be deleted. Please Try Again.");
+					 
+	    return isset($template[$type]) ? $template[$type] : '';	   
+	}	
+	
 	function lists(){
 	  require_once 'Pager/Sliding.php';
 	 
 	if($this->input->post('cid')){ 
 		 foreach($this->input->post('cid') as $v){
 		  switch($this->input->post('task')){
-		   case 'activate': $this->customer->setStatus($v,'active'); break;
-		   case 'deactivate': $this->customer->setStatus($v,'inactive'); break;
-		   case 'delete': $this->customer->remove($v); break;
+		   case 'activate': if($this->customer->setStatus($v,'active')){
+			   $this->notify->set_message('success', $this->getMsg('update_true'));
+			   }else{
+			   $this->notify->set_message('error', $this->getMsg('update_false'));
+			   } break;
+		   case 'deactivate': if($this->customer->setStatus($v,'inactive')){
+			   $this->notify->set_message('success', $this->getMsg('update_true'));
+			   }else{
+			   $this->notify->set_message('error', $this->getMsg('update_false'));
+			   } break;
+		   case 'delete': if($this->customer->remove($v)){
+			   $this->notify->set_message('success', $this->getMsg('delete_true'));
+			   }else{
+			   $this->notify->set_message('error', $this->getMsg('delete_false'));
+			   } break;
 		  }
 		 }
 	 }
