@@ -33,7 +33,7 @@ Class Assets extends CI_Controller {
 	 
 		if($this->input->post('cid')){ 
 			 foreach($this->input->post('cid') as $v){
-			 list($asset_id,$asset_type) = explode('|',$v);
+			 list($asset_id,$asset_type,$asset_platform) = explode('|',$v);
 			  switch($this->input->post('task')){
 			   case 'delete': if($this->asset->removeAssets($asset_id)){
 								$this->notify->set_message('success', $this->getMsg('delete_true'));
@@ -42,7 +42,7 @@ Class Assets extends CI_Controller {
 							  }
 							  break;
 			   case 'link':  if($gid = $this->input->post('bycampaign')){
-									if($this->asset->setConnectionCampaign($asset_id,$gid,$asset_type)){
+									if($this->asset->setConnectionCampaign($asset_id,$gid,$asset_type,$asset_platform)){
 									   $this->notify->set_message('success', $this->getMsg('update_true'));
 									}else{
 									   $this->notify->set_message('error', $this->getMsg('update_false'));

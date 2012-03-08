@@ -1,8 +1,8 @@
 <div id="footer">
   <div class="footer-content center">
   	<div>
-	<?php if(isset($campaign['asset_facebook']['banner_footer'])):?>
-    	<img src="<?php echo $campaign['asset_facebook']['banner_footer']?>" alt="Guinness" title="Guinness"/>
+	<?php if(isset($campaign['asset_facebook']['banner_footer']['url'])):?>
+    	<img src="<?php echo $campaign['asset_facebook']['banner_footer']['url']?>" alt="Guinness" title="Guinness"/>
     <?php endif;?>
 	</div>
     <ul>
