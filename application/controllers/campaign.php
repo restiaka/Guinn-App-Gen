@@ -31,10 +31,12 @@ Class Campaign extends CI_Controller {
 
 		$isAuthorized = $user ? true : false;
 	 
+	
+	 
 	    if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
-		
+
 		
 		$sr = $this->facebook->getSignedRequest();
 		if($isAuthorized){
@@ -75,11 +77,12 @@ Class Campaign extends CI_Controller {
 		//redirect(menu_url('upload'));
 		$media_type = $campaign['allowed_media_source'] == "file" ? "photo" : "video";
 		if($campaign['media_has_approval']){
-			$data['message_text'] = "Enjoy Your Guinness while we're moderating your $media_type Check your email for further notification, it's just a bottle away.";
+			$data['message_text'] = "Enjoy Your Guinness while we're moderating your $media_type Check your email for further notification.";
 	    }else{
 			$data['message_text'] = "Thanks for participating, Your $media_type is now listed on the gallery.";
 		}
 			$data['message_title'] = "Successful";
+			$data['campaign'] = $campaign;
 		$this->load->view('site/upload_notification',$data);
 	 }elseif($form == "error"){
 		$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );
@@ -201,7 +204,7 @@ Class Campaign extends CI_Controller {
 	 public function winner()
 	 {
 	  	 $sr = $this->facebook->getSignedRequest();
-	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/winner";
+		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/winner";
 
 		 if(!$user = getAuthorizedUser(true)){
 			redirect(menu_url('authorize').'?ref='.$redirect_url);
@@ -212,12 +215,15 @@ Class Campaign extends CI_Controller {
 		$campaign = $this->campaign->getActiveCampaign();
 		$now = date('Y-m-d h:i:s');
 		$data = array();
-		if($campaign['on_judging']){
+		if($campaign['on_judging'] && $campaign['winner_announced']){
 		  //Get Winner
 		  if($media = $this->media->retrieveMedia(array('GID'=>$campaign['GID'],'media_winner' => 1))){
 			$data['media'] = $media;
 		  }
+		}else{
+			show_404();
 		}
+		$data['campaign'] = $campaign;
 		
 		$this->load->view('site/winner',$data);
 	 }

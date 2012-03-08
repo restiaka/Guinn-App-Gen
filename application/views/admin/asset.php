@@ -58,7 +58,7 @@
 							<?php  foreach($data as $v): ?>
 								<tr>
 								 <td style="padding:2px;vertical-align:top;">
-								 <input style="width:5px" type="checkbox" name="cid[]" value="<?=$v['asset_id']?>|<?=$v['asset_type']?>"/>
+								 <input style="width:5px" type="checkbox" name="cid[]" value="<?=$v['asset_id']?>|<?=$v['asset_type']?>|<?=$v['asset_platform']?>"/>
 								 </td>
 								<td style="vertical-align:top;"><?=++$i?></td>
 									<td>
@@ -66,10 +66,14 @@
 									</td>
 									<td style="vertical-align:top;">
 									<?php echo ucfirst($v['asset_name']);?><Br/>
-									<?php echo strtoupper($v['asset_type']);?><Br/>
+									<?php echo strtoupper($v['asset_type']);?> >> <?php echo strtoupper($v['asset_platform']);?><Br/>
 									<?php echo "w = ".$v['asset_width']."px h = ".$v['asset_height']."px";?><Br/>
 									<a href="<?php echo site_url('image/campaign').'?src='.$v['asset_basename']?>" target="_blank">
 									ImageURL
+									</a>
+									&nbsp;&nbsp;
+									<a href="<?=site_url('admin/assets/add/'.$v['asset_id'])?>">
+									Edit
 									</a>
 									</td>
 								</tr>

@@ -1,7 +1,7 @@
 <?php echo $this->load->view('site/header',$campaign,true); ?>
 <div class="main">
 	<div class="main-banner">
-	<?php $banner_main = isset($campaign['asset_facebook']['banner_main']) ? $campaign['asset_facebook']['banner_main'] : null?>
+	<?php $banner_main = isset($campaign['asset_facebook']['banner_main']['url']) ? $campaign['asset_facebook']['banner_main']['url'] : null?>
 		<?php if(!$is_authorized):?>
 		
 			<?php echo authorizeBanner($banner_main,true,$redirectURL);?>

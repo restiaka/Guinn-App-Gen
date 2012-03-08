@@ -32,9 +32,25 @@
 		 $meta = $CI->session->userdata('APP_META');
 		 //clear
 		 $CI->session->unset_userdata('APP_META');
-		 return $meta;
+		 return $meta ? $meta : '';
 	}
 	
+	function og_meta_set(array $meta){
+   //title,type,url,image,site_name,admins,description
+	$og_meta = '';
+	if(count($meta)<1) return null;
+	foreach($meta as $key => $value){
+	   $og_meta .= '<meta property="og:'.$key.'" content="'.$value.'"/>'; 
+	}
+	getSession()->set('og_meta',$og_meta);
+	}
+ 
+ function og_meta_get(){
+  if($og_meta = getSession()->get('og_meta')){
+	getSession()->set('og_meta',null);
+	return $og_meta;
+  }
+ }
 
 	function menu_url($filename = NULL,$path_only = false)
 	{
@@ -81,7 +97,8 @@
 		if($gid = $CI->input->post('gid')){
 		 
 		 $appid = $CI->ezsql_mysql->get_var("SELECT campaign_group.APP_APPLICATION_ID FROM campaign_group WHERE campaign_group.GID = ".addslashes($gid));
-		 
+		 if(!$appid) return true;
+		 if($appid == $CI->input->post('APP_APPLICATION_ID')) return true;
 		 /*Alternate query*
 		 $sql = "SELECT count(campaign_customer_fbauthorization.uid)
 				   FROM campaign_customer_fbauthorization

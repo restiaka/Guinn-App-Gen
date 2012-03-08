@@ -93,7 +93,7 @@ Class Media_m extends CI_Model {
 
  
   
-  function fblike($href,$attr = "show_faces='false' width='430' font=''")
+  function fblike($href,$attr = "show_faces='false' width='440' font=''")
   {
      return "<fb:like href='$href' $attr ></fb:like>";
   }
@@ -108,7 +108,7 @@ Class Media_m extends CI_Model {
     return $meta_tag;		
   } 
   
-  function fbcomment($href,$attr = "colorscheme='light' width='460' num_posts='5'")
+  function fbcomment($href,$attr = "colorscheme='light' width='440' num_posts='5'")
   {
    return "<fb:comments href='$href' $attr ></fb:comments>";
   }

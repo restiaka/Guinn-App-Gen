@@ -376,8 +376,10 @@
 	
 	if($gid){
 		$default_data = $this->app_m->detailApp($gid) ;
+		if(!$default_data) return '';
 		$default_data['task'] = 'edit';
 		$form->addDataSource(new HTML_QuickForm2_DataSource_Array($default_data));
+		
 	}
 	
 	$form->addElement('hidden','task');
@@ -474,6 +476,7 @@
 		  
 	if($userID){
 	  $user = $this->db->query("SELECT * FROM campaign_user WHERE user_ID = ".$userID)->row();
+	  if(!$user) return '';
 	  $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array('user_ID'=>$userID,
 																	  'user_name'=>$user->user_name,
 																	  'user_email'=>$user->user_email
@@ -577,6 +580,7 @@
 							'page_status' => $page['page_status'],		
 							'page_publish_date' => $page['page_publish_date'] 
                         )));
+		 if(!$page) return '';				
 	}else{
 		 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
 							'page_publish_date' => date('Y-m-d H:i:s')
@@ -663,13 +667,15 @@
 		$form = new HTMLQuickForm2('assets','POST','action="'.site_url('admin/assets/add/'.$asset_id).'"');
 		$form->setAttribute('enctype', 'multipart/form-data');	
 		if($asset_id){
-		  $assets = $this->assets_m->detailAssets($asset_id);
+		  $assets = $this->assets_m->detailAsset($asset_id);
 		  		 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
 							'asset_id' => $assets['asset_id'],
                             'asset_name' => $assets['asset_name'],
 							'asset_type' => $assets['asset_type'],
-							'asset_platform' => $assets['asset_platform']
+							'asset_platform' => $assets['asset_platform'],
+							'asset_bgcolor' => $assets['asset_bgcolor']
                         )));
+		  if(!$assets) return '';				
 		}
 		$form->addElement('hidden','asset_id');
 		$form->addElement('static','','',array('content'=>'<b>Asset Name ?</b>'));
@@ -689,6 +695,13 @@
 																						'background_repeat'=>'Background Repeat')));
 		$asset_type->addRule('required', 'Required', null,HTML_QuickForm2_Rule::SERVER);
 		
+		$form->addElement('static','','',array('content'=>'<b>Default Background Color ? ex: #090909 </b>'));
+		$asset_bgcolor = $form->addElement('text','asset_bgcolor',array('style'=>'width:100px;font-size:20;','size'=>7,'maxlength'=>7));
+		$asset_bgcolor->addRule('regex', 'Wrong Color Format','/^#[a-zA-Z0-9]{6}$/');
+		
+		if($asset_id){
+		$form->addElement('static','','',array('content'=>'<img src="'.$assets['asset_url'].'" />'));
+		}else{
 		$asset_uploadedtext = $form->addElement('static','','',array('content'=>'<b>Upload Assets ? (GIF,JPG,PNG)</b>'));
 		$asset_uploadedfile = $form->addElement('file','uploadedfile','size="80"');
 		$asset_uploadedfile->addRule('mimetype', 'Asset is not a valid file type', array('image/gif','image/jpeg','image/pjpeg','image/png'),HTML_QuickForm2_Rule::SERVER);
@@ -696,15 +709,18 @@
 
 		$form->addElement('static','','',array('content'=>'<b>Set Width Size? (Height resized by width Ratio)</b>'));
 		$asset_resizeto = $form->addElement('select','asset_resizeto','',array('options'=>array(''=>'No Resizing','90'=>'90px','100'=>'100px','120'=>'120px','200'=>'220px','320'=>'320px','400'=>'400px','520'=>'520px','760'=>'760px','810'=>'810px')));
-		
+		}
 		$button = $form->addElement('submit','','value="Submit Asset"');
 		
 		if ($form->validate()) {
 			$data = $form->getValue();
-			$asset_resizeto = $data['asset_resizeto'];
-		    unset($data['submit'],$data['_qf__assets'],$data['asset_resizeto']);
+		    unset($data['submit'],$data['_qf__assets']);
 
-			if ($data['uploadedfile']['error'] == UPLOAD_ERR_OK) {
+			if (isset($data['uploadedfile']['error']) && $data['uploadedfile']['error'] == UPLOAD_ERR_OK) {
+				
+				$asset_resizeto = $data['asset_resizeto'];
+				unset($data['asset_resizeto']);
+				
 				$tmp_name = $data['uploadedfile']["tmp_name"];
 				$time = md5(uniqid(rand(), true).time());
 				$img = resizeImage( $tmp_name, CAMPAIGN_IMAGE_DIR."/".$time.".jpg", $asset_resizeto , 'width' );	
@@ -737,7 +753,9 @@
 				$this->notify->set_message('error', 'Data has failed to be submitted.');
 			   }			   
 		   }
-		    $form->removeChild($asset_uploadedtext);
+		    if(isset($asset_uploadedtext))
+			$form->removeChild($asset_uploadedtext);
+			if(isset($asset_uploadedfile))
 		    $form->removeChild($asset_uploadedfile);
 			$form->removeChild($button);
 			$form->toggleFrozen(true);
@@ -759,6 +777,7 @@
 		/**/
 		if($gid){
 		 $campaign = $this->campaign_m->detailCampaign($gid) ;
+		 if(!$campaign) return '';
 		 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
                            'title' => $campaign['title'],
                             'description' => $campaign['description'],

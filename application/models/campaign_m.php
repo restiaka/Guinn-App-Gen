@@ -7,8 +7,8 @@ Class Campaign_m extends CI_Model {
 
   function __construct()
   {
-  parent::__construct();
-   $this->load->library('ezsql_mysql');
+	parent::__construct();
+	$this->load->library('ezsql_mysql');
 	    $this->db = $this->ezsql_mysql;
   }
   
@@ -92,7 +92,8 @@ Class Campaign_m extends CI_Model {
     $data = array();
 	if($assets = $this->asset->retrieveAssets(array('campaign_group_assets.GID'=>$GID))){
 		foreach ($assets as $asset){
-			$data["asset_".$asset['asset_platform']][$asset['asset_type']] = $asset['asset_url']; 
+			$data["asset_".$asset['asset_platform']][$asset['asset_type']]['url'] = $asset['asset_url']; 
+			$data["asset_".$asset['asset_platform']][$asset['asset_type']]['bgcolor'] = $asset['asset_bgcolor']; 
 		}
 	}
 	return $data;

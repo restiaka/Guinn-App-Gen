@@ -1,3 +1,48 @@
+<html>
+<head>
+<title>Guinness Facebook App - Privacy Policy</title>
+<style type="text/css">
+
+body {
+    background-color: #000000;
+    color: #FFFFFF;
+    font-family: Lucida Grande,Verdana,Sans-serif;
+    font-size: 12px;
+    margin: 40px;
+}
+
+#logo {
+ text-align:center
+}
+
+#content {
+    background-color: #000000;
+    border: 1px solid #BC923B;
+    margin-top: 20px;
+    padding: 20px 20px 12px;
+}
+
+#footer {
+	margin-top:40px;
+	text-align:center;
+}
+
+#footer a {
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+h1 {
+font-weight:		normal;
+font-size:			14px;
+color:				#BC923B;
+margin:				0 0 4px 0;
+}
+</style>
+</head>
+<body>
+<div id="logo"><img src="<?php echo base_url()?>assets/site/img/guinness_logo_alpha.png"></div>
+<div id="content"> 
 <div><b><font size="6">Guinness Facebook App - Privacy Policy</font></b></div>
 <p>This privacy policy sets out how Guinness facebook app uses and protects any information that you give Guinness facebook app when you use this website.&nbsp;Guinness facebook app is committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement.&nbsp;Guinness facebook app may change this policy from time to time by updating this page. You should check this page from time to time to ensure that you are happy with any changes.</p>
 <div><b><font size="4"><br />
@@ -34,3 +79,10 @@ What we collect</font></b></div>
 <p>If you choose to post content or other data on the App, for example, by commenting on a contestant photo or video, this can be accessed by all of your Facebook friends.</p>
 <p>If you decide not to share information with your Facebook friends about a particular article you have accessed you can go to your &ldquo;Privacy Setting&rdquo; on your facebook profile.</p>
 <p>We will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so. We may use your personal information to send you promotional information about third parties which we think you may find interesting if you tell us that you wish this to happen. If you would like a copy of the information held on you please<strong> </strong>contact us.<strong> </strong>If you believe that any information we are holding on you is incorrect or incomplete, please write to or email us as soon as possible, at the above address. We will promptly correct any information found to be incorrect.</p>
+</div>
+  <div id="footer">
+   		<a href="http://www.drinkiq.com/" target="_blank">www.DRINKIQ.com</a>
+    <p>The Guinness word and associated logos are trademarks. © Guinness &amp; Co. <?php echo date('Y')?></p>
+  </div>
+</body>
+</html>
