@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: guinnessapp
 Target Host: localhost
 Target Database: guinnessapp
-Date: 3/7/2012 8:43:09 PM
+Date: 3/8/2012 1:42:41 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,8 +38,9 @@ CREATE TABLE `campaign_assets` (
   `asset_height` int(11) DEFAULT NULL,
   `asset_mimetype` varchar(30) DEFAULT NULL,
   `asset_platform` enum('facebook','mobile') NOT NULL,
+  `asset_bgcolor` varchar(7) DEFAULT NULL,
   PRIMARY KEY (`asset_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for campaign_customer
@@ -78,7 +79,7 @@ CREATE TABLE `campaign_customer_traction` (
   `GID` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`CUSTOMER_ID`),
   UNIQUE KEY `unique emal` (`EMAIL`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for campaign_group
@@ -141,7 +142,7 @@ CREATE TABLE `campaign_media` (
   `media_winner` tinyint(4) DEFAULT '0',
   `media_vote_total` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`media_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for campaign_media_owner
@@ -200,13 +201,27 @@ CREATE TABLE `campaign_user` (
 INSERT INTO `campaign_app` VALUES ('209681662395432', 'b805f7f9ad97c442eae2f29ee4705f1b', '6c29c3dc1ded207ac217cbe48deb29ef', 'http://apps.facebook.com/guinnidphotocontest/', 'http://fbguinnessphotocontest.think.web.id/', 'Guinness Photo Contest', 'publish_stream,email,offline_access', 'http://www.facebook.com/guinnessindonesia', '0');
 INSERT INTO `campaign_app` VALUES ('201876996523314', '201876996523314', '364639819b4649d19c1b0533e96bdda9', 'http://apps.facebook.com/guinidcontesttwo/', 'http://guinnessapp.dev/', 'Guinness photo contest 2', 'publish_stream,email,user_birthday,user_hometown,user_interests,user_likes', 'http://www.facebook.com/guinnessindonesia', '1');
 INSERT INTO `campaign_app` VALUES ('282088055180043', '282088055180043', 'a00334433dd5a7e5acd5f86f7c12928a', 'http://apps.facebook.com/guinnidgentestone/', 'http://guinnessapp.dev/campaign/canvas/282088055180043/', 'Guinness App Dev', 'publish_stream,email,user_birthday,user_hometown,user_interests,user_likes', 'http://www.facebook.com/guinnessindonesia', '0');
-INSERT INTO `campaign_assets` VALUES ('9', 'Banner Header', 'e8cbb2a32a77df4ec08e09a3dac4778b.jpg', 'http://guinnessapp.dev/image/campaign?src=e8cbb2a32a77df4ec08e09a3dac4778b.jpg', 'http://guinnessapp.dev/image/campaign?src=thumb_e8cbb2a32a77df4ec08e09a3dac4778b.jpg', 'banner_header', '520', '100', 'image/jpeg', 'facebook');
-INSERT INTO `campaign_assets` VALUES ('10', 'Main banner aja deh', '414b967de265a087d3d147e6f9254bed.jpg', 'http://guinnessapp.dev/image/campaign?src=414b967de265a087d3d147e6f9254bed.jpg', 'http://guinnessapp.dev/image/campaign?src=thumb_414b967de265a087d3d147e6f9254bed.jpg', 'banner_main', '400', '318', 'image/jpeg', 'facebook');
-INSERT INTO `campaign_assets` VALUES ('11', 'Footer aja deh', 'fa77afca845a7105c1b09d2473a8d983.jpg', 'http://guinnessapp.dev/image/campaign?src=fa77afca845a7105c1b09d2473a8d983.jpg', 'http://guinnessapp.dev/image/campaign?src=thumb_fa77afca845a7105c1b09d2473a8d983.jpg', 'banner_footer', '120', '67', 'image/jpeg', 'facebook');
-INSERT INTO `campaign_group` VALUES ('1', 'Just another contest', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum. Curabitur tempus libero vel erat cursus et accumsan lorem euismod. Phasellus sit amet magna magna, eu vehicula quam. Aenean accumsan accumsan scelerisque. ', '2012-03-05 10:19:44', '2012-03-08 10:19:44', '2012-03-12 10:19:44', '2012-03-10 10:19:44', 'active', 'file', 'image', 'media_source=Upload Content Here&media_description=It\'s About', 'image/gif,image/jpeg,image/pjpeg,image/png', '<ol>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n</ol>', null, null, null, null, '282088055180043', null, '1', '1', '1', '1', '1', '0');
+INSERT INTO `campaign_assets` VALUES ('9', 'Banner Header', 'e8cbb2a32a77df4ec08e09a3dac4778b.jpg', 'http://guinnessapp.dev/image/campaign?src=e8cbb2a32a77df4ec08e09a3dac4778b.jpg', 'http://guinnessapp.dev/image/campaign?src=thumb_e8cbb2a32a77df4ec08e09a3dac4778b.jpg', 'banner_header', '520', '100', 'image/jpeg', 'facebook', null);
+INSERT INTO `campaign_assets` VALUES ('10', 'Main banner aja deh', '414b967de265a087d3d147e6f9254bed.jpg', 'http://guinnessapp.dev/image/campaign?src=414b967de265a087d3d147e6f9254bed.jpg', 'http://guinnessapp.dev/image/campaign?src=thumb_414b967de265a087d3d147e6f9254bed.jpg', 'banner_main', '400', '318', 'image/jpeg', 'facebook', null);
+INSERT INTO `campaign_assets` VALUES ('11', 'Footer aja deh', 'fa77afca845a7105c1b09d2473a8d983.jpg', 'http://guinnessapp.dev/image/campaign?src=fa77afca845a7105c1b09d2473a8d983.jpg', 'http://guinnessapp.dev/image/campaign?src=thumb_fa77afca845a7105c1b09d2473a8d983.jpg', 'banner_footer', '120', '67', 'image/jpeg', 'facebook', null);
+INSERT INTO `campaign_assets` VALUES ('13', 'Backgoroud', '7fe60578d824956f2211243ccaaee192.jpg', 'http://guinnessapp.dev/image/campaign?src=7fe60578d824956f2211243ccaaee192.jpg', 'http://guinnessapp.dev/image/campaign?src=thumb_7fe60578d824956f2211243ccaaee192.jpg', 'background_norepeat', '800', '520', 'image/jpeg', 'facebook', '#000000');
+INSERT INTO `campaign_assets` VALUES ('14', 'Header', '6990b689287925de92b5f315a16b8317.jpg', 'http://guinnessapp.dev/image/campaign?src=6990b689287925de92b5f315a16b8317.jpg', 'http://guinnessapp.dev/image/campaign?src=thumb_6990b689287925de92b5f315a16b8317.jpg', 'banner_header', '320', '61', 'image/jpeg', 'mobile', null);
+INSERT INTO `campaign_customer` VALUES ('615418145', '1', 'active');
+INSERT INTO `campaign_customer` VALUES ('730189516', '2', 'active');
+INSERT INTO `campaign_customer_fbauthorization` VALUES ('615418145', '282088055180043', '2012-03-07 09:11:07', null, '1', 'AAAEAjr5TCwsBAKisyMqUvhQVWZAq1j9FZBePDoTyeu9h2aUmXZCXsA9n4N9zXEwfciYrOBLreWOmFOZAAhBZBIZAPFb4Vgc6TtfFR9G4GOPQZDZD');
+INSERT INTO `campaign_customer_fbauthorization` VALUES ('730189516', '282088055180043', '2012-03-08 01:21:28', null, '1', 'AAAEAjr5TCwsBAA7MLVpmZB0J0dAzQuuNyPdRs3T8MZAQ7ZCpSe2OGE9DgXZBh4H7XORwgl5E1ckAG6pU6bvRKEm2tqXe61NbJ9b35fzaRAZDZD');
+INSERT INTO `campaign_customer_traction` VALUES ('1', 'Zoeldt', 'Zoel', 'zoeldt@yahoo.com', 'DASDASDASD', '123123', null, '1_282088055180043');
+INSERT INTO `campaign_customer_traction` VALUES ('2', 'Khalid', 'Deh', 'kh411d@yahoo.com', 'asdf asdfasdf sdfasdfasdf asdf as', '414234234', null, '1_282088055180043');
+INSERT INTO `campaign_group` VALUES ('1', 'Just another contest', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum. Curabitur tempus libero vel erat cursus et accumsan lorem euismod. Phasellus sit amet magna magna, eu vehicula quam. Aenean accumsan accumsan scelerisque. ', '2012-03-05 10:19:44', '2012-03-12 10:19:44', '2012-03-14 10:19:44', '2012-03-13 10:19:44', 'active', 'file', 'image', 'media_source=Upload Content Here&media_description=It\'s About', 'image/gif,image/jpeg,image/pjpeg,image/png', '<ol>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a felis at nulla consectetur vulputate ac ut ipsum.</li>\r\n\n</ol>', null, null, null, null, '282088055180043', null, '1', '1', '1', '1', '1', '0');
 INSERT INTO `campaign_group_assets` VALUES ('1', '9');
 INSERT INTO `campaign_group_assets` VALUES ('1', '10');
 INSERT INTO `campaign_group_assets` VALUES ('1', '11');
+INSERT INTO `campaign_group_assets` VALUES ('1', '13');
+INSERT INTO `campaign_group_assets` VALUES ('1', '14');
+INSERT INTO `campaign_media` VALUES ('1', null, 'RWERWERWERWER', 'image', 'file', 'http://guinnessapp.dev/image?gid=1&src=615418145_0c52158e8b0e2493f5dd5ebba9d6c643.jpg', 'http://guinnessapp.dev/image?gid=1&src=thumb_615418145_0c52158e8b0e2493f5dd5ebba9d6c643.jpg', 'http://guinnessapp.dev/image?gid=1&src=medium_615418145_0c52158e8b0e2493f5dd5ebba9d6c643.jpg', 'active', '1', '2012-03-07 21:11:47', '1331129507', '615418145_0c52158e8b0e2493f5dd5ebba9d6c643.jpg', '0', '0');
+INSERT INTO `campaign_media` VALUES ('2', null, 'Donec varius ante at lorem bibendum sed.\r\n\n', 'image', 'file', 'http://guinnessapp.dev/image?gid=1&src=730189516_5445c8453781647cc6f72a1afe1fe00c.jpg', 'http://guinnessapp.dev/image?gid=1&src=thumb_730189516_5445c8453781647cc6f72a1afe1fe00c.jpg', 'http://guinnessapp.dev/image?gid=1&src=medium_730189516_5445c8453781647cc6f72a1afe1fe00c.jpg', 'active', '1', '2012-03-08 13:29:15', '1331188155', '730189516_5445c8453781647cc6f72a1afe1fe00c.jpg', '0', '0');
+INSERT INTO `campaign_media_owner` VALUES ('1', '615418145', '1');
+INSERT INTO `campaign_media_owner` VALUES ('2', '730189516', '1');
 INSERT INTO `campaign_page` VALUES ('1', '1', 'Outlet 2012 aja', 'Outlet 2012 ', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />Integer vel neque et orci sollicitudin placerat non at dui.<br />Nulla at mi in risus viverra facilisis elementum quis sem.<br />Mauris vulputate augue dolor, sit amet rhoncus ante.<br /><br />Nunc iaculis mattis massa, eget congue risus suscipit a?<br />Nulla convallis metus porttitor lectus egestas pellentesque!<br />Phasellus eu tellus purus, ac volutpat libero.<br />Donec ultricies orci eget mi malesuada quis blandit sem rhoncus?<br /><br />Mauris eget dolor rhoncus mauris euismod ultrices et sed quam.<br />In pretium dui vitae justo tempor convallis.<br />Mauris aliquet vulputate nisl, sed porttitor erat interdum et.<br />Aenean nec lorem at lorem auctor molestie.<br />Proin tincidunt massa non odio pulvinar dictum.<br />Mauris vel justo diam, in dictum est.<br /><br /></p>', 'publish', '2012-03-07 16:18:48');
 INSERT INTO `campaign_page` VALUES ('2', '1', 'Winner page', 'Winner Announce', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />Integer vel neque et orci sollicitudin placerat non at dui.<br />Nulla at mi in risus viverra facilisis elementum quis sem.<br />Mauris vulputate augue dolor, sit amet rhoncus ante.<br /><br />Nunc iaculis mattis massa, eget congue risus suscipit a?<br />Nulla convallis metus porttitor lectus egestas pellentesque!<br />Phasellus eu tellus purus, ac volutpat libero.<br />Donec ultricies orci eget mi malesuada quis blandit sem rhoncus?<br /><br />Mauris eget dolor rhoncus mauris euismod ultrices et sed quam.<br />In pretium dui vitae justo tempor convallis.<br />Mauris aliquet vulputate nisl, sed porttitor erat interdum et.<br />Aenean nec lorem at lorem auctor molestie.<br />Proin tincidunt massa non odio pulvinar dictum.<br />Mauris vel justo diam, in dictum est.<br /><br /></p>', 'publish', '2012-03-07 16:28:41');
 INSERT INTO `campaign_user` VALUES ('1', null, 'Admin', 'admin@demo.com', '76a2173be6393254e72ffa4d6df1030a', 'administrator', 'active', null, null, null);
