@@ -18,7 +18,7 @@ Class Customer_m extends CI_Model{
   { 
     $this->load->library('facebook');
 	 $this->error = array(); 
-	 
+	 $gid = $data['GID'];
 	if($this->traction_enabled){
 	    	$data[$this->config->item('TRAC_ATTR_GID')] = $data['GID'];
 			$data[$this->config->item('TRAC_ATTR_MOBILE2')] = $data['MOBILE'];//TRAC_ATTR_MOBILE2
@@ -74,13 +74,14 @@ Class Customer_m extends CI_Model{
 	$extra_sql = " ON DUPLICATE KEY UPDATE ".implode(',',$update); 
 	
 	$ok = $this->db->insert('campaign_customer',$db_data,$extra_sql);
+	@$this->db->insert('campaign_group_customer',array('customer_id'=>$db_data['customer_id'],'uid' => $db_data['uid'],'GID'=>$gid));
 	
 	if($this->db->result){
 	 if(!$this->isAppAuthorized()){
 	   $this->addAppAuthorization();
 	 } 
 	}else{
-	  $this->error[] = "Submission Failed, Try Again!";	 
+		
 		return false;
 	}
 	
