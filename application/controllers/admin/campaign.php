@@ -18,6 +18,10 @@ Class Campaign extends CI_Controller {
 	function add($gid = 0){
 		$this->load->view('admin/campaign_add',array('content'=> $this->form->campaign_add($gid)));
 	}
+	
+	function duplicate($gid = 0){
+	  $this->load->view('admin/campaign_add',array('content'=> $this->form->campaign_duplicate($gid)));
+	}
 		
 		
 	public function getMsg($type){

@@ -29,9 +29,9 @@
 								<th>Start Date</th>
 								<th>End Date</th>
                                 <th>Status</th>
-								<th>Winner<Br/>Announced</th>
-								<th>Export</th>
-								<th width="10%">Actions</th>
+								<th>Winner Announced</th>
+								<th width="12%">Export</th>
+								<th width="12%">Actions</th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -47,7 +47,7 @@
 								<tr>
 								 <td><input style="width:10px" type="checkbox" name="cid[]" value="<?=$v['GID']?>"/></td>
 									<td><?=++$i?></td>
-									<td><?=$v['title']?></td>
+									<td><?=$v['title']?><br><a href="http://apps.facebook.com/<?=$v['APP_APPLICATION_ID']?>" target="_blank"><?=$v['APP_APPLICATION_ID']?></a></td>
 									<td>
 									<?=format_date($v['startdate'])?> <?=format_date($v['startdate'],'time')?>
 									</td>
@@ -60,7 +60,10 @@
 									<a href="<?=site_url('admin/campaign/exportfile/'.$v['GID'])?>">zip</a> 
 									<?php endif;?>
 									</td>
-									<td><a href="<?=site_url('admin/campaign/add/'.$v['GID'])?>">Edit</a></td>
+									<td>
+									<a href="<?=site_url('admin/campaign/add/'.$v['GID'])?>">Edit</a>&nbsp;
+									<a href="<?=site_url('admin/campaign/duplicate/'.$v['GID'])?>">Clone</a>
+									</td>
 								</tr>
                             <?php endforeach;?>
 						<?php else:?>

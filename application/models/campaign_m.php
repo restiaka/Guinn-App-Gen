@@ -124,7 +124,7 @@ Class Campaign_m extends CI_Model {
   public function addCampaign($data)
   {
 	$ok = $this->db->insert('campaign_group',$data);
-	
+
 	if($ok){
 	 $gid = $this->db->last_insert_id();
 	 
@@ -143,14 +143,70 @@ Class Campaign_m extends CI_Model {
 		  $this->removeCampaign($gid);
 		  return false;		 
 		 }
-	   }		
+	   }	
+	  return $gid;
 	 }else{
 	  return false;
 	 }
 	}else{
 		return false;
 	}
-	return true;
+  }
+  
+  public function duplicateCampaign($data)
+  {
+    $use_assets = false; $use_pages = false;
+	$GID = $data['GID']; 
+	unset($data['GID']);
+
+	if(isset($data['assets_duplicate']) && $data['assets_duplicate'] == 1){
+	  $use_assets = true;
+	  unset($data['assets_duplicate']);
+	}
+	
+	if(isset($data['pages_duplicate']) && $data['pages_duplicate'] == 1){
+	  $use_pages = true;
+	  unset($data['pages_duplicate']);
+	}
+	
+	$proceed = true;
+	$error = array();
+
+	//Add new campaign
+	if($new_GID = $this->addCampaign($data)){
+
+		if($use_assets && $proceed){
+			$this->load->model('assets_m','asset');
+			if($assets = $this->asset->retrieveAssets(array('campaign_group_assets.GID'=>$GID))){
+				foreach ($assets as $asset){
+					$ok = $this->asset->setConnectionCampaign($asset['asset_id'],$new_GID,$asset['asset_type'],$asset['asset_platform']);
+				    if(!$ok){ $proceed = false; $error[]['asset']=$asset; break;}
+				}
+			}
+		}
+		
+		if($use_pages && $proceed){
+			$this->load->model('page_m','page');
+			if($pages = $this->page->retrievePage(array('campaign_page.GID'=>$GID),array('fields'=>'campaign_page.*'))){
+				foreach ($pages as $page){
+					$page['GID'] = $new_GID;
+					unset($page['page_id']);
+					$ok = $this->page->addPage($page);
+					if(!$ok){ $proceed = false; $error[]['page']=$page; break;}
+				}
+			}
+		}
+
+		if(!$proceed){
+			$this->removeCampaign($new_GID);
+			return false;
+		}
+		
+		return true;	
+	}else{
+		return false;
+	}
+	
   }
   
   public function updateCampaign($data)

@@ -11,9 +11,9 @@ Class Page_m extends CI_Model {
 	    $this->db = $this->ezsql_mysql;
   }
 
-  public function addPage($data)
+  public function addPage($page_data)
   {
-	$ok = $this->db->insert('campaign_page',$data);
+	$ok = $this->db->insert('campaign_page',$page_data);
 	
 	if($ok){
 	 $id = $this->db->last_insert_id();
