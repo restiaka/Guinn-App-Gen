@@ -104,7 +104,7 @@ Class Campaign_m extends CI_Model {
     $data = array();
 	if($pages = $this->page->retrievePage(array('campaign_page.GID'=>$GID))){
 		foreach ($pages as $page){
-			$data['pages'][] = array('id'=>$page['page_id'],'name'=>$page['page_short_name'],'url'=>menu_url('page/'.$page['page_id'])); 
+			$data['pages'][] = array('id'=>$page['page_id'],'facebook'=>$page['page_facebook'],'mobile'=>$page['page_mobile'],'name'=>$page['page_short_name'],'url'=>menu_url('page/'.$page['page_id'])); 
 		}
 	}
 	return $data;

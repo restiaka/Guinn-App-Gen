@@ -233,12 +233,16 @@ Class Campaign extends CI_Controller {
 		
 		
 		$this->load->model('page_m');
-		$page = $this->page_m->detailPage($pageID);
-		if(date('Y-m-d H:i:s') < $page['page_publish_date'] || $page['page_status'] == 'draft'){
-			show_404();
+		if($page = $this->page_m->detailPage($pageID)){
+		    if(!$page['page_facebook']) show_404();
+			if(date('Y-m-d H:i:s') < $page['page_publish_date'] || $page['page_status'] == 'draft'){
+				show_404();
+			}else{
+			  $page['campaign'] = $campaign;
+			  $this->load->view('site/page',$page);	
+			}
 		}else{
-		  $page['campaign'] = $campaign;
-		  $this->load->view('site/page',$page);	
+			show_404();
 		}
 		
 	}
