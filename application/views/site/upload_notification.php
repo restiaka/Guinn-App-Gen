@@ -16,5 +16,5 @@
 </div>
 
 </div>
-<?php echo isset($facebook_share_dialog) ? $facebook_share_dialog : "" ;?>
+<?php echo isset($facebook_share_dialog) ? $facebook_share_dialog : "" ;?> 
 <?php echo $this->load->view('site/footer',$campaign,true); ?>
