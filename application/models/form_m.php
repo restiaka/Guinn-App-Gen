@@ -731,6 +731,7 @@
 		$asset_type = $form->addElement('select','asset_type','',array('options'=>array('banner_header'=>'Banner Header',
 																						'banner_main'=>'Banner Main',
 																						'banner_footer'=>'Banner Footer',
+																						'logo_main' => 'Campaign Main Logo',
 																						'background_norepeat'=>'Background No Repeat',
 																						'background_repeat'=>'Background Repeat')));
 		$asset_type->addRule('required', 'Required', null,HTML_QuickForm2_Rule::SERVER);

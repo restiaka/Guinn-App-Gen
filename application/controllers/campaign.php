@@ -102,19 +102,28 @@ Class Campaign extends CI_Controller {
 		}
 			$data['message_title'] = "Successful";
 			$data['campaign'] = $campaign;
+			
+			$feed = array(
+			   "name" => $campaign['title'],
+			   "caption" => "{*actor*} has just Upload a Photo for The Contest.",
+			   "link" => $this->config->item('APP_CANVAS_PAGE')
+			   );
+			if(isset($campaign['asset_facebook']['logo_main'])){
+				$feed['picture'] = $campaign['asset_facebook']['logo_main']['url'];
+			}			
+			
+			$data['facebook_share_dialog'] = '<script>'.
+											 'fbDialogFeed('.json_encode($feed).')'.
+											 '</script>';
 		$this->load->view('site/upload_notification',$data);
 	 }elseif($form == "error"){
 		$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );
 		redirect(menu_url('upload'));
 	 }else{
-	 
 		$this->load->model('customer_m','customer');
-
 		$this->load->library('facebook');
-
 		$isAuthorized = $user ? true : false;
-
-		
+			
 		$this->load->view('site/upload',array('campaign'=>$campaign,
 											'html_form_upload' => $form
 										   ));	
