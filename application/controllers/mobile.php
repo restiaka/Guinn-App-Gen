@@ -75,7 +75,7 @@ Class Mobile extends CI_Controller {
 			}
 				$data['message_title'] = "Successful";
 				$data['campaign'] = $campaign;
-			$this->load->view('site/upload_notification',$data);
+			$this->load->view('mobile/mobile_notification',$data);
 		}elseif($form == "error"){
 			$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );
 			redirect(mobile_menu_url('upload'));
@@ -234,7 +234,7 @@ Class Mobile extends CI_Controller {
 			if($campaign_status['is_off'] || $rowMedia['media_status'] == 'pending' || $rowMedia['media_status'] == 'banned'){
 				$rowMedia['media_container'] = $this->media->showMedia($rowMedia,false);
 				$campaign['media_preview'] = true;
-				$this->load->view('site/media_preview',array('campaign'=>$campaign,'media' => $rowMedia,'notification' => $this->notify,'error' => $this->error));	
+				$this->load->view('mobile/mobile_media_preview',array('campaign'=>$campaign,'media' => $rowMedia,'notification' => $this->notify,'error' => $this->error));	
 			}else{
 				$fblike_href = $this->setting_m->get('APP_CANVAS_PAGE').mobile_menu_url('media',true).'/?m='.$rowMedia['media_id'];	
 				$plugin_switch = array();

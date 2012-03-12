@@ -218,13 +218,13 @@
    
   
    
-   function customer_register()
+   function customer_register($action = null)
    {
     $campaign = $this->campaign_m->getActiveCampaign();
 	$this->load->library('facebook');
-	
+	$action = $action ? $action : menu_url('register');
 	$form = new HTMLQuickForm2('customer_register','POST');
-    $form->setAttribute('action', menu_url('register'));
+    $form->setAttribute('action', $action);
 	$user = getAuthorizedUser();
 	$form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
 																	'FIRSTNAME'=>isset($user['first_name']) ? $user['first_name'] : "" ,
@@ -259,12 +259,12 @@
 		 $address->addRule('required', 'Address is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
-		 $terms = $form->addElement('checkbox','TERMS','',array('content'=>'I accept Terms & Conditions'));
+		 $terms = $form->addElement('checkbox','TERMS','data-role="none"',array('content'=>'I accept Terms & Conditions'));
 		 $terms->setLabel('Regulation');
 		 $terms->addRule('required', 'Terms Agreement Required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
-		 $SUBSCRIPTION = $form->addElement('checkbox','SUBSCRIPTIONID1','value = "'.$this->config->item('APP_APPLICATION_ID').'|S"',array('content'=>'Please send me news & updates'));
+		 $SUBSCRIPTION = $form->addElement('checkbox','SUBSCRIPTIONID1','data-role="none" value = "'.$this->config->item('APP_APPLICATION_ID').'|S"',array('content'=>'Please send me news & updates'));
 		 $SUBSCRIPTION->setLabel('Email Subscribe');
 		 
 		

@@ -6,7 +6,7 @@
 	<div class="inner">
   
   <ul class="breadcrumb">
-  	<li><a href="#">Home</a></li>
+  	<li><a href="<?=mobile_menu_url()?>">Home</a></li>
     <li>Gallery</li>
   </ul>
   <?php if(isset($user_media)):?>
@@ -27,11 +27,6 @@
    </div>
   </div>
   <?php endif;?>
-  <?php if(isset($random_media)):?>
-  <div style="float:left;">
-  <a href="<?php echo menu_url('media').'/?m='.$random_media['media_id']?>" class="button" style="font-weight:bold;color:#000000">Random <?php echo $campaign['allowed_media_type'] == "image" ? "Photo" : "Video"?></a>
-  </div>
-  <?php endif;?>
   <div class="sort-list clearfix">
   <form id="sortform" name="sortform" method="POST"></form>
   	<label>Sort by:</label>
@@ -39,23 +34,20 @@
       <option value="mostvote">Most Voted</option>
       <option value="latest">Latest Upload</option>
     </select> 
-	
   </div>
   
   <?php if(isset($media) && !empty($media)):?>
   <ul class="gallery-list center">
    <?php foreach($media as $m):?>
-	<li>
-      <div class="thumbnail">
-        <a href="<?php echo menu_url('media').'/?m='.$m['media_id']?>" title="See detail">
-          <?php echo $CI->media_m->showMedia($m);?>
-          <span class="see-more"><i class="button">See detail</i></span>
-        </a>
-      </div>
-      <div class="vote"><?php echo $m['media_vote_total']?> votes</div>
-      <div class="owner"><fb:name uid="<?php echo $m['uid']?>" firstnameonly="true" /></div>
+   <li>
+    	<a href="<?php echo menu_url('media').'/?m='.$m['media_id']?>" title="See detail">
+	      <div class="thumbnail"><?php echo $CI->media_m->showMedia($m);?></div>
+        <div class="vote"><?php echo $m['media_vote_total']?> votes</div>
+        <div class="owner">Name</div>
+        <p>The old man takes the poison now the widow makes the ...</p>
+		</a>
     </li>
-	<?php endforeach;?>
+   	<?php endforeach;?>
   </ul>
   <div id="pagination"><?php echo $pagination['all']?></div>
   <?php else:?>

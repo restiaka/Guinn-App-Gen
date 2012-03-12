@@ -1,12 +1,15 @@
 <?php echo $this->load->view('mobile/mobile_header',$campaign,true); //Begin HTML ?>
-<div class="main">
+<ul class="breadcrumb">
+  <li><a href="<?=mobile_menu_url()?>">Home</a></li>
+  <li>Registration</li>
+</ul>
 
+<div class="main">
 <div class="box box-m">
-  <div class="inner">
-  <h2 class="title">Quick Registration</h2>
- <div><?php echo printNotification()?></div>
- <?php echo $html_form_register?>
-  </div>
+	<div class="inner" data-role="none">
+		<div><?php echo printNotification()?></div>
+			<?php echo $html_form_register?>
+	</div>
 </div>
 
 </div>
