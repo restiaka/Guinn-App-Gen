@@ -1,7 +1,7 @@
 <div id="footer">
   <div class="footer-content center">
   	<div>
-    	<?php dg($campaign); if(isset($campaign['asset_mobile']['banner_footer']['url'])):?>
+    	<?php if(isset($campaign['asset_mobile']['banner_footer']['url'])):?>
     		<img src="<?php echo $campaign['asset_mobile']['banner_footer']['url']?>" alt="Guinness" title="Guinness"/>
 		<?php endif;?>
     </div>
