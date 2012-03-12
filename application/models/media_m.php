@@ -283,8 +283,10 @@ Class Media_m extends CI_Model {
 	
 	if(in_array('vote',$switch)){
 		$plugins['votebutton'] = $this->showVote($media);
+		$plugins['votebutton_mobile'] = $this->showMobileVote($media);
 	}else{
 		$plugins['votebutton'] = "";
+		$plugins['votebutton_mobile'] = "";
 	}
 	
 	if(in_array('fbcomment',$switch)){	
@@ -314,7 +316,14 @@ Class Media_m extends CI_Model {
 	return $content;
   }
   
-  function showUploadForm($campaign){
+  function showMobileVote($media){ 
+	$this->load->model('form_m');
+	$this->load->library('facebook');
+	$content = $this->form_m->vote_mobile_form($media['media_id'],$media['media_vote_total']);
+	return $content;
+  }
+  
+  function showUploadForm($campaign,$action = null){
     $this->load->model('form_m');
 	$this->load->library('facebook');
 	$isAuthorized = (!$this->facebook->getUser()) ? false : true;
@@ -325,10 +334,10 @@ Class Media_m extends CI_Model {
 			    if($media['media_status'] == "pending" || $media['media_status'] == "active"){
 					$form = "<h3 align='center'>Sorry! You can only upload once.</h3>";
 				}else{
-					$form = $this->form_m->upload_media($campaign);
+					$form = $this->form_m->upload_media($campaign,$action);
 				}
 			 }else{
-				$form = $this->form_m->upload_media($campaign);
+				$form = $this->form_m->upload_media($campaign,$action);
 			 }
 		}else{
 			 $form = "Sorry! Upload Time has ended. <Br/> Thank you.";

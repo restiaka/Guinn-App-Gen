@@ -141,6 +141,13 @@
 	return $request;
 }
 
+function getAppByIDS($appid,$appsecret){
+   if($access_token = getAppAccessToken(array('app_id' => $appid,'app_secret'=> $appsecret))){
+     return getAppDetail($appid,$access_token);
+   }else{
+	return null;
+   }
+}
 /*
 location = Restriction based on location, such as 'DE' for apps restricted to Germany 	
 age = Minimum age restriction 	

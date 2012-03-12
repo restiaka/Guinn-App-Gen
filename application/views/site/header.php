@@ -36,9 +36,9 @@
   <?php if($campaign['on_judging'] && $campaign['winner_announced']):?>
   <li><a href="<?php echo menu_url('winner')?>">The Winner</a></li>
   <?php endif;?>
-  <?php if(isset($campaign['pages'])):foreach($campaign['pages'] as $page):?>
+  <?php if(isset($campaign['pages'])):foreach($campaign['pages'] as $page):if($page['facebook']):?>
 	<li><a href="<?php echo $page['url']?>"><?php echo $page['name']?></a></li>
-	<?php endforeach;endif;?>
+	<?php endif;endforeach;endif;?>
 </ul>
 </div>	
 <?php endif;?>

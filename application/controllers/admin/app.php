@@ -58,7 +58,8 @@ Class App extends CI_Controller {
 		$config['perPage'] = 20; 
 		$config['urlVar'] = 'pageID';
 		$pager = new Pager_Sliding($config);
-		$links = $pager->getLinks($this->input->get('pageID'));
+		$pageID = $this->input->get('pageID') ? $this->input->get('pageID') : 1;
+		$links = $pager->getLinks($pageID);
 		list($from, $to) = $pager->getOffsetByPageId();
 		
 		$data = $this->app->retrieve(NULL,array('limit_number' => $config['perPage'],'limit_offset' => --$from));

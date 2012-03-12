@@ -44,16 +44,41 @@
 	 return $form_layout;
    }
    
-   function upload_media($campaign)
+    function vote_mobile_form($media_id,$media_vote_total,$template = null) {
+	 
+      $form = new HTMLQuickForm2('votemedia','POST');
+	  $form->setAttribute('action', '');
+	   $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array('id'=>$media_id)));
+	 $form->addElement('hidden','id');
+	 
+	if ($form->validate()) {
+	  $media_vote_total = $this->media_m->setVote(addslashes($media_id));
+	}
+	
+	$template = '<div class="media-info">'.
+                '<div><input type="submit" id="vote" name="vote" value="Vote!" /></div>'.
+				'<div class="vote"> '.$media_vote_total.' vote(s)</div>'.
+				'</div>';
+	
+	 $form->addElement('static','boxcount','',array('content'=>$template));		
+
+	 $renderer = HTML_QuickForm2_Renderer::factory('default');
+	 $form_layout = $form->render($renderer);
+	 return $form_layout;
+   }
+   
+   function upload_media($campaign,$action = null)
    { 
    $this->load->model('setting_m');
      $this->load->library('facebook');
      $uid = $this->facebook->getUser();
-	
+	 
+	$action = $action ? $action : menu_url('upload');
 	 
      $form = new HTMLQuickForm2('uploadmedia','POST');
 
-    $form->setAttribute('action', menu_url('upload'));
+    $form->setAttribute('action', $action);
+
 	 /**Setup default value*
 	 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
 	 )));
@@ -192,18 +217,6 @@
 			    return "error";
 			}
 			
-/* 			$html_done = '<table width="100%">
-							<tr>
-								<td width="23%">'.$this->media_m->showMedia($data).'</td>
-								<td style="vertical-align:top">
-								Your media has been successfully uploaded!<br>
-								'.($campaign['media_has_approval'] ? 'Your media will be moderate by Administrator before published!<br>' : '').'
-								Thank You.<br>
-								</td>
-							</tr>
-						  </table>'; */
-				//$form->addElement('static','','',array('content'=>$html_done));	
-			
 			$form->removeChild($button);
 			if($r_file)	
 			 $form->removeChild($r_file);
@@ -259,13 +272,15 @@
 		 $address->addRule('required', 'Address is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
-		 $terms = $form->addElement('checkbox','TERMS','data-role="none"',array('content'=>'I accept Terms & Conditions'));
-		 $terms->setLabel('Regulation');
+
+		 $terms = $form->addElement('checkbox','TERMS','',array('content'=>'I accept Terms & Conditions'));
+		 //$terms->setLabel('Regulation');
 		 $terms->addRule('required', 'Terms Agreement Required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
-		 $SUBSCRIPTION = $form->addElement('checkbox','SUBSCRIPTIONID1','data-role="none" value = "'.$this->config->item('APP_APPLICATION_ID').'|S"',array('content'=>'Please send me news & updates'));
-		 $SUBSCRIPTION->setLabel('Email Subscribe');
+		 $SUBSCRIPTION = $form->addElement('checkbox','SUBSCRIPTIONID1','value = "'.$this->config->item('APP_APPLICATION_ID').'|S"',array('content'=>'Please send me news & updates'));
+		 //$SUBSCRIPTION->setLabel('Email Subscribe');
+
 		 
 		
 		$button = $form->addElement('submit','submit','value="Register"');
@@ -376,12 +391,14 @@
 
    function app_add($gid = 0)
    {
+    if(!preg_match('/^[0-9]+$/', $gid)) return 'Sorry No Related Content Available.';
+   
 	$this->load->model('setting_m');
     $form = new HTMLQuickForm2('appaddform','POST','action="'.site_url('admin/app/add/'.$gid).'"');
 	
 	if($gid){
 		$default_data = $this->app_m->detailApp($gid) ;
-		if(!$default_data) return '';
+		if(!$default_data) return 'Sorry No Related Content Available.';
 		$default_data['task'] = 'edit';
 		$form->addDataSource(new HTML_QuickForm2_DataSource_Array($default_data));
 		
@@ -398,22 +415,10 @@
 					   ->and_($APP_APPLICATION_ID->createRule('callback','Already Registered','callback_isAppIDregistered'))
 					   ->and_($APP_APPLICATION_ID->createRule('callback','Invalid App ID','callback_validateAppID'));
 	
-	
-	/* $APP_API_KEY = $form->addElement('text','APP_API_KEY','style=""')->setLabel('APP_API_KEY &nbsp;:&nbsp;&nbsp;');
-	$APP_API_KEY->addRule('required', 'APP_API_KEY is required', null,HTML_QuickForm2_Rule::SERVER);		
-	*/
 	$APP_SECRET_KEY = $form->addElement('text','APP_SECRET_KEY','style=""')->setLabel('APP SECRET &nbsp;:&nbsp;&nbsp;');
 	$APP_SECRET_KEY->addRule('required', 'APP_SECRET_KEY is required', null,HTML_QuickForm2_Rule::SERVER)
 				   ->and_($APP_SECRET_KEY->createRule('regex', 'Secret Key should contain only letters and digits','/^[a-zA-Z0-9]+$/'));
-	
-	/*$APP_CANVAS_PAGE = $form->addElement('text','APP_CANVAS_PAGE','style=""')->setLabel('APP_CANVAS_PAGE &nbsp;:&nbsp;&nbsp;');
-	$APP_CANVAS_PAGE->addRule('required', 'APP_CANVAS_PAGE is required', null,HTML_QuickForm2_Rule::SERVER);		
-	
-	$APP_CANVAS_URL = $form->addElement('hidden','APP_CANVAS_URL','style=""')->setValue($this->setting_m->get('SITE_URL'));
-	$APP_CANVAS_URL->addRule('required', 'Couldnt load setting!', null,HTML_QuickForm2_Rule::SERVER);			
-	 */
-	//$APP_EXT_PERMISSIONS = $form->addElement('text','APP_EXT_PERMISSIONS','style=""')->setLabel('APP_EXT_PERMISSIONS &nbsp;:&nbsp;&nbsp;');
-	
+		
 	$APP_EXT_PERMISSIONS = $form->addElement('hidden','APP_EXT_PERMISSIONS')->setValue('publish_stream,email,user_birthday,user_hometown,user_interests,user_likes');
 	
 	$APP_EXT_PERMISSIONS->addRule('required', 'APP_EXT_PERMISSIONS is required', null,HTML_QuickForm2_Rule::SERVER);		
@@ -429,8 +434,7 @@
 	if ($form->validate()) 
 	{
 		$this->is_validated = true;
-		$form->removeChild($button);
-		$form->toggleFrozen(true);
+
 		
 		$data = $form->getValue();
 		unset($data['submit'],$data['_qf__appaddform'],$data['task']);
@@ -442,18 +446,23 @@
 		  $data['APP_FANPAGE'] = $new_url;
 		}
 		
+		$ok = false;
 		if(!$gid){
-			if($this->app_m->add($data)){
+			if($ok = $this->app_m->add($data)){
 			 $this->notify->set_message('success', 'Data has been successfuly submitted.');
 			}else{
 			 $this->notify->set_message('error', 'Data has failed to submit.');
 			}
 		}else{
-			if($this->app_m->update($data)){
+			if($ok = $this->app_m->update($data)){
 			 $this->notify->set_message('success', 'Data has been successfuly updated.');
 			}else{
 			 $this->notify->set_message('error', 'Data has been failed to be updated.');
 			}
+		}
+		if($ok){
+		 		$form->removeChild($button);
+		$form->toggleFrozen(true);
 		}
 	}
 		
@@ -465,6 +474,8 @@
    
    function user_add($userID=0)
    {
+    if(!preg_match('/^[0-9]+$/', $userID)) return 'Sorry No Related Content Available.';
+	
     $this->load->model('user_m');
      $form = new HTMLQuickForm2('userform','POST','action="'.site_url('admin/user/add/'.$userID).'"');
 	
@@ -481,7 +492,7 @@
 		  
 	if($userID){
 	  $user = $this->db->query("SELECT * FROM campaign_user WHERE user_ID = ".$userID)->row();
-	  if(!$user) return '';
+	  if(!$user) return 'Sorry No Related Content Available.';
 	  $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array('user_ID'=>$userID,
 																	  'user_name'=>$user->user_name,
 																	  'user_email'=>$user->user_email
@@ -554,11 +565,12 @@
 			 $form->addElement('static','','',array('content'=>"<Br><br><a href='".site_url('admin/user/add')."'>Add another User</a>"));													
 			}
 			$this->notify->set_message('success', 'Data has been successfuly submitted.');
+			$form->removeChild($button);
+			$form->toggleFrozen(true);
 		  }else{
 		    $this->notify->set_message('error', 'Data has failed to be submitted.');
 		  }
-			$form->removeChild($button);
-			$form->toggleFrozen(true);
+			
 			
 			
 		}
@@ -570,22 +582,33 @@
    }
    
    function page_add($page_id = 0){
+    if(!preg_match('/^[0-9]+$/', $page_id)) return 'Sorry No Related Content Available.';
+	
     $this->load->model('page_m');
+	
    
 	$form = new HTMLQuickForm2('page','POST','action="'.site_url('admin/page/add/'.$page_id).'"');
 	if($page_id){
 		 $page = $this->page_m->detailPage($page_id) ;
+		 if($page['page_facebook'] && $page['page_mobile']){ 
+			$platform = 'both'; 
+		 }elseif($page['page_facebook']){
+			$platform = 'facebook';
+		 }else{
+			$platform = 'mobile';
+		 }
 		 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
-                           'title' => $page['page_title'],
+                            'title' => $page['page_title'],
 							'page_id' => $page['page_id'],
 							'GID' => $page['GID'],	
-							'page_title' => $page['page_title'],		
+							'page_title' => $page['page_title'],
+							'platform' => $platform,
 							'page_short_name' => $page['page_short_name'],		
 							'page_body' => $page['page_body'],	
 							'page_status' => $page['page_status'],		
 							'page_publish_date' => $page['page_publish_date'] 
                         )));
-		 if(!$page) return '';				
+		 if(!$page) return 'Sorry No Related Content Available.';				
 	}else{
 		 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
 							'page_publish_date' => date('Y-m-d H:i:s')
@@ -603,6 +626,10 @@
 	
 	$form->addElement('static','','',array('content'=>'<b>Please choose Campaign for your Custom Page</b>'));
 	$GID = $form->addElement('select','GID','',array('options'=>$cmp_options));
+	$GID->addRule('required', 'Campaign is required', null,HTML_QuickForm2_Rule::SERVER);
+
+	$form->addElement('static','','',array('content'=>'<b>Platform Availability</b>'));
+	$GID = $form->addElement('select','platform','',array('options'=>array('facebook'=>'Facebook Only','mobile'=>'Mobile Only','both'=>'Both Facebook n Mobile')));
 	$GID->addRule('required', 'Campaign is required', null,HTML_QuickForm2_Rule::SERVER);
 	
 	$form->addElement('static','','',array('content'=>'<b>Publish Date</b>'));
@@ -635,30 +662,44 @@
 		$html = array();
 		if ($form->validate()) {
 			$data = $form->getValue();
-		   unset($data['submit'],$data['_qf__page']);
+			
+			if($data['platform'] == 'both'){
+				$data['page_facebook'] = 1;
+				$data['page_mobile'] = 1;
+			}elseif($data['platform'] == 'facebook'){
+			   $data['page_facebook'] = 1;
+			    $data['page_mobile'] = 0;
+			}elseif($data['platform'] == 'mobile'){
+			   $data['page_mobile'] = 1;
+			    $data['page_facebook'] = 0;
+			}
+			
+		   unset($data['submit'],$data['_qf__page'],$data['platform']);
 
 		    extract($data['page_publish_date']);
 			$data['page_publish_date'] = $Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s;			
 
 	
-
+		$ok = false;
 		   if($page_id){
-			   if(!$this->page_m->updatePage($data)){
-				 $this->notify->set_message('error', 'Data has failed to be updated.');
+			   if($ok = $this->page_m->updatePage($data)){
+				$this->notify->set_message('success', 'Data has been successfuly updated.');
 			   }else{
-			    $this->notify->set_message('success', 'Data has been successfuly updated.');
+			    $this->notify->set_message('error', 'Data has failed to be updated.');
 			   }
 		   }else{
 		       unset($data['page_id']);
-			   if(!$this->page_m->addPage($data)){
-				 $this->notify->set_message('error', 'Data has failed to be submitted.');
-			   }else{
+			   if($ok = $this->page_m->addPage($data)){
 				$this->notify->set_message('success', 'Data has been successfuly submitted.');
-				}			   
+			   }else{
+				$this->notify->set_message('error', 'Data has failed to be submitted.');
+			   }			   
 		   }
 		   
+		   if($ok){
 			$form->removeChild($button);
 			$form->toggleFrozen(true);
+			}
 		}
 		
 		$renderer = HTML_QuickForm2_Renderer::factory('default');		
@@ -668,6 +709,8 @@
    }
    
    function asset_add($asset_id){
+    if(!preg_match('/^[0-9]+$/', $asset_id)) return 'Sorry No Related Content Available.';
+	
     $this->load->model('assets_m');
 		$form = new HTMLQuickForm2('assets','POST','action="'.site_url('admin/assets/add/'.$asset_id).'"');
 		$form->setAttribute('enctype', 'multipart/form-data');	
@@ -680,7 +723,7 @@
 							'asset_platform' => $assets['asset_platform'],
 							'asset_bgcolor' => $assets['asset_bgcolor']
                         )));
-		  if(!$assets) return '';				
+		  if(!$assets) return 'Sorry No Related Content Available.';				
 		}
 		$form->addElement('hidden','asset_id');
 		$form->addElement('static','','',array('content'=>'<b>Asset Name ?</b>'));
@@ -696,6 +739,7 @@
 		$asset_type = $form->addElement('select','asset_type','',array('options'=>array('banner_header'=>'Banner Header',
 																						'banner_main'=>'Banner Main',
 																						'banner_footer'=>'Banner Footer',
+																						'logo_main' => 'Campaign Main Logo',
 																						'background_norepeat'=>'Background No Repeat',
 																						'background_repeat'=>'Background Repeat')));
 		$asset_type->addRule('required', 'Required', null,HTML_QuickForm2_Rule::SERVER);
@@ -743,27 +787,31 @@
 			}
 			if(isset($data['uploadedfile'])) unset($data['uploadedfile']);
 			
+			$ok = false;
 		   if($asset_id){
 		  
-			   if($this->assets_m->updateAssets($data)){
+			   if($ok = $this->assets_m->updateAssets($data)){
 				 $this->notify->set_message('success', 'Data has been successfuly updated.');
 			   }else{
 			    $this->notify->set_message('error', 'Data has failed to be updated.');
 			   }
 		   }else{
 		       unset($data['asset_id']);
-			   if($this->assets_m->addAssets($data)){
+			   if($ok = $this->assets_m->addAssets($data)){
 				 $this->notify->set_message('success', 'Data has been successfuly submitted.');
 			   }else{
 				$this->notify->set_message('error', 'Data has failed to be submitted.');
 			   }			   
 		   }
+		   
+		   if($ok){
 		    if(isset($asset_uploadedtext))
 			$form->removeChild($asset_uploadedtext);
 			if(isset($asset_uploadedfile))
 		    $form->removeChild($asset_uploadedfile);
 			$form->removeChild($button);
 			$form->toggleFrozen(true);
+			}
 		}
 		
 			
@@ -773,16 +821,130 @@
 		
 		
    }
+   
+    function campaign_duplicate($gid){
+		if(!preg_match('/^[0-9]+$/', $gid)) return 'Sorry No Related Content Available.';
+		
+		$form = new HTMLQuickForm2('campaign_duplicate','POST','action="'.site_url('admin/campaign/duplicate/'.$gid).'"');
+		 
+		$campaign = $this->campaign_m->detailCampaign($gid) ;
+		if(!$campaign) return 'Sorry No Related Content Available.';
+		
+		$form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
+																	    'GID' => $campaign['GID'],
+																	    'title' => $campaign['title'],
+																		'description' => $campaign['description'],
+																		'allowed_media_type' => $campaign['allowed_media_type'],
+																		'allowed_media_source' => $campaign['allowed_media_source'],
+																		'allowed_mimetype' => $campaign['allowed_mimetype'],
+																		'media_has_approval' => $campaign['media_has_approval'],
+																		'media_has_fbcomment' => $campaign['media_has_fbcomment'],
+																		'media_has_uploadonce' => $campaign['media_has_uploadonce'],
+																		'media_has_fblike' => $campaign['media_has_fblike'],
+																		'media_has_vote' => $campaign['media_has_vote'],
+																		'campaign_rules'=>html_entity_decode($campaign['campaign_rules']),
+																		'APP_APPLICATION_ID'=>$campaign['APP_APPLICATION_ID'],
+																		'startdate' => date('Y-m-d H:i:s'),
+																		'upload_enddate' => date('Y-m-d H:i:s'),
+																		'enddate' => date('Y-m-d H:i:s'),
+																		'winner_selectiondate' => date('Y-m-d H:i:s')
+																	)));
+		$appName = $this->db->get_var("SELECT APP_APPLICATION_NAME FROM campaign_app WHERE APP_APPLICATION_ID = ".$campaign['APP_APPLICATION_ID']);
+		$form->addElement('static','','',array('content'=>$appName." (<b>".$campaign['APP_APPLICATION_ID']."</b>)"))->setLabel('Facebook Api Being Used :&nbsp;&nbsp;');
+		$form->addElement('static','','',array('content'=>"<b>Campaign Title :</b>"));
+		$stitle = $form->addElement('text','title');
+		$stitle->addRule('required', 'Title is required', null,HTML_QuickForm2_Rule::SERVER);
+		
+		$form->addElement('hidden','GID');
+		$form->addElement('hidden','APP_APPLICATION_ID');
+		//$form->addElement('hidden','title');
+		$form->addElement('hidden','description');
+		$form->addElement('hidden','allowed_media_type');
+		$form->addElement('hidden','allowed_media_source');
+		$form->addElement('hidden','allowed_media_fields')->setValue("media_source=Upload Content Here&media_description=It's About");				
+		$form->addElement('hidden','allowed_mimetype');
+		$form->addElement('hidden','media_has_uploadonce');
+		$form->addElement('hidden','media_has_vote');
+		$form->addElement('hidden','media_has_approval');
+		$form->addElement('hidden','media_has_fbcomment');
+		$form->addElement('hidden','media_has_fblike');
+		$form->addElement('hidden','campaign_rules');
+		
+		
+		
+		$date_set = array('format'=>'dFY His','minYear'=>date('Y'),'maxYear'=>date('Y')+1);
+		
+		$form->addElement('static','','',array('content'=>'<b>When will your campaign will start ?</b>'));
+		$startdate_group = $form->addElement('group');	 
+		$startdate_group->addElement('date','startdate','',$date_set,'style="width:100px;"');
+		$startdate_group->addRule('callback','Start Date with this Facebook App Name/ID cannot be Overlap with other Campaigns','callback_validateStartDate');
+		
+		$form->addElement('static','','',array('content'=>'<b>When will Upload end ?</b>'));
+		$upload_enddate_group = $form->addElement('group');	 
+		$upload_enddate_group->addElement('date','upload_enddate','',$date_set,'style="width:100px;"');
+		
+		$upload_enddate_group->addRule('callback','Date must be longer than start date','callback_validateUploadEndDate');
+		
+		$form->addElement('static','','',array('content'=>'<b>Judging and Announcement before campaign end ?</b>'));
+		$winner_selectiondate_group = $form->addElement('group');	 
+		$winner_selectiondate_group->addElement('date','winner_selectiondate','',$date_set,'style="width:100px;"');		
+		$winner_selectiondate_group->addRule('callback','Date must be shorter or the same as end date','callback_validateWinnerDate');
+
+		
+		$form->addElement('static','','',array('content'=>'<b>When will your campaign end ?</b>'));
+		$enddate_group = $form->addElement('group');	 
+		$enddate_group->addElement('date','enddate','',$date_set,'style="width:100px;"');
+
+		$enddate_group->addRule('callback','Date must be longer than upload end date','callback_validateEndDate');
+		
+		
+		 $assets = $form->addElement('checkbox','assets_duplicate','checked="checked"',array('content'=>'Use same Campaign Assets.'));
+
+		 
+		 $pages = $form->addElement('checkbox','pages_duplicate','checked="checked"',array('content'=>'Duplicate Campaign Pages'));
+
+		 
+		 $button = $form->addElement('submit','','value="Submit and Duplicate Campaign"');
+		$html = array();
+		if ($form->validate()) {
+			$data = $form->getValue();
+			
+		   unset($data['submit'],$data['_qf__campaign_duplicate']);
+		   extract($data['startdate']);
+			$data['startdate'] = $Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s;			
+			extract($data['enddate']);
+			$data['enddate'] = $Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s;	
+			extract($data['upload_enddate']);
+			$data['upload_enddate'] = $Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s;	
+			extract($data['winner_selectiondate']);
+			$data['winner_selectiondate'] = $Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s;				
+
+			   if($this->campaign_m->duplicateCampaign($data)){
+				 $this->notify->set_message('success', 'Data has been successfuly submitted.');
+				 $form->removeChild($button);
+				 $form->toggleFrozen(true);
+			   }else{
+				 $this->notify->set_message('error', 'Data has failed to be submitted.');
+			   }			   
+		}
+		
+			
+		$renderer = HTML_QuickForm2_Renderer::factory('default');		
+		$form_layout = $form->render($renderer);
+		return $form_layout;
+		
+	}
   
    
     function campaign_add($gid = 0){
-   
+      if(!preg_match('/^[0-9]+$/', $gid)) return 'Sorry No Related Content Available.';
+	  
 		$form = new HTMLQuickForm2('campaign','POST','action="'.site_url('admin/campaign/add/'.$gid).'"');
 		$form->setAttribute('enctype', 'multipart/form-data');
 		/**/
 		if($gid){
 		 $campaign = $this->campaign_m->detailCampaign($gid) ;
-		 if(!$campaign) return '';
+		 if(!$campaign) return 'Sorry No Related Content Available.';
 		 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
                            'title' => $campaign['title'],
                             'description' => $campaign['description'],
@@ -791,6 +953,7 @@
 							'winner_selectiondate' => $campaign['winner_selectiondate'],
 							'enddate' => $campaign['enddate'],
 							'gid' => $campaign['GID'],
+							'media_has_uploadonce' => $campaign['media_has_uploadonce'],
 							'media_has_approval' => $campaign['media_has_approval'],
 							'media_has_fbcomment' => $campaign['media_has_fbcomment'],
 							'media_has_fblike' => $campaign['media_has_fblike'],
@@ -885,7 +1048,7 @@
 			$fsAddFields->addElement('static','','',array('content'=>$v.'<br/>'));
 		}
 		
-		$allowed_media_fields = $form->addElement('hidden','allowed_media_fields',array('style'=>''))->setValue('media_source=Upload Content Here&media_description=It\'s About');
+		$allowed_media_fields = $form->addElement('hidden','allowed_media_fields',array('style'=>''))->setValue("media_source=Upload Content Here&media_description=It's About");
 				
 		$allowed_mimetype = $form->addElement('hidden','allowed_mimetype',array('style'=>''))->setValue('image/gif,image/jpeg,image/pjpeg,image/png');
 
@@ -941,32 +1104,27 @@
 			 $data['allowed_media_type'] = 'image';
 			}
 			
-/* 			if ($data['image_header_uploadfile']['error'] == UPLOAD_ERR_OK) {
-				$tmp_name = $data['image_header_uploadfile']["tmp_name"];
-				$time = md5(uniqid(rand(), true).time());
-				$image = resizeImage( $tmp_name, CAMPAIGN_IMAGE_DIR."/".$time.".jpg", 400 , 'width' );					
-				$data['image_header'] = $time.".jpg";
-				unset($data['image_header_uploadfile']);
-			}
-			
-			unset($data['image_header_uploadfile']); */
+			$ok = false;
 		   if($gid){
-			   if($this->campaign_m->updateCampaign($data)){
+			   if($ok = $this->campaign_m->updateCampaign($data)){
 				 $this->notify->set_message('success', 'Data has been successfuly updated.');
 			   }else{
 			    $this->notify->set_message('error', 'Data has failed to be updated.');
 			   }
 		   }else{
 		       unset($data['gid']);
-			   if($this->campaign_m->addCampaign($data)){
+			   if($ok = $this->campaign_m->addCampaign($data)){
 				 $this->notify->set_message('success', 'Data has been successfuly submitted.');
 			   }else{
 				 $this->notify->set_message('error', 'Data has failed to be submitted.');
 			   }			   
 		   }
-		    //$form->removeChild($r_file);
-			$form->removeChild($button);
+		   
+		   if($ok){
+		   	$form->removeChild($button);
 			$form->toggleFrozen(true);
+			}
+
 		}
 		
 			

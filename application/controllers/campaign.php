@@ -26,24 +26,24 @@ Class Campaign extends CI_Controller {
 	
 	public function home()
 	{
-		$user = getAuthorizedUser(true);
+	  /** BEGIN REQUIRED VALIDATION **/
 		$this->load->library('facebook');
+	    $user = getAuthorizedUser(true);
 
 		$isAuthorized = $user ? true : false;
-	 
-	
-	 
+
 	    if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
-
+		/** END REQUIRED VALIDATION **/
 		
-		$sr = $this->facebook->getSignedRequest();
 		if($isAuthorized){
 		 $redirect_url = menu_url('upload');
 		}else{
+		 $sr = $this->facebook->getSignedRequest();
 		 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".menu_url('upload') : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/upload";
 		}
+		
 		$this->load->view('site/home',array('campaign'=>$campaign,
 										   'is_authorized' => $isAuthorized,
 										   'redirectURL' => $redirect_url
@@ -52,15 +52,33 @@ Class Campaign extends CI_Controller {
 	
 	public function upload()
 	{
+	 $this->load->library('facebook');
 	 $this->load->model('customer_m','customer');
 	 
-	 $sr = $this->facebook->getSignedRequest();
-	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/upload";
-		
-	 
+	 /** BEGIN REQUIRED VALIDATION **/
 	 if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
+	 
+     if(!$campaign['on_upload']){
+	    $data['campaign'] = $campaign;
+		$data['message_title'] = "Campaign Upload End";
+		$data['message_description'] = "Sorry! Upload submission for the campaign has just ended";
+		$this->load->view('site/campaign_notification',$data);
+		exit;
+	 }
+	 
+     if($campaign['on_judging']){
+	    $data['campaign'] = $campaign;
+		$data['message_title'] = "The Winner Announce Soon";
+		$data['message_description'] = "Sorry! We are on Judging Time for The Campaign.";
+		$this->load->view('site/campaign_notification',$data);
+		exit;
+	 }
+	
+     $sr = $this->facebook->getSignedRequest();
+	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/upload";
+	
 	 if(!$user = getAuthorizedUser(true)){
 		redirect(menu_url('authorize').'?ref='.$redirect_url);
 	 }
@@ -70,6 +88,7 @@ Class Campaign extends CI_Controller {
 	 if(!$this->customer->isRegistered()){
 	   redirect(menu_url('register'));	   
 	 }
+	 /** END REQUIRED VALIDATION **/
 	 
 	 $form = $this->media->showUploadForm($campaign);
 	 if($form == "success"){
@@ -82,19 +101,28 @@ Class Campaign extends CI_Controller {
 		}
 			$data['message_title'] = "Successful";
 			$data['campaign'] = $campaign;
+			
+			$feed = array(
+			   "name" => $campaign['title'],
+			   "caption" => "{*actor*} has just Upload a Photo for The Contest.",
+			   "link" => $this->config->item('APP_CANVAS_PAGE')
+			   );
+			if(isset($campaign['asset_facebook']['logo_main'])){
+				$feed['picture'] = $campaign['asset_facebook']['logo_main']['url'];
+			}			
+			
+			$data['facebook_share_dialog'] = '<script>'.
+											 'fbDialogFeed('.json_encode($feed).')'.
+											 '</script>';
 		$this->load->view('site/upload_notification',$data);
 	 }elseif($form == "error"){
 		$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );
 		redirect(menu_url('upload'));
 	 }else{
-	 
 		$this->load->model('customer_m','customer');
-
 		$this->load->library('facebook');
-
 		$isAuthorized = $user ? true : false;
-
-		
+			
 		$this->load->view('site/upload',array('campaign'=>$campaign,
 											'html_form_upload' => $form
 										   ));	
@@ -103,9 +131,13 @@ Class Campaign extends CI_Controller {
 	
 	public function authorize()
 	{
+	  $this->load->library('facebook');
+	  /** BEGIN REQUIRED VALIDATION **/
 	  if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
+	  /** END REQUIRED VALIDATION **/
+	  
 	  $redirectURL = urldecode($this->input->get_post('ref'));
 		
 		$this->load->view('site/authorize',array(
@@ -118,15 +150,18 @@ Class Campaign extends CI_Controller {
 	
 	public function likepage()
 	{
+	 $this->load->library('facebook');
+	  /** BEGIN REQUIRED VALIDATION **/
 	  if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
 		
-	$redirectURL = $this->input->get_post('ref');
+		$redirectURL = $this->input->get_post('ref');
 		
 	 if(!$user = getAuthorizedUser(true)){
 		redirect(menu_url('authorize').'?ref='.$redirectURL);
 	 }	
+	 /** END REQUIRED VALIDATION **/
 	 
 	 
 		
@@ -139,10 +174,20 @@ Class Campaign extends CI_Controller {
 	
 	public function register()
 	{
+	 $this->load->library('facebook');
 	 $this->load->model('customer_m','customer');
 	 
+	 /** BEGIN REQUIRED VALIDATION **/
 	 if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
+	 }
+	 
+	 if($campaign['on_judging']){
+	    $data['campaign'] = $campaign;
+		$data['message_title'] = "The Winner Announce Soon";
+		$data['message_description'] = "Sorry! We are on Judging Time for The Campaign.";
+		$this->load->view('site/campaign_notification',$data);
+		exit;
 	 }
 	 
 	 $sr = $this->facebook->getSignedRequest();
@@ -160,6 +205,9 @@ Class Campaign extends CI_Controller {
 	 if($this->customer->isRegistered()){
 	   redirect(menu_url('home'));	   
 	 }
+	 /** END REQUIRED VALIDATION **/
+	 
+	 
 	 $form = $this->form->customer_register();
 	
  	 if($form == "success"){
@@ -177,46 +225,55 @@ Class Campaign extends CI_Controller {
 	
 	public function page($pageID)
 	{
-
+	 $this->load->library('facebook');
+		/** BEGIN REQUIRED VALIDATION **/
 	 	if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
 
 		$sr = $this->facebook->getSignedRequest();
-		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/register";
-		
+		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/register";		
 		
 		if(!$user = getAuthorizedUser(true)){
 		 redirect(menu_url('authorize').'?ref='.$redirect_url);
 	    }
+		/** END REQUIRED VALIDATION **/
+		
+		
 		$this->load->model('page_m');
-		$page = $this->page_m->detailPage($pageID);
-		if(date('Y-m-d H:i:s') < $page['page_publish_date'] || $page['page_status'] == 'draft'){
-			show_404();
+		if($page = $this->page_m->detailPage($pageID)){
+		    if(!$page['page_facebook']) show_404();
+			if(date('Y-m-d H:i:s') < $page['page_publish_date'] || $page['page_status'] == 'draft'){
+				show_404();
+			}else{
+			  $page['campaign'] = $campaign;
+			  $this->load->view('site/page',$page);	
+			}
 		}else{
-		  $page['campaign'] = $campaign;
-		  $this->load->view('site/page',$page);	
+			show_404();
 		}
 		
 	}
 	 
 	 public function winner()
 	 {
+	  $this->load->library('facebook');
+	  /** BEGIN REQUIRED VALIDATION **/
 	  	 $sr = $this->facebook->getSignedRequest();
 		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/winner";
-
-		 if(!$user = getAuthorizedUser(true)){
-			redirect(menu_url('authorize').'?ref='.$redirect_url);
-		 }	 
 	   	if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
-		$campaign = $this->campaign->getActiveCampaign();
-		$now = date('Y-m-d h:i:s');
+		
+		if(!$user = getAuthorizedUser(true)){
+			redirect(menu_url('authorize').'?ref='.$redirect_url);
+		}	 
+		/** END REQUIRED VALIDATION **/
+
 		$data = array();
 		if($campaign['on_judging'] && $campaign['winner_announced']){
 		  //Get Winner
-		  if($media = $this->media->retrieveMedia(array('GID'=>$campaign['GID'],'media_winner' => 1))){
+		  if($media = $this->media->retrieveMedia(array('campaign_media.GID'=>$campaign['GID'],'campaign_media.media_winner' => 1))){
 			$data['media'] = $media;
 		  }
 		}else{
@@ -231,20 +288,22 @@ Class Campaign extends CI_Controller {
 	  
 	  public function media($media_id = null)
 	  { 
+	   $this->load->library('facebook');
+	  
+	  /** BEGIN REQUIRED VALIDATION **/
 		if(!$media_id){
 			if(!$media_id = addslashes($this->input->get('m', TRUE))){
 			  show_404();
 			}
 		}
 	   $sr = $this->facebook->getSignedRequest();
-	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/media?m=$media_id";
+	   $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/media?m=$media_id";
 
 	   	if(!$user = getAuthorizedUser(true)){
 		  redirect(menu_url('authorize').'?ref='.$redirect_url);
 	    }
-	    
-
-	
+		/** END REQUIRED VALIDATION **/
+		
 	    $this->load->model('setting_m');
 		
 		if($rowMedia = $this->media->detailMedia($media_id)){
@@ -283,7 +342,10 @@ Class Campaign extends CI_Controller {
 	  
 	  public function gallery()
 	  {	  
+	  $this->load->library('facebook');
+	  
 	   require_once 'Pager/Sliding.php';
+	   /** BEGIN REQUIRED VALIDATION **/
 	   if(!$active_campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 	   }
@@ -294,6 +356,7 @@ Class Campaign extends CI_Controller {
 	   if(!$user = getAuthorizedUser(true)){
 		redirect(menu_url('authorize').'?ref='.$redirect_url);
 	   }
+	   /** END REQUIRED VALIDATION **/
 	 
     	 $userMedia = $this->media->mediaByUID($user['id'],$active_campaign['GID'],'active');
 		 $randMedia = $this->media->mediaByRandom($active_campaign['GID'],'active');
@@ -333,6 +396,9 @@ Class Campaign extends CI_Controller {
   
 	  public function rules()
 	  {
+	    $this->load->library('facebook');
+	   
+	   /** BEGIN REQUIRED VALIDATION **/
 	    if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
@@ -342,6 +408,7 @@ Class Campaign extends CI_Controller {
 	    if(!$user = getAuthorizedUser(true)){
 			redirect(menu_url('authorize').'?ref='.$redirect_url);
 	    }
+		/** END REQUIRED VALIDATION **/
 		
 		$this->load->view('site/rules',array('campaign'=>$campaign,
 										'rules' => $campaign['campaign_rules']

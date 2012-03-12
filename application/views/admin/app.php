@@ -16,10 +16,9 @@
 							<tr>
 								<th width="5%">#</th>
                                 <th>No</th>
-								<th style="width:30%">Name</th>
-								<th style="width:20%">App ID</th>
-                           	<th style="width:20%">Canvas Fan Page</th>
-								<th  >Actions</th>
+								<th style="width:20%">Name</th>
+								<th>App Info</th>
+								<th style="width:15%" >Actions</th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -34,13 +33,23 @@
 						</tfoot>
 						<tbody>
 						<?php if($data): $i = (isset($idx) ? $idx : 0);?>
-                            <?php foreach($data as $v): ?>
+                            <?php foreach($data as $v): $api = getAppByIDS($v['APP_APPLICATION_ID'],$v['APP_SECRET_KEY'])?>
 								<tr>
 								 <td><input style="width:10px" type="checkbox" name="cid[]" value="<?=$v['APP_APPLICATION_ID']?>"/></td>
 									<td><?=++$i?></td>
 									<td><?=$v['APP_APPLICATION_NAME']?></td>
-									<td><a href="https://developers.facebook.com/apps/<?=$v['APP_APPLICATION_ID']?>" target="_blank"><?=$v['APP_APPLICATION_ID']?></a></td>
-									<td><?=$v['APP_FANPAGE']?></td>
+									<td style="font-size:12px;">
+									<b>Platform Link:</b> https://developers.facebook.com/apps/<?=$v['APP_APPLICATION_ID']?>
+									<br>
+									<b>Fan Page: </b> <?=$v['APP_FANPAGE']?>
+									<br>
+									<b>App Canonical Link: </b> http://apps.facebook.com/<?=@$api['namespace']?>
+									<br>
+									<b>App UID Link (Save): </b> http://apps.facebook.com/<?=$v['APP_APPLICATION_ID']?>
+									<Br>
+									<b>Creator URL: </b> <?=(@$api['creator_uid'] ? "http://www.facebook.com/profile.php?id=".$api['creator_uid'] : "") ?>
+									
+									</td>
 									<td>
 									<a href="<?=site_url('admin/app/add/'.$v['APP_APPLICATION_ID'])?>">Edit</a>
 									<a target="_blank" href="<?php echo appToPage_dialog_url($v['APP_APPLICATION_ID'],site_url("campaign/{$v['APP_APPLICATION_ID']}"))?>">Add to Page</a>

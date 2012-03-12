@@ -9,12 +9,13 @@
   </p>
   
   <div class="center">
-  	<a href="<?php echo menu_url('gallery')?>" class="button gold big">View Gallery</a>
+    <?php if(isset($anchor)):?>
+  	<a href="<?php echo $anchor['url']?>" class="button gold big"><?php echo $anchor['text']?></a>
+    <?php endif;?>
   </div>
   
   </div>
 </div>
 
 </div>
-<?php echo isset($facebook_share_dialog) ? $facebook_share_dialog : "" ;?> 
 <?php echo $this->load->view('site/footer',$campaign,true); ?>
