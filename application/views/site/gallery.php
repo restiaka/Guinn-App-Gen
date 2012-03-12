@@ -1,4 +1,4 @@
-<?php echo $this->load->view('site/header',null,true); //Begin HTML ?>
+<?php echo $this->load->view('site/header',$campaign,true); //Begin HTML ?>
 <?php $CI = & get_instance(); $CI->load->model('media_m');?>
 <div class="main">
 
@@ -21,7 +21,8 @@
         </a>
       </div>
       <div class="vote"><?php echo $user_media['media_vote_total']?> vote(s)</div>
-      <div class="share"><a href="#" class="button big">Share to Friends</a></div>
+      
+	  <div class="share"><a href="#" id="sharefeedbutton"  class="button big">Share to Friends</a></div>
     </div>
     <a href="#" class="hide" onclick="$('.user-panel').toggle();">hide this -</a>
    </div>
@@ -65,10 +66,20 @@
   </ul>
   <div id="pagination"><?php echo $pagination['all']?></div>
   <?php else:?>
-  <div style="text-align:center;">SORRY NO SUBMITTED YET</div>
+  <div style="text-align:center;">SORRY NO ITEMS YET</div>
   <?php endif;?>
 
 </div>
 </div>
 </div>
-<?php echo $this->load->view('site/footer',null,true);//End HTML ?>
+<script>
+//https://www.facebook.com/sharer/sharer.php?u=[link]'http://guinnessapp.dev/image/contest/1/thumb_615418145_0c52158e8b0e2493f5dd5ebba9d6c643.jpg',
+$("#sharefeedbutton").click(function() {
+  fbDialogFeed(<?php echo stripslashes(json_encode(array('name'=>'Check this out!',
+									  'caption'=>'{*actor*} at '.ucfirst($campaign['title']),
+									  'description'=>$campaign['description'],
+									  'picture'=>$user_media['media_thumb_url'],
+									  'link'=>$this->config->item('APP_CANVAS_PAGE')."/media?m=".$user_media['media_id'])));?>);
+});
+</script>
+<?php echo $this->load->view('site/footer',$campaign,true);//End HTML ?>
