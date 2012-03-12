@@ -76,7 +76,7 @@ Class Campaign extends CI_Controller {
 		$data['message_title'] = "The Winner Announce Soon";
 		$data['message_text'] = "Sorry! We are on Judging Time for The Campaign.";
 		$this->load->view('site/campaign_notification',$data);
-	  return;
+	    return;
 	 }
 	 
 
