@@ -320,6 +320,21 @@ Class Campaign_m extends CI_Model {
     return $result;
   }
   
+  public function getCampaignByAppID($appid,$limitOne = false)
+  {
+	   $result = null;
+	   $sql  = "SELECT campaign_group.* ";
+	   $sql .= "FROM campaign_group ";
+	   $sql .= "WHERE campaign_group.APP_APPLICATION_ID = ".$appid;
+	   if($limitOne){
+		$sql .= "LIMIT 1";
+		$result = $this->db->get_row($sql,'ARRAY_A');
+	   }else{
+		$result = $this->db->get_results($sql,'ARRAY_A');
+	   }
+	   return $result;
+  }
+  
   public function setStatusCampaign($gid,$status)
   {
    return $this->db->update('campaign_group', array('status'=>$status), array('GID'=>$gid));

@@ -3,6 +3,7 @@
 
 			
 				<div class="grid_16"><?php echo printNotification()?></div>
+				<?php if($data):?>
 				<div class="grid_16">
 					<div style="float:left;">
 					<a href="#" onclick="document.getElementById('task').value='activate'; document.forms['adminform'].submit();">Activate Selected Media</a>  
@@ -16,9 +17,10 @@
 					<div style="clear:both;"></div>
 				<br/><br/>
 				</div>
-				
+				<?php endif;?>
 				<div class="grid_4 omega" >
 					<form name="search" method="POST" action="<?=site_url('admin/media/lists')."?pageID=1"?>">
+					<?php if($data):?>
 					<div style="margin-bottom:10px;"><input type="submit" style="width:220px;" value="Go Filter"></div>
 					<div style="margin-bottom:10px;">
 					<select name="byorder" style="width:220px;">
@@ -35,6 +37,7 @@
 								<option value="pending" <?=($this->input->get_post('bystatus', TRUE) == 'pending' ? "selected='selected'" : "");?>>Pending</option>
 					</select>
 					</div>
+					<?php endif;?>
 					<div style="margin-bottom:10px;">
 					<select name="bycampaign" size="100" style="width:220px;">				
 					<option value="" <?=(!$this->input->get_post('bycampaign', TRUE) ? "selected='selected'" : "");?> >All Campaign</option>

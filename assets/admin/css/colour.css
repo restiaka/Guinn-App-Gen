@@ -13,6 +13,12 @@ th,#navigation,.active,input[type=submit],.pagination a:hover,.date td a:hover {
 select, textarea, input, td, #content, #foot {
 	background:#fff url(gradient.png) repeat-x 0 -28px
 }
+
+#foot {
+ background: none repeat scroll 0 0 #313230;
+ color: #fff;
+}
+
 tr {
 	background-position:0 -18px;
 }

@@ -5,5 +5,5 @@
 var tinyMCETemplateList = [
 	// Name, URL, Description
 	["Simple snippet", "<?php echo site_url('admin/template/snippet1')?>", "Simple HTML snippet."],
-	["Layout", "<?php echo site_url('admin/template/layout1')?>", "HTML Layout."]
+	["Winner Layout on Facebook", "<?php echo site_url('admin/template/layout1')?>", "Winner Layout on Facebook."]
 ];

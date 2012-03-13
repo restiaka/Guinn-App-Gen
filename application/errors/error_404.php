@@ -43,7 +43,7 @@ margin:				0 0 4px 0;
 		<p>The page you requested was not found.</p>	</div>
   <div id="footer">
    		<a href="http://www.drinkiq.com/" target="_blank">www.DRINKIQ.com</a>
-    <p>The Guinness word and associated logos are trademarks. © Guinness &amp; Co. <?php echo date('Y')?></p>
+    <p>The Guinness word and associated logos are trademarks. &copy; Guinness &amp; Co. <?php echo date('Y')?></p>
   </div>
 </body>
 </html>

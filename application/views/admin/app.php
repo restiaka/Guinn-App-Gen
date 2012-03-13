@@ -4,11 +4,12 @@
 			<div class="grid_16" style="text-align:right;">
 			<a href="<?=site_url('admin/app/add')?>">Add App Config</a><Br/><br/>
 			</div>
+			<?php if($data):?>
 				<div class="grid_16">
 					<a href="#" onclick="document.getElementById('task').value='delete'; document.forms[0].submit();">Delete Selected</a>
 				<br/><br/>
 				</div>
-				
+			<?php endif;?>	
 				<div class="grid_16">
 				<form method="POST">
 					<table>

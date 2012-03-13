@@ -4,6 +4,7 @@
 			<div class="grid_16" style="text-align:right;">
 			<a href="<?=site_url('admin/page/add')?>">Add Page</a><Br/><br/>
 			</div>
+			<?php if($data):?>
 				<div class="grid_16">
 				 <div style="float:left;width:300px;">
 					<a href="#" onclick="document.getElementById('task').value='publish'; document.forms[0].submit();">Set Publish</a> &nbsp; 
@@ -15,7 +16,7 @@
 				 <div style="clear:both;"></div>
 				<br/><br/>
 				</div>
-				
+				<?php endif;?>
 				<div class="grid_16">
 				<form method="POST">
 					<table>
