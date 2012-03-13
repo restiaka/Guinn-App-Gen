@@ -1,58 +1,40 @@
 <?php echo $this->load->view('mobile/mobile_header',$campaign,true); //Begin HTML ?>
-<style>
-.quickform  input[type=submit] {
-    background: url("<?php echo base_url()?>assets/site/img/gr2.png") repeat-x scroll 0 0 #919191;
-    border: 1px solid #D5A658;
-    color: #000000;
-	font-size: 14px;
-    font-weight: bold;
-    padding: 10px 23px;
-}
-
-.quickform div.element {
-    display: inline;
-    float: right;
-    padding: 0;
-}
-</style>
-
-<div class="main">
-<div class="box box-l">
-
-	<div class="inner">
-  
-  <ul class="breadcrumb">
-  	<li><a href="<?php echo menu_url();?>">Home</a></li>
-    <li><a href="<?php echo menu_url('gallery');?>">Gallery</a></li>
+<ul class="breadcrumb">
+  	<li><a href="<?php echo mobile_menu_url();?>" data-prefetch>Home</a></li>
+    <li><a href="<?php echo mobile_menu_url('gallery');?>" data-prefetch>Gallery</a></li>
     <li>Detail</li>
-  </ul>
-	
-	<?php echo isset($plugin['votebutton']) ? $plugin['votebutton'] : "";?>	
-  
-	<div class="media-wrapper">
+</ul>
+
+<div class="main" id="detail">
+
+	<div class="media-wrapper clearfix">
    	<div class="thumbnail">
     	<?php echo $media['media_container']?>
     </div>
-  </div>
-  
-  <div class="info clearfix">
-  	<div class="left-content">
-     <fb:profile-pic uid="<?php echo $media['uid']?>" size="square"></fb:profile-pic>
-      <div class="posted-by">Posted by</div>
-      <div class="owner"><fb:name uid="<?php echo $media['uid']?>" firstnameonly="true"></div>
-    </div>
-    <div class="right-content">
-	<?php echo isset($media['media_description']) ? nl2br($media['media_description']) : '';?>
-	</div>
-	</div>
+    <?php echo isset($plugin['votebutton_mobile']) ? $plugin['votebutton_mobile'] : "";?>
+	</div><!--media-wrapper-->
 
-  <div class="comments clearfix">
-	<?php echo isset($plugin['fblike']) ? $plugin['fblike'] : ""?>
-	<?php echo isset($plugin['fbcomment']) ? $plugin['fbcomment'] : ""?>
-  </div>
-</div>
+	
 
-</div>
+  <ul class="info">
+	<li>
+    	<div class="vote"><?php echo $media['media_vote_total']?> votes</div>
+    </li>
+    
+    <li>
+    	<div class="uploader">
+        <a href="#"><img src="https://graph.facebook.com/<?php echo $media['uid'] ?>/picture"></a>
+        <div class="owner"><a href="<?php $graph = mobile_getGraph($media['uid']); echo $graph['link']; ?>"><?php $graph = mobile_getGraph($media['uid']); echo $graph['name']; ?></a></div>
+	    </div>
+   	</li>
+
+    <li>
+    	<div class="media-info">
+        <p class="about-media">About photo:</p>
+        <p><?php echo isset($media['media_description']) ? nl2br($media['media_description']) : '';?></p>
+	    </div>
+    </li>
+  </ul>
 
 </div>
 <?php echo $this->load->view('mobile/mobile_footer',$campaign,true); //End HTML ?>

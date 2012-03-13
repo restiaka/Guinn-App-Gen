@@ -1,55 +1,55 @@
 <?php echo $this->load->view('mobile/mobile_header',$campaign,true); //Begin HTML ?>
 <?php $CI = & get_instance(); $CI->load->model('media_m');?>
-<div class="main">
-
-<div class="box box-l">
-	<div class="inner">
-  
-  <ul class="breadcrumb">
-  	<li><a href="<?=mobile_menu_url()?>">Home</a></li>
+<ul class="breadcrumb">
+  	<li><a href="<?=mobile_menu_url()?>" data-prefetch>Home</a></li>
     <li>Gallery</li>
-  </ul>
-  <?php if(isset($user_media)):?>
-  <div class="user-panel">
-    <div class="main-wrapper">
-    <div class="inner clearfix">
-    	<h3>My photo</h3>
-      <div class="thumbnail">
-        <a href="<?php echo menu_url('media').'/?m='.$user_media['media_id']?>" title="See detail">
-           <?php echo $CI->media_m->showMedia($user_media);?>
-          <span class="see-more"><i class="button">See detail</i></span>
-        </a>
-      </div>
-      <div class="vote"><?php echo $user_media['media_vote_total']?> vote(s)</div>
-      <div class="share"><a href="#" class="button big">Share to Friends</a></div>
-    </div>
-    <a href="#" class="hide">hide this -</a>
-   </div>
-  </div>
-  <?php endif;?>
-  <div class="sort-list clearfix">
-  <form id="sortform" name="sortform" method="POST"></form>
-  	<label>Sort by:</label>
-  	<select name="orderby" onchange="document.getElementById('sortform').submit();">
-      <option value="mostvote">Most Voted</option>
-      <option value="latest">Latest Upload</option>
-    </select> 
-  </div>
-  
+</ul>
+<div class="top-panel clearfix">
+
+<form id="sortform" name="sortform" method="POST">
+		<?php if(isset($user_media)):?>
+    	<div class="user-panel-link">
+		<a href="<?php echo mobile_menu_url('media').'/?m='.$user_media['media_id']?>" title="See detail" class="button gold" data-role="none">View my photo</a>
+		</div>
+		<?php endif;?>
+		<div class="sort-list clearfix">
+		<select name="orderby" onchange="document.getElementById('sortform').submit();" data-mini="true">
+		  <option value="mostvote">Most Voted</option>
+		  <option value="latest">Latest Upload</option>
+		</select>
+		</div>
+</form>
+
+
+</div>
+
+
+<div class="main" id="gallery">
+
+<div>
+	<div class="inner">
+    
   <?php if(isset($media) && !empty($media)):?>
   <ul class="gallery-list center">
    <?php foreach($media as $m):?>
    <li>
-    	<a href="<?php echo menu_url('media').'/?m='.$m['media_id']?>" title="See detail">
+    	<a href="<?php echo mobile_menu_url('media').'/?m='.$m['media_id']?>" title="See detail">
 	      <div class="thumbnail"><?php echo $CI->media_m->showMedia($m);?></div>
         <div class="vote"><?php echo $m['media_vote_total']?> votes</div>
-        <div class="owner">Name</div>
-        <p>The old man takes the poison now the widow makes the ...</p>
+        <div class="owner"><?php $graph = mobile_getGraph($m['uid']); echo $graph['first_name']; ?></div>
+        <p><?php echo truncateText($m['media_description'], 5); ?></p>
 		</a>
     </li>
    	<?php endforeach;?>
   </ul>
-  <div id="pagination"><?php echo $pagination['all']?></div>
+  <div id="pagination" data-role="controlgroup">
+	<?php if(isset($pagination['linkTagsRaw']['next']['url'])): ?>
+		<li><a href="<?php echo $pagination['linkTagsRaw']['next']['url']; ?>" data-role="button" data-icon="arrow-r" data-iconpos="right">Next</a></li>
+	<?php endif; ?>
+	<?php if(isset($pagination['linkTagsRaw']['prev']['url'])): ?>
+		<li><a href="<?php echo $pagination['linkTagsRaw']['prev']['url']; ?>" data-role="button" data-icon="arrow-l">Prev</a></li>
+	<?php endif; ?>
+  </div>
   <?php else:?>
   <div style="text-align:center;">SORRY NO SUBMITTED YET</div>
   <?php endif;?>

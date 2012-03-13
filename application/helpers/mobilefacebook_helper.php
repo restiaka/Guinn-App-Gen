@@ -62,6 +62,16 @@
 		return true;
  }
 
+ function mobile_getGraph($uid){
+	$CI = &get_instance();
+	$CI->load->library('facebook');
+  
+	$facebook = $CI->facebook;
+	$graph = $facebook->api($uid);
+
+	return $graph;
+ }
+
 function create_pagination($segment, $total, $limit, $uri_segment) {
     $CI = & get_instance();
     $CI->load->library('pagination');

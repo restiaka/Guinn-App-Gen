@@ -46,7 +46,7 @@
    
     function vote_mobile_form($media_id,$media_vote_total,$template = null) {
 	 
-      $form = new HTMLQuickForm2('votemedia','POST');
+      $form = new HTMLQuickForm2('votemedia','POST','data-ajax="false"');
 	  $form->setAttribute('action', '');
 	   $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array('id'=>$media_id)));
 	 $form->addElement('hidden','id');
@@ -55,11 +55,8 @@
 	  $media_vote_total = $this->media_m->setVote(addslashes($media_id));
 	}
 	
-	$template = '<div class="media-info">'.
-                '<div><input type="submit" id="vote" name="vote" value="Vote!" /></div>'.
-				'<div class="vote"> '.$media_vote_total.' vote(s)</div>'.
-				'</div>';
-	
+	$template = '<input type="submit" id="vote" name="vote" value="Vote!" data-role="none"/>';
+				
 	 $form->addElement('static','boxcount','',array('content'=>$template));		
 
 	 $renderer = HTML_QuickForm2_Renderer::factory('default');
@@ -75,14 +72,10 @@
 	 
 	$action = $action ? $action : menu_url('upload');
 	 
-     $form = new HTMLQuickForm2('uploadmedia','POST');
+     $form = new HTMLQuickForm2('uploadmedia','POST','data-ajax="false"');
 
     $form->setAttribute('action', $action);
 
-	 /**Setup default value*
-	 $form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
-	 )));
-	 /**/
 	 $active_campaign_gid = $campaign['GID'];
 	 
 	 $allowed_media_fields = $campaign['allowed_media_fields'];
@@ -140,7 +133,7 @@
 		  }
 		}
 
-		$button = $form->addElement('submit','submit','value="Submit" class="input-submit button big"');
+		$button = $form->addElement('submit','submit','data-role="none" value="Submit" class="input-submit button big"');
 		$button->setLabel('&nbsp;');
 		
 
@@ -236,7 +229,7 @@
     $campaign = $this->campaign_m->getActiveCampaign();
 	$this->load->library('facebook');
 	$action = $action ? $action : menu_url('register');
-	$form = new HTMLQuickForm2('customer_register','POST');
+	$form = new HTMLQuickForm2('customer_register','POST','data-ajax="false"');
     $form->setAttribute('action', $action);
 	$user = getAuthorizedUser();
 	$form->addDataSource(new HTML_QuickForm2_DataSource_Array(array(
@@ -271,19 +264,25 @@
 		 $address->setLabel('Address');
 		 $address->addRule('required', 'Address is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
+		 $terms = $form->addElement('group');
+$terms->addElement('checkbox', 'TERMS')->setContent('I accept Terms & Conditions');
+$terms->addRule('required', 'Please Agreed The Terms and Condition', 1);
+
+$SUBSCRIPTION = $form->addElement('group');
+$SUBSCRIPTION->addElement('checkbox', 'SUBSCRIPTIONID1',array('value' => $this->config->item('APP_APPLICATION_ID').'|S"'))->setContent('Please send me news & updates');
 		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
 
-		 $terms = $form->addElement('checkbox','TERMS','',array('content'=>'I accept Terms & Conditions'));
-		 //$terms->setLabel('Regulation');
-		 $terms->addRule('required', 'Terms Agreement Required', null,HTML_QuickForm2_Rule::SERVER);
+		// $terms = $form->addElement('checkbox','TERMS','data-role="none" ',array('content'=>'I accept Terms & Conditions'));
+		// $terms->setLabel('&nbsp;');
+		// $terms->addRule('required', 'Terms Agreement Required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
-		 $SUBSCRIPTION = $form->addElement('checkbox','SUBSCRIPTIONID1','value = "'.$this->config->item('APP_APPLICATION_ID').'|S"',array('content'=>'Please send me news & updates'));
-		 //$SUBSCRIPTION->setLabel('Email Subscribe');
+		 //$SUBSCRIPTION = $form->addElement('checkbox','SUBSCRIPTIONID1','data-role="none" value = "'.$this->config->item('APP_APPLICATION_ID').'|S"',array('content'=>'Please send me news & updates'));
+		// $SUBSCRIPTION->setLabel('&nbsp;');
 
 		 
 		
-		$button = $form->addElement('submit','submit','value="Register"');
+		$button = $form->addElement('submit','submit','data-role="none" value="Register"');
 		$button->setLabel('&nbsp;');
 
 		

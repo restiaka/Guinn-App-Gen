@@ -12,12 +12,11 @@
 	</div>
 	
 	<ul data-role="listview" data-inset="true">
-		<li><a href="<?=mobile_menu_url('gallery')?>" >Gallery</a></li>
-		<li><a href="<?=mobile_menu_url('rules')?>" >Terms & Conditions</a></li>
-		<li><a href="<?=mobile_menu_url('about')?>" >Winner Gallery</a></li>
-		<?php if(isset($campaign['pages'])):foreach($campaign['pages'] as $page):?>
-			<li><a href="<?php echo $page['url']?>"><?php echo $page['name']?></a></li>
-		<?php endforeach;endif;?>
+		<li><a href="<?=mobile_menu_url('gallery')?>" data-prefetch>Gallery</a></li>
+		<li><a href="<?=mobile_menu_url('rules')?>" data-prefetch>Terms & Conditions</a></li>
+		<?php if(isset($campaign['pages'])):foreach($campaign['pages'] as $page):if($page['mobile']):?>
+		<li><a href="<?php echo $page['url']?>"><?php echo $page['name']?></a></li>
+		<?php endif;endforeach;endif;?>
 	</ul>
 
 </div> <!--end main-->

@@ -36,6 +36,7 @@ Class Mobile extends CI_Controller {
 		if($isAuthorized){
 			$redirect_url = mobile_menu_url('upload');
 		}else{
+			$sr = $this->facebook->getSignedRequest();
 			$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".mobile_menu_url('upload') : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/upload";
 		}
 		$this->load->view('mobile/mobile_home',array('campaign'=>$campaign,
@@ -44,53 +45,83 @@ Class Mobile extends CI_Controller {
 										   ));	
 	}
 	
-	public function upload(){
-		$this->load->model('customer_m','customer');
+	public function upload()
+	{
+	 $this->load->library('facebook');
+	 $this->load->model('customer_m','customer');
 	 
-		$sr = $this->facebook->getSignedRequest();
-		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/upload";
-			
-		 
-		if(!$campaign = $this->campaign->getActiveCampaign()){
+	 /** BEGIN REQUIRED VALIDATION **/
+	 if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
-		if(!$user = getAuthorizedUser(true)){
-			redirect(mobile_menu_url('authorize').'?ref='.$redirect_url);
+	 
+     if(!$campaign['on_upload']){
+	    $data['campaign'] = $campaign;
+		$data['message_title'] = "Campaign Upload End";
+		$data['message_description'] = "Sorry! Upload submission for the campaign has just ended";
+		$this->load->view('site/campaign_notification',$data);
+		exit;
+	 }
+	 
+     if($campaign['on_judging']){
+	    $data['campaign'] = $campaign;
+		$data['message_title'] = "The Winner Announce Soon";
+		$data['message_description'] = "Sorry! We are on Judging Time for The Campaign.";
+		$this->load->view('site/campaign_notification',$data);
+		exit;
+	 }
+	
+     $sr = $this->facebook->getSignedRequest();
+	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/upload";
+	
+	 if(!$user = getAuthorizedUser(true)){
+		redirect(mobile_menu_url('authorize').'?ref='.$redirect_url);
+	 }
+	 if(!$isFan = user_isFan()){
+	   redirect(mobile_menu_url('likepage').'?ref='.$redirect_url);
+	 }	 
+	 if(!$this->customer->isRegistered()){
+	   redirect(mobile_menu_url('register'));	   
+	 }
+	 /** END REQUIRED VALIDATION **/
+	 
+	 $form = $this->media->showUploadForm($campaign,mobile_menu_url('upload'));
+	 if($form == "success"){
+		//redirect(menu_url('upload'));
+		$media_type = $campaign['allowed_media_source'] == "file" ? "photo" : "video";
+		if($campaign['media_has_approval']){
+			$data['message_text'] = "Enjoy Your Guinness while we're moderating your $media_type Check your email for further notification.";
+	    }else{
+			$data['message_text'] = "Thanks for participating, Your $media_type is now listed on the gallery.";
 		}
-		if(!$isFan = user_isFan()){
-			redirect(mobile_menu_url('likepage').'?ref='.$redirect_url);
-		}	 
-		if(!$this->customer->isRegistered()){
-			redirect(mobile_menu_url('register'));	   
-		}
-		 
-		$form = $this->media->showUploadForm($campaign);
-		if($form == "success"){
-			//redirect(mobile_menu_url('upload'));
-			$media_type = $campaign['allowed_media_source'] == "file" ? "photo" : "video";
-			if($campaign['media_has_approval']){
-				$data['message_text'] = "Enjoy Your Guinness while we're moderating your $media_type Check your email for further notification, it's just a bottle away.";
-			}else{
-				$data['message_text'] = "Thanks for participating, Your $media_type is now listed on the gallery.";
-			}
-				$data['message_title'] = "Successful";
-				$data['campaign'] = $campaign;
-			$this->load->view('mobile/mobile_notification',$data);
-		}elseif($form == "error"){
-			$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );
-			redirect(mobile_menu_url('upload'));
-		}else{
-		 
-			$this->load->model('customer_m','customer');
-
-			$this->load->library('facebook');
-
-			$isAuthorized = $user ? true : false;
+			$data['message_title'] = "Successful";
+			$data['campaign'] = $campaign;
 			
-			$this->load->view('mobile/mobile_upload',array('campaign'=>$campaign,
-												'html_form_upload' => $form
-											   ));	
-		}
+			$feed = array(
+			   "name" => $campaign['title'],
+			   "caption" => "{*actor*} has just Upload a Photo for The Contest.",
+			   "link" => $this->config->item('APP_CANVAS_PAGE')
+			   );
+			if(isset($campaign['asset_facebook']['logo_main'])){
+				$feed['picture'] = $campaign['asset_facebook']['logo_main']['url'];
+			}			
+			
+			$data['facebook_share_dialog'] = '<script>'.
+											 'fbDialogFeed('.json_encode($feed).')'.
+											 '</script>';
+		$this->load->view('mobile/mobile_upload_notification',$data);
+	 }elseif($form == "error"){
+		$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );
+		redirect(mobile_menu_url('upload'));
+	 }else{
+		$this->load->model('customer_m','customer');
+		$this->load->library('facebook');
+		$isAuthorized = $user ? true : false;
+			
+		$this->load->view('mobile/mobile_upload',array('campaign'=>$campaign,
+											'html_form_upload' => $form
+										   ));	
+	 }									   
 	}
 	
 	public function authorize()
@@ -126,38 +157,52 @@ Class Mobile extends CI_Controller {
 											   ));		
 	}
 
-	public function register(){
-		$this->load->model('customer_m','customer');
+	public function register()
+	{
+	 $this->load->library('facebook');
+	 $this->load->model('customer_m','customer');
 	 
-		if(!$campaign = $this->campaign->getActiveCampaign()){
+	 /** BEGIN REQUIRED VALIDATION **/
+	 if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
-		}
+	 }
 	 
-		$sr = $this->facebook->getSignedRequest();
-		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/register";
+	 if($campaign['on_judging']){
+	    $data['campaign'] = $campaign;
+		$data['message_title'] = "The Winner Announce Soon";
+		$data['message_description'] = "Sorry! We are on Judging Time for The Campaign.";
+		$this->load->view('site/campaign_notification',$data);
+		exit;
+	 }
+	 
+	 $sr = $this->facebook->getSignedRequest();
+	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/register";
 	
 	 
-		if(!$user = getAuthorizedUser(true)){
-			redirect(mobile_menu_url('authorize').'?ref='.$redirect_url);
-		}
+	 if(!$user = getAuthorizedUser(true)){
+		redirect(mobile_menu_url('authorize').'?ref='.$redirect_url);
+	 }
 	 
-		if(!$isFan = user_isFan()){
-			redirect(mobile_menu_url('likepage').'?ref='.$redirect_url);
-		}
+	 if(!$isFan = user_isFan()){
+	   redirect(mobile_menu_url('likepage').'?ref='.$redirect_url);
+	 }
 	 
-		if($this->customer->isRegistered()){
-			redirect(mobile_menu_url('home'));	   
-		}
-		$form = $this->form->customer_register();
+	 if($this->customer->isRegistered()){
+	   redirect(mobile_menu_url('home'));	   
+	 }
+	 /** END REQUIRED VALIDATION **/
+	 
+	 
+	 $form = $this->form->customer_register(mobile_menu_url('register'));
 	
- 		if($form == "success"){
-			redirect(mobile_menu_url('upload'));
-		}elseif($form == "error"){
-			$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );
-			redirect(mobile_menu_url('register'));
-		}
+ 	 if($form == "success"){
+		redirect(mobile_menu_url('upload'));
+	 }elseif($form == "error"){
+		$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );
+		redirect(mobile_menu_url('register'));
+	 }
 	 
-		$this->load->view('mobile/mobile_register',array('campaign'=>$campaign,
+	 $this->load->view('mobile/mobile_register',array('campaign'=>$campaign,
 										   'html_form_register' => $form,
 										   'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null)
 										   ));										
@@ -292,7 +337,7 @@ Class Mobile extends CI_Controller {
 	   
 		//$config['path'] = APP_ADMIN_URL;
 		$config['totalItems'] = $sumPerCampaign;
-		$config['perPage'] = 8; 
+		$config['perPage'] = 2; 
 		$config['urlVar'] = ($this->input->post('orderby') ? 'orderby='.$this->input->post('orderby').'&' : '').
 							'pageID';
 		$pager = new Pager_Sliding($config);
