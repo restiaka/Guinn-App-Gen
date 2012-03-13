@@ -52,7 +52,7 @@ Class App_m extends CI_model {
 	public function remove($gid)
 	{
 	  $this->load->model('campaign_m');
-	  if($campaign = $this->campaign_m->getCampaignByAppID($appid,$true)){
+	  if($campaign = $this->campaign_m->getCampaignByAppID($gid,true)){
 		return false;
 	  }else{
 		$deleted = $this->db->query("DELETE FROM campaign_app WHERE APP_APPLICATION_ID = ".$gid);
