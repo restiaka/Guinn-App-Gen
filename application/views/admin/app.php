@@ -53,7 +53,7 @@
 									</td>
 									<td>
 									<a href="<?=site_url('admin/app/add/'.$v['APP_APPLICATION_ID'])?>">Edit</a>
-									<a target="_blank" href="<?php echo appToPage_dialog_url($v['APP_APPLICATION_ID'],site_url("campaign/{$v['APP_APPLICATION_ID']}"))?>">Add to Page</a>
+									<a href="<?php echo appToPage_dialog_url($v['APP_APPLICATION_ID'],site_url("campaign/{$v['APP_APPLICATION_ID']}/addtopage"))?>">Add to Page</a>
 									</td>
 								</tr>
                             <?php endforeach;?>

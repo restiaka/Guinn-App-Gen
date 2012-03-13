@@ -51,6 +51,12 @@ Class Campaign extends CI_Controller {
 										   ));	
 	}
 	
+	public function addtopage()
+	{
+	  $this->notify->set_message('success', 'You\'re Fan Page successfuly setup. Please check your Fan Page Admin Panel');
+	  redirect(site_url('admin/app/lists'));
+	}
+	
 	public function upload()
 	{
 	 $this->load->library('facebook');
