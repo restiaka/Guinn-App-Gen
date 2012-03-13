@@ -4,13 +4,14 @@
 						<div class="grid_16" style="text-align:right;">
 			<a href="<?=site_url('admin/user/add')?>">Add User</a><Br/><br/>
 			</div>
+			<?php if($data):?>
 				<div class="grid_16">
 					<a href="#" onclick="document.getElementById('task').value='activate'; document.forms[0].submit();">Activate Selected</a> | 
 					<a href="#" onclick="document.getElementById('task').value='deactivate'; document.forms[0].submit();">Deactivate Selected</a> | 
 					<a href="#" onclick="document.getElementById('task').value='delete'; document.forms[0].submit();">Delete Selected</a>
 				<br/><br/>
 				</div>
-				
+			<?php endif;?>	
 				<div class="grid_16">
 				<form method="POST">
 					<table>

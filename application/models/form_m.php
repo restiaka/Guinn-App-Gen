@@ -103,9 +103,11 @@
 									break;
 		   case 'media_description' : 
 		   //$form->addElement('static','','',array('content'=>$label));	
-		   $r = $form->addElement('textarea',$domid,'');
+		   $r = $form->addElement('textarea',$domid,'maxlength="160"');
 		   $r->setLabel($label);
-									$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
+			$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
+			$r->addRule('minlength', $label.' length to short', 20,HTML_QuickForm2_Rule::SERVER);
+			$r->addRule('maxlength', $label.' length to short', 160,HTML_QuickForm2_Rule::SERVER);
 									break;
 		   case 'media_source' : 
 		   //$form->addElement('static','','',array('content'=>$label));	
@@ -259,28 +261,17 @@
 
 		 $mobile->addRule('required', 'Phone no. is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
-		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
 		 $address = $form->addElement('textarea','ADDRESS','');
 		 $address->setLabel('Address');
 		 $address->addRule('required', 'Address is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
-		 $terms = $form->addElement('group');
-$terms->addElement('checkbox', 'TERMS')->setContent('I accept Terms & Conditions');
-$terms->addRule('required', 'Please Agreed The Terms and Condition', 1);
-
-$SUBSCRIPTION = $form->addElement('group');
-$SUBSCRIPTION->addElement('checkbox', 'SUBSCRIPTIONID1',array('value' => $this->config->item('APP_APPLICATION_ID').'|S"'))->setContent('Please send me news & updates');
-		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
-
-		// $terms = $form->addElement('checkbox','TERMS','data-role="none" ',array('content'=>'I accept Terms & Conditions'));
-		// $terms->setLabel('&nbsp;');
-		// $terms->addRule('required', 'Terms Agreement Required', null,HTML_QuickForm2_Rule::SERVER);
+		 $terms = $form->addElement('group')->setLabel("&nbsp;");
+		 $terms->addElement('checkbox', 'TERMS')->setContent('I accept Terms & Conditions');
+		 $terms->addRule('required', 'Please Agreed The Terms and Condition', 1);
 		 
-		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
-		 //$SUBSCRIPTION = $form->addElement('checkbox','SUBSCRIPTIONID1','data-role="none" value = "'.$this->config->item('APP_APPLICATION_ID').'|S"',array('content'=>'Please send me news & updates'));
-		// $SUBSCRIPTION->setLabel('&nbsp;');
-
-		 
+		 $SUBSCRIPTION = $form->addElement('group')->setLabel("&nbsp;");
+		 $SUBSCRIPTION->addElement('checkbox', 'SUBSCRIPTIONID1',array('value' => $this->config->item('APP_APPLICATION_ID').'|S"'))->setContent('Please send me news & updates');
+	 
 		
 		$button = $form->addElement('submit','submit','data-role="none" value="Register"');
 		$button->setLabel('&nbsp;');
@@ -358,13 +349,16 @@ $SUBSCRIPTION->addElement('checkbox', 'SUBSCRIPTIONID1',array('value' => $this->
      $form = new HTMLQuickForm2('loginform','POST','action="'.site_url('admin/login').'"');
 		$form->addDataSource(new HTML_QuickForm2_DataSource_Array(array('username'=>'admin@demo.com','password'=>'passwd')));
 		
-		  $r = $form->addElement('text','username','style="width:200px;"')->setLabel('Email &nbsp;:&nbsp;&nbsp;');
-		  $r->addRule('required', 'Email is required', null,HTML_QuickForm2_Rule::SERVER);						
+		  $r = $form->addElement('text','username','style="width:200px;"')->setLabel('Email :&nbsp;&nbsp;&nbsp;');
+		  $r->addRule('required', 'Email is required', null,HTML_QuickForm2_Rule::SERVER);
+		  $r->addRule('regex', 'Email does not Valid','/^[a-zA-Z0-9\._-]+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/',HTML_QuickForm2_Rule::SERVER);		  
 		
-		$r = $form->addElement('password','password','style="width:200px;"')->setLabel('Password &nbsp;:&nbsp;&nbsp;');
+		$r = $form->addElement('password','password','style="width:200px;"')->setLabel('Password :&nbsp;&nbsp;');
 		  $r->addRule('required', 'Password is required', null,HTML_QuickForm2_Rule::SERVER);	
+		  $r->addRule('regex', 'Password does not Valid','/^[a-zA-Z0-9]+$/',HTML_QuickForm2_Rule::SERVER);
 		
 		$button = $form->addElement('submit','submit','value="Login"');
+		$button->setLabel('&nbsp;');
 		
 		if ($form->validate()) 
 		{

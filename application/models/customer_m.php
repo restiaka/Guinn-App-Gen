@@ -18,7 +18,9 @@ Class Customer_m extends CI_Model{
   { 
     $this->load->library('facebook');
 	 $this->error = array(); 
-	 $gid = $data['GID'];
+	 //Extract for real GID cause its a string combination of GID and AppID ex: "10_2342325235235"
+	 list($gid,$appid) = explode("_",$data['GID']);
+
 	if($this->traction_enabled){
 	    	$data[$this->config->item('TRAC_ATTR_GID')] = $data['GID'];
 			$data[$this->config->item('TRAC_ATTR_MOBILE2')] = $data['MOBILE'];//TRAC_ATTR_MOBILE2
@@ -60,6 +62,7 @@ Class Customer_m extends CI_Model{
 	$trac_extra_sql = " ON DUPLICATE KEY UPDATE ".implode(',',$trac_update); 
 	
 	 $ok = $this->db->insert('campaign_customer_traction',$data,$trac_extra_sql);
+
 	 if($this->db->result){
 	  $db_data['customer_id'] = $this->db->last_insert_id() ? $this->db->last_insert_id() : $this->db->get_var("SELECT customer_id FROM campaign_customer_traction WHERE EMAIL = '".$data['EMAIL']."'");
 		
@@ -71,11 +74,14 @@ Class Customer_m extends CI_Model{
 	
 	$db_data['uid'] = $this->facebook->getUser(); 
 	
+
+	
 	foreach (array_keys($db_data) as $v)$update[] = $v." = values(".$v.")";
 	$extra_sql = " ON DUPLICATE KEY UPDATE ".implode(',',$update); 
 	
 	$ok = $this->db->insert('campaign_customer',$db_data,$extra_sql);
-	@$this->db->insert('campaign_group_customer',array('customer_id'=>$db_data['customer_id'],'uid' => $db_data['uid'],'GID'=>$gid));
+	$this->db->insert('campaign_group_customer',array('customer_id'=>$db_data['customer_id'],'uid' => $db_data['uid'],'GID'=>$gid));
+
 	
 	if($this->db->result){
 	 if(!$this->isAppAuthorized()){

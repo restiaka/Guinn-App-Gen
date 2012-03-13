@@ -36,7 +36,8 @@
 				theme_advanced_resizing : true,
 
 				// Example content CSS (should be your site CSS)
-				/*content_css : "css/content.css",*/
+				content_css : "<?php echo base_url()?>assets/site/style/css.css",
+
 
 				// Drop lists for link/image/media/template dialogs
 				template_external_list_url : "<?php echo site_url('admin/template/mcetemplate')?>",
@@ -65,12 +66,16 @@
 	 border:none;
 	 color:#000000;
 	}
+	.mceEditorArea {
+    background: #000000;
+	}
 	</style>
 	
 	</head> 
 	<body>
-
-		<h1 id="head">Control Panel <span style="font-size:12px;">Generic Media Contest Application</span></h1>
+		<h1 id="head" style="text-align:center;">
+		<img src="<?php echo base_url()?>assets/site/img/guinness_logo_alpha.png">
+</h1>
 		<?php
 		$nav = array('dashboard'=>'dashboard','campaign'=>'campaign/lists/','assets'=>'assets/lists/','user'=>'user/lists/','customer'=>'customer/lists/','page'=>'page/lists/','media'=>'media/lists/','app'=>'app/lists/');
 		?>

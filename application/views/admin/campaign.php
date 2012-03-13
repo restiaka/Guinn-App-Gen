@@ -4,6 +4,7 @@
 			<div class="grid_16" style="text-align:right;">
 			<a href="<?=site_url('admin/campaign/add')?>">Add Campaign</a><Br/><br/>
 			</div>
+			<?php if($data):?>
 				<div class="grid_16">
 					<div style="float:left">
 					<a href="#" onclick="document.getElementById('task').value='activate'; document.forms[0].submit();">Activate Selected</a> | 
@@ -17,7 +18,7 @@
 					<div style="clear:both;"></div>
 			<br/><br/>
 				</div>
-				
+			<?php endif;?>	
 				<div class="grid_16">
 				<form method="POST">
 					<table>

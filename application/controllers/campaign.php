@@ -50,38 +50,52 @@ Class Campaign extends CI_Controller {
 										   ));	
 	}
 	
+	public function addtopage()
+	{
+	  $this->notify->set_message('success', 'You\'re Fan Page successfuly setup. Please check your Fan Page Admin Panel');
+	  redirect(site_url('admin/app/lists'));
+	}
+	
 	public function upload()
 	{
 	 $this->load->library('facebook');
 	 $this->load->model('customer_m','customer');
-	 
+
 	 /** BEGIN REQUIRED VALIDATION **/
 	 if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
 	 
+
+	 
      if(!$campaign['on_upload']){
 	    $data['campaign'] = $campaign;
 		$data['message_title'] = "Campaign Upload End";
-		$data['message_description'] = "Sorry! Upload submission for the campaign has just ended";
+		$data['message_text'] = "Sorry! Upload submission for the campaign has just ended";
 		$this->load->view('site/campaign_notification',$data);
-		exit;
+		return;
 	 }
 	 
      if($campaign['on_judging']){
 	    $data['campaign'] = $campaign;
 		$data['message_title'] = "The Winner Announce Soon";
-		$data['message_description'] = "Sorry! We are on Judging Time for The Campaign.";
+		$data['message_text'] = "Sorry! We are on Judging Time for The Campaign.";
 		$this->load->view('site/campaign_notification',$data);
-		exit;
+	    return;
 	 }
+	 
+
 	
      $sr = $this->facebook->getSignedRequest();
 	 $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/upload";
-	
+
+
 	 if(!$user = getAuthorizedUser(true)){
 		redirect(menu_url('authorize').'?ref='.$redirect_url);
 	 }
+	 
+
+	 
 	 if(!$isFan = user_isFan()){
 	   redirect(menu_url('likepage').'?ref='.$redirect_url);
 	 }	 
@@ -360,8 +374,18 @@ Class Campaign extends CI_Controller {
 	 
     	 $userMedia = $this->media->mediaByUID($user['id'],$active_campaign['GID'],'active');
 		 $randMedia = $this->media->mediaByRandom($active_campaign['GID'],'active');
+		 
+
 	   
 	   $sql_filter = "WHERE campaign_media.media_status = 'active' AND campaign_media.GID = ".$active_campaign['GID'];
+	   
+	   	if($bysearch = $this->input->get_post('searchby',true)){
+		  $media_ids = $this->media->getMediaIdsByCustomer($active_campaign,$bysearch);
+		  $clauses['campaign_media.media_id'] = $media_ids;
+		  $sql_filter .= ' AND campaign_media.media_id IN ('.implode( ",", $media_ids).') ';
+		} 
+	   
+	   
 	   $sumPerCampaign = $this->ezsql_mysql->get_var("SELECT COUNT(*) FROM campaign_media ".$sql_filter);
        
 	   $orderby = 'campaign_media.media_id';
@@ -373,26 +397,32 @@ Class Campaign extends CI_Controller {
 						case "latest" :  	   $orderby = 'campaign_media.media_id';
 											$order = 'DESC'; break;
 					}
-		}			
+		}	
+
+
 	   
 
 	   //$config['path'] = APP_ADMIN_URL;
 		$config['totalItems'] = $sumPerCampaign;
 		$config['perPage'] = 8; 
 		$config['urlVar'] = ($this->input->post('orderby') ? 'orderby='.$this->input->post('orderby').'&' : '').
+							($this->input->post('searchby') ? 'searchby='.$this->input->post('searchby').'&' : '').
 							'pageID';
 		$pager = new Pager_Sliding($config);
 		$pageID = $this->input->get_post('pageID') ? $this->input->get_post('pageID') : 1;
 		$links = $pager->getLinks($pageID);
 		list($from, $to) = $pager->getOffsetByPageId();
 		
-		$rowsMedia = $this->media->retrieveMedia(array('campaign_media.media_status'=>'active','campaign_media.GID'=>$active_campaign['GID']),array('orderby'=>$orderby,'order'=>$order,'limit_number' => $config['perPage'],'limit_offset' => --$from));
+		$clauses['campaign_media.media_status'] = 'active';
+		$clauses['campaign_media.GID'] = $active_campaign['GID'];
+		
+		$rowsMedia = $this->media->retrieveMedia($clauses,array('orderby'=>$orderby,'order'=>$order,'limit_number' => $config['perPage'],'limit_offset' => --$from));
 		$this->load->view('site/gallery',array('campaign'=>$active_campaign,
 												'media' => $rowsMedia,
 												'user_media' => $userMedia ? $userMedia : null,
 												'random_media' => $randMedia ? $randMedia : null,
 												'pagination'=>$links));	
-	  } 
+	  }
   
 	  public function rules()
 	  {

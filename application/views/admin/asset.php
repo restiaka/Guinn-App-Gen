@@ -5,13 +5,16 @@
 				<div class="grid_16"><?php echo printNotification()?></div>
 				<div class="grid_16">
 					<div style="float:left;">
+					<?php if($data):?>
 					<a href="#" onclick="document.getElementById('task').value='filter'; document.forms['adminform'].submit();">Filter By Campaign</a>  
 					<a href="#" onclick="document.getElementById('task').value='delete'; document.forms['adminform'].submit();">Delete Selected Assets</a>  
+					<?php endif;?>
 					</div>
 					<div style="float:right;">
+					<?php if($data):?>
 					<a href="#" onclick="document.getElementById('task').value='link'; document.forms['adminform'].submit();">Link Assets to Campaign</a>  
 					<a href="#" onclick="document.getElementById('task').value='unlink'; document.forms['adminform'].submit();">Unlink Assets from Campaign</a>  
-					
+					<?php endif;?>
 					<a href="<?=site_url('admin/assets/add')?>">Add an Asset</a>
 					</div>
 					<div style="clear:both;"></div>
@@ -20,10 +23,12 @@
 				
 				<div class="grid_4 omega" >
 					<form name="adminform" method="POST" action="<?=site_url('admin/assets/lists')?>">
+					<?php if($data):?>
 					<div style="margin-bottom:10px;">
 					<input type="text" name="bysearch" style="width:80%;"/>
 					<a href="#" onclick="document.getElementById('task').value='search'; document.forms['adminform'].submit();">></a>  
 					</div>
+					<?php endif;?>
 					<div style="margin-bottom:10px;">
 					<select name="bycampaign" size="100" style="width:220px;">				
 					<option value="" <?=(!$this->input->get_post('bycampaign', TRUE) ? "selected='selected'" : "");?> >All Campaign</option>

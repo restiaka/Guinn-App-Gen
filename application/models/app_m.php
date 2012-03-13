@@ -51,15 +51,13 @@ Class App_m extends CI_model {
 	 
 	public function remove($gid)
 	{
-		$deleted = $this->db->query("DELETE FROM campaign_app WHERE APP_APPLICATION_ID = ".$gid);
-
-		if(!$deleted){
-		$this->error[] = "Deleting has Failed, Try Again or Contact Web Administrator";
+	  $this->load->model('campaign_m');
+	  if($campaign = $this->campaign_m->getCampaignByAppID($gid,true)){
 		return false;
-		}else{
-		return true;
-		}
-		
+	  }else{
+		$deleted = $this->db->query("DELETE FROM campaign_app WHERE APP_APPLICATION_ID = ".$gid);
+		return $deleted ? true : false;
+	  }
 	}	 
 	  
 	public function retrieve($clauses = array() , $args = array())

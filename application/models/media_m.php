@@ -31,6 +31,35 @@ Class Media_m extends CI_Model {
 	  return false;
 	}
   }
+  
+  public function getMediaIdsByCustomer($campaign,$keyword)
+  {
+    //Cache results to session
+	/* if($this->session->userdata('search_media_keyword') == $keyword){
+	  return $this->session->userdata('search_media_results');
+	} */
+	
+  		/** Getting IDS **/
+		$this->load->library('search_db');
+		$this->search_db->set_table('campaign_media
+									Inner Join campaign_media_owner ON campaign_media.media_id = campaign_media_owner.media_id
+									Inner Join campaign_customer ON campaign_media_owner.uid = campaign_customer.uid
+									Inner Join campaign_customer_traction ON campaign_customer.customer_id = campaign_customer_traction.CUSTOMER_ID');
+		$this->search_db->set_keyword($keyword);
+		$this->search_db->set_clause("AND campaign_media.GID = ".$campaign['GID']." AND campaign_media.media_status = 'active'");
+		$this->search_db->set_primarykey("media_id");
+		$this->search_db->set_fields(array('campaign_customer_traction.FIRSTNAME','campaign_customer_traction.LASTNAME','campaign_customer_traction.EMAIL'));
+		$this->search_db->set_select_fields("campaign_media.*,campaign_media_owner.uid,campaign_customer_traction.FIRSTNAME,campaign_customer_traction.LASTNAME,campaign_customer_traction.EMAIL");
+		$results = $this->search_db->set_result();
+	
+	//Cache results to session
+	if($results){
+	  //$results = join( ",", $results); 
+	  $this->session->set_userdata('search_media_keyword', $keyword);
+	  $this->session->set_userdata('search_media_results', $results);
+	}
+	return $results;
+  }
 
   /*
   *
