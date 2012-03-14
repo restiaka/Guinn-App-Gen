@@ -80,7 +80,7 @@ Class Mobile extends CI_Controller {
 	 if(!$isFan = user_isFan()){
 	   redirect(mobile_menu_url('likepage').'?ref='.$redirect_url);
 	 }	 
-	 if(!$this->customer->isRegistered()){
+	 if(!$this->customer->isRegistered($campaign)){
 	   redirect(mobile_menu_url('register'));	   
 	 }
 	 /** END REQUIRED VALIDATION **/
@@ -187,7 +187,7 @@ Class Mobile extends CI_Controller {
 	   redirect(mobile_menu_url('likepage').'?ref='.$redirect_url);
 	 }
 	 
-	 if($this->customer->isRegistered()){
+	 if($this->customer->isRegistered($campaign)){
 	   redirect(mobile_menu_url('home'));	   
 	 }
 	 /** END REQUIRED VALIDATION **/
@@ -263,8 +263,9 @@ Class Mobile extends CI_Controller {
 	}
 	  
 
-	 public function media($media_id = null){ 
-		$this->load->library('facebook');
+	 public function media($media_id = null)
+	  { 
+	   $this->load->library('facebook');
 	  
 	  /** BEGIN REQUIRED VALIDATION **/
 		if(!$media_id){
@@ -287,13 +288,11 @@ Class Mobile extends CI_Controller {
 			//if campaign out of date
 			$campaign_status = $this->campaign->getStatus($campaign);
 			if($campaign_status['is_off'] || $rowMedia['media_status'] == 'pending' || $rowMedia['media_status'] == 'banned'){
-			//if(true){
-			$rowMedia['media_container'] = $this->media->showMedia($rowMedia,false);
+				$rowMedia['media_container'] = $this->media->showMedia($rowMedia,false);
 				$campaign['media_preview'] = true;
 				$this->load->view('mobile/mobile_media_preview',array('campaign'=>$campaign,'media' => $rowMedia));	
 			}else{
 			   $fblike_href = $this->setting_m->get('APP_CANVAS_PAGE').menu_url('media',true).'/?m='.$rowMedia['media_id'];
-				
 				$plugin_switch = array();
 				$plugin_switch[] = $campaign['media_has_vote'] && $campaign_status['on_vote'] ? 'vote' : null;
 				$plugin_switch[] = $campaign['media_has_fblike'] ? 'fblike' : null;
@@ -315,7 +314,7 @@ Class Mobile extends CI_Controller {
 		}else{
 		 show_404(); 
 		}
-	}
+	  }
 	  
 	public function gallery(){	  
 		require_once 'Pager/Sliding.php';

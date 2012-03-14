@@ -1,4 +1,5 @@
-<div id="footer">
+</div>
+<div id="footer" data-role="footer">
   <div class="footer-content center">
   	<div>
     	<?php if(isset($campaign['asset_mobile']['banner_footer']['url'])):?>
@@ -11,7 +12,6 @@
     <p>The Guinness word and associated logos are trademarks.<br /> &copy; Guinness & Co. 2011</p>
   </div>
   
-</div>
 </div>
 
 </div>

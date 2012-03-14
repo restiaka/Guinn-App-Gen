@@ -135,7 +135,7 @@
 		  }
 		}
 
-		$button = $form->addElement('submit','submit','data-role="none" value="Submit" class="input-submit button big"');
+		$button = $form->addElement('submit','submit','data-role="none" value="Upload" class="input-submit button big"');
 		$button->setLabel('&nbsp;');
 		
 

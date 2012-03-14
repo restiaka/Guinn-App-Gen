@@ -29,9 +29,12 @@
     <?php $this->load->view('fbjs_async_load'); //Async Facebook js sdk Load (Always put after <body> tag!) | REQUIRED!!! ?>
 
 	<div data-role="page" data-theme="a">
-	<div id="container" data-role="content" style="<?php echo $background?>" >
-	<div id="top-banner">
-		<?php if(isset($campaign['asset_mobile']['banner_header'])):?>
-			<img src="<?php echo $campaign['asset_mobile']['banner_header']['url']?>"/>
-		<?php endif;?>
+	<div id="container" style="<?php echo $background?>" >
+	<div data-role="header">
+		<div id="top-banner">
+			<?php if(isset($campaign['asset_mobile']['banner_header'])):?>
+				<img src="<?php echo $campaign['asset_mobile']['banner_header']['url']?>"/>
+			<?php endif;?>
+		</div>
 	</div>
+	<div data-role="content">
