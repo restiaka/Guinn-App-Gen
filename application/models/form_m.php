@@ -159,9 +159,13 @@
 						
 						$thumb = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/thumb_".$uid."_".$time.".jpg", 100 , null,true );
 						$data['media_source'] = 'file';
-						$data['media_url'] = base_url()."image?gid=".$active_campaign_gid."&src=".$uid."_".$time.".jpg";
-						$data['media_medium_url'] = base_url()."image?gid=".$active_campaign_gid."&src=medium_".$uid."_".$time.".jpg";
-						$data['media_thumb_url'] = base_url()."image?gid=".$active_campaign_gid."&src=thumb_".$uid."_".$time.".jpg";
+						//$data['media_url'] = base_url()."image?gid=".$active_campaign_gid."&src=".$uid."_".$time.".jpg";
+						//$data['media_medium_url'] = base_url()."image?gid=".$active_campaign_gid."&src=medium_".$uid."_".$time.".jpg";
+						//$data['media_thumb_url'] = base_url()."image?gid=".$active_campaign_gid."&src=thumb_".$uid."_".$time.".jpg";
+						$data['media_url'] = base_url()."image/u/".$active_campaign_gid."/".$uid."_".$time.".jpg";
+						$data['media_medium_url'] = base_url()."image/u/".$active_campaign_gid."/medium_".$uid."_".$time.".jpg";
+						$data['media_thumb_url'] = base_url()."image/u/".$active_campaign_gid."/thumb_".$uid."_".$time.".jpg";
+						
 						$data['media_type'] = $allowed_media_type;
 						$data['media_basename'] = $uid."_".$time.".jpg";
 					}else{
@@ -792,8 +796,11 @@
 				$data['asset_width'] = isset($info_img[0]) ? $info_img[0] : '';
 				$data['asset_height'] = isset($info_img[1]) ? $info_img[1] : '';
 				$data['asset_mimetype'] = isset($info_img['mime']) ? $info_img['mime'] : '';
-				$data['asset_url'] = site_url('image/campaign').'?src='.$data['asset_basename'];
-				$data['asset_thumb_url'] = site_url('image/campaign').'?src=thumb_'.$data['asset_basename'];
+				//$data['asset_url'] = site_url('image/campaign').'?src='.$data['asset_basename'];
+				//$data['asset_thumb_url'] = site_url('image/campaign').'?src=thumb_'.$data['asset_basename'];
+				$data['asset_url'] = site_url('image/campaign/'.$data['asset_basename']);
+				$data['asset_thumb_url'] = site_url('image/campaign/thumb_'.$data['asset_basename']);
+
 				unset($data['uploadedfile']);
 				$form->addElement('static','','',array('content'=>'<div style="margin-top:10px;">Uploaded Asset :</div><div><img src="'.$data['asset_url'].'" /></div>'));
 			}
