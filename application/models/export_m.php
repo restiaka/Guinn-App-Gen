@@ -17,6 +17,7 @@ class Export_m extends CI_Model {
 	 require_once "Spreadsheet/Excel/Writer.php";
 	 $column = ''; $row = 0;
      $mediaRow = $this->media->retrieveMedia(array('campaign_media.GID'=>$gid),array('fields'=>'campaign_media.media_title,campaign_media.media_description,campaign_media.media_url,campaign_media.media_uploaded_date,campaign_media.media_status,campaign_media_owner.uid'));
+	 if(!$mediaRow) return false;
 	
 	 $campaign = $this->campaign->detailCampaign($gid);
       
@@ -78,8 +79,11 @@ class Export_m extends CI_Model {
 	function exportCustomerByAppID($appid){
 	  require_once "Spreadsheet/Excel/Writer.php";
 	   $column = ''; $row = 0;
-	  if(!$customers = $this->customer->getCustomerByAppID($appid))
+	  if(!$customers = $this->customer->getCustomerByAppID($appid)){
+	    $this->notify->set_message('error', 'SORRY! NO DATA YET');
+	   	redirect(site_url('admin/app/lists'));
 		return false;
+	  }
 	  
      	  $xls = new Spreadsheet_Excel_Writer();
 	  $xls->send("customer_byfacebookappid_".date('dFY').".xls");
@@ -95,7 +99,7 @@ class Export_m extends CI_Model {
 	  
 		//Write column titles two rows beneath sheet title
 		$row += 4;
-		$columnTitles = array('FACEBOOK APP ID','FIRSTNAME','CUSTOMER_ID','LASTNAME','EMAIL','ADDRESS','MOBILE','SUBSCRIPTION');
+		$columnTitles = array('FACEBOOK APP ID','CUSTOMER_ID','FIRSTNAME','LASTNAME','EMAIL','ADDRESS','MOBILE','SUBSCRIPTION');
 		foreach ($columnTitles as $title) {
 		  $worksheet->write($row, $column, $title, $columnTitleFormat);
 		  $column++;
@@ -119,8 +123,11 @@ class Export_m extends CI_Model {
 	function exportCustomerByCampaign($gid){
 	 $column = ''; $row = 0;
 	  require_once "Spreadsheet/Excel/Writer.php";
-	  if(!$customers = $this->customer->getCustomerByCampaign($gid))
-	   return false;
+	  if(!$customers = $this->customer->getCustomerByCampaign($gid)){
+	    $this->notify->set_message('error', 'SORRY! NO DATA YET');
+	   	redirect(site_url('admin/campaign/lists'));
+		return false;
+	   }
 	  	
 	  $xls = new Spreadsheet_Excel_Writer();
 	  $xls->send("customer_bycampaign_".date('dFY').".xls");
@@ -136,7 +143,7 @@ class Export_m extends CI_Model {
 	  
 		//Write column titles two rows beneath sheet title
 		$row += 4;
-		$columnTitles = array('CampaignID','Campaign Title','FIRSTNAME','CUSTOMER_ID','LASTNAME','EMAIL','ADDRESS','MOBILE','SUBSCRIPTION');
+		$columnTitles = array('CampaignID','Campaign Title','CUSTOMER_ID','FIRSTNAME','LASTNAME','EMAIL','ADDRESS','MOBILE','SUBSCRIPTION');
 		foreach ($columnTitles as $title) {
 		  $worksheet->write($row, $column, $title, $columnTitleFormat);
 		  $column++;

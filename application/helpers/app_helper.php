@@ -261,10 +261,15 @@
 	  $o_enddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
 	  $enddate = $o_enddate->getTimestamp();
 	  
-	  extract($CI->input->post('winner_selectiondate'));
+	  extract($CI->input->post('upload_enddate'));
+	  $o_uploadenddate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
+	  $uploadenddate = $o_uploadenddate->getTimestamp();
+	  
+ 	  extract($CI->input->post('winner_selectiondate'));
 	  $o_winner_selectiondate = new DateTime($Y.'-'.$F.'-'.$d.' '.$H.':'.$i.':'.$s); //mktime($H, $i, $s, $d, $F, $Y);
-	  $winner_selectiondate = $o_winner_selectiondate->getTimestamp();
-
+	  $winner_selectiondate = $o_winner_selectiondate->getTimestamp(); 
+		
+	  if($winner_selectiondate < $uploadenddate) return false;	
 	  if($winner_selectiondate > $enddate) return false;
 	  
 	  return true;

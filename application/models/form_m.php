@@ -1024,7 +1024,7 @@
 		$form->addElement('static','','',array('content'=>'<b>Judging and Announcement before campaign end ?</b>'));
 		$winner_selectiondate_group = $form->addElement('group');	 
 		$winner_selectiondate_group->addElement('date','winner_selectiondate','',$date_set,'style="width:100px;"');		
-		$winner_selectiondate_group->addRule('callback','Date must be shorter or the same as end date','callback_validateWinnerDate');
+		$winner_selectiondate_group->addRule('callback','Date must be longer than Upload date and shorter or the same as end date','callback_validateWinnerDate');
 
 		
 		$form->addElement('static','','',array('content'=>'<b>When will your campaign end ?</b>'));

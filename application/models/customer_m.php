@@ -353,8 +353,8 @@ Class Customer_m extends CI_Model{
  public function getCustomerByAppID($appid){
   $sql = "SELECT
 			campaign_customer_fbauthorization.APP_APPLICATION_ID,
-			campaign_customer_traction.FIRSTNAME,
 			campaign_customer_traction.CUSTOMER_ID,
+			campaign_customer_traction.FIRSTNAME,
 			campaign_customer_traction.LASTNAME,
 			campaign_customer_traction.EMAIL,
 			campaign_customer_traction.ADDRESS,
@@ -374,8 +374,8 @@ Class Customer_m extends CI_Model{
    $sql = "SELECT
 			campaign_group_customer.GID,
 			campaign_group.title,
-			campaign_customer_traction.FIRSTNAME,
 			campaign_customer_traction.CUSTOMER_ID,
+			campaign_customer_traction.FIRSTNAME,
 			campaign_customer_traction.LASTNAME,
 			campaign_customer_traction.EMAIL,
 			campaign_customer_traction.ADDRESS,
