@@ -17,7 +17,7 @@ Class Campaign_m extends CI_Model {
     $sql = "SELECT * 
 			FROM campaign_group 
 			WHERE status = 'active' 
-				  AND( startdate <= '".date('Y-m-d h:i:s')."' AND enddate >= '".date('Y-m-d h:i:s')."' ) 
+				  AND( startdate <= '".date('Y-m-d H:i:s')."' AND enddate >= '".date('Y-m-d H:i:s')."' ) 
 				  AND APP_APPLICATION_ID = '".$this->setting_m->get('APP_APPLICATION_ID')."'  
 			ORDER BY startdate DESC 
 			LIMIT 1";

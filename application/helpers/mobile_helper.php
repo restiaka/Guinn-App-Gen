@@ -1,6 +1,6 @@
 <?php
 
-function mobile_menu_url($filename = NULL,$path_only = false)
+	function mobile_menu_url($filename = NULL,$path_only = false)
 	{
 	 $CI = &get_instance();
 	 $CI->load->model('setting_m');
@@ -15,7 +15,17 @@ function mobile_menu_url($filename = NULL,$path_only = false)
 	  }
 	}
 	
-	 function themeUrl($theme_dir_name = NULL,$relative_path = TRUE) {
+	function mobile_prefetch()
+	{
+		$CI = &get_instance();
+			if($prefetch = $CI->config->item('MOBILE_PREFETCH')){
+				return 'data-prefetch';
+			}else{
+				return NULL;
+			}
+	}
+	
+	function themeUrl($theme_dir_name = NULL,$relative_path = TRUE) {
 		if(!defined('THEME_DIR') && !$theme_dir_name) return null;
 		
 		if($theme_dir_name){
@@ -25,6 +35,6 @@ function mobile_menu_url($filename = NULL,$path_only = false)
 		  $basepath = str_replace(ROOT_DIR,'',THEME_DIR);
 		  return ($relative_path ? "" : SITE_URL).$basepath;
 		}
-	 }
+	}
 
 ?>

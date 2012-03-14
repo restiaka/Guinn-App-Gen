@@ -71,6 +71,41 @@
 
 	return $graph;
  }
+ 
+ function update_status($campaign){
+	$CI = &get_instance();
+	$CI->load->library('facebook');
+	$CI->load->model('media_m');
+//	$_REQUEST['status'] = 'I just Upload a Photo for The Contest ';
+	$facebook = $CI->facebook;
+	
+	$user = $facebook->getUser();
+	
+	$feed = array('name'=>ucfirst($campaign['title']),
+									  'caption'=>'{*actor*} just upload a photo for The Contest',
+									  'message'=>'Check this out ',
+									  'description'=>$campaign['description'],
+									  'picture'=>$user_media['media_thumb_url'],
+									  'link'=>$CI->config->item('APP_CANVAS_PAGE'));
+	//dg($feed);
+	if ($user){
+        //update user's status using graph api
+        if (TRUE) {
+            try {
+                //$status = htmlentities($_REQUEST['status'], ENT_QUOTES) . $CI->config->item('APP_CANVAS_PAGE');
+                $statusUpdate = $facebook->api('/me/feed', 'post',$feed);
+            } catch (FacebookApiException $e) {
+                d($e);
+            }
+            echo "Status Update Successfull. ";
+            exit;
+        }
+    }
+ }
+ 
+
+ 
+ 
 
 function create_pagination($segment, $total, $limit, $uri_segment) {
     $CI = & get_instance();

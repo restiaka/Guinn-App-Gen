@@ -1,4 +1,7 @@
 <?php echo $this->load->view('mobile/mobile_header',$campaign,true); //Begin HTML ?>
+<ul class="breadcrumb">
+  	<li><a href="<?=mobile_menu_url()?>">Home</a></li>
+</ul>
 <div class="main">
 	<div class="main-banner">
 	 <div style="margin-top:20px;text-align:center;">

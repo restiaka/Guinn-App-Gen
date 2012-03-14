@@ -62,8 +62,22 @@
 	$request = $request ? $access_token : NULL;	
 	return $request;						 
  }
- 
 
+  
+/*
+* Feed array
+* Array('message'=>'','link'=>'',picture'=>'','name'=>'','caption'=>'','description'=>'','actions'=>'') 
+* message and link are required.
+*/
+function feedCreate(Array $feed){
+   if(!isset($feed['message']) || !isset($feed['link'])) return false;
+   $CI = &get_instance();
+   $CI->load->library('facebook');
+   try { 
+   $CI->facebook->api("me/feed","post",$feed);
+   return true;
+   }catch (Exception $e) { return false;}
+}
  
  function isFan(){
    $CI = &get_instance();

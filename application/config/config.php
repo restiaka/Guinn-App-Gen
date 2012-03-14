@@ -492,6 +492,7 @@ $config['TRAC_ENDPOINTID'] = 17259;
 //$config['TRAC_ATTR_FBUID'] = 3012669;	
 $config['TRAC_ATTR_GID'] = 3014098;
 $config['TRAC_ATTR_MOBILE2'] = 3031180;	
+$config['MOBILE_PREFETCH'] = false;
 
  
 

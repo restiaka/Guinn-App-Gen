@@ -1,25 +1,24 @@
 <?php echo $this->load->view('mobile/mobile_header',$campaign,true); //Begin HTML ?>
 <?php $CI = & get_instance(); $CI->load->model('media_m');?>
 <ul class="breadcrumb">
-  	<li><a href="<?=mobile_menu_url()?>" data-prefetch>Home</a></li>
+  	<li><a href="<?=mobile_menu_url()?>">Home</a></li>
     <li>Gallery</li>
 </ul>
 <div class="top-panel clearfix">
 
-<form id="sortform" name="sortform" method="POST">
+<form id="gform" name="gform" method="POST" data-ajax="false">
 		<?php if(isset($user_media)):?>
     	<div class="user-panel-link">
 		<a href="<?php echo mobile_menu_url('media').'/?m='.$user_media['media_id']?>" title="See detail" class="button gold" data-role="none">View my photo</a>
 		</div>
 		<?php endif;?>
 		<div class="sort-list clearfix">
-		<select name="orderby" onchange="document.getElementById('sortform').submit();" data-mini="true">
-		  <option value="mostvote">Most Voted</option>
-		  <option value="latest">Latest Upload</option>
+		<select name="orderby" onchange="document.getElementById('gform').submit();" data-mini="true">
+			<option value="latest" <?php echo ($this->input->get_post('orderby', TRUE) == 'latest' ? "selected='selected'" : "")?> >Latest Upload</option>
+			<option value="mostvote" <?php echo ($this->input->get_post('orderby', TRUE) == 'mostvote' ? "selected='selected'" : "")?> >Most Voted</option>
 		</select>
 		</div>
 </form>
-
 
 </div>
 

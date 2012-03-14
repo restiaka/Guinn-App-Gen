@@ -107,7 +107,7 @@
 		   $r->setLabel($label);
 			$r->addRule('required', $label.' is required', null,HTML_QuickForm2_Rule::SERVER);
 			$r->addRule('minlength', $label.' length to short', 20,HTML_QuickForm2_Rule::SERVER);
-			$r->addRule('maxlength', $label.' length to short', 160,HTML_QuickForm2_Rule::SERVER);
+			$r->addRule('maxlength', $label.' Character to Long, Max 160', 160,HTML_QuickForm2_Rule::SERVER);
 									break;
 		   case 'media_source' : 
 		   //$form->addElement('static','','',array('content'=>$label));	

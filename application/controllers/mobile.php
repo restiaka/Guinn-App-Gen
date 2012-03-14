@@ -55,20 +55,20 @@ Class Mobile extends CI_Controller {
 			show_404();
 		}
 	 
-     if(!$campaign['on_upload']){
-	    $data['campaign'] = $campaign;
-		$data['message_title'] = "Campaign Upload End";
-		$data['message_description'] = "Sorry! Upload submission for the campaign has just ended";
-		$this->load->view('site/campaign_notification',$data);
-		exit;
-	 }
-	 
      if($campaign['on_judging']){
 	    $data['campaign'] = $campaign;
 		$data['message_title'] = "The Winner Announce Soon";
 		$data['message_description'] = "Sorry! We are on Judging Time for The Campaign.";
-		$this->load->view('site/campaign_notification',$data);
-		exit;
+		$this->load->view('mobile/mobile_campaign_notification',$data);
+		return;
+	 }
+	
+	 if(!$campaign['on_upload']){
+	    $data['campaign'] = $campaign;
+		$data['message_title'] = "Campaign Upload End";
+		$data['message_description'] = "Sorry! Upload submission for the campaign has just ended";
+		$this->load->view('mobile/mobile_campaign_notification',$data);
+		return;
 	 }
 	
      $sr = $this->facebook->getSignedRequest();
@@ -99,6 +99,7 @@ Class Mobile extends CI_Controller {
 			
 			$feed = array(
 			   "name" => $campaign['title'],
+			   "message" => 'Check this out',
 			   "caption" => "{*actor*} has just Upload a Photo for The Contest.",
 			   "link" => $this->config->item('APP_CANVAS_PAGE')
 			   );
@@ -106,9 +107,8 @@ Class Mobile extends CI_Controller {
 				$feed['picture'] = $campaign['asset_facebook']['logo_main']['url'];
 			}			
 			
-			$data['facebook_share_dialog'] = '<script>'.
-											 'fbDialogFeed('.json_encode($feed).')'.
-											 '</script>';
+			feedCreate($feed);
+			
 		$this->load->view('mobile/mobile_upload_notification',$data);
 	 }elseif($form == "error"){
 		$this->notify->set_message( 'error', 'Sorry. Please Try Again.' );
@@ -171,7 +171,7 @@ Class Mobile extends CI_Controller {
 	    $data['campaign'] = $campaign;
 		$data['message_title'] = "The Winner Announce Soon";
 		$data['message_description'] = "Sorry! We are on Judging Time for The Campaign.";
-		$this->load->view('site/campaign_notification',$data);
+		$this->load->view('mobile/mobile_campaign_notification',$data);
 		exit;
 	 }
 	 
@@ -233,43 +233,53 @@ Class Mobile extends CI_Controller {
 		
 	}
 	 
-	public function winner(){
-	  	$sr = $this->facebook->getSignedRequest();
+	public function winner()
+	{
+	  $this->load->library('facebook');
+	  /** BEGIN REQUIRED VALIDATION **/
+	  	 $sr = $this->facebook->getSignedRequest();
 		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/winner";
-
-		if(!$user = getAuthorizedUser(true)){
-			redirect(mobile_menu_url('authorize').'?ref='.$redirect_url);
-		}	 
 	   	if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
-		$campaign = $this->campaign->getActiveCampaign();
-		$now = date('Y-m-d h:i:s');
+		
+		if(!$user = getAuthorizedUser(true)){
+			redirect(mobile_menu_url('authorize').'?ref='.$redirect_url);
+		}	 
+		/** END REQUIRED VALIDATION **/
+
 		$data = array();
-		if($campaign['on_judging']){
-			//Get Winner
-			if($media = $this->media->retrieveMedia(array('GID'=>$campaign['GID'],'media_winner' => 1))){
-				$data['media'] = $media;
-			}
+		if($campaign['on_judging'] && $campaign['winner_announced']){
+		  //Get Winner
+		  if($media = $this->media->retrieveMedia(array('campaign_media.GID'=>$campaign['GID'],'campaign_media.media_winner' => 1))){
+			$data['media'] = $media;
+		  }
+		}else{
+			show_404();
 		}
+		$data['campaign'] = $campaign;
 		
 		$this->load->view('mobile/mobile_winner',$data);
-	 }
+	}
 	  
 
 	 public function media($media_id = null){ 
+		$this->load->library('facebook');
+	  
+	  /** BEGIN REQUIRED VALIDATION **/
 		if(!$media_id){
 			if(!$media_id = addslashes($this->input->get('m', TRUE))){
-				show_404();
+			  show_404();
 			}
 		}
-		$sr = $this->facebook->getSignedRequest();
-		$redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/media?m=$media_id";
+	   $sr = $this->facebook->getSignedRequest();
+	   $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/media?m=$media_id";
 
 	   	if(!$user = getAuthorizedUser(true)){
-			redirect(mobile_menu_url('authorize').'?ref='.$redirect_url);
+		  redirect(mobile_menu_url('authorize').'?ref='.$redirect_url);
 	    }
-	    
+		/** END REQUIRED VALIDATION **/
+		
 	    $this->load->model('setting_m');
 		
 		if($rowMedia = $this->media->detailMedia($media_id)){
@@ -277,11 +287,13 @@ Class Mobile extends CI_Controller {
 			//if campaign out of date
 			$campaign_status = $this->campaign->getStatus($campaign);
 			if($campaign_status['is_off'] || $rowMedia['media_status'] == 'pending' || $rowMedia['media_status'] == 'banned'){
-				$rowMedia['media_container'] = $this->media->showMedia($rowMedia,false);
+			//if(true){
+			$rowMedia['media_container'] = $this->media->showMedia($rowMedia,false);
 				$campaign['media_preview'] = true;
-				$this->load->view('mobile/mobile_media_preview',array('campaign'=>$campaign,'media' => $rowMedia,'notification' => $this->notify,'error' => $this->error));	
+				$this->load->view('mobile/mobile_media_preview',array('campaign'=>$campaign,'media' => $rowMedia));	
 			}else{
-				$fblike_href = $this->setting_m->get('APP_CANVAS_PAGE').mobile_menu_url('media',true).'/?m='.$rowMedia['media_id'];	
+			   $fblike_href = $this->setting_m->get('APP_CANVAS_PAGE').menu_url('media',true).'/?m='.$rowMedia['media_id'];
+				
 				$plugin_switch = array();
 				$plugin_switch[] = $campaign['media_has_vote'] && $campaign_status['on_vote'] ? 'vote' : null;
 				$plugin_switch[] = $campaign['media_has_fblike'] ? 'fblike' : null;
@@ -301,7 +313,7 @@ Class Mobile extends CI_Controller {
 				$this->load->view('mobile/mobile_media',array('campaign'=>$campaign,'plugin'=>$plugin,'media' => $rowMedia));										
 			}
 		}else{
-			show_404(); 
+		 show_404(); 
 		}
 	}
 	  
@@ -328,7 +340,7 @@ Class Mobile extends CI_Controller {
 		$order = 'DESC';
 		if($byorder = $this->input->get_post('orderby', TRUE)){		
 			switch($byorder){
-				case "mostvoted" : 	$orderby = "campaign_media.media_vote_total"; 
+				case "mostvote" : 	$orderby = "campaign_media.media_vote_total"; 
 									$order = "DESC"; break;
 				case "latest" :		$orderby = 'campaign_media.media_id';
 									$order = 'DESC'; break;
@@ -353,7 +365,11 @@ Class Mobile extends CI_Controller {
 												'pagination'=>$links));	
 	} 
   
-	public function rules(){
+	public function rules()
+	  {
+	    $this->load->library('facebook');
+	   
+	   /** BEGIN REQUIRED VALIDATION **/
 	    if(!$campaign = $this->campaign->getActiveCampaign()){
 			show_404();
 		}
@@ -363,9 +379,10 @@ Class Mobile extends CI_Controller {
 	    if(!$user = getAuthorizedUser(true)){
 			redirect(mobile_menu_url('authorize').'?ref='.$redirect_url);
 	    }
+		/** END REQUIRED VALIDATION **/
 		
 		$this->load->view('mobile/mobile_rules',array('campaign'=>$campaign,
 										'rules' => $campaign['campaign_rules']
 		));	
-	}
+	  }
 }

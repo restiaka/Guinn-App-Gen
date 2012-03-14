@@ -29,7 +29,7 @@ em{font-style:italic}
 p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:0px}
 ol{margin-left:20px}
 ol li,ul li{margin:0}
-p{margin-bottom:13px}
+p{margin-bottom:13px;}
 h1{font-size:25px;line-height:30px}
 h2{font-size:18px;line-height:18px;margin-bottom:13px}
 h3{font-size:16px;margin-bottom:10px;font-weight:bold}
@@ -119,8 +119,9 @@ input[type=submit]:hover{cursor:pointer;opacity:1}
 .gallery-list img{vertical-align:top;background:#121212}
 .gallery-list a{display:block;background:#2d2d2d;padding:10px;color:#fff;height:105px}
 .gallery-list a:hover{background:#444}
-.vote{font-weight:bold}
-.gallery-list .owner{margin:0 0 7px}
+.vote{font-weight:bold;text-align: left;}
+.gallery-list .owner{margin:0 0 7px;text-align: left;}
+.gallery-list p{text-align: left;}
 .owner{font-size:12px;font-weight:bold}
 .owner a{color:#fff}
 

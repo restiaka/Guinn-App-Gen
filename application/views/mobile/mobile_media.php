@@ -1,7 +1,7 @@
 <?php echo $this->load->view('mobile/mobile_header',$campaign,true); //Begin HTML ?>
 <ul class="breadcrumb">
-  	<li><a href="<?php echo mobile_menu_url();?>" data-prefetch>Home</a></li>
-    <li><a href="<?php echo mobile_menu_url('gallery');?>" data-prefetch>Gallery</a></li>
+  	<li><a href="<?php echo mobile_menu_url();?>">Home</a></li>
+    <li><a href="<?php echo mobile_menu_url('gallery');?>" <?php echo mobile_prefetch(); ?>>Gallery</a></li>
     <li>Detail</li>
 </ul>
 

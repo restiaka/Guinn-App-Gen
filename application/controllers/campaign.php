@@ -392,7 +392,7 @@ Class Campaign extends CI_Controller {
 		$order = 'DESC';
 		if($byorder = $this->input->get_post('orderby', TRUE)){		
 					switch($byorder){
-						case "mostvoted" : 	$orderby = "campaign_media.media_vote_total"; 
+						case "mostvote" : 	$orderby = "campaign_media.media_vote_total"; 
 											$order = "DESC"; break;
 						case "latest" :  	   $orderby = 'campaign_media.media_id';
 											$order = 'DESC'; break;
