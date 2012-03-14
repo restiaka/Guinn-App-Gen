@@ -128,7 +128,7 @@ input[type=submit]:hover{cursor:pointer;opacity:1}
 /*breadcrumb*/
 .breadcrumb{padding:0 0 0 10px;background:url(../img/gr3.png) repeat-x 0 0;height:28px}
 .breadcrumb li{display:inline;color:#fff;line-height:28px;font-weight:bold}
-.breadcrumb a{margin:0 5px 0 0;padding:0 5px 0 0;border-right:1px solid #cc9e50}
+.breadcrumb a{color: #CC9E50 !important;margin:0 5px 0 0;padding:0 5px 0 0;border-right:1px solid #cc9e50}
 
 .top-panel{background:#090909;border-top:1px solid #090909;border-bottom:1px solid #090909;padding:0 5px 0 0}
 .user-panel-link{width:40%;float:left}

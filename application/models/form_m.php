@@ -55,7 +55,7 @@
 	  $media_vote_total = $this->media_m->setVote(addslashes($media_id));
 	}
 	
-	$template = '<input type="submit" id="vote" name="vote" value="Vote!" data-role="none"/>';
+	$template = '<input type="submit" id="vote" name="vote" value="Vote this picture!" data-role="none"/>';
 				
 	 $form->addElement('static','boxcount','',array('content'=>$template));		
 

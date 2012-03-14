@@ -1,8 +1,9 @@
 <?php echo $this->load->view('mobile/mobile_header',$campaign,true); //Begin HTML ?>
+<?php $graph = mobile_getGraph($media['uid']); ?>
 <ul class="breadcrumb">
   	<li><a href="<?php echo mobile_menu_url();?>">Home</a></li>
     <li><a href="<?php echo mobile_menu_url('gallery');?>" <?php echo mobile_prefetch(); ?>>Gallery</a></li>
-    <li>Detail</li>
+    <li><?php echo $graph['first_name']; ?>'s photo</li>
 </ul>
 
 <div class="main" id="detail">
@@ -24,7 +25,7 @@
     <li>
     	<div class="uploader">
         <a href="#"><img src="https://graph.facebook.com/<?php echo $media['uid'] ?>/picture"></a>
-        <div class="owner"><a href="<?php $graph = mobile_getGraph($media['uid']); echo $graph['link']; ?>"><?php $graph = mobile_getGraph($media['uid']); echo $graph['name']; ?></a></div>
+        <div class="owner"><a href="<?php echo $graph['link']; ?>"><?php echo $graph['name']; ?></a></div>
 	    </div>
    	</li>
 
