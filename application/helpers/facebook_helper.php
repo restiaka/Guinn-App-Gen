@@ -47,6 +47,22 @@
    return;
  } 
  
+ /*
+ *
+ * Feed array
+ * Array('message'=>'','link'=>'',picture'=>'','name'=>'','caption'=>'','description'=>'','actions'=>'') 
+ * message and link are required.
+ */
+ function feedCreate(Array $feed){
+   if(!isset($feed['message']) || !isset($feed['link'])) return false;
+   $CI = &get_instance();
+   $CI->load->library('facebook');
+   try { 
+   $CI->facebook->api("me/feed","post",$feed);
+   return true;
+   }catch (Exception $e) { return false;}
+ }
+ 
  function getAppAccessToken($app_config = array()){
     $parameter = array('client_id'   => $app_config['app_id'],
 						'client_secret' => $app_config['app_secret'],
@@ -134,7 +150,11 @@
  
    $parameter = array( 'fields' 	  => implode(',',$fields),
 					   'access_token' => $app_accesstoken );
- 	$request = graph_request('/'.$appid, 'GET',$parameter,true,true);
+ 	try{
+	$request = graph_request('/'.$appid, 'GET',$parameter,true,true);
+	}catch(Exception $e){
+	 return null;
+	}
 	return $request;
 }
 
@@ -158,7 +178,11 @@ function setAppRestriction($appid,$app_accesstoken,$fields = array()){
   }
     $parameter = array( 'restrictions' => json_encode($fields),
 					   'access_token' => $app_accesstoken );
- 	$request = graph_request('/'.$appid, 'POST',$parameter,true,false);
+ 	try{
+	$request = graph_request('/'.$appid, 'POST',$parameter,true,false);
+	}catch(Exception $e){
+	 return null;
+	}
 	//$request = file_get_contents("https://graph.facebook.com/$appid?".http_build_query($parameter, null, '&'));
 	return $request;
 }

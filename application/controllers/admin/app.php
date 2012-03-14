@@ -67,5 +67,10 @@ Class App extends CI_Controller {
 		$this->load->view('admin/app',array('data'=> $data,'pagination'=>$links));	
 	}
 	
+    function exportcustomer($appid){
+	 $this->load->model('export_m','export');
+	 $this->export->exportCustomerByAppID($appid);
+	}
+	
 	
 }

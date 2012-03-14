@@ -7,6 +7,7 @@ class Export_m extends CI_Model {
 		parent::__construct();
 		//$this->CI = get_instance();
 		$this->load->model('media_m','media');
+		$this->load->model('customer_m','customer');
 		$this->load->model('campaign_m','campaign');
 		
 	}
@@ -14,7 +15,7 @@ class Export_m extends CI_Model {
 	function exportUploadedLists($gid)
 	{
 	 require_once "Spreadsheet/Excel/Writer.php";
-	
+	 $column = ''; $row = 0;
      $mediaRow = $this->media->retrieveMedia(array('campaign_media.GID'=>$gid),array('fields'=>'campaign_media.media_title,campaign_media.media_description,campaign_media.media_url,campaign_media.media_uploaded_date,campaign_media.media_status,campaign_media_owner.uid'));
 	
 	 $campaign = $this->campaign->detailCampaign($gid);
@@ -71,6 +72,88 @@ class Export_m extends CI_Model {
 				File_Archive::toOutput()
 			)
 		);
+	
+	}
+	
+	function exportCustomerByAppID($appid){
+	  require_once "Spreadsheet/Excel/Writer.php";
+	   $column = ''; $row = 0;
+	  if(!$customers = $this->customer->getCustomerByAppID($appid))
+		return false;
+	  
+     	  $xls = new Spreadsheet_Excel_Writer();
+	  $xls->send("customer_byfacebookappid_".date('dFY').".xls");
+	  $worksheet= & $xls->addWorksheet('Export');
+	  
+	  	//Setup different styles
+	$sheetTitleFormat =& $xls->addFormat(array('bold'=>1,'size'=>10));
+	$columnTitleFormat =& $xls->addFormat(array('bold'=>1,'top'=>1,'bottom'=>1 ,'size'=>9));
+	$regularFormat =& $xls->addFormat(array('size'=>9,'align'=>'left','textWrap'=>1));
+	
+	//Write sheet title in upper left cell
+	$worksheet->write($row, $column, "Customer By Facebook AppID $appid , generate on ".date("d F Y"), $sheetTitleFormat);
+	  
+		//Write column titles two rows beneath sheet title
+		$row += 4;
+		$columnTitles = array('FACEBOOK APP ID','FIRSTNAME','CUSTOMER_ID','LASTNAME','EMAIL','ADDRESS','MOBILE','SUBSCRIPTION');
+		foreach ($columnTitles as $title) {
+		  $worksheet->write($row, $column, $title, $columnTitleFormat);
+		  $column++;
+		}	  
+		
+				//Write each datapoint to the sheet starting one row beneath
+		$row++;
+		  
+		 foreach ($customers as $v){
+		  $column = 0;
+			  foreach ($v as $key => $value) {
+				$worksheet->write($row, $column, $value, $regularFormat);
+				$column++;
+			  }
+		  $row++;	
+		 }
+		 $xls->close(); 	  
+	 	
+	}
+	
+	function exportCustomerByCampaign($gid){
+	 $column = ''; $row = 0;
+	  require_once "Spreadsheet/Excel/Writer.php";
+	  if(!$customers = $this->customer->getCustomerByCampaign($gid))
+	   return false;
+	  	
+	  $xls = new Spreadsheet_Excel_Writer();
+	  $xls->send("customer_bycampaign_".date('dFY').".xls");
+	  $worksheet= & $xls->addWorksheet('Export');
+	  
+	 //Setup different styles
+	$sheetTitleFormat =& $xls->addFormat(array('bold'=>1,'size'=>10));
+	$columnTitleFormat =& $xls->addFormat(array('bold'=>1,'top'=>1,'bottom'=>1 ,'size'=>9));
+	$regularFormat =& $xls->addFormat(array('size'=>9,'align'=>'left','textWrap'=>1));
+	
+	//Write sheet title in upper left cell
+	$worksheet->write($row, $column, "Customer by Campaign , generate on ".date("d F Y"), $sheetTitleFormat);
+	  
+		//Write column titles two rows beneath sheet title
+		$row += 4;
+		$columnTitles = array('CampaignID','Campaign Title','FIRSTNAME','CUSTOMER_ID','LASTNAME','EMAIL','ADDRESS','MOBILE','SUBSCRIPTION');
+		foreach ($columnTitles as $title) {
+		  $worksheet->write($row, $column, $title, $columnTitleFormat);
+		  $column++;
+		}	  
+		
+				//Write each datapoint to the sheet starting one row beneath
+		$row++;
+		  
+		 foreach ($customers as $v){
+		  $column = 0;
+			  foreach ($v as $key => $value) {
+				$worksheet->write($row, $column, $value, $regularFormat);
+				$column++;
+			  }
+		  $row++;	
+		 }
+		 $xls->close(); 
 	
 	}
 	

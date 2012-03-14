@@ -5,8 +5,9 @@
 				<div class="grid_16"><?php echo printNotification()?></div>
 				<div class="grid_16">
 					<div style="float:left;">
-					<?php if($data):?>
+					
 					<a href="#" onclick="document.getElementById('task').value='filter'; document.forms['adminform'].submit();">Filter By Campaign</a>  
+					<?php if($data):?>
 					<a href="#" onclick="document.getElementById('task').value='delete'; document.forms['adminform'].submit();">Delete Selected Assets</a>  
 					<?php endif;?>
 					</div>

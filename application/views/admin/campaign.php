@@ -60,6 +60,7 @@
 									<?php if($v['allowed_media_source']=='file'):?>
 									<a href="<?=site_url('admin/campaign/exportfile/'.$v['GID'])?>">zip</a> 
 									<?php endif;?>
+									<br><br><a href="<?=site_url('admin/campaign/exportcustomer/'.$v['GID'])?>">Customer</a> 
 									</td>
 									<td>
 									<a href="<?=site_url('admin/campaign/add/'.$v['GID'])?>">Edit</a>&nbsp;

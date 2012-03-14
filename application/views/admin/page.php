@@ -24,6 +24,7 @@
 							<tr>
 								<th width="5%">#</th>
                                 <th>No</th>
+								<th>Campaign</th>
 								<th style="width:20%">Title</th>
 								<th>Publish Date</th>
 								<th>Status</th>
@@ -33,9 +34,6 @@
 						<tfoot>
 							<tr>
 								<td colspan="8" class="pagination">
-								<!--
-									<span class="active curved">1</span><a href="#" class="curved">2</a><a href="#" class="curved">3</a><a href="#" class="curved">4</a> ... <a href="#" class="curved">10 million</a>
-								-->
 								<?=$pagination['all']?>
 								</td>
 							</tr>
@@ -46,6 +44,7 @@
 								<tr>
 								 <td><input style="width:10px" type="checkbox" name="cid[]" value="<?=$v['page_id']?>"/></td>
 									<td><?=++$i?></td>
+									<td><?=$v['title']?></td>
 									<td><?=$v['page_title']?></td>
 									<td><?=format_date($v['page_publish_date'])?> <?=format_date($v['page_publish_date'],'time')?></td>
 									<td><?=$v['page_status']?></td>

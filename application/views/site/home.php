@@ -9,5 +9,8 @@
 			<?php echo authorizeBanner($banner_main,false,$redirectURL);?>
 		<?php endif;?>	
 	</div>
+	<div>
+	<?php echo isset($campaign['campaign_rules']) ? $campaign['campaign_rules'] : $campaign['campaign_rules'] ;?>
+	</div>
 </div>
 <?php echo $this->load->view('site/footer',$campaign,true);//End HTML ?>

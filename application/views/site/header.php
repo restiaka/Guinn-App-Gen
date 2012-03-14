@@ -32,7 +32,6 @@
 <ul id="main-nav">
   <li><a href="<?php echo menu_url()?>">Home</a></li>
   <li><a href="<?php echo menu_url('gallery')?>">Gallery</a></li>
-  <li><a href="<?php echo menu_url('rules')?>">Terms & Conditions</a></li>
   <?php if($campaign['on_judging'] && $campaign['winner_announced']):?>
   <li><a href="<?php echo menu_url('winner')?>">The Winner</a></li>
   <?php endif;?>

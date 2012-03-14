@@ -71,6 +71,10 @@
 			
 			//GET FACEBOOK SIGNED REQUEST
 			 $signed_request = $CI->facebook->getSignedRequest();
+			//SETUP SIGNED REQUEST COOKIE FOR NEXT REQUEST 
+			 if(isset($_REQUEST['signed_request'])){
+				@setcookie("fbsr_{$rows['APP_APPLICATION_ID']}",$_REQUEST['signed_request']);
+			 }
 			 
 			//EXTRACT APP_DATA QUERY STRING FOR FACEBOOK PAGE URL REDIRECTION
 			 if(isset($signed_request['app_data']) && $signed_request['app_data']){   
