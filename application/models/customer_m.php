@@ -17,6 +17,7 @@ Class Customer_m extends CI_Model{
   public function add($data)
   { 
     $this->load->library('facebook');
+	settype($data['MOBILE'],'string');
 	 $this->error = array(); 
 	 //Extract for real GID cause its a string combination of GID and AppID ex: "10_2342325235235"
 	 list($gid,$appid) = explode("_",$data['GID']);
@@ -80,8 +81,7 @@ Class Customer_m extends CI_Model{
 	$extra_sql = " ON DUPLICATE KEY UPDATE ".implode(',',$update); 
 	
 	$ok = $this->db->insert('campaign_customer',$db_data,$extra_sql);
-	$this->db->insert('campaign_group_customer',array('customer_id'=>$db_data['customer_id'],'uid' => $db_data['uid'],'GID'=>$gid));
-
+	
 	
 	if($this->db->result){
 	 if(!$this->isAppAuthorized()){
@@ -350,13 +350,65 @@ Class Customer_m extends CI_Model{
 	return $this->db->get_results($sql,'ARRAY_A');				
   }
   
-  public function isRegistered()
+ public function getCustomerByAppID($appid){
+  $sql = "SELECT
+			campaign_customer_fbauthorization.APP_APPLICATION_ID,
+			campaign_customer_traction.CUSTOMER_ID,
+			campaign_customer_traction.FIRSTNAME,
+			campaign_customer_traction.LASTNAME,
+			campaign_customer_traction.EMAIL,
+			campaign_customer_traction.ADDRESS,
+			campaign_customer_traction.MOBILE,
+			campaign_customer_traction.SUBSCRIPTIONID1
+			FROM
+			campaign_customer
+			Inner Join campaign_customer_traction ON campaign_customer.customer_id = campaign_customer_traction.CUSTOMER_ID
+			Inner Join campaign_customer_fbauthorization ON campaign_customer_fbauthorization.uid = campaign_customer.uid
+			WHERE 
+			campaign_customer_fbauthorization.APP_APPLICATION_ID = $appid
+			";
+	return $this->db->get_results($sql,'ARRAY_A');						
+ }
+ 
+ public function getCustomerByCampaign($gid){
+   $sql = "SELECT
+			campaign_group_customer.GID,
+			campaign_group.title,
+			campaign_customer_traction.CUSTOMER_ID,
+			campaign_customer_traction.FIRSTNAME,
+			campaign_customer_traction.LASTNAME,
+			campaign_customer_traction.EMAIL,
+			campaign_customer_traction.ADDRESS,
+			campaign_customer_traction.MOBILE,
+			campaign_customer_traction.SUBSCRIPTIONID1
+			FROM
+			campaign_customer
+			Inner Join campaign_customer_traction ON campaign_customer.customer_id = campaign_customer_traction.CUSTOMER_ID
+			Inner Join campaign_group_customer ON campaign_group_customer.customer_id = campaign_customer.customer_id
+			Inner Join campaign_group ON campaign_group_customer.GID = campaign_group.GID
+			WHERE
+			campaign_group_customer.GID = $gid
+			";
+	return $this->db->get_results($sql,'ARRAY_A');
+ }
+  
+  public function updateCustomerCampaign($customer_id,$uid,$GID)
+  {
+	$extra_sql = " ON DUPLICATE KEY UPDATE GID = values(GID)";
+	@$this->db->insert('campaign_group_customer',array('customer_id'=>$customer_id,'uid' => $uid,'GID'=>$GID),$extra_sql);
+
+  }
+  
+  public function isRegistered($campaign)
   { 
    $this->load->library('facebook');
     if(!$uid = $this->facebook->getUser()) return false;
     $fromDB = $this->detail($uid); 
 	
 	if($fromDB){
+	 //Update Customer relation with Campaign
+	 $this->updateCustomerCampaign($fromDB['customer_id'],$uid,$campaign['GID']);
+	 
 	 //Checking authorized app
 	 if(!$this->isAppAuthorized()){
 	   return false;

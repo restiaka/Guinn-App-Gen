@@ -370,6 +370,16 @@ $config['proxy_ips'] = '';
 
 /*
 |--------------------------------------------------------------------------
+| Mobile Prefetch
+|--------------------------------------------------------------------------
+|
+|	Mobile URL prefetch
+|
+*/
+$config['MOBILE_PREFETCH'] = true;
+
+/*
+|--------------------------------------------------------------------------
 | Backend Authentication Configuration
 |--------------------------------------------------------------------------
 |
@@ -494,6 +504,7 @@ $config['TRAC_ATTR_GID'] = 3014098;
 $config['TRAC_ATTR_MOBILE2'] = 3031180;	
 $config['MOBILE_PREFETCH'] = false;
 
+$config['PHONE_INTL_CODE'] = "62";
  
 
 /* End of file config.php */

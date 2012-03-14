@@ -156,9 +156,13 @@
 						
 						$thumb = resizeImage( $tmp_name, CUSTOMER_IMAGE_DIR.$active_campaign_gid."/thumb_".$uid."_".$time.".jpg", 100 , null,true );
 						$data['media_source'] = 'file';
-						$data['media_url'] = base_url()."image?gid=".$active_campaign_gid."&src=".$uid."_".$time.".jpg";
-						$data['media_medium_url'] = base_url()."image?gid=".$active_campaign_gid."&src=medium_".$uid."_".$time.".jpg";
-						$data['media_thumb_url'] = base_url()."image?gid=".$active_campaign_gid."&src=thumb_".$uid."_".$time.".jpg";
+						//$data['media_url'] = base_url()."image?gid=".$active_campaign_gid."&src=".$uid."_".$time.".jpg";
+						//$data['media_medium_url'] = base_url()."image?gid=".$active_campaign_gid."&src=medium_".$uid."_".$time.".jpg";
+						//$data['media_thumb_url'] = base_url()."image?gid=".$active_campaign_gid."&src=thumb_".$uid."_".$time.".jpg";
+						$data['media_url'] = base_url()."image/u/".$active_campaign_gid."/".$uid."_".$time.".jpg";
+						$data['media_medium_url'] = base_url()."image/u/".$active_campaign_gid."/medium_".$uid."_".$time.".jpg";
+						$data['media_thumb_url'] = base_url()."image/u/".$active_campaign_gid."/thumb_".$uid."_".$time.".jpg";
+						
 						$data['media_type'] = $allowed_media_type;
 						$data['media_basename'] = $uid."_".$time.".jpg";
 					}else{
@@ -256,10 +260,15 @@
 		 $email->addRule('required', 'Email is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
-		 $mobile = $form->addElement('text','MOBILE','');
+ $areacode = $this->config->item('PHONE_INTL_CODE');
+		 $form->addElement('static','','',array('content'=>'Phone prefixed with country ('.$areacode.') & area code: ex. '.$areacode.'21... ,'.$areacode.'812...'));	
+				
+		$mobile = $form->addElement('text','MOBILE','');
 		 $mobile->setLabel('Phone');
 
 		 $mobile->addRule('required', 'Phone no. is required', null,HTML_QuickForm2_Rule::SERVER);
+		 $mobile->addRule('regex', 'Phone number does not Valid','/^'.$areacode.'[0-9]+$/',HTML_QuickForm2_Rule::SERVER);		  
+		
 		 
 		 $address = $form->addElement('textarea','ADDRESS','');
 		 $address->setLabel('Address');
@@ -765,16 +774,30 @@
 				
 				$tmp_name = $data['uploadedfile']["tmp_name"];
 				$time = md5(uniqid(rand(), true).time());
-				$img = resizeImage( $tmp_name, CAMPAIGN_IMAGE_DIR."/".$time.".jpg", $asset_resizeto , 'width' );	
-				$info_img = getimagesize($img); 
+				$filename = CAMPAIGN_IMAGE_DIR."/".$time.".jpg";
+				
 				//Thumb Creation
 				$thm = resizeImage( $tmp_name, CAMPAIGN_IMAGE_DIR."/thumb_".$time.".jpg", 100 , null,true );
+				
+				if($asset_resizeto){
+					$img = resizeImage( $tmp_name, $filename, $asset_resizeto , 'width' );	
+				}else{
+					move_uploaded_file($tmp_name, $filename);
+					$img = $filename;
+				}
+				
+				
+				$info_img = getimagesize($img); 
+
 				$data['asset_basename'] = $time.".jpg";
 				$data['asset_width'] = isset($info_img[0]) ? $info_img[0] : '';
 				$data['asset_height'] = isset($info_img[1]) ? $info_img[1] : '';
 				$data['asset_mimetype'] = isset($info_img['mime']) ? $info_img['mime'] : '';
-				$data['asset_url'] = site_url('image/campaign').'?src='.$data['asset_basename'];
-				$data['asset_thumb_url'] = site_url('image/campaign').'?src=thumb_'.$data['asset_basename'];
+				//$data['asset_url'] = site_url('image/campaign').'?src='.$data['asset_basename'];
+				//$data['asset_thumb_url'] = site_url('image/campaign').'?src=thumb_'.$data['asset_basename'];
+				$data['asset_url'] = site_url('image/campaign/'.$data['asset_basename']);
+				$data['asset_thumb_url'] = site_url('image/campaign/thumb_'.$data['asset_basename']);
+
 				unset($data['uploadedfile']);
 				$form->addElement('static','','',array('content'=>'<div style="margin-top:10px;">Uploaded Asset :</div><div><img src="'.$data['asset_url'].'" /></div>'));
 			}
@@ -1021,7 +1044,7 @@
 		$form->addElement('static','','',array('content'=>'<b>Judging and Announcement before campaign end ?</b>'));
 		$winner_selectiondate_group = $form->addElement('group');	 
 		$winner_selectiondate_group->addElement('date','winner_selectiondate','',$date_set,'style="width:100px;"');		
-		$winner_selectiondate_group->addRule('callback','Date must be shorter or the same as end date','callback_validateWinnerDate');
+		$winner_selectiondate_group->addRule('callback','Date must be longer than Upload date and shorter or the same as end date','callback_validateWinnerDate');
 
 		
 		$form->addElement('static','','',array('content'=>'<b>When will your campaign end ?</b>'));

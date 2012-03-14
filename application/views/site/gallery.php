@@ -22,7 +22,15 @@
       </div>
       <div class="vote"><?php echo $user_media['media_vote_total']?> vote(s)</div>
       
-	  <div class="share"><a href="#" id="sharefeedbutton"  class="button big">Share to Friends</a></div>
+	  <div class="share">
+	  <a href="#" id="sharefeedbutton"  class="button big">Share to Friends</a>
+	  
+	  <?php if(isset($random_media)):?>
+	  <Br/><Br/>
+	<a style="width:118px;" href="<?php echo menu_url('media').'/?m='.$random_media['media_id']?>" class="button big">Random <?php echo $campaign['allowed_media_type'] == "image" ? "Photo" : "Video"?></a>
+   <?php endif;?>
+	  </div>
+
     </div>
     <a href="#" class="hide" onclick="$('.user-panel').toggle();">hide this -</a>
    </div>
@@ -34,9 +42,6 @@
     <form id="gform" name="gform" method="POST">
 	<table align="right" style="margin-bottom:20px;"><tr>
 	<Td>
-	<?php if(isset($random_media)):?>
-	<a href="<?php echo menu_url('media').'/?m='.$random_media['media_id']?>" class="button" style="font-weight:bold;color:#000000">Random <?php echo $campaign['allowed_media_type'] == "image" ? "Photo" : "Video"?></a>
-   <?php endif;?>
 	</td>
 	<td>&nbsp;&nbsp;</td>
 	<th style="font-size:11px">Find Friends: </th><td><input type="text" style="width:111px;border:1px #000000 solid;height:20px;" name="searchby" onenter="document.getElementById('gform').submit();"/></td>
@@ -64,7 +69,7 @@
     </li>
 	<?php endforeach;?>
   </ul>
-  <div id="pagination"><?php echo $pagination['all']?></div>
+  <div id="pagination" style="text-align:center;"><?php echo $pagination['all']?></div>
   <?php else:?>
   <div style="text-align:center;">SORRY NO ITEMS YET</div>
   <?php endif;?>

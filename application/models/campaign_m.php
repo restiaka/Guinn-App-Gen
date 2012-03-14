@@ -21,6 +21,7 @@ Class Campaign_m extends CI_Model {
 				  AND APP_APPLICATION_ID = '".$this->setting_m->get('APP_APPLICATION_ID')."'  
 			ORDER BY startdate DESC 
 			LIMIT 1";
+
 	  if($result = $this->db->get_row($sql,'ARRAY_A')){
 	    $result = array_merge($result,$this->getStatus($result));
 		//Merge Assets if exists

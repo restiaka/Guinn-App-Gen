@@ -66,7 +66,13 @@ Class Campaign extends CI_Controller {
 			show_404();
 		}
 	 
-
+     if($campaign['on_judging']){
+	    $data['campaign'] = $campaign;
+		$data['message_title'] = "The Winner Announce Soon";
+		$data['message_text'] = "Sorry! We are on Judging Time for The Campaign.";
+		$this->load->view('site/campaign_notification',$data);
+	    return;
+	 }
 	 
      if(!$campaign['on_upload']){
 	    $data['campaign'] = $campaign;
@@ -76,13 +82,7 @@ Class Campaign extends CI_Controller {
 		return;
 	 }
 	 
-     if($campaign['on_judging']){
-	    $data['campaign'] = $campaign;
-		$data['message_title'] = "The Winner Announce Soon";
-		$data['message_text'] = "Sorry! We are on Judging Time for The Campaign.";
-		$this->load->view('site/campaign_notification',$data);
-	    return;
-	 }
+
 	 
 
 	
@@ -99,7 +99,7 @@ Class Campaign extends CI_Controller {
 	 if(!$isFan = user_isFan()){
 	   redirect(menu_url('likepage').'?ref='.$redirect_url);
 	 }	 
-	 if(!$this->customer->isRegistered()){
+	 if(!$this->customer->isRegistered($campaign)){
 	   redirect(menu_url('register'));	   
 	 }
 	 /** END REQUIRED VALIDATION **/
@@ -201,7 +201,7 @@ Class Campaign extends CI_Controller {
 		$data['message_title'] = "The Winner Announce Soon";
 		$data['message_description'] = "Sorry! We are on Judging Time for The Campaign.";
 		$this->load->view('site/campaign_notification',$data);
-		exit;
+		return;
 	 }
 	 
 	 $sr = $this->facebook->getSignedRequest();
@@ -216,7 +216,7 @@ Class Campaign extends CI_Controller {
 	   redirect(menu_url('likepage').'?ref='.$redirect_url);
 	 }
 	 
-	 if($this->customer->isRegistered()){
+	 if($this->customer->isRegistered($campaign)){
 	   redirect(menu_url('home'));	   
 	 }
 	 /** END REQUIRED VALIDATION **/
@@ -232,8 +232,7 @@ Class Campaign extends CI_Controller {
 	 }
 	 
 	 $this->load->view('site/register',array('campaign'=>$campaign,
-										   'html_form_register' => $form,
-										   'custom_page_url' => ($campaign ? $this->page_m->getPageURL($campaign['GID']) : null)
+										   'html_form_register' => $form
 										   ));										
 	}
 	
@@ -327,7 +326,7 @@ Class Campaign extends CI_Controller {
 			if($campaign_status['is_off'] || $rowMedia['media_status'] == 'pending' || $rowMedia['media_status'] == 'banned'){
 				$rowMedia['media_container'] = $this->media->showMedia($rowMedia,false);
 				$campaign['media_preview'] = true;
-				$this->load->view('site/media_preview',array('campaign'=>$campaign,'media' => $rowMedia,'notification' => $this->notify,'error' => $this->error));	
+				$this->load->view('site/media_preview',array('campaign'=>$campaign,'media' => $rowMedia));	
 			}else{
 			   $fblike_href = $this->setting_m->get('APP_CANVAS_PAGE').menu_url('media',true).'/?m='.$rowMedia['media_id'];
 				
@@ -366,6 +365,7 @@ Class Campaign extends CI_Controller {
 	   
 	   $sr = $this->facebook->getSignedRequest();
 	   $redirect_url = isset($sr['page']) ? $this->config->item('APP_FANPAGE')."&app_data=redirect|".current_url() : "http://apps.facebook.com/".$this->config->item('APP_APPLICATION_ID')."/gallery";
+
 	   
 	   if(!$user = getAuthorizedUser(true)){
 		redirect(menu_url('authorize').'?ref='.$redirect_url);
@@ -390,6 +390,7 @@ Class Campaign extends CI_Controller {
        
 	   $orderby = 'campaign_media.media_id';
 		$order = 'DESC';
+		
 		if($byorder = $this->input->get_post('orderby', TRUE)){		
 					switch($byorder){
 						case "mostvote" : 	$orderby = "campaign_media.media_vote_total"; 
@@ -415,8 +416,9 @@ Class Campaign extends CI_Controller {
 		
 		$clauses['campaign_media.media_status'] = 'active';
 		$clauses['campaign_media.GID'] = $active_campaign['GID'];
-		
-		$rowsMedia = $this->media->retrieveMedia($clauses,array('orderby'=>$orderby,'order'=>$order,'limit_number' => $config['perPage'],'limit_offset' => --$from));
+		$args = array('orderby'=>$orderby,'order'=>$order,'limit_number' => $config['perPage'],'limit_offset' => --$from);
+
+		$rowsMedia = $this->media->retrieveMedia($clauses,$args);
 		$this->load->view('site/gallery',array('campaign'=>$active_campaign,
 												'media' => $rowsMedia,
 												'user_media' => $userMedia ? $userMedia : null,

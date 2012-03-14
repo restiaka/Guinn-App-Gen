@@ -53,6 +53,8 @@ Class Customer extends CI_Controller {
 			   } break;
 		  }
 		 }
+	 }elseif($this->input->post('task')){
+			$this->notify->set_message('error', 'You haven\'t select any items required for the action.');
 	 }
 	  
 	  //echo "test";
