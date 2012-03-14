@@ -259,9 +259,14 @@
 		 $email->addRule('required', 'Email is required', null,HTML_QuickForm2_Rule::SERVER);
 		 
 		 //$form->addElement('static','','',array('content'=>'Phone no :'));	
-		 $mobile = $form->addElement('text','MOBILE','');
+ $areacode = $this->config->item('PHONE_INTL_CODE');
+		 $form->addElement('static','','',array('content'=>'Phone prefixed with country ('.$areacode.') & area code: ex. '.$areacode.'21... ,'.$areacode.'812...'));	
+				
+		$mobile = $form->addElement('text','MOBILE','');
 		 $mobile->setLabel('Phone');
 		 $mobile->addRule('required', 'Phone no. is required', null,HTML_QuickForm2_Rule::SERVER);
+		 $mobile->addRule('regex', 'Phone number does not Valid','/^'.$areacode.'[0-9]+$/',HTML_QuickForm2_Rule::SERVER);		  
+		
 		 
 		 $address = $form->addElement('textarea','ADDRESS','');
 		 $address->setLabel('Address');
@@ -768,10 +773,21 @@
 				
 				$tmp_name = $data['uploadedfile']["tmp_name"];
 				$time = md5(uniqid(rand(), true).time());
-				$img = resizeImage( $tmp_name, CAMPAIGN_IMAGE_DIR."/".$time.".jpg", $asset_resizeto , 'width' );	
-				$info_img = getimagesize($img); 
+				$filename = CAMPAIGN_IMAGE_DIR."/".$time.".jpg";
+				
 				//Thumb Creation
 				$thm = resizeImage( $tmp_name, CAMPAIGN_IMAGE_DIR."/thumb_".$time.".jpg", 100 , null,true );
+				
+				if($asset_resizeto){
+					$img = resizeImage( $tmp_name, $filename, $asset_resizeto , 'width' );	
+				}else{
+					move_uploaded_file($tmp_name, $filename);
+					$img = $filename;
+				}
+				
+				
+				$info_img = getimagesize($img); 
+
 				$data['asset_basename'] = $time.".jpg";
 				$data['asset_width'] = isset($info_img[0]) ? $info_img[0] : '';
 				$data['asset_height'] = isset($info_img[1]) ? $info_img[1] : '';

@@ -503,6 +503,7 @@ $config['TRAC_ENDPOINTID'] = 17259;
 $config['TRAC_ATTR_GID'] = 3014098;
 $config['TRAC_ATTR_MOBILE2'] = 3031180;	
 
+$config['PHONE_INTL_CODE'] = "62";
  
 
 /* End of file config.php */
